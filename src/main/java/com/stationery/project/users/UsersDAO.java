@@ -1,0 +1,21 @@
+package com.stationery.project.users;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class UsersDAO {
+	
+	@Autowired
+	private SqlSession sqlSession;
+	private final String NAMESPACE = "com.stationery.project.users.UsersDAO.";
+	
+	public int join(UsersDTO usersDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"join", usersDTO);
+	}
+	
+	public UsersDTO login(UsersDTO usersDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"login", usersDTO);
+	}
+}
