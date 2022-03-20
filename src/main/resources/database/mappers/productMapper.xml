@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.stationery.project.product.ProductDAO">
+
+	<select id="list" parameterType="Pager" resultType="ProductDTO">
+		select * from product 
+		
+		where name like'%'||#{search}||'%' 
+	</select>
+
+	<insert id="add" parameterType="ProductDTO">
+		insert into
+		PRODUCT(PRODUCTNUM,CATEGORYNUM,NAME,CONTENTS,THUMBNAIL,PRICE,STOCK,REGDATE)
+		values(PRODUCT_SEQ.nextval,#{categoryNum},#{name},#{contents},#{thumbnail},#{price},#{stock},sysdate)
+	</insert>
+</mapper>
+
