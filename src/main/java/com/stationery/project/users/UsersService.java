@@ -17,5 +17,17 @@ public class UsersService {
 	public UsersDTO login(UsersDTO usersDTO) throws Exception {
 		return usersDAO.login(usersDTO);
 	}
+	
+	public UsersDTO mypage(UsersDTO usersDTO) throws Exception {
+		return usersDAO.mypage(usersDTO);
+	}
+	
+	public int infochange(UsersDTO usersDTO) throws Exception {
+		return usersDAO.infochange(usersDTO);
+	}
+	
+	public int pwchange(UsersDTO usersDTO) throws Exception {
+		return usersDAO.pwchange(usersDTO);
+	}
 
 }

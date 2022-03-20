@@ -71,4 +71,55 @@ public class UsersController {
 		
 		return path;
 	}
+	// logout 기능
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout(HttpSession httpSession) throws Exception {
+		httpSession.invalidate();
+		return "redirect:../";
+	}
+	
+	// mypage form 이동
+	@RequestMapping(value = "mypage", method = RequestMethod.GET)
+	public void mypage(Model model, HttpSession httpSession) throws Exception {
+		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
+		usersDTO = usersService.mypage(usersDTO);
+		model.addAttribute("dto", usersDTO);
+	}
+	
+	// mychange form 이동
+	@RequestMapping(value = "mychange", method = RequestMethod.GET)
+	public void mychange() throws Exception {
+	}
+	
+	// infochange form 이동
+	@RequestMapping(value = "infochange", method = RequestMethod.GET)
+	public void infochange(HttpSession httpSession, Model model) throws Exception {
+		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
+		usersDTO = usersService.mypage(usersDTO);
+		model.addAttribute("dto", usersDTO);
+	}
+	
+	// infochange 기능
+	@RequestMapping(value = "infochange", method = RequestMethod.POST)
+	public String infochange(UsersDTO usersDTO) throws Exception {
+		int result = usersService.infochange(usersDTO);
+		return "redirect:../";
+	}
+	
+	// pwchange form 이동
+	@RequestMapping(value = "pwchange", method = RequestMethod.GET)
+	public void pwchange(HttpSession httpSession, Model model) throws Exception {
+		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
+		usersDTO = usersService.mypage(usersDTO);
+		model.addAttribute("dto", usersDTO);
+	}
+	
+	// pwchange 기능
+	@RequestMapping(value = "pwchange", method = RequestMethod.POST)
+	public String pwchange(UsersDTO usersDTO) throws Exception {
+		int result = usersService.pwchange(usersDTO);
+		return "redirect:../";
+	}
+	
+	
 }

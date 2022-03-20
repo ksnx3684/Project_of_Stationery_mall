@@ -1,5 +1,6 @@
 package com.stationery.project.users;
 
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,5 +18,17 @@ public class UsersDAO {
 	
 	public UsersDTO login(UsersDTO usersDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"login", usersDTO);
+	}
+	
+	public UsersDTO mypage(UsersDTO usersDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"mypage", usersDTO);
+	}
+	
+	public int infochange(UsersDTO usersDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"infochange", usersDTO);
+	}
+	
+	public int pwchange(UsersDTO usersDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"pwchange", usersDTO);
 	}
 }

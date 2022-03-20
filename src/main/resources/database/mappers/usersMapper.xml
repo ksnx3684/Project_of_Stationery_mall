@@ -13,6 +13,17 @@
 	<select id="login" parameterType="UsersDTO" resultType="UsersDTO">
 		SELECT ID, NAME FROM USERS WHERE ID = #{id} AND PW = #{pw}
 	</select>
+	<select id="mypage" parameterType="UsersDTO" resultType="UsersDTO">
+		SELECT ID, NAME, PHONE, EMAIL, JOINDATE, ADDRESSNAME, ADDRESSPHONE, POSTALCODE, ADDRESSDETAIL
+		FROM USERS WHERE ID = #{id}
+	</select>
+	<update id="infochange" parameterType="UsersDTO">
+		UPDATE USERS SET PHONE = #{phone}, EMAIL = #{email}, ADDRESSNAME = #{addressName},
+		ADDRESSPHONE = #{addressPhone}, POSTALCODE = #{postalCode}, ADDRESSDETAIL = #{addressDetail}
+	</update>
+	<update id="pwchange" parameterType="UsersDTO">
+		UPDATE USERS SET PW = #{pw}
+	</update>
 
 
 </mapper>
