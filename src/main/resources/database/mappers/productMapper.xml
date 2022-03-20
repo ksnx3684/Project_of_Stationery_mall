@@ -7,7 +7,7 @@
 
 	<select id="list" parameterType="Pager" resultType="ProductDTO">
 		select * from product
-		where name like'%'||#{search}||'%' and categoryNum like '%'||#{categoryNum}||'%'
+		where name like'%'||#{search}||'%' and categorynum like '%'||#{categoryNum}||'%'
 	</select>
 
 	<insert id="add" parameterType="ProductDTO">
