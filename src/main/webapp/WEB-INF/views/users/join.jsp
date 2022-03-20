@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +46,7 @@
                 <option value="hotmail.com">hotmail.com</option>
                 <option value="1">직접입력</option>
             </select>
-            <input type="text" name="email" id="email" readonly>
+            <input type="hidden" name="email" id="email" readonly>
         </fieldset>
         <fieldset>
             <legend>성별</legend>
@@ -63,7 +64,7 @@
             <input type="text" name="address" id="address" placeholder="주소" readonly><br>
             <input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소">
             <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목">
-            <input type="text" name="addressDetail" id="addressDetail" readonly>
+            <input type="hidden" name="addressDetail" id="addressDetail" readonly>
 
             <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
             <script>
@@ -123,20 +124,6 @@
         <fieldset>
             <button type="button" id="btn">가입</button>
         </fieldset>
-        <!-- <script>
-            const btnCheck = document.querySelector("#btn");
-            btnCheck.addEventListener("click", function(){
-                let email_id = document.querySelector("#email_id").value;
-                let email_domain = document.querySelector("#email_domain").value;
-                let at = "@";
-                let address = document.querySelector("#address").value;
-                let detailAddress = document.querySelector('#detailAddress').value;
-                let extraAddress = document.querySelector("#extraAddress").value;
-
-                document.querySelector("#email").value = email_id + at + email_domain;
-                document.querySelector("#addressDetail").value = address + detailAddress + extraAddress;
-            });
-        </script> -->
     </form>
     </div>
     <script type="text/javascript" src="../resources/js/join.js"></script>
