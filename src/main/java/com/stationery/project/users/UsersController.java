@@ -1,5 +1,7 @@
 package com.stationery.project.users;
 
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -76,6 +78,14 @@ public class UsersController {
 	public String logout(HttpSession httpSession) throws Exception {
 		httpSession.invalidate();
 		return "redirect:../";
+	}
+	
+	// wishlist form 이동
+	@RequestMapping(value = "wishlist", method = RequestMethod.GET)
+	public void wishlist(Model model, HttpSession httpSession) throws Exception {
+		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
+		List<WishListDTO> list = usersService.wishlist(usersDTO);
+		model.addAttribute("wishlistDTO", list);
 	}
 	
 	// mypage form 이동

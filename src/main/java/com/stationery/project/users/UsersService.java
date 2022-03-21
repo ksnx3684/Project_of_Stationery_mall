@@ -1,5 +1,7 @@
 package com.stationery.project.users;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,10 @@ public class UsersService {
 	
 	public UsersDTO login(UsersDTO usersDTO) throws Exception {
 		return usersDAO.login(usersDTO);
+	}
+	
+	public List<WishListDTO> wishlist(UsersDTO usersDTO) throws Exception {
+		return usersDAO.wishlist(usersDTO);
 	}
 	
 	public UsersDTO mypage(UsersDTO usersDTO) throws Exception {

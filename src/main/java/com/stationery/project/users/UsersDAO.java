@@ -1,6 +1,8 @@
 package com.stationery.project.users;
 
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,6 +20,10 @@ public class UsersDAO {
 	
 	public UsersDTO login(UsersDTO usersDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"login", usersDTO);
+	}
+	
+	public List<WishListDTO> wishlist(UsersDTO usersDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"wishlist", usersDTO);
 	}
 	
 	public UsersDTO mypage(UsersDTO usersDTO) throws Exception {

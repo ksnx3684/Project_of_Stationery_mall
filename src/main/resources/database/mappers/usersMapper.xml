@@ -13,6 +13,9 @@
 	<select id="login" parameterType="UsersDTO" resultType="UsersDTO">
 		SELECT ID, NAME FROM USERS WHERE ID = #{id} AND PW = #{pw}
 	</select>
+	<select id="wishlist" parameterType="UsersDTO" resultType="WishListDTO">
+		SELECT * FROM WISHLIST WHERE ID = #{id}
+	</select>
 	<select id="mypage" parameterType="UsersDTO" resultType="UsersDTO">
 		SELECT ID, NAME, PHONE, EMAIL, JOINDATE, ADDRESSNAME, ADDRESSPHONE, POSTALCODE, ADDRESSDETAIL
 		FROM USERS WHERE ID = #{id}
