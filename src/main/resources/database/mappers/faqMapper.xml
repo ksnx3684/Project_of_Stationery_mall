@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?> <!-- 이건 xml이다 -->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.stationery.project.board.faq.FaqDAO">
+
+ 	 <select id="list" resultType="FaqDTO">
+ 	 	SELECT * FROM FAQ
+ 	 </select>
+ 	 
+ 	 <select id="detail" resultType="FaqDTO" parameterType="FaqDTO">
+ 	 	SELECT * FROM FAQ WHERE ID=#{id}
+ 	 </select>
+</mapper>

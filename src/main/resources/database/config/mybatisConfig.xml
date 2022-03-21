@@ -4,6 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		
-			</typeAliases>
+  		<typeAlias type="java.lang.Long" alias="Long"/>
+   		<typeAlias type="com.stationery.project.util.Pager" alias="Pager"/>
+   		<typeAlias type="com.stationery.project.board.BoardDTO" alias="BoardDTO"/>
+   		<typeAlias type="com.stationery.project.board.faq.FaqDTO" alias="FaqDTO"/>
+   		<typeAlias type="java.util.List" alias="List"/>
+	</typeAliases>
 </configuration>
