@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
+
 <mapper namespace="com.stationery.project.board.faq.FaqDAO">
 
  	 <select id="list" resultType="FaqDTO">
@@ -10,6 +10,20 @@
  	 </select>
  	 
  	 <select id="detail" resultType="FaqDTO" parameterType="FaqDTO">
- 	 	SELECT * FROM FAQ WHERE ID=#{id}
+ 	 	SELECT * FROM FAQ WHERE NUM=#{num}
  	 </select>
+ 	 
+ 	 <insert id="add" parameterType="FaqDTO">
+ 	 	INSERT INTO FAQ 
+		VALUES (FAQ_SEQ.nextval, #{id}, #{title}, #{contents})
+ 	 </insert>
+ 	 
+ 	 <update id="update" parameterType="FaqDTO">
+ 	 	UPDATE FAQ SET TITLE=#{title}, CONTENTS=#{contents}
+ 	 	WHERE NUM=#{num}
+ 	 </update>
+ 	 
+ 	 <delete id="delete" parameterType="FaqDTO">
+ 	 	DELETE FAQ WHERE NUM=#{num}
+ 	 </delete>
 </mapper>

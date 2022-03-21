@@ -7,7 +7,11 @@
   		<typeAlias type="java.lang.Long" alias="Long"/>
    		<typeAlias type="com.stationery.project.util.Pager" alias="Pager"/>
    		<typeAlias type="com.stationery.project.board.BoardDTO" alias="BoardDTO"/>
+   		<typeAlias type="com.stationery.project.board.BoardFileDTO" alias="BoardFileDTO"/>
    		<typeAlias type="com.stationery.project.board.faq.FaqDTO" alias="FaqDTO"/>
+   		<typeAlias type="com.stationery.project.board.notices.NoticesDTO" alias="NoticesDTO"/>
+   		<typeAlias type="com.stationery.project.board.notices.NoticesFileDTO" alias="NoticesFileDTO"/>
+   		
    		<typeAlias type="java.util.List" alias="List"/>
 	</typeAliases>
 </configuration>

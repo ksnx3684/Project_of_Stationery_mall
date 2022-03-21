@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?> <!-- 이건 xml이다 -->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.stationery.project.board.notices.NoticesDAO">
+
+ 	<select id="listFile" parameterType="BoardDTO" resultType="NoticesFileDTO">
+ 		SELECT * FROM NOTICES_FILE 
+ 		WHERE NUM = #{num}
+ 	</select>
+ 
+ 
+ 	<select id="detailFile" parameterType="NoticesFileDTO" resultType="NoticesFileDTO">
+ 		SELECT * FROM NOTICES_FILE
+ 		WHERE FILENUM=#{fileNum}
+ 	</select>
+ 
+ 	<insert id="addFile" parameterType="BoardFileDTO">
+ 		INSERT INTO NOTICES_FILE (FILENUM, NUM, FILENAME, ORINAME)
+ 		VALUES (NOTICES_FILE_SEQ.NEXTVAL, #{num}, #{fileName}, #{oriName})
+ 	</insert>
+ 	
+ 	 <select id="seqNum" resultType="Long">
+ 		<!-- select max(num) from notice -->
+ 		SELECT NOTICES_SEQ.NEXTVAL FROM DUAL
+ 	</select>
+
+	<insert id="add" parameterType="NoticesDTO">
+ 		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+ 			SELECT NOTICES_SEQ.NEXTVAL FROM DUAL
+ 		</selectKey>
+ 		insert into notices (num, id, title, contents, createdDate)
+ 		values (#{num}, #{id}, #{title}, #{contents}, sysdate)
+ 	</insert>
+
+ 	 <select id="list" resultType="NoticesDTO">
+ 	 	SELECT * FROM NOTICES
+ 	 </select>
+ 	 
+ 	 <select id="detail" resultType="NoticesDTO" parameterType="NoticesDTO">
+ 	 	SELECT * FROM NOTICES WHERE NUM=#{num}
+ 	 </select>
+ 	 
+ 	 <!-- <insert id="add" parameterType="NoticesDTO">
+ 	 	INSERT INTO NOTICES 
+		VALUES (NOTICES_SEQ.nextval, #{id}, #{title}, #{contents}, sysdate)
+ 	 </insert> -->
+ 	 
+ 	 <update id="update" parameterType="NoticesDTO">
+ 	 	UPDATE NOTICES SET TITLE=#{title}, CONTENTS=#{contents}
+ 	 	WHERE NUM=#{num}
+ 	 </update>
+ 	 
+ 	 <delete id="delete" parameterType="NoticesDTO">
+ 	 	DELETE NOTICES WHERE NUM=#{num}
+ 	 </delete>
+</mapper>

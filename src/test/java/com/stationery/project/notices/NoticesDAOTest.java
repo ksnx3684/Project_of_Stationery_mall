@@ -1,4 +1,4 @@
-package com.stationery.project.faq;
+package com.stationery.project.notices;
 
 import static org.junit.Assert.*;
 
@@ -6,36 +6,28 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.apache.log4j.lf5.util.DateFormatManager;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.stationery.project.MyJunitTest;
 import com.stationery.project.board.BoardDTO;
-import com.stationery.project.board.faq.FaqDAO;
-import com.stationery.project.board.faq.FaqDTO;
+import com.stationery.project.board.notices.NoticesDAO;
 
-public class FaqDAOTest extends MyJunitTest{
+public class NoticesDAOTest extends MyJunitTest{
 
 	@Autowired
-	private FaqDAO faqDAO;
-	@Autowired
-	private DataSource dataSource;
+	private NoticesDAO noticesDAO;
 	
-	
-	//@Test
-	public void dataSourceTest() throws Exception{
-		assertNotNull(dataSource.getConnection());
-	}
+
 	
 	//@Test
 	public void check() {
-		assertNotNull(faqDAO);
+		assertNotNull(noticesDAO);
 	}
 
 	//@Test
 	public void listTest() throws Exception {
-		List<BoardDTO> ar = faqDAO.list();
+		List<BoardDTO> ar = noticesDAO.list();
 		assertNotEquals(0, ar.size());
 	}
 	
@@ -50,27 +42,28 @@ public class FaqDAOTest extends MyJunitTest{
 	public void addTest() throws Exception {
 		BoardDTO boardDTO = new BoardDTO();
 		boardDTO.setId("id1");
-		boardDTO.setTitle("t2");
-		boardDTO.setContents("c1");
-		int result =faqDAO.add(boardDTO);
+		boardDTO.setTitle("title2");
+		boardDTO.setContents("contents2");
+		int result =noticesDAO.add(boardDTO);
 		assertEquals(1, result);
 	}
 	
 	//@Test
 	public void updateTest() throws Exception {
 		BoardDTO boardDTO = new BoardDTO();
-		boardDTO.setNum(41L);
-		boardDTO.setTitle("title2");
-		boardDTO.setContents("contents2");
-		int result = faqDAO.update(boardDTO);
+		boardDTO.setNum(21L);
+		boardDTO.setTitle("title3");
+		boardDTO.setContents("contents3");
+		int result = noticesDAO.update(boardDTO);
 		assertEquals(1, result);
 	}
 	
 	@Test
 	public void deleteTest() throws Exception {
 		BoardDTO boardDTO = new BoardDTO();
-		boardDTO.setNum(41L);
-		int result = faqDAO.delete(boardDTO);
+		boardDTO.setNum(21L);
+		int result = noticesDAO.delete(boardDTO);
 		assertEquals(1, result);
 	}
+
 }
