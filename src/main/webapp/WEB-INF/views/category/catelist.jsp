@@ -13,7 +13,7 @@
 catelist.jsp
 <div class="category">
 <c:forEach items="${list}" var="list">
-<a href="/project/product/list?categoryName=${list.categoryName}">${list.categoryName}</a>
+<a href="/project/product/list?categoryNum=${list.categoryNum}">${list.categoryName}</a>
 </c:forEach>
 </div>
 <hr>

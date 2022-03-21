@@ -6,7 +6,8 @@
 <mapper namespace="com.stationery.project.product.ProductDAO">
 
 	<select id="list" parameterType="Pager" resultType="ProductDTO">
-		select * from product
+		select * from product 
+		
 		where name like'%'||#{search}||'%' and categorynum like '%'||#{categoryNum}||'%'
 	</select>
 

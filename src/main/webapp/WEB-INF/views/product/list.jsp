@@ -13,6 +13,7 @@ list.jsp
 <div>
 		<form action="./list" method="get">
 				<input type="text" name="search">
+				<input type="hidden" name="categoryNum" value="${categoryNum}">
 				<button type="submit">검색</button>
 		</form>
 

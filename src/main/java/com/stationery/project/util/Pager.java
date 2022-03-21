@@ -3,19 +3,17 @@ package com.stationery.project.util;
 public class Pager {
 
 	private String search;
-	private String categoryName;
+	private Integer categoryNum;
 	
 	
-	
-	
-	public String getCategoryName() {
-		if(this.categoryName==null) {
-			this.search="";
+	public Integer getCategoryNum() {
+		if(this.categoryNum==null) {
+			this.categoryNum=0;
 		}
-		return categoryName;
+		return categoryNum;
 	}
-	public void setCategoryName(String categoryName) {
-		this.categoryName = categoryName;
+	public void setCategoryNum(Integer categoryNum) {
+		this.categoryNum = categoryNum;
 	}
 	public String getSearch() {
 		if(this.search==null) {
