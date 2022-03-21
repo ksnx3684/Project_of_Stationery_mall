@@ -18,12 +18,21 @@
 		FROM USERS WHERE ID = #{id}
 	</select>
 	<update id="infochange" parameterType="UsersDTO">
-		UPDATE USERS SET PHONE = #{phone}, EMAIL = #{email}, ADDRESSNAME = #{addressName},
+		<!-- UPDATE USERS SET PHONE = #{phone}, EMAIL = #{email}, ADDRESSNAME = #{addressName},
 		ADDRESSPHONE = #{addressPhone}, POSTALCODE = #{postalCode}, ADDRESSDETAIL = #{addressDetail}
+		WHERE ID = #{id} -->
+		{CALL
+        DECLARE
+        BEGIN
+            UPDATE USERS SET PHONE = '', EMAIL = '' WHERE ID = #{id};
+            UPDATE USERS SET PHONE = #{phone}, EMAIL = #{email}, ADDRESSNAME = #{addressName},
+			ADDRESSPHONE = #{addressPhone}, POSTALCODE = #{postalCode}, ADDRESSDETAIL = #{addressDetail}
+			WHERE ID = #{id};
+        END
+    	}
 	</update>
 	<update id="pwchange" parameterType="UsersDTO">
-		UPDATE USERS SET PW = #{pw}
+		UPDATE USERS SET PW = #{pw} WHERE ID = #{id}
 	</update>
-
 
 </mapper>

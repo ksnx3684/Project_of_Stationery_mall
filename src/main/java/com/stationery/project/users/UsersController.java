@@ -83,7 +83,7 @@ public class UsersController {
 	public void mypage(Model model, HttpSession httpSession) throws Exception {
 		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
 		usersDTO = usersService.mypage(usersDTO);
-		model.addAttribute("dto", usersDTO);
+		model.addAttribute("usersDTO", usersDTO);
 	}
 	
 	// mychange form 이동
@@ -96,7 +96,7 @@ public class UsersController {
 	public void infochange(HttpSession httpSession, Model model) throws Exception {
 		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
 		usersDTO = usersService.mypage(usersDTO);
-		model.addAttribute("dto", usersDTO);
+		model.addAttribute("usersDTO", usersDTO);
 	}
 	
 	// infochange 기능
@@ -111,7 +111,7 @@ public class UsersController {
 	public void pwchange(HttpSession httpSession, Model model) throws Exception {
 		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
 		usersDTO = usersService.mypage(usersDTO);
-		model.addAttribute("dto", usersDTO);
+		model.addAttribute("usersDTO", usersDTO);
 	}
 	
 	// pwchange 기능
