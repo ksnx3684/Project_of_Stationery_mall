@@ -31,6 +31,26 @@
 		<beans:property name="order" value="0" />
 	</beans:bean>
 
+	<beans:bean class="com.stationery.project.interceptor.LoginInterceptor" id="loginInterceptor"/>
+	<beans:bean class="com.stationery.project.interceptor.WithdrawalInterceptor" id="WithdrawalInterceptor"/>
+	<interceptors>
+    	<interceptor>
+    		<mapping path="/users/infochange"/>
+    		<mapping path="/users/mychange"/>
+    		<mapping path="/users/mypage"/>
+    		<mapping path="/users/orderlist"/>
+    		<mapping path="/users/pwchange"/>
+    		<mapping path="/users/wishlist"/>
+    		<mapping path="/users/withdrawal"/>
+    		<mapping path="/users/withdrawalfinal"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		<!-- <interceptor>
+    		<mapping path="/users/withdrawalfinal"/>
+			<beans:ref bean="WithdrawalInterceptor"/>
+		</interceptor> -->
+	</interceptors>
+
 	<context:component-scan base-package="com.stationery.project" />
 
 

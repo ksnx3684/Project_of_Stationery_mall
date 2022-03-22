@@ -37,4 +37,12 @@ public class UsersDAO {
 	public int pwchange(UsersDTO usersDTO) throws Exception {
 		return sqlSession.update(NAMESPACE+"pwchange", usersDTO);
 	}
+	
+	public UsersDTO withdrawal(UsersDTO usersDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"withdrawal", usersDTO);
+	}
+	
+	public int withdrawalfinal(UsersDTO usersDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"withdrawalfinal", usersDTO);
+	}
 }

@@ -37,5 +37,10 @@
 	<update id="pwchange" parameterType="UsersDTO">
 		UPDATE USERS SET PW = #{pw} WHERE ID = #{id}
 	</update>
-
+	<select id="withdrawal" parameterType="UsersDTO" resultType="UsersDTO">
+		SELECT ID FROM USERS WHERE ID = #{id} AND PW = #{pw}
+ 	</select>
+ 	<delete id="withdrawalfinal" parameterType="UsersDTO">
+ 		DELETE USERS WHERE ID = #{id}
+ 	</delete>
 </mapper>

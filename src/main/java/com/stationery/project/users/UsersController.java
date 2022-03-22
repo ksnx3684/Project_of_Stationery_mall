@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -88,6 +90,12 @@ public class UsersController {
 		model.addAttribute("wishlistDTO", list);
 	}
 	
+	// orderlist form 이동
+	@RequestMapping(value = "orderlist", method = RequestMethod.GET)
+	public void orderlist() throws Exception {
+		
+	}
+	
 	// mypage form 이동
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
 	public void mypage(Model model, HttpSession httpSession) throws Exception {
@@ -131,5 +139,56 @@ public class UsersController {
 		return "redirect:../";
 	}
 	
+	// withdrawal form 이동
+	@GetMapping("withdrawal")
+	public void withdrawal() throws Exception {
+	}	
+	
+	// withdrawal 기능
+	@PostMapping("withdrawal")
+	public String withdrawal(UsersDTO usersDTO, Model model, HttpSession httpSession, HttpServletResponse httpServletResponse) throws Exception {
+		
+		usersDTO = usersService.withdrawal(usersDTO); // 로그인 기능
+		
+		String message = "아이디 또는 비밀번호가 일치하지 않습니다";
+		String p = "./withdrawal";
+		
+		if(usersDTO != null) {
+			httpSession.setAttribute("auth", usersDTO); // "withdrawal"에 로그인 세션 삽입
+			message = "회원탈퇴로 진행합니다";
+			p = "./withdrawalfinal";
+		}
+		model.addAttribute("message", message);
+		model.addAttribute("path", p);
+		
+		String path = "common/result";
+		return path;
+	}
+	
+	// withdrawalfinal form 이동
+	@GetMapping("withdrawalfinal")
+	public void withdrawalfinal() throws Exception {
+	}
+	
+	// withdrawalfinal 기능
+	@PostMapping("withdrawalfinal")
+	public String withdrawalfinal(UsersDTO usersDTO, HttpSession httpSession) throws Exception {
+		
+		UsersDTO users = (UsersDTO)httpSession.getAttribute("auth");
+		
+		
+//		String message = "탈퇴가 정상적으로 완료되었습니다\n그동안 이용해주셔서 감사합니다";
+//		String p = "redirect:./mypage";
+//		
+//		model.addAttribute("message", message);
+//		model.addAttribute("path", p);
+//		
+//		String path = "common/result";
+		
+		int result = usersService.withdrawalfinal(users);
+		httpSession.invalidate();
+		System.out.println(users.getId());
+		return "redirect:../";
+	}
 	
 }

@@ -35,5 +35,13 @@ public class UsersService {
 	public int pwchange(UsersDTO usersDTO) throws Exception {
 		return usersDAO.pwchange(usersDTO);
 	}
+	
+	public UsersDTO withdrawal(UsersDTO usersDTO) throws Exception {
+		return usersDAO.withdrawal(usersDTO);
+	}
+	
+	public int withdrawalfinal(UsersDTO usersDTO) throws Exception {
+		return usersDAO.withdrawalfinal(usersDTO);
+	}
 
 }
