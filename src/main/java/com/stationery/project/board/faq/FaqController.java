@@ -1,6 +1,5 @@
 package com.stationery.project.board.faq;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.stationery.project.board.BoardDTO;
 import com.stationery.project.util.Pager;
 
@@ -30,9 +28,9 @@ public class FaqController {
 	}
 	
 	@RequestMapping(value="list", method = RequestMethod.GET)
-	public ModelAndView list() throws Exception {
+	public ModelAndView list(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<BoardDTO> ar = faqService.list();
+		List<BoardDTO> ar = faqService.list(pager);
 		
 		mv.addObject("list", ar);
 		mv.setViewName("board/list");
@@ -54,6 +52,8 @@ public class FaqController {
 	@PostMapping("add")
 	public ModelAndView add(FaqDTO faqDTO, MultipartFile [] files)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		//service에서 인터페이스로 받아서 사용하기 때문에 파라미터에는 들어가있지만
+		//faq는 파일업로드 없으니 faqDTO만 매개변수로 넣어주기
 		int result = faqService.add(faqDTO);
 		mv.setViewName("redirect:./list");
 		return mv;
@@ -67,5 +67,27 @@ public class FaqController {
 		mv.setViewName("board/add");
 		return mv;
 	}
+	
+	@RequestMapping(value = "update", method=RequestMethod.POST)
+	public ModelAndView update(FaqDTO faqDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = faqService.update(faqDTO);
+		mv.setViewName("redirect:./list");
+		return mv;
+	}
+	
+	@RequestMapping(value="update", method=RequestMethod.GET)
+	public String update(FaqDTO faqDTO, Model model)throws Exception{
+		BoardDTO boardDTO = faqService.detail(faqDTO);
+		model.addAttribute("dto", boardDTO);
+		return "board/update";
+	}
+	
+	@RequestMapping(value = "delete", method=RequestMethod.GET)
+	public String delete(FaqDTO faqDTO)throws Exception{
+		int result = faqService.delete(faqDTO);
+		return "redirect:./list";
+	}
+	
 	
 }

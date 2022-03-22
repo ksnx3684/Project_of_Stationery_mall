@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.stationery.project.board.BoardDTO;
+import com.stationery.project.util.Pager;
 
 @Controller
 @RequestMapping("/notices/*")
@@ -38,9 +39,9 @@ public class NoticesController {
 	}
 	
 	@GetMapping("list")
-	public ModelAndView list() throws Exception {
+	public ModelAndView list(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<BoardDTO> ar = noticesService.list();
+		List<BoardDTO> ar = noticesService.list(pager);
 		mv.addObject("list",ar);
 		mv.setViewName("board/list");
 		return mv;
@@ -73,6 +74,29 @@ public class NoticesController {
 		ModelAndView mv = new ModelAndView();
 		
 		mv.setViewName("board/add");
+		return mv;
+	}
+	
+	@RequestMapping(value = "update", method=RequestMethod.POST)
+	public ModelAndView update(NoticesDTO noticesDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = noticesService.update(noticesDTO);
+		mv.setViewName("redirect:./list");
+		return mv;
+	}
+	
+	@RequestMapping(value="update", method=RequestMethod.GET)
+	public String update(NoticesDTO noticesDTO, Model model)throws Exception{
+		BoardDTO boardDTO = noticesService.detail(noticesDTO);
+		model.addAttribute("dto", boardDTO);
+		return "board/update";
+	}
+	
+	@RequestMapping(value = "delete", method=RequestMethod.GET)
+	public ModelAndView delete(NoticesDTO noticesDTO)throws Exception{
+		int result = noticesService.delete(noticesDTO);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:./list");
 		return mv;
 	}
 }

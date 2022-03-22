@@ -17,9 +17,13 @@ public class FaqService implements BoardService {
 	private FaqDAO faqDAO;
 
 	@Override
-	public List<BoardDTO> list() throws Exception {
+	public List<BoardDTO> list(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-		return faqDAO.list();
+		pager.makeRow();
+		
+		pager.makeNum(faqDAO.total(pager));
+		
+		return faqDAO.list(pager);
 	}
 
 	@Override
@@ -37,21 +41,14 @@ public class FaqService implements BoardService {
 	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return faqDAO.update(boardDTO);
 	}
 
 	@Override
 	public int delete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return faqDAO.delete(boardDTO);
 	}
 
-//	public List<BoardDTO> list() throws Exception {
-//
-//		return faqDAO.list();
-//	}
-//	
-	
-	
 
 }

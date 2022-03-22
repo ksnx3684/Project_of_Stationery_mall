@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-
 import com.stationery.project.board.BoardDTO;
 import com.stationery.project.board.BoardService;
 import com.stationery.project.util.FileManager;
+import com.stationery.project.util.Pager;
 
 @Service
 public class NoticesService implements BoardService{
@@ -24,9 +24,12 @@ public class NoticesService implements BoardService{
 	}
 	
 	@Override
-	public List<BoardDTO> list() throws Exception {
-		// TODO Auto-generated method stub
-		return noticesDAO.list();
+	public List<BoardDTO> list(Pager pager) throws Exception {
+		pager.makeRow();
+		
+		pager.makeNum(noticesDAO.total(pager));
+		
+		return noticesDAO.list(pager);
 	}
 
 	@Override
@@ -61,13 +64,29 @@ public class NoticesService implements BoardService{
 	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return noticesDAO.update(boardDTO);
 	}
 
 	@Override
 	public int delete(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		//num 으로 HDD에 저장된 파일명 조회
+				List<NoticesFileDTO> ar = noticesDAO.listFile(boardDTO);
+				
+				int result = noticesDAO.delete(boardDTO);
+				
+				if(result > 0) {
+//					for(int i=0;i<ar.size();i++) {
+//						ar.get(i);
+//					}
+					//for(Collection에서 꺼낼타입명 변수명: Collection의변수명){}
+					for(NoticesFileDTO dto:ar) {
+						//check가 true면 삭제 성공 false면 삭제 실패
+						boolean check= fileManager.remove("resources/upload/notice/", dto.getFileName());
+						
+					}
+				}
+				
+				return result;
 	}
 	
 	

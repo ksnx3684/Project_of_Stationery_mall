@@ -17,9 +17,15 @@
 		<h3>작성날짜 : ${dto.createdDate}</h3>
 		첨부사진
 		<c:forEach items="${dto.fileDTOs}" var="f"> <!-- 파일 다운로드 -->
-			<a href="./photoDown?fileNum=${f.fileNum}">${f.oriName}</a>
+			<h3>${f.oriName}</h3>
 		</c:forEach>
 	</c:if>
 	<a href="./list">List</a>
+	<%-- <c:if test="${member.id eq dto.id}">
+		<a href="./delete?num=${dto.num}">Delete</a>
+		<a href="./update?num=${dto.num}">update</a>
+	</c:if> --%>
+	<a href="./delete?num=${dto.num}">Delete</a>
+	<a href="./update?num=${dto.num}">update</a>
 </body>
 </html>

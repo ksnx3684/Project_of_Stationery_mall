@@ -14,6 +14,7 @@ import com.stationery.project.MyJunitTest;
 import com.stationery.project.board.BoardDTO;
 import com.stationery.project.board.faq.FaqDAO;
 import com.stationery.project.board.faq.FaqDTO;
+import com.stationery.project.board.notices.NoticesDTO;
 
 public class FaqDAOTest extends MyJunitTest{
 
@@ -35,8 +36,8 @@ public class FaqDAOTest extends MyJunitTest{
 
 	//@Test
 	public void listTest() throws Exception {
-		List<BoardDTO> ar = faqDAO.list();
-		assertNotEquals(0, ar.size());
+		//List<BoardDTO> ar = faqDAO.list();
+		//assertNotEquals(0, ar.size());
 	}
 	
 	//@Test
@@ -47,14 +48,14 @@ public class FaqDAOTest extends MyJunitTest{
 //	}
 	
 	//@Test
-	public void addTest() throws Exception {
-		BoardDTO boardDTO = new BoardDTO();
-		boardDTO.setId("id1");
-		boardDTO.setTitle("t2");
-		boardDTO.setContents("c1");
-		int result =faqDAO.add(boardDTO);
-		assertEquals(1, result);
-	}
+//	public void addTest() throws Exception {
+//		BoardDTO boardDTO = new BoardDTO();
+//		boardDTO.setId("id1");
+//		boardDTO.setTitle("t2");
+//		boardDTO.setContents("c1");
+//		int result =faqDAO.add(boardDTO);
+//		assertEquals(1, result);
+//	}
 	
 	//@Test
 	public void updateTest() throws Exception {
@@ -66,11 +67,29 @@ public class FaqDAOTest extends MyJunitTest{
 		assertEquals(1, result);
 	}
 	
-	@Test
+	//@Test
 	public void deleteTest() throws Exception {
 		BoardDTO boardDTO = new BoardDTO();
 		boardDTO.setNum(41L);
 		int result = faqDAO.delete(boardDTO);
 		assertEquals(1, result);
+	}
+	
+	@Test
+	public void addTest() throws Exception {
+		for(int i=0;i<100;i++) {
+			FaqDTO faqDTO = new FaqDTO();
+			faqDTO.setId("id1");
+			faqDTO.setTitle("title"+i);
+			faqDTO.setContents("Contents"+i);
+			
+
+			int result = faqDAO.add(faqDTO);
+			
+			if(i%10 == 0)
+				Thread.sleep(1000); //1초동안 멈추기
+		}
+		System.out.println("Insert Finish");
+		//assertEquals(1, result);
 	}
 }

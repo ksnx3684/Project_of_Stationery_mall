@@ -34,18 +34,72 @@
  		values (#{num}, #{id}, #{title}, #{contents}, sysdate)
  	</insert>
 
- 	 <select id="list" resultType="NoticesDTO">
- 	 	SELECT * FROM NOTICES
- 	 </select>
- 	 
- 	 <select id="detail" resultType="NoticesDTO" parameterType="NoticesDTO">
- 	 	SELECT * FROM NOTICES WHERE NUM=#{num}
- 	 </select>
- 	 
- 	 <!-- <insert id="add" parameterType="NoticesDTO">
- 	 	INSERT INTO NOTICES 
-		VALUES (NOTICES_SEQ.nextval, #{id}, #{title}, #{contents}, sysdate)
- 	 </insert> -->
+ <select id="detail" parameterType="NoticesDTO" resultMap="detailResult">
+ 		SELECT N.*, NF.*
+		FROM
+	        NOTICES N
+	            LEFT OUTER JOIN
+	        NOTICES_FILE NF
+	        	ON N.NUM=NF.NUM
+		WHERE   N.NUM=#{num} 
+ 	</select>
+ 	
+ 	<resultMap type="NoticesDTO" id="detailResult">
+ 		<id column="num" property="num"/>
+ 		<result column="id" property="id"/>
+ 		<result column="title" property="title"/>
+ 		<result column="contents" property="contents"/>
+ 		<result column="createdDate" property="createdDate"/>
+ 		<collection property="fileDTOs" javaType="List" ofType="NoticesFileDTO">
+ 			<id column="fileNum" property="fileNum"/>
+ 			<result column="fileName" property="fileName"/>
+ 			<result column="oriName" property="oriName"/>
+ 		</collection>
+ 	</resultMap>
+ 
+ 	<select id="list" parameterType="Pager" resultType="NoticesDTO">
+ 		SELECT * FROM
+		    (SELECT rownum R, B.* FROM 
+		        (SELECT * FROM NOTICES WHERE 
+		        	NUM>0 
+		        	and 
+		        	<choose>
+		        		<when test="kind=='col1'">
+		        			TITLE
+		        		</when>
+		        		<when test="kind =='col2'">
+		        			CONTENTS
+		        		</when>
+		        		<otherwise>
+		        			ID
+		        		</otherwise>
+		        	</choose>	
+		        	LIKE '%'||#{search}||'%'
+		            ORDER BY NUM DESC
+		         ) B
+		     )
+		WHERE R between #{startRow} and #{lastRow} 
+ 	</select>
+ 	
+ 	<select id="total" resultType="Long" parameterType="Pager">
+ 		SELECT COUNT(NUM) FROM NOTICES
+ 		WHERE
+ 			NUM>0 
+		    and 	       	
+		     <choose>
+		     	<when test="kind=='col1'">
+		     		TITLE
+		     	</when>
+		     	<when test="kind =='col2'">
+		     		CONTENTS
+		     	</when>
+		     	<otherwise>
+		     		ID
+		     	</otherwise>
+		     </choose>	
+        	LIKE '%'||#{search}||'%' 
+ 	</select>
+ 	
  	 
  	 <update id="update" parameterType="NoticesDTO">
  	 	UPDATE NOTICES SET TITLE=#{title}, CONTENTS=#{contents}

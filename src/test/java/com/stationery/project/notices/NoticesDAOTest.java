@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.stationery.project.MyJunitTest;
 import com.stationery.project.board.BoardDTO;
 import com.stationery.project.board.notices.NoticesDAO;
+import com.stationery.project.board.notices.NoticesDTO;
 
 public class NoticesDAOTest extends MyJunitTest{
 
@@ -27,8 +28,8 @@ public class NoticesDAOTest extends MyJunitTest{
 
 	//@Test
 	public void listTest() throws Exception {
-		List<BoardDTO> ar = noticesDAO.list();
-		assertNotEquals(0, ar.size());
+		//List<BoardDTO> ar = noticesDAO.list();
+		//assertNotEquals(0, ar.size());
 	}
 	
 	//@Test
@@ -39,14 +40,14 @@ public class NoticesDAOTest extends MyJunitTest{
 //	}
 	
 	//@Test
-	public void addTest() throws Exception {
-		BoardDTO boardDTO = new BoardDTO();
-		boardDTO.setId("id1");
-		boardDTO.setTitle("title2");
-		boardDTO.setContents("contents2");
-		int result =noticesDAO.add(boardDTO);
-		assertEquals(1, result);
-	}
+//	public void addTest() throws Exception {
+//		BoardDTO boardDTO = new BoardDTO();
+//		boardDTO.setId("id1");
+//		boardDTO.setTitle("title2");
+//		boardDTO.setContents("contents2");
+//		int result =noticesDAO.add(boardDTO);
+//		assertEquals(1, result);
+//	}
 	
 	//@Test
 	public void updateTest() throws Exception {
@@ -58,12 +59,31 @@ public class NoticesDAOTest extends MyJunitTest{
 		assertEquals(1, result);
 	}
 	
-	@Test
+	//@Test
 	public void deleteTest() throws Exception {
 		BoardDTO boardDTO = new BoardDTO();
 		boardDTO.setNum(21L);
 		int result = noticesDAO.delete(boardDTO);
 		assertEquals(1, result);
 	}
+	
+	@Test
+	public void addTest() throws Exception {
+		for(int i=0;i<100;i++) {
+			NoticesDTO noticesDTO = new NoticesDTO();
+			noticesDTO.setId("id1");
+			noticesDTO.setTitle("title"+i);
+			noticesDTO.setContents("Contents"+i);
+			
+
+			int result = noticesDAO.add(noticesDTO);
+			
+			if(i%10 == 0)
+				Thread.sleep(1000); //1초동안 멈추기
+		}
+		System.out.println("Insert Finish");
+		//assertEquals(1, result);
+	}
+	
 
 }

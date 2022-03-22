@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
 import com.stationery.project.board.BoardDAO;
 import com.stationery.project.board.BoardDTO;
 import com.stationery.project.util.Pager;
@@ -15,11 +16,11 @@ public class FaqDAO implements BoardDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.stationery.project.board.faq.FaqDAO.";
-
+	
 	@Override
-	public List<BoardDTO> list() throws Exception {
+	public List<BoardDTO> list(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE + "list");
+		return sqlSession.selectList(NAMESPACE + "list", pager);
 	}
 
 	@Override

@@ -7,9 +7,8 @@ import com.stationery.project.util.Pager;
 
 public interface BoardDAO {
 
-	
 	// list
-	public List<BoardDTO> list() throws Exception;
+	public List<BoardDTO> list(Pager pager) throws Exception;
 
 	// detail
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception;

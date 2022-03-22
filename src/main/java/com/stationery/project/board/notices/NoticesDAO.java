@@ -30,9 +30,9 @@ public class NoticesDAO implements BoardDAO{
 	}
 	
 	@Override
-	public List<BoardDTO> list() throws Exception {
+	public List<BoardDTO> list(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE + "list");
+		return sqlSession.selectList(NAMESPACE + "list", pager);
 	}
 
 	@Override
