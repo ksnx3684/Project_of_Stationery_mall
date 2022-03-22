@@ -5,16 +5,58 @@
 
 <mapper namespace="com.stationery.project.product.ProductDAO">
 
+<!-- 최상위 카테고리번호를 parentid로 가진 컬럼들을 조회-->
 	<select id="list" parameterType="Pager" resultType="ProductDTO">
-		select * from product 
+		select * from
+		(select rownum R,A.* from(select * from product P
+		inner join product_category C
+		using(categorynum) 
+		where name like'%'||#{search}||'%' 
+		and C.parentid like'%'||#{categoryNum}||'%'  order by productnum desc)A)
+		where R between #{startRow} and #{lastRow}
 		
-		where name like'%'||#{search}||'%' and categorynum like '%'||#{categoryNum}||'%'
+<!-- 	select * from product P
+		inner join product_category C
+		using(categorynum) 
+		where name like'%'||#{search}||'%' 
+		and C.parentid like'%'||#{categoryNum}||'%'   -->
 	</select>
+	
+	<select id="total" resultType="java.lang.Long" parameterType="Pager">
+	select count(productnum) from product P
+		inner join product_category C
+		using(categorynum) 
+		where name like'%'||#{search}||'%' 
+		and C.parentid like'%'||#{categoryNum}||'%' 
+	</select>
+	
+	<select id="detail" parameterType="ProductDTO" resultType="ProductDTO"> 
+		select * from product where productnum=#{productNum}
+	</select>
+	
+	<insert id="addFile" parameterType="ProductFileDTO">
+		insert into product_file(filenum,productnum,filename,oriname)
+		values(PRODUCT_FILE_SEQ.nextval,#{productNum},#{fileName},#{oriName})
+	</insert>
 
+
+	<!-- productnum 먼저추가해야됨 -->
 	<insert id="add" parameterType="ProductDTO">
+		<selectKey keyProperty="productNum" order="BEFORE" resultType="java.lang.Integer">
+			select product_seq.nextval from dual
+		</selectKey> 
 		insert into
 		PRODUCT(PRODUCTNUM,CATEGORYNUM,NAME,CONTENTS,THUMBNAIL,PRICE,STOCK,REGDATE)
-		values(PRODUCT_SEQ.nextval,#{categoryNum},#{name},#{contents},#{thumbnail},#{price},#{stock},sysdate)
+		values(#{productNum},#{categoryNum},#{name},#{contents},#{thumbnail},#{price},#{stock},sysdate)
 	</insert>
+	
+	<delete id="delete" parameterType="ProductDTO">
+		delete product where productnum=#{productNum}
+	</delete>
+	
+	<update id="update" parameterType="ProductDTO" >
+		update product set categorynum=#{categoryNum},name=#{name},contents=#{contents},thumbnail=#{thumbnail},price=#{price},stock=#{stock}
+		where productnum=#{productNum}
+	</update>
 </mapper>
 

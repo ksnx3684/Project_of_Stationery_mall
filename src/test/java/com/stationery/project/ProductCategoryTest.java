@@ -17,23 +17,23 @@ public class ProductCategoryTest extends MyJunitTest{
 	
 	
 	@Autowired
-	private CategoryDAO productCategoryDAO;
+	private CategoryDAO categoryDAO;
 	
 	
 	//@Test
 	public void listTest() throws Exception {
-		List<CategoryDTO> ar =productCategoryDAO.catelist();
+		List<CategoryDTO> ar =categoryDAO.catelist();
 		assertEquals(3, ar.size());
 	}
 	
-	//@Test
+	@Test
 	public void add() throws Exception{
-		CategoryDTO productCategoryDTO = new CategoryDTO();
-		productCategoryDTO.setCategoryName("가방/지갑");
-		productCategoryDTO.setCategoryNum(400);
-		productCategoryDTO.setParentId(null);
+		CategoryDTO categoryDTO = new CategoryDTO();
+		categoryDTO.setCategoryName("가방/지갑");
+		categoryDTO.setCategoryNum(400);	
+		categoryDTO.setParentId(null);
 	
-		int result= productCategoryDAO.add(productCategoryDTO);
+		int result= categoryDAO.add(categoryDTO);
 		assertEquals(1, result);
 	}
 

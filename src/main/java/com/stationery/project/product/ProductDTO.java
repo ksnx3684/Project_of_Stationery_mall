@@ -12,6 +12,17 @@ public class ProductDTO {
 	private Integer price;
 	private Integer Stock;
 	private Date regDate;
+	
+	private ProductFileDTO productFileDTO;
+	
+	
+	
+	public ProductFileDTO getProductFileDTO() {
+		return productFileDTO;
+	}
+	public void setProductFileDTO(ProductFileDTO productFileDTO) {
+		this.productFileDTO = productFileDTO;
+	}
 	public Integer getProductNum() {
 		return productNum;
 	}

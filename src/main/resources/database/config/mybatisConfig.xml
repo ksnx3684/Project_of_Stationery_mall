@@ -11,6 +11,7 @@
 	<typeAliases>
 		<typeAlias type="com.stationery.project.product.ProductDTO" alias="ProductDTO"/>
 		<typeAlias type="com.stationery.project.category.CategoryDTO" alias="CategoryDTO"/>
+		<typeAlias type="com.stationery.project.product.ProductFileDTO" alias="ProductFileDTO"/>
 		<typeAlias type="com.stationery.project.util.Pager" alias="Pager"/>
 	</typeAliases>
 </configuration>

@@ -25,16 +25,37 @@ private ProductDAO productDAO;
 		assertEquals(2, ar.size());
 	}
 
-	@Test
+	//@Test
 	public void addTest()throws Exception{
 		ProductDTO productDTO= new ProductDTO();
-		productDTO.setCategoryNum(102);
-		productDTO.setName("마이 미니 보석함");
-		productDTO.setContents("보석함이다");
-		productDTO.setPrice(1200);
+		productDTO.setCategoryNum(201);
+		productDTO.setName("그립 온 샤프");
+		productDTO.setContents("샤프임");
+		productDTO.setPrice(1800);
 		productDTO.setStock(13);
-		productDTO.setThumbnail("dfnja.jpg");
+		productDTO.setThumbnail("dfnjsfaa.jpg");
 		int result=productDAO.add(productDTO);
+		assertEquals(1, result);
+	}
+	
+	//@Test
+	public void datilTest()throws Exception{
+		ProductDTO productDTO= new ProductDTO();
+		productDTO.setProductNum(1);
+		productDTO=productDAO.detail(productDTO);
+		
+		assertNotNull(productDTO);
+	}
+	@Test
+	public void updateTest()throws Exception{
+		ProductDTO productDTO= new ProductDTO();
+		productDTO.setCategoryNum(101);
+		productDTO.setName("손그림 투명 스티커");
+		productDTO.setContents("스티커임");
+		productDTO.setThumbnail("sdfasf.jpg");
+		productDTO.setPrice(600);
+		productDTO.setStock(10);
+		int result=productDAO.update(productDTO);
 		assertEquals(1, result);
 	}
 }
