@@ -12,7 +12,8 @@
 	
 		<form action="./add" method="post" enctype="multipart/form-data">
 		Title<input type="text" name="title">
-		Writer<input type="text" name="id" value="${member.id}" readonly>
+<%-- 		Writer<input type="text" name="id" value="${member.id}" readonly> --%>
+		Writer<input type="text" name="id">
 		Contents<textarea name="contents" rows="" cols=""></textarea>
 		
 		<div id="fileResult">
