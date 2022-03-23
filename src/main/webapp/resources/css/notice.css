@@ -1,0 +1,40 @@
+table {
+    width: 70%;
+    margin : 0 auto;
+    border-collapse:collapse;
+}
+
+table > thead {
+    height: 40px;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.subject {
+    width :600px;
+}
+
+.search-container {
+	display : flex;
+    justify-content: space-between;
+}
+
+
+.add-board {
+    text-decoration: none;
+    margin-top: 15px;
+}
+
+.search-form {
+    border: 0px;
+}
+
+.search-form > fieldset {
+    border: 1px solid rgb(160, 160, 160);
+}
+
+.pager {
+    margin-top: 20px;
+    text-align: center;
+}
