@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.stationery.project.MyJunitTest;
 
@@ -38,7 +40,7 @@ public class UserDAOTest extends MyJunitTest {
 		assertEquals(1, result);
 	}
 	
-	@Test
+	//@Test
 	public void loginTest() throws Exception {
 		UsersDTO usersDTO = new UsersDTO();
 		usersDTO.setId("id1");
@@ -49,5 +51,62 @@ public class UserDAOTest extends MyJunitTest {
 		assertNotNull(usersDTO);
 	}
 	
-
+	//@Test
+	public void mypageTest() throws Exception {
+		UsersDTO usersDTO = new UsersDTO();
+		usersDTO.setId("id3");
+		
+		usersDTO = usersDAO.mypage(usersDTO);
+		
+		assertNotNull(usersDTO);
+	}
+	
+	//@Test
+	public void infochangeTest() throws Exception {
+		UsersDTO usersDTO = new UsersDTO();
+		usersDTO.setId("id2");
+		usersDTO.setPhone("phone2");
+		usersDTO.setEmail("email2");
+		usersDTO.setAddressName("addressname2");
+		usersDTO.setAddressPhone("addressphone2");
+		usersDTO.setPostalCode(1);
+		usersDTO.setAddressDetail("addressdetail2");
+		
+		int result = usersDAO.infochange(usersDTO);
+		
+		assertEquals(1, result);
+	}
+	
+	//@Test
+	public void pwchangeTest() throws Exception {
+		UsersDTO usersDTO = new UsersDTO();
+		usersDTO.setId("id3");
+		usersDTO.setPw("pw3");
+		
+		int result = usersDAO.pwchange(usersDTO);
+		
+		assertEquals(1, result);
+	}
+	
+	//@Test
+	public void withdrawalTest() throws Exception {
+		UsersDTO usersDTO = new UsersDTO();
+		usersDTO.setId("id3");
+		usersDTO.setPw("pw3");
+		
+		usersDTO = usersDAO.withdrawal(usersDTO);
+		
+		assertNotNull(usersDTO);
+	}
+	
+	//@Test
+	public void withdrawalfinalTest() throws Exception {
+		UsersDTO usersDTO = new UsersDTO();
+		usersDTO.setId("id4");
+		
+		int result = usersDAO.withdrawalfinal(usersDTO);
+		
+		assertEquals(1, result);
+	}
+	
 }
