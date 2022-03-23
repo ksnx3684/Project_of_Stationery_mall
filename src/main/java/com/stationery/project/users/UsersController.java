@@ -154,7 +154,7 @@ public class UsersController {
 		String p = "./withdrawal";
 		
 		if(usersDTO != null) {
-			httpSession.setAttribute("auth", usersDTO); // "withdrawal"에 로그인 세션 삽입
+			httpSession.setAttribute("withdrawal", usersDTO); // "withdrawal"에 로그인 세션 삽입
 			message = "회원탈퇴로 진행합니다";
 			p = "./withdrawalfinal";
 		}
@@ -174,16 +174,7 @@ public class UsersController {
 	@PostMapping("withdrawalfinal")
 	public String withdrawalfinal(UsersDTO usersDTO, HttpSession httpSession) throws Exception {
 		
-		UsersDTO users = (UsersDTO)httpSession.getAttribute("auth");
-		
-		
-//		String message = "탈퇴가 정상적으로 완료되었습니다\n그동안 이용해주셔서 감사합니다";
-//		String p = "redirect:./mypage";
-//		
-//		model.addAttribute("message", message);
-//		model.addAttribute("path", p);
-//		
-//		String path = "common/result";
+		UsersDTO users = (UsersDTO)httpSession.getAttribute("withdrawal");
 		
 		int result = usersService.withdrawalfinal(users);
 		httpSession.invalidate();

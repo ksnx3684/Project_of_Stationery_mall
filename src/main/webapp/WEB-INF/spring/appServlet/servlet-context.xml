@@ -31,9 +31,19 @@
 		<beans:property name="order" value="0" />
 	</beans:bean>
 
-	<beans:bean class="com.stationery.project.interceptor.LoginInterceptor" id="loginInterceptor"/>
+	<beans:bean class="com.stationery.project.interceptor.AlreadyLoginInterceptor" id="AlreadyLoginInterceptor"/>
+	<beans:bean class="com.stationery.project.interceptor.LoginInterceptor" id="LoginInterceptor"/>
 	<beans:bean class="com.stationery.project.interceptor.WithdrawalInterceptor" id="WithdrawalInterceptor"/>
+	<beans:bean class="com.stationery.project.interceptor.JoinInterceptor" id="JoinInterceptor"/>
 	<interceptors>
+		<interceptor>
+    		<mapping path="/users/login"/>
+			<beans:ref bean="AlreadyLoginInterceptor"/>
+		</interceptor>
+		<interceptor>
+    		<mapping path="/users/join"/>
+			<beans:ref bean="JoinInterceptor"/>
+		</interceptor>
     	<interceptor>
     		<mapping path="/users/infochange"/>
     		<mapping path="/users/mychange"/>
@@ -43,12 +53,12 @@
     		<mapping path="/users/wishlist"/>
     		<mapping path="/users/withdrawal"/>
     		<mapping path="/users/withdrawalfinal"/>
-			<beans:ref bean="loginInterceptor"/>
+			<beans:ref bean="LoginInterceptor"/>
 		</interceptor>
-		<!-- <interceptor>
+		<interceptor>
     		<mapping path="/users/withdrawalfinal"/>
 			<beans:ref bean="WithdrawalInterceptor"/>
-		</interceptor> -->
+		</interceptor>
 	</interceptors>
 
 	<context:component-scan base-package="com.stationery.project" />
