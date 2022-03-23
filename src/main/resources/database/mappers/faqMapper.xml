@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?> <!-- 이건 xml이다 -->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.stationery.project.board.faq.FaqDAO">
+
+	<insert id="add" parameterType="FaqDTO">
+ 		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+ 			SELECT faq_seq.nextval from dual
+ 		</selectKey>
+ 		insert into faq (num, id, title, contents)
+ 		values (#{num}, #{id}, #{title}, #{contents})
+ 	</insert>
+ 	
+ 	<select id="total" resultType="Long" parameterType="Pager">
+ 		SELECT COUNT(NUM) FROM FAQ
+ 		WHERE
+ 			NUM>0 
+		    and 	       	
+		     <choose>
+		     	<when test="kind=='col1'">
+		     		TITLE
+		     	</when>
+		     	<when test="kind =='col2'">
+		     		CONTENTS
+		     	</when>
+		     	<otherwise>
+		     		ID
+		     	</otherwise>
+		     </choose>	
+        	LIKE '%'||#{search}||'%' 
+ 	</select>
+ 	
+ 	<select id="list" parameterType="Pager" resultType="FaqDTO">
+		SELECT * FROM
+		    (SELECT rownum R, B.* FROM 
+		        (SELECT * FROM FAQ WHERE 
+		        	NUM>0 
+		        	and 
+		        	
+		        	<choose>
+		        		<when test="kind=='col1'">
+		     				TITLE
+		     			</when>
+		     			<when test="kind =='col2'">
+		     				CONTENTS
+		     			</when>
+		     			<otherwise>
+		     				ID
+		     			</otherwise>
+		        	</choose>
+		        	
+		        	 
+		        	LIKE '%'||#{search}||'%'
+		            ORDER BY NUM DESC
+		         ) B
+		     )
+		WHERE R between #{startRow} and #{lastRow}
+ 	</select>
+ 	
+ 	 <select id="detail" resultType="FaqDTO" parameterType="FaqDTO">
+ 	 	SELECT * FROM FAQ WHERE NUM=#{num}
+ 	 </select>
+<!--  	 <select id="list" resultType="FaqDTO">
+ 	 	SELECT * FROM FAQ
+ 	 </select>
+ 	 
+ 	
+ 	 
+ 	 <insert id="add" parameterType="FaqDTO">
+ 	 	INSERT INTO FAQ 
+		VALUES (FAQ_SEQ.nextval, #{id}, #{title}, #{contents})
+ 	 </insert>
+ 	  -->
+ 	 <update id="update" parameterType="FaqDTO">
+ 	 	UPDATE FAQ SET TITLE=#{title}, CONTENTS=#{contents}
+ 	 	WHERE NUM=#{num}
+ 	 </update>
+ 	 
+ 	 <delete id="delete" parameterType="FaqDTO">
+ 	 	DELETE FAQ WHERE NUM=#{num}
+ 	 </delete>
+</mapper>

@@ -7,7 +7,15 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	<typeAliases>
+	   	<typeAlias type="java.lang.Long" alias="Long"/>
+   		<typeAlias type="java.util.List" alias="List"/>
 		<typeAlias type="com.stationery.project.users.UsersDTO" alias="UsersDTO"/>
 		<typeAlias type="com.stationery.project.users.WishListDTO" alias="WishListDTO"/>
+   		<typeAlias type="com.stationery.project.util.Pager" alias="Pager"/>
+   		<typeAlias type="com.stationery.project.board.BoardDTO" alias="BoardDTO"/>
+   		<typeAlias type="com.stationery.project.board.BoardFileDTO" alias="BoardFileDTO"/>
+   		<typeAlias type="com.stationery.project.board.faq.FaqDTO" alias="FaqDTO"/>
+   		<typeAlias type="com.stationery.project.board.notices.NoticesDTO" alias="NoticesDTO"/>
+   		<typeAlias type="com.stationery.project.board.notices.NoticesFileDTO" alias="NoticesFileDTO"/>
 	</typeAliases>
 </configuration>
