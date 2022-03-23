@@ -14,4 +14,8 @@ public class CategoryService {
 	public List<CategoryDTO> catelist()throws Exception{
 		return categoryDAO.catelist();
 	}
+	
+	public List<CategoryDTO> allList()throws Exception{
+		return categoryDAO.allList();
+	}
 }

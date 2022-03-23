@@ -20,4 +20,8 @@ public class CategoryDAO {
 	public int add(CategoryDTO categoryDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"add",categoryDTO);
 	}
+	
+	public List<CategoryDTO> allList()throws Exception{
+		return sqlSession.selectList(NAMESPACE+"allList");
+	}
 }

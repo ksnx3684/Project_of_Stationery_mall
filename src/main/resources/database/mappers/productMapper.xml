@@ -107,7 +107,7 @@
 	</insert>
 
 
-	<!-- productnum 먼저추가해야됨 -->
+	<!--file때문에  productnum 먼저추가해야됨 -->
 	<insert id="add" parameterType="ProductDTO">
 		<selectKey keyProperty="productNum" order="BEFORE" resultType="java.lang.Integer">
 			select product_seq.nextval from dual
@@ -115,6 +115,14 @@
 		insert into
 		PRODUCT(PRODUCTNUM,CATEGORYNUM,NAME,CONTENTS,THUMBNAIL,PRICE,STOCK,REGDATE)
 		values(#{productNum},#{categoryNum},#{name},#{contents},#{thumbnail},#{price},#{stock},sysdate)
+		
+		<!-- product,productcategory join select -->
+		<!-- insert into
+		PRODUCT(CATEGORYNUM,PRODUCTNUM,NAME,CONTENTS,THUMBNAIL,PRICE,STOCK,REGDATE)
+		values((select categorynum
+		from product_category
+		where categoryname='#{}'),#{productNum},#{name},#{contents},#{thumbnail},#{price},#{stock},sysdate)
+		 -->
 	</insert>
 	
 	<delete id="delete" parameterType="ProductDTO">

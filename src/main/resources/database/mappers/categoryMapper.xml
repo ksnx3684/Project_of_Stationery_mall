@@ -2,15 +2,23 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
+
 <mapper namespace="com.stationery.project.category.CategoryDAO">
 
 	<select id="catelist" resultType="CategoryDTO">
-		select * from product_category where parentid is null order by categorynum asc
+		select * from product_category
+		where parentid is null order by categorynum asc
+	</select>
+
+	<insert id="add" parameterType="CategoryDTO">
+		insert into PRODUCT_CATEGORY(categorynum,categoryname,parentid)
+		values(#{categoryNum},#{categoryName},#{parentId})
+	</insert>
+
+	<select id="allList" resultType="CategoryDTO">
+		select* from product_category
+		order by categorynum asc
 	</select>
 	
-	<insert id="add" parameterType="CategoryDTO">
-insert into PRODUCT_CATEGORY(categorynum,categoryname,parentid)
-values(#{categoryNum},#{categoryName},#{parentId})
-	</insert>
+	<!-- delete,update, -->
 </mapper>

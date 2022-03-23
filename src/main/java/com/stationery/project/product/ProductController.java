@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.stationery.project.category.CategoryDTO;
+import com.stationery.project.category.CategoryService;
 import com.stationery.project.util.Pager;
 
 @Controller
@@ -21,23 +23,34 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	//안될시 삭제 (add.jsp에 카테고리 출력위해 )
+	@Autowired
+	private CategoryService categoryService;
+	
 	
 	@RequestMapping(value = "list", method=RequestMethod.GET)
 	public ModelAndView list(ModelAndView mv,Pager pager) throws Exception{
+		List<CategoryDTO> ar1=categoryService.catelist();
 		List<ProductDTO> ar=productService.list(pager);
 		mv.addObject("list",ar);
+		mv.addObject("cateList",ar1);
 		mv.setViewName("product/list");
 		return mv;
 	}
 	
 	@RequestMapping(value = "add",method = RequestMethod.GET)
-	public void add() throws Exception{
+	public void add(Model model) throws Exception{
+		//category 받아와 
+		List<CategoryDTO> ar=categoryService.allList();
+		model.addAttribute("list",ar);
+	
+		
 	}
 	
 	@RequestMapping(value="add",method = RequestMethod.POST)
 	public String add(ProductDTO productDTO,MultipartFile photo)throws Exception{
-		productService.add(productDTO,photo);
-		
+		int result=productService.add(productDTO,photo);
+		System.out.println(result);
 		return "redirect:./list";
 	}
 	
