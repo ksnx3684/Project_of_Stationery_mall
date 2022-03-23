@@ -1,6 +1,7 @@
 package com.stationery.project.product;
 
 import java.sql.Date;
+import java.util.List;
 
 public class ProductDTO {
 
@@ -10,13 +11,21 @@ public class ProductDTO {
 	private String contents;
 	private String thumbnail;
 	private Integer price;
-	private Integer Stock;
+	private Integer stock;
 	private Date regDate;
 	
 	private ProductFileDTO productFileDTO;
+	private List<ProductFileDTO> productFileDTOs;
 	
 	
 	
+	
+	public List<ProductFileDTO> getProductFileDTOs() {
+		return productFileDTOs;
+	}
+	public void setProductFileDTOs(List<ProductFileDTO> productFileDTOs) {
+		this.productFileDTOs = productFileDTOs;
+	}
 	public ProductFileDTO getProductFileDTO() {
 		return productFileDTO;
 	}
@@ -59,11 +68,12 @@ public class ProductDTO {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
+	
 	public Integer getStock() {
-		return Stock;
+		return stock;
 	}
 	public void setStock(Integer stock) {
-		Stock = stock;
+		this.stock = stock;
 	}
 	public Date getRegDate() {
 		return regDate;

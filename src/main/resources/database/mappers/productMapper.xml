@@ -5,22 +5,61 @@
 
 <mapper namespace="com.stationery.project.product.ProductDAO">
 
-<!-- 최상위 카테고리번호를 parentid로 가진 컬럼들을 조회-->
-	<select id="list" parameterType="Pager" resultType="ProductDTO">
+<!-- 카테고리table과 product table join  -->
+<!--최상위 카테고리번호를 parentid로 가진 컬럼들을 조회-->
+<!-- 이제 productfileDTO랑 연결해서 list.jsp 에 보내야돼  -->
+<!-- productfileDTO 랑 productDTO outer join으로 연결 	 -->
+<!-- 연결한 이유 : productfileDTO에 있는 fileName 가져오기 위함 -->
+<!-- ??????????????????????????????????? detail에만 fileName 있음 되나? -->
+<!-- thumbnail에 oriname 넣었으니께 product_file이랑 join 안해도됨 ? 나중에 수정 삭제 할때 상관 없나?  -->
+	<select id="list" parameterType="Pager" resultType="ProductDTO" resultMap="listResult">
+	
 		select * from
+		(select rownum R,A.* from(select * from product_category C
+		inner join
+		(select * from product P
+		left outer join product_file F
+		using(productnum)) PF
+		using(categorynum)
+		where name like'%'||#{search}||'%' 
+		and C.parentid like'%'||#{categoryNum}||'%'  order by productnum desc)A)
+		where R between #{startRow} and #{lastRow}
+		
+		
+<!-- 		select * from
 		(select rownum R,A.* from(select * from product P
 		inner join product_category C
 		using(categorynum) 
 		where name like'%'||#{search}||'%' 
 		and C.parentid like'%'||#{categoryNum}||'%'  order by productnum desc)A)
 		where R between #{startRow} and #{lastRow}
+		 -->
+
 		
 <!-- 	select * from product P
 		inner join product_category C
 		using(categorynum) 
 		where name like'%'||#{search}||'%' 
-		and C.parentid like'%'||#{categoryNum}||'%'   -->
+		and C.parentid like'%'||#{categoryNum}||'%'   -->	
 	</select>
+	
+	<resultMap type="ProductDTO" id="listResult">
+		<id column="productNum" property="productNum"></id>
+		<result column="categoryNum" property="categoryNum"/>
+		<result column="name" property="name"/>
+		<result column="contents" property="contents"/>
+		<result column="thumbnail" property="thumbnail"/>
+		<result column="price" property="price"/>
+		<result column="stock" property="stock"/>
+		<result column="regDate" property="regDate"/>
+		<association property="productFileDTO" javaType="ProductFileDTO">
+			<id column="fileNum" property="fileNum"/> <!-- pk -->
+			<result column="fileName" property="fileName"/>
+			<result column="oriName" property="oriName"/>
+			<result column="productNum" property="productNum"/>
+		</association>
+	</resultMap>
+	
 	
 	<select id="total" resultType="java.lang.Long" parameterType="Pager">
 	select count(productnum) from product P
@@ -30,9 +69,37 @@
 		and C.parentid like'%'||#{categoryNum}||'%' 
 	</select>
 	
-	<select id="detail" parameterType="ProductDTO" resultType="ProductDTO"> 
-		select * from product where productnum=#{productNum}
+	
+	<!-- detail  -->
+	<select id="detail" parameterType="ProductDTO" resultType="ProductDTO" resultMap="files"> 
+		select * from product P 
+		left join product_file F
+		using(productnum)
+		where productnum=#{productNum} -->
+	<!-- 	
+		select P.*,F.*
+		from product P
+		left join product_file F
+		using(productnum)
+		where p.productnum=${productNum} -->
 	</select>
+	
+		<resultMap type="ProductDTO" id="files">
+		<id column="productNum" property="productNum"></id>
+		<result column="categoryNum" property="categoryNum"/>
+		<result column="name" property="name"/>
+		<result column="contents" property="contents"/>
+		<result column="thumbnail" property="thumbnail"/>
+		<result column="price" property="price"/>
+		<result column="stock" property="stock"/>
+		<result column="regDate" property="regDate"/>
+		<collection property="productFileDTOs" javaType="List" ofType="ProductFileDTO">
+			<id column="fileNum" property="fileNum"/> <!-- pk -->
+			<result column="fileName" property="fileName"/>
+			<result column="oriName" property="oriName"/>
+			<result column="productNum" property="productNum"/>
+		</collection>
+	</resultMap>
 	
 	<insert id="addFile" parameterType="ProductFileDTO">
 		insert into product_file(filenum,productnum,filename,oriname)

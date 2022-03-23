@@ -21,7 +21,10 @@ public class Pager {
 	public void makeRow() {
 		this.startRow = (this.getPage() - 1) * this.getPerPage() + 1;
 		this.lastRow = this.getPage() * this.getPerPage();
+		
+	
 	}
+	
 	
 	public void makeNum(Long totalCount) {
 		// 1. 전체 row의 개수 (db에서 구해와야됨 )
@@ -67,8 +70,6 @@ public class Pager {
 
 		this.startNum = (curBlock - 1) * perBlock + 1;
 		this.lastNum = curBlock * perBlock;
-
-	
 
 		// 7. 이전 또는 다음 블럭 유무
 		this.pre = false;

@@ -15,6 +15,11 @@ public class ProductDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.stationery.project.product.ProductDAO.";
 
+	
+//	public List<ProductFileDTO> listFile(ProductDTO productDTO)throws Exception{
+//		return sqlSession.selectList(NAMESPACE+"listFile",productDTO);
+//	}
+	
 	public Long total(Pager pager)throws Exception{
 			return sqlSession.selectOne(NAMESPACE+"total", pager);
 	}

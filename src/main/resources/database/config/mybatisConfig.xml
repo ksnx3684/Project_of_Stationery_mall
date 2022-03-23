@@ -13,5 +13,6 @@
 		<typeAlias type="com.stationery.project.category.CategoryDTO" alias="CategoryDTO"/>
 		<typeAlias type="com.stationery.project.product.ProductFileDTO" alias="ProductFileDTO"/>
 		<typeAlias type="com.stationery.project.util.Pager" alias="Pager"/>
+		<typeAlias type="java.util.List" alias="List"/>
 	</typeAliases>
 </configuration>
