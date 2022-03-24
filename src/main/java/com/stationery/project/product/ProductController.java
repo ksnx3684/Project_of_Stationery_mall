@@ -48,8 +48,8 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="add",method = RequestMethod.POST)
-	public String add(ProductDTO productDTO,MultipartFile photo)throws Exception{
-		int result=productService.add(productDTO,photo);
+	public String add(ProductDTO productDTO,MultipartFile[] files)throws Exception{
+		int result=productService.add(productDTO,files);
 		System.out.println(result);
 		return "redirect:./list";
 	}

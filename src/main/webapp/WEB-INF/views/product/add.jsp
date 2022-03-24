@@ -38,8 +38,10 @@
 
 
 	<div>
-	썸네일<input type="file" name="photo">
+	썸네일<input type="file" name="files">
+	사진<input type="file" name="files">
 	</div>
+
 	
 	<button type="submit">ADD</button>
 </form>
