@@ -4,6 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.stationery.project.order.UsersOrderDTO;
+import com.stationery.project.util.FileManager;
 
 @Service
 public class UsersService {
@@ -11,17 +15,27 @@ public class UsersService {
 	@Autowired
 	private UsersDAO usersDAO;
 	
-	public int join(UsersDTO usersDTO) throws Exception {
+	@Autowired
+	private FileManager fileManager;
+	
+	public int join(UsersDTO usersDTO, MultipartFile multipartFile) throws Exception {
 		int result = usersDAO.join(usersDTO);
+		
+		// 파일을 HDD에 저장
+		String fileName = fileManager.save(multipartFile, "resources/upload/users/");
+		
+		// 정보를 DB에 저장 (파일명)
+		UsersFileDTO usersFileDTO = new UsersFileDTO();
+		usersFileDTO.setId(usersDTO.getId());
+		usersFileDTO.setFileName(fileName);
+		usersFileDTO.setOriName(multipartFile.getOriginalFilename());
+		usersDAO.joinFile(usersFileDTO);
+		
 		return result;
 	}
 	
 	public UsersDTO login(UsersDTO usersDTO) throws Exception {
 		return usersDAO.login(usersDTO);
-	}
-	
-	public List<WishListDTO> wishlist(UsersDTO usersDTO) throws Exception {
-		return usersDAO.wishlist(usersDTO);
 	}
 	
 	public UsersDTO mypage(UsersDTO usersDTO) throws Exception {
@@ -44,4 +58,11 @@ public class UsersService {
 		return usersDAO.withdrawalfinal(usersDTO);
 	}
 
+	public List<WishListDTO> wishlist(UsersDTO usersDTO) throws Exception {
+		return usersDAO.wishlist(usersDTO);
+	}
+	
+	public List<UsersOrderDTO> orderlist(UsersDTO usersDTO) throws Exception {
+		return usersDAO.orderlist(usersDTO);
+	}
 }

@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.stationery.project.order.UsersOrderDTO;
 
 @Controller
 @RequestMapping("/users/*")
@@ -34,8 +37,10 @@ public class UsersController {
 	
 	// join 기능
 	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(UsersDTO usersDTO) throws Exception {
-		int result = usersService.join(usersDTO);
+	public String join(UsersDTO usersDTO, MultipartFile multipartFile) throws Exception {
+		System.out.println(multipartFile.getOriginalFilename());
+		System.out.println(multipartFile.getSize());
+		int result = usersService.join(usersDTO, multipartFile);
 		return "redirect:../";
 	}
 	
@@ -88,12 +93,6 @@ public class UsersController {
 		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
 		List<WishListDTO> list = usersService.wishlist(usersDTO);
 		model.addAttribute("wishlistDTO", list);
-	}
-	
-	// orderlist form 이동
-	@RequestMapping(value = "orderlist", method = RequestMethod.GET)
-	public void orderlist() throws Exception {
-		
 	}
 	
 	// mypage form 이동
@@ -181,5 +180,15 @@ public class UsersController {
 		System.out.println(users.getId());
 		return "redirect:../";
 	}
+	
+	// orderlist form 이동
+	@RequestMapping(value = "orderlist", method = RequestMethod.GET)
+	public String orderlist(Model model, HttpSession httpSession) throws Exception {
+		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
+		List<UsersOrderDTO> orderlist = usersService.orderlist(usersDTO);
+		model.addAttribute("orderlist", orderlist);
+		return "users/orderlist";
+	}
+	
 	
 }

@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.stationery.project.order.UsersOrderDTO;
+
 @Repository
 public class UsersDAO {
 	
@@ -18,12 +20,12 @@ public class UsersDAO {
 		return sqlSession.insert(NAMESPACE+"join", usersDTO);
 	}
 	
-	public UsersDTO login(UsersDTO usersDTO) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"login", usersDTO);
+	public int joinFile(UsersFileDTO usersFileDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"joinFile", usersFileDTO);
 	}
 	
-	public List<WishListDTO> wishlist(UsersDTO usersDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"wishlist", usersDTO);
+	public UsersDTO login(UsersDTO usersDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"login", usersDTO);
 	}
 	
 	public UsersDTO mypage(UsersDTO usersDTO) throws Exception {
@@ -44,5 +46,13 @@ public class UsersDAO {
 	
 	public int withdrawalfinal(UsersDTO usersDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"withdrawalfinal", usersDTO);
+	}
+
+	public List<WishListDTO> wishlist(UsersDTO usersDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"wishlist", usersDTO);
+	}
+	
+	public List<UsersOrderDTO> orderlist(UsersDTO usersDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"orderlist", usersDTO);
 	}
 }

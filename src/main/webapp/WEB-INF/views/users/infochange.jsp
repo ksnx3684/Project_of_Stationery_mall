@@ -107,6 +107,10 @@
             <input type="text" placeholder="배송연락처" name="addressPhone" id="addressPhone">
         </fieldset>
         <fieldset>
+            <legend>프로필사진(최대10MB)</legend>
+            <input type="file" name="multipartFile" id="multipartFile">
+        </fieldset>
+        <fieldset>
             <button type="button" id="btn">수정</button>
         </fieldset>
     </form>

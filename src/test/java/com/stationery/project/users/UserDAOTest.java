@@ -2,12 +2,14 @@ package com.stationery.project.users;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.web.WebAppConfiguration;
+
 
 import com.stationery.project.MyJunitTest;
+import com.stationery.project.order.UsersOrderDTO;
 
 public class UserDAOTest extends MyJunitTest {
 	
@@ -107,6 +109,22 @@ public class UserDAOTest extends MyJunitTest {
 		int result = usersDAO.withdrawalfinal(usersDTO);
 		
 		assertEquals(1, result);
+	}
+	
+	//@Test
+	public void wishlist(UsersDTO usersDTO) throws Exception {
+		usersDTO.setId("id1");
+		List<WishListDTO> list = usersDAO.wishlist(usersDTO);
+		
+		assertNotEquals(0, list);
+	}
+	
+	//@Test
+	public void orderlist(UsersDTO usersDTO) throws Exception {
+		usersDTO.setId("id1");
+		List<UsersOrderDTO> list = usersDAO.orderlist(usersDTO);
+		
+		assertNotEquals(0, list);
 	}
 	
 }
