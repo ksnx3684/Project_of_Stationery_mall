@@ -50,10 +50,9 @@ public class FaqController {
 	}
 	
 	@PostMapping("add")
-	public ModelAndView add(FaqDTO faqDTO, MultipartFile [] files)throws Exception{
+	public ModelAndView add(FaqDTO faqDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		//service에서 인터페이스로 받아서 사용하기 때문에 파라미터에는 들어가있지만
-		//faq는 파일업로드 없으니 faqDTO만 매개변수로 넣어주기
+
 		int result = faqService.add(faqDTO);
 		mv.setViewName("redirect:./list");
 		return mv;

@@ -12,42 +12,36 @@ import com.stationery.project.board.BoardDTO;
 import com.stationery.project.util.Pager;
 
 @Repository
-public class FaqDAO implements BoardDAO{
+public class FaqDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.stationery.project.board.faq.FaqDAO.";
 	
-	@Override
 	public List<BoardDTO> list(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE + "list", pager);
 	}
 
-	@Override
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE + "detail", boardDTO);
 	}
 
-	@Override
 	public Long total(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE + "total", pager);
 	}
 
-	@Override
 	public int add(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.insert(NAMESPACE + "add", boardDTO);
 	}
 
-	@Override
 	public int delete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.delete(NAMESPACE+"delete", boardDTO);
 	}
 
-	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.update(NAMESPACE+"update", boardDTO);

@@ -6,7 +6,9 @@ import java.util.List;
 import com.stationery.project.util.Pager;
 
 public interface BoardDAO {
-
+	//addFile
+	public int addFile(BoardFileDTO boardFileDTO)throws Exception;
+	
 	// list
 	public List<BoardDTO> list(Pager pager) throws Exception;
 

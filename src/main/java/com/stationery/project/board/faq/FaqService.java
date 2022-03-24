@@ -11,12 +11,11 @@ import com.stationery.project.board.BoardService;
 import com.stationery.project.util.Pager;
 
 @Service
-public class FaqService implements BoardService {
+public class FaqService{
 
 	@Autowired
 	private FaqDAO faqDAO;
 
-	@Override
 	public List<BoardDTO> list(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		pager.makeRow();
@@ -26,25 +25,22 @@ public class FaqService implements BoardService {
 		return faqDAO.list(pager);
 	}
 
-	@Override
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return faqDAO.detail(boardDTO);
 	}
 
-	//@Override
 	public int add(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return faqDAO.add(boardDTO);
 	}
 
-	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return faqDAO.update(boardDTO);
 	}
 
-	@Override
+
 	public int delete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
 		return faqDAO.delete(boardDTO);

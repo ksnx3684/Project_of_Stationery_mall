@@ -16,7 +16,7 @@ rel="stylesheet">
 </head>
 <body>
 	<div class="table-container">
-		<h1>${board}List Page</h1>
+		<h1>${board} List Page</h1>
 
 
 		<!-- 검색 창 -->
