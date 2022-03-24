@@ -66,7 +66,7 @@ public class ProductController {
 	@RequestMapping(value = "delete",method = RequestMethod.GET)
 	public String delete(ProductDTO productDTO) throws Exception{
 		int result=productService.delete(productDTO);
-		return "product/list";
+		return "redirect:./list";
 	}
 
 	@GetMapping("update")

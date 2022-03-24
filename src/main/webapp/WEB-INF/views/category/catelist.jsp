@@ -10,8 +10,10 @@
 </head>
 <body>
 <hr>
-catelist.jsp
+<h5>category list</h5>
 <div class="category">
+<a href="/project/category/add">category add</a>
+<p>
 <c:forEach items="${list}" var="list">
 <a href="/project/product/list?categoryNum=${list.categoryNum}">${list.categoryName}</a>
 </c:forEach>

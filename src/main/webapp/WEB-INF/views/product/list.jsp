@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	list.jsp
+	<h1>List Page</h1>
 	<a href="./add">ADD</a>
 	<div>
 
@@ -18,19 +18,17 @@
 				<c:forEach items="${cateList}" var="list">
 					<option value="${list.categoryNum}">${list.categoryName}</option>
 				</c:forEach>
-			</select> 
-			<input type="text" name="search">
+			</select> <input type="text" name="search">
 			<button type="submit">검색</button>
 		</form>
 
 
 		<c:forEach items="${list}" var="list">
-			<a href="./detail?productNum=${list.productNum}">${list.name}</a>
-${list.price}
-
-<!-- 원래는 os기준 경로로 작성해야됨 fileName으로 가져오게끔  -->
+			<!-- 원래는 os기준 경로로 작성해야됨 fileName으로 가져오게끔  -->
 			<img alt="" src="../resources/upload/product/${list.thumbnail}">
-			<p>
+			<a href="./detail?productNum=${list.productNum}">${list.name}</a> 
+			 ${list.price}원 	
+			<hr>
 		</c:forEach>
 
 

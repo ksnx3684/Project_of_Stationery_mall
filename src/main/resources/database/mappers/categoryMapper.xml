@@ -5,6 +5,7 @@
 
 <mapper namespace="com.stationery.project.category.CategoryDAO">
 
+	<!-- 최상위 카테고리만 -->
 	<select id="catelist" resultType="CategoryDTO">
 		select * from product_category
 		where parentid is null order by categorynum asc
