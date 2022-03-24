@@ -8,7 +8,7 @@
 <title>마이페이지</title>
 </head>
 <body>
-	<c:if test="${usersDTO.usersFileDTO.fileName ne null}">
+	<c:if test="${usersDTO.usersFileDTO.oriName ne null}">
 		<img src="../resources/upload/users/${usersDTO.usersFileDTO.fileName}">
 	</c:if>
 	<h1>아이디 : ${usersDTO.id}</h1>
