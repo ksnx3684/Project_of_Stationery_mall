@@ -7,11 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.s1.board.qna.QnaFileDTO;
 import com.stationery.project.board.BoardDTO;
 import com.stationery.project.util.Pager;
 
@@ -26,6 +28,18 @@ public class NoticesController {
 	public String board() {
 		return "notices";
 	}
+	
+	@PostMapping("fileDelete")
+	public ModelAndView fileDelete(NoticesFileDTO noticesFileDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		System.out.println(noticesFileDTO.getFileNum());
+		int result = noticesService.fileDelete(noticesFileDTO);
+		System.out.println(result);
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result",result);
+		return mv;
+	}
+	
 	
 	@RequestMapping(value = "fileDown", method=RequestMethod.GET)
 	public ModelAndView fileDown(NoticesFileDTO noticesFileDTO)throws Exception{

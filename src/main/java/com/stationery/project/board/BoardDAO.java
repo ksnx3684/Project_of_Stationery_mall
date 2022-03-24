@@ -1,11 +1,12 @@
 package com.stationery.project.board;
 
 import java.util.List;
-
-
 import com.stationery.project.util.Pager;
 
 public interface BoardDAO {
+	
+	public int fileDelete(BoardFileDTO boardFileDTO) throws Exception;
+	
 	//addFile
 	public int addFile(BoardFileDTO boardFileDTO)throws Exception;
 	

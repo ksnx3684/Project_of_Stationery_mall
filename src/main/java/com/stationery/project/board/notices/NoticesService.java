@@ -19,6 +19,10 @@ public class NoticesService implements BoardService{
 	@Autowired
 	private FileManager fileManager;
 	
+	public int fileDelete(NoticesFileDTO noticesFileDTO) throws Exception {
+		return 0;
+	}
+	
 	public NoticesFileDTO detailFile(NoticesFileDTO noticesFileDTO) throws Exception{
 		return noticesDAO.detailFile(noticesFileDTO);
 	}

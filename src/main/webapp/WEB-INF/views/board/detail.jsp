@@ -21,11 +21,11 @@
 		</c:forEach>
 	</c:if>
 	<a href="./list">List</a>
-	<%-- <c:if test="${member.id eq dto.id}">
-		<a href="./delete?num=${dto.num}">Delete</a>
+	<!-- 작성자만 수정과 삭제가 가능하게끔  -->
+	<c:if test="${auth.id eq dto.id}">
+		<!-- <button type="button" onclick="button_del();">삭제하기</button> -->
+		<a href="./delete?num=${dto.num}" onclick="return confirm('정말 삭제하시겠습니까?');">Delete</a>
 		<a href="./update?num=${dto.num}">update</a>
-	</c:if> --%>
-	<a href="./delete?num=${dto.num}">Delete</a>
-	<a href="./update?num=${dto.num}">update</a>
+	</c:if>
 </body>
 </html>

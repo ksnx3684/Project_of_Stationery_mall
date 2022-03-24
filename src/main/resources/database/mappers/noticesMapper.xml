@@ -5,6 +5,10 @@
     
 <mapper namespace="com.stationery.project.board.notices.NoticesDAO">
 
+ 	<delete id="fileDelete" parameterType="NoticesFileDTO">
+		DELETE NOTICES_FILE WHERE FILENUM=#{fileNum}
+ 	</delete>
+
  	<select id="listFile" parameterType="BoardDTO" resultType="NoticesFileDTO">
  		SELECT * FROM NOTICES_FILE 
  		WHERE NUM = #{num}

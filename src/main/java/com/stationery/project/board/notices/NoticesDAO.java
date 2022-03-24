@@ -16,6 +16,13 @@ public class NoticesDAO implements BoardDAO{
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.stationery.project.board.notices.NoticesDAO.";
 	
+	
+	
+	@Override
+	public int fileDelete(BoardFileDTO boardFileDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"fileDelete", boardFileDTO);
+	}
+
 	public List<NoticesFileDTO> listFile(BoardDTO boardDTO)throws Exception{
 		return sqlSession.selectList(NAMESPACE+"listFile", boardDTO);
 	}

@@ -35,6 +35,10 @@
 	<beans:bean class="com.stationery.project.interceptor.LoginInterceptor" id="LoginInterceptor"/>
 	<beans:bean class="com.stationery.project.interceptor.WithdrawalInterceptor" id="WithdrawalInterceptor"/>
 	<beans:bean class="com.stationery.project.interceptor.JoinInterceptor" id="JoinInterceptor"/>
+	<beans:bean class="com.stationery.project.interceptor.WriterCheckInterceptor" id="WriterCheckInterceptor"/>
+	<beans:bean class="com.stationery.project.interceptor.FaqCheckInterceptor" id="FaqCheckInterceptor"/>
+	<beans:bean class="com.stationery.project.interceptor.FaqDeleteCheckInterceptor" id="FaqDeleteCheckInterceptor"/>
+	<beans:bean class="com.stationery.project.interceptor.BoardDeleteCheckInterceptor" id="BoardDeleteCheckInterceptor"/>
 	<interceptors>
 		<interceptor>
     		<mapping path="/users/login"/>
@@ -59,7 +63,31 @@
     		<mapping path="/users/withdrawalfinal"/>
 			<beans:ref bean="WithdrawalInterceptor"/>
 		</interceptor>
+		
+		<interceptor>
+			<mapping path="/notices/update"/>
+			<beans:ref bean="WriterCheckInterceptor" />
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/notices/delete"/>
+			<beans:ref bean="BoardDeleteCheckInterceptor" />
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/faq/update"/>
+			<beans:ref bean="FaqCheckInterceptor" />
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/faq/delete"/>
+			<beans:ref bean="FaqDeleteCheckInterceptor" />
+		</interceptor>
+		
+		
 	</interceptors>
+	
+	
 
 	<context:component-scan base-package="com.stationery.project" />
 
