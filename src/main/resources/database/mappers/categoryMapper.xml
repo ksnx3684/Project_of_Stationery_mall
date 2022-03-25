@@ -17,7 +17,8 @@
 	</insert>
 
 	<select id="allList" resultType="CategoryDTO">
-		select* from product_category
+		select LEVEL, CATEGORYNUM, CATEGORYNAME, PARENTID from product_category 
+        START WITH PARENTID IS NULL CONNECT BY PRIOR CATEGORYNUM=PARENTID
 		order by categorynum asc
 	</select>
 	

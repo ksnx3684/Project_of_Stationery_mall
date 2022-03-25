@@ -5,6 +5,11 @@
 
 <mapper namespace="com.stationery.project.product.ProductDAO">
 
+	<delete id="fileDelete" parameterType="ProductFileDTO">
+		delete product_file where fileNum=#{fileNum}
+	</delete>
+
+
 <!-- 카테고리table과 product table join  -->
 <!--최상위 카테고리번호를 parentid로 가진 컬럼들을 조회-->
 <!-- 이제 productfileDTO랑 연결해서 list.jsp 에 보내야돼  -->
@@ -23,7 +28,7 @@
 		using(productnum)) PF
 		using(categorynum)
 		where name like'%'||#{search}||'%' 
-		and C.parentid like'%'||#{categoryNum}||'%'  order by productnum desc)A)
+		and (C.parentid like'%'||#{categoryNum}||'%') order by productnum desc)A)
 		where R between #{startRow} and #{lastRow}
 		
 		

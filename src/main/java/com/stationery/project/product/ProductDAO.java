@@ -19,6 +19,11 @@ public class ProductDAO {
 //	public List<ProductFileDTO> listFile(ProductDTO productDTO)throws Exception{
 //		return sqlSession.selectList(NAMESPACE+"listFile",productDTO);
 //	}
+
+	public int fileDelete(ProductFileDTO productFileDTO)throws Exception{
+		return sqlSession.delete(NAMESPACE+"fileDelete",productFileDTO);
+	}
+	
 	
 	public Long total(Pager pager)throws Exception{
 			return sqlSession.selectOne(NAMESPACE+"total", pager);

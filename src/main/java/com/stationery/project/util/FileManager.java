@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileManager {
 	
 	@Autowired
-	private ServletContext servletContext;
+	private ServletContext servletContext; //tomcat
 	
 	public String save(MultipartFile multipartFile,String path)throws Exception{
 		String realPath = servletContext.getRealPath(path);

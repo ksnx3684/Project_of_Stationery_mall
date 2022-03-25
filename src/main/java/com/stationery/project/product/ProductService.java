@@ -18,6 +18,13 @@ public class ProductService {
 	@Autowired
 	private FileManager fileManager;
 
+	
+	
+	public int fileDelete(ProductFileDTO productFileDTO)throws Exception{
+		return productDAO.fileDelete(productFileDTO);
+	}
+	
+	
 	public List<ProductDTO> list(Pager pager) throws Exception {
 		pager.makeRow();
 		pager.makeNum(productDAO.total(pager));
@@ -26,12 +33,11 @@ public class ProductService {
 	}
 
 	public int add(ProductDTO productDTO, MultipartFile[] files) throws Exception {
-		// thumbnail 넣어줌
-//		productDTO.setThumbnail(photo.getOriginalFilename());
-
+		// thumbnail 넣어줌 db에 insert하기 전에 
+		productDTO.setThumbnail(files[0].getOriginalFilename());
 		int result = productDAO.add(productDTO); // productDTO에 시퀀스 들어가있
 		
-		productDTO.setThumbnail(files[0].getOriginalFilename());
+	
 		for (int i = 0; i < files.length; i++) {
 			if (files[i].isEmpty()) { // file이 비어있으면 다시 위로 올라가서 다음꺼 실행
 				// files[i].getSize()==0 //file 비어져있으면 저장 안되도록 하기 위함

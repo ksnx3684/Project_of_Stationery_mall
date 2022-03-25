@@ -27,6 +27,17 @@ public class ProductController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	@PostMapping("fileDelete")
+	public ModelAndView fileDelete(ProductFileDTO productFileDTO)throws Exception{
+		//filenum 넘어옴 
+		ModelAndView mv= new ModelAndView();
+
+		int result = productService.fileDelete(productFileDTO);
+		
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result",result);
+		return mv;
+	}
 	
 	@RequestMapping(value = "list", method=RequestMethod.GET)
 	public ModelAndView list(ModelAndView mv,Pager pager) throws Exception{

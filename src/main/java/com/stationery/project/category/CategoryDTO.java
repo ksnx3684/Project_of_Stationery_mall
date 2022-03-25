@@ -5,7 +5,16 @@ public class CategoryDTO {
 	private Integer categoryNum;
 	private	String categoryName;
 	private Integer parentId;
+	private Integer level;
 	
+	
+
+	public Integer getLevel() {
+		return level;
+	}
+	public void setLevel(Integer level) {
+		this.level = level;
+	}
 	public Integer getCategoryNum() {
 		return categoryNum;
 	}

@@ -26,7 +26,7 @@
 		<c:forEach items="${list}" var="list">
 		<c:choose>
 			<c:when test="${list.parentId eq null}">  <!--parentid가 null -> 최상위카테고리 -->
-			<optgroup label="${list.categoryName}"></optgroup> 
+			<optgroup label="${list.categoryName}"> </optgroup>
 			</c:when>
 			<c:otherwise>
 				<option value="${list.categoryNum}"> &nbsp;&nbsp;&nbsp;${list.categoryName}</option>
@@ -39,12 +39,20 @@
 
 	<div>
 	썸네일<input type="file" name="files">
-	사진<input type="file" name="files">
 	</div>
 
-	
+
+		<div id="fileResult"> 
+		<!--  -->
+		</div>
+		<div>
+			<button type="button" id="fileAdd">FileAdd</button>
+		</div>
+
 	<button type="submit">ADD</button>
 </form>
 
+
+ <script src="../resources/js/file.js"></script> 
 </body>
 </html>
