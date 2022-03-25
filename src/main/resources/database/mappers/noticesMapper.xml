@@ -5,6 +5,11 @@
     
 <mapper namespace="com.stationery.project.board.notices.NoticesDAO">
 
+	<insert id="updateFile" parameterType="NoticesFileDTO">
+		INSERT INTO NOTICES_FILE (FILENUM, NUM, FILENAME, ORINAME)
+ 		VALUES (NOTICES_FILE_SEQ.NEXTVAL, #{num}, #{fileName}, #{oriName})
+	</insert>
+
  	<delete id="fileDelete" parameterType="NoticesFileDTO">
 		DELETE NOTICES_FILE WHERE FILENUM=#{fileNum}
  	</delete>

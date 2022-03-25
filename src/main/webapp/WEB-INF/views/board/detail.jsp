@@ -20,6 +20,9 @@
 			<h3>${f.oriName}</h3>
 		</c:forEach>
 	</c:if>
+	
+
+	
 	<a href="./list">List</a>
 	<!-- 작성자만 수정과 삭제가 가능하게끔  -->
 	<c:if test="${auth.id eq dto.id}">

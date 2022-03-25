@@ -27,7 +27,6 @@
 		</div>
 		<div>
 			<button type="button" id="fileAdd">FileAdd</button>
-			<button type="button" class="del">Sample DEL</button>
 		</div>
 
 		<button type="submit">ADD</button>

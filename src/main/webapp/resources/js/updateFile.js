@@ -7,8 +7,8 @@ const files = document.querySelector("#files");
 let count = 0;
 let num = 0; //id 용도
 
+count = files.getElementsByClassName("fileDeleteBtn").length;
 fileAdd.addEventListener("click", function() {
-
     if(count > 4) {
         alert("첨부파일은 최대 5개까지만 가능합니다.");
         return ;

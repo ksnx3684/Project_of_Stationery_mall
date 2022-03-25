@@ -1,10 +1,16 @@
 package com.stationery.project.board;
 
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import com.stationery.project.util.Pager;
 
 public interface BoardDAO {
 	
+
+	
+	//fileDelete
 	public int fileDelete(BoardFileDTO boardFileDTO) throws Exception;
 	
 	//addFile
@@ -27,6 +33,8 @@ public interface BoardDAO {
 	
 	//update
 	public int update(BoardDTO boardDTO) throws Exception;
+	
+	//public int updateFile(BoardFileDTO boardFileDTO) throws Exception;
 	
 
 }
