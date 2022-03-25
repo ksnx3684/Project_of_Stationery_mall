@@ -44,15 +44,15 @@
                 <li class="col">
                     ${dto.totalPrice}
                 </li>
-                <li class="col">
-                    ${dto.orderCheck}
+                <li class="col" id="order" value="${dto.orderCheck}">
+                    <!-- ${dto.orderCheck} -->
                 </li>
-                <li class="col">
-                    ${dto.payCheck}
+                <li class="col" id="pay" value="${dto.payCheck}">
+                    <!-- ${dto.payCheck} -->
                 </li>
             </c:forEach>
         </ul>   
     </div>
-
+    <script type="text/javascript" src="../resources/js/orderlist.js"></script>
 </body>
 </html>

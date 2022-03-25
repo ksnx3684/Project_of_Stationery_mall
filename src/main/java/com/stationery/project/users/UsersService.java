@@ -42,8 +42,25 @@ public class UsersService {
 		return usersDAO.mypage(usersDTO);
 	}
 	
-	public int infochange(UsersDTO usersDTO) throws Exception {
-		return usersDAO.infochange(usersDTO);
+	public int infochange(UsersDTO usersDTO, MultipartFile multipartFile) throws Exception {
+		int result = usersDAO.infochange(usersDTO);
+		
+		// 파일을 HDD에 저장
+		String fileName = fileManager.save(multipartFile, "resources/upload/users/");
+		
+		// 정보를 DB에 저장 (파일명)
+		UsersFileDTO usersFileDTO = new UsersFileDTO();
+		usersFileDTO.setId(usersDTO.getId());
+		usersFileDTO.setFileName(fileName);
+		usersFileDTO.setOriName(multipartFile.getOriginalFilename());
+		usersDAO.infochangeFile(usersFileDTO);
+		
+		return result;
+	}
+	
+	public int fileDelete(UsersFileDTO usersFileDTO) throws Exception {
+//		fileManager.remove("resources/upload/users/", usersFileDTO.getFileName());
+		return usersDAO.fileDelete(usersFileDTO);
 	}
 	
 	public int pwchange(UsersDTO usersDTO) throws Exception {

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.stationery.project.order.UsersOrderDTO;
 
@@ -118,9 +119,23 @@ public class UsersController {
 	
 	// infochange 기능
 	@RequestMapping(value = "infochange", method = RequestMethod.POST)
-	public String infochange(UsersDTO usersDTO) throws Exception {
-		int result = usersService.infochange(usersDTO);
+	public String infochange(UsersDTO usersDTO, MultipartFile multipartFile) throws Exception {
+		System.out.println(multipartFile.getOriginalFilename());
+		System.out.println(multipartFile.getOriginalFilename());
+		System.out.println(multipartFile.getSize());
+		int result = usersService.infochange(usersDTO, multipartFile);
 		return "redirect:../";
+	}
+	
+	@PostMapping("fileDelete")
+	public ModelAndView fileDelete(UsersFileDTO usersFileDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = usersService.fileDelete(usersFileDTO);
+		
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result", result);
+		
+		return mv;
 	}
 	
 	// pwchange form 이동

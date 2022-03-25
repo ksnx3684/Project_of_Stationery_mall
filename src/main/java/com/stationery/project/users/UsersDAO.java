@@ -35,6 +35,13 @@ public class UsersDAO {
 	public int infochange(UsersDTO usersDTO) throws Exception {
 		return sqlSession.update(NAMESPACE+"infochange", usersDTO);
 	}
+	public int infochangeFile(UsersFileDTO usersFileDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"infochangeFile", usersFileDTO);
+	}
+	
+	public int fileDelete(UsersFileDTO usersFileDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"fileDelete", usersFileDTO);
+	}
 	
 	public int pwchange(UsersDTO usersDTO) throws Exception {
 		return sqlSession.update(NAMESPACE+"pwchange", usersDTO);

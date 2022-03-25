@@ -35,13 +35,13 @@
 		</association>
 	</resultMap>
 	<select id="mypage" parameterType="UsersDTO" resultMap="UsersDTO">
-		SELECT U.ID, U.NAME, U.PHONE, U.EMAIL, U.JOINDATE, U.ADDRESSNAME,
-		U.ADDRESSPHONE, U.POSTALCODE, U.ADDRESSDETAIL, UF.FILENUM, UF.FILENAME, UF.ORINAME
-		FROM USERS U, USERS_FILE UF
-		WHERE U.ID = UF.ID
-		AND U.ID = #{id}
+		SELECT U.*, UF.*
+		FROM USERS U
+		    LEFT OUTER JOIN
+		    USERS_FILE UF
+		ON (U.ID = UF.ID)
+		WHERE U.ID = #{id}
 	</select>
-	
 	<update id="infochange" parameterType="UsersDTO">
 		<!-- UPDATE USERS SET PHONE = #{phone}, EMAIL = #{email}, ADDRESSNAME = #{addressName},
 		ADDRESSPHONE = #{addressPhone}, POSTALCODE = #{postalCode}, ADDRESSDETAIL = #{addressDetail}
@@ -56,6 +56,13 @@
         END
     	}
 	</update>
+	<insert id="infochangeFile" parameterType="UsersFileDTO">
+		INSERT INTO USERS_FILE (FILENUM, ID, FILENAME, ORINAME)
+		VALUES (FILE_SEQ.NEXTVAL, #{id}, #{fileName}, #{oriName})
+	</insert>
+	<delete id="fileDelete" parameterType="UsersFileDTO">
+		DELETE USERS_FILE WHERE FILENUM = #{fileNum}
+	</delete>
 	<update id="pwchange" parameterType="UsersDTO">
 		UPDATE USERS SET PW = #{pw} WHERE ID = #{id}
 	</update>
