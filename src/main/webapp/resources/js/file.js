@@ -8,7 +8,14 @@ let num=0; //id용도
 
 fileAdd.addEventListener("click",function(event){
 
-   
+   //fileadd버튼 클릭하면 카운트 +1 되고 
+   //<div id="del"+num></>
+//<input type="file" name="files">
+//<button type= button class=del data-num=del+num>del</>
+{/* <div id="del"+num>
+        <input type="file" name="files">
+        <button type= button class=del data-num=del+num>del</>
+    </> */}
 
     if(count>9){
         alert('파일 첨부는 최대 10개 까지만 가능합니다. ')
@@ -41,28 +48,16 @@ fileAdd.addEventListener("click",function(event){
    
 })
 
-fileResult.addEventListener("click",function(event){
- let cn=  event.target;
+	fileResult.addEventListener("click",function(event){
+ 	let cn=  event.target;
 
- if(cn.classList.contains('del')){
-    let delNum = cn.getAttribute("data-num");
-    document.getElementById(delNum).remove();
-    count--;
- }
+ 	if(cn.classList.contains('del')){
+    	let delNum = cn.getAttribute("data-num");
+    	document.getElementById(delNum).remove();
+    	count--;
+ 	}
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -70,17 +65,26 @@ fileResult.addEventListener("click",function(event){
 const fileDeleteBtn = document.querySelectorAll(".fileDeleteBtn")
 const files =document.querySelector("#files")
 
+// x클릭하면 그 파일의 파일num 넘어가고 파일 삭제됨 
+//근데 썸네일삭제하면 썸네일 다시넣어줘야되는데 
+//사진 추가시에 product table에 thumbnail에 oriname넣어줘야됨 
+// 근데 썸네일 조건이 <c:when test="${state.first}">이걸로 해놔서
+//썸네일 삭제하면 그 다음사진이 썸네일이 됨 
+//=> filenum을 기억해서 다시 넣어줘야할듯 
 
 files.addEventListener("click",function(event){
-    if(event.target.classList.contains("fileDeleteBtn")){
+    if(event.target.classList.contains("fileDeleteBtn")){ //x눌렀을시 
 
         let check = confirm("삭제시 복구 불가능함 삭제할겨? ")
+        console.log('fdsafs')
         if(!check){
             return;
         }
 	
+	
         let fileNum = event.target.getAttribute("data-fileNum")
        	console.log(fileNum); //잘나옴 
+ 
  
 	      let xhttp = new XMLHttpRequest();
 	      xhttp.open("POST","./fileDelete");
@@ -89,21 +93,21 @@ files.addEventListener("click",function(event){
 
 
 
-    xhttp.onreadystatechange = function(){
-        if(this.readyState==4 && this.status==200){
-        console.log("ㄹㅇㅁㄹㅇㄴㄹ")
-           console.log(this.responseText)
-            let result = this.responseText.trim();
-            if(result=='1'){
-               console.log("file 삭제 ")
-               event.target.parentNode.remove();
-               console.log(event.target.parentNode)
-            }else{
-                alert('file 삭제 실패')
-            }
-        }
-
-    }
+	    xhttp.onreadystatechange = function(){
+	        if(this.readyState==4 && this.status==200){
+	        console.log("ㄹㅇㅁㄹㅇㄴㄹ")
+	        console.log(this.responseText)
+	        let result = this.responseText.trim();
+	        	if(result=='1'){
+	               console.log("file 삭제 ")
+	               event.target.parentNode.remove();
+	               console.log(event.target.parentNode)
+	            }else{
+	                alert('file 삭제 실패')
+	            }
+	        }
+	
+	    }
 
 
    

@@ -88,8 +88,9 @@ public class ProductController {
 	}
 	
 	@PostMapping("update")
-	public String update(ProductDTO productDTO)throws Exception{
-		int result=productService.update(productDTO);
+	public String update(ProductDTO productDTO,MultipartFile[] files)throws Exception{
+		int result=productService.update(productDTO,files);
+
 		return "redirect:./list";
 	}
 

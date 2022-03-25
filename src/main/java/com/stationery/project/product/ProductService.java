@@ -63,7 +63,24 @@ public class ProductService {
 		return productDAO.delete(productDTO);
 	}
 
-	public int update(ProductDTO productDTO) throws Exception {
-		return productDAO.update(productDTO);
+	public int update(ProductDTO productDTO,MultipartFile[] files) throws Exception {
+		int result = productDAO.update(productDTO); // productDTO에 시퀀스 들어가있
+		
+	
+		for (int i = 0; i < files.length; i++) {
+			if (files[i].isEmpty()) { // file이 비어있으면 다시 위로 올라가서 다음꺼 실행
+				// files[i].getSize()==0 //file 비어져있으면 저장 안되도록 하기 위함
+				continue;
+			}
+				String fileName = fileManager.save(files[i], "resources/upload/product/");
+
+				ProductFileDTO productFileDTO = new ProductFileDTO();
+				// productNum은 add 실행 후 생성됨
+				productFileDTO.setProductNum(productDTO.getProductNum());
+				productFileDTO.setFileName(fileName);
+				productFileDTO.setOriName(files[i].getOriginalFilename());
+				productDAO.addFile(productFileDTO);
+		}
+		return result;
 	}
 }
