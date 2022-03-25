@@ -36,6 +36,29 @@
 		</c:forEach>
 	</select>
 
+<!-- 파일  -->
+<!-- <div>
+
+	<div>
+		대표이미지등록<input type="checkbox" name=>
+		기본이미지등록<input type="checkbox">
+	</div>
+
+		<div id="fileResult"> </div>
+
+		<div>
+			<button type="button" id="fileAdd">FileAdd</button>
+			<button type="button" class="del">Sample DEL</button>
+		</div>
+			<button type="submit">ADD</button>
+</form>
+		
+	
+</div> -->
+
+
+<hr>
+<!--  -->
 
 	<div>
 	썸네일<input type="file" name="files">
@@ -43,14 +66,14 @@
 
 
 		<div id="fileResult"> 
-		<!--  -->
+		
 		</div>
 		<div>
 			<button type="button" id="fileAdd">FileAdd</button>
 		</div>
 
 	<button type="submit">ADD</button>
-</form>
+
 
 
  <script src="../resources/js/file.js"></script> 
