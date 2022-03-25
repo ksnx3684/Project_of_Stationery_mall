@@ -57,6 +57,12 @@
     		<mapping path="/users/wishlist"/>
     		<mapping path="/users/withdrawal"/>
     		<mapping path="/users/withdrawalfinal"/>
+    		<mapping path="/faq/update"/>
+    		<mapping path="/faq/delete"/>
+    		<mapping path="/notices/update"/>
+    		<mapping path="/notices/delete"/>
+    		<mapping path="/notices/add"/>
+    		<mapping path="/faq/add"/>
 			<beans:ref bean="LoginInterceptor"/>
 		</interceptor>
 		<interceptor>

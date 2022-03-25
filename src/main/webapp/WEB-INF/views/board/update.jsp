@@ -16,22 +16,24 @@
 			 작성자<input type="text" name="writer" disabled="disabled" value="${dto.id}">
 			 글 내용<textarea name="contents" rows="10" cols="">${dto.contents}</textarea>
 	
-		<div id="files">
-			<c:forEach items="${dto.fileDTOs}" var="f">
-				<div>
-					${f.oriName} <button type="button" data-fileNum="${f.fileNum}" class="fileDeleteBtn">X</button>
-				</div>
-			</c:forEach>
-		</div>
-		
-		<div id="fileResult">
-
-
-		</div>
-		
-		<div>
-			<button type="button" id="fileAdd">FileAdd</button>
-		</div>
+		<c:if test="${board eq 'notices'}">
+			<div id="files">
+				<c:forEach items="${dto.fileDTOs}" var="f">
+					<div>
+						${f.oriName} <button type="button" data-fileNum="${f.fileNum}" class="fileDeleteBtn">X</button>
+					</div>
+				</c:forEach>
+			</div>
+			
+			<div id="fileResult">
+	
+	
+			</div>
+			
+			<div>
+				<button type="button" id="fileAdd">FileAdd</button>
+			</div>
+		</c:if>
 		<button type="submit">UPDATE</button>		
 	</form>
 		<script type="text/javascript" src="../resources/js/updateFile.js"></script>
