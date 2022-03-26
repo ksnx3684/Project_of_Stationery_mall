@@ -20,9 +20,13 @@
 	<h1>배송지 연락처 : ${usersDTO.addressPhone}</h1>
 	<h1>우편번호 : ${usersDTO.postalCode}</h1>
 	<h1>배송지 주소 : ${usersDTO.addressDetail}</h1>
-	<a href="./mychange"><button id="update">내 정보 변경</button></a>
+	<%-- <h1>회원 : ${usersDTO.userAccount}</h1> --%>
+	<a href="./mychangecheck"><button id="update">내 정보 변경</button></a>
 	<a href="./wishlist"><button id="wishlist">위시리스트</button></a>
 	<a href="./orderlist"><button id="orderlist">주문내역</button></a>
 	<a href="/project/users/logout">로그아웃</a>
+	<c:if test="${usersDTO.userAccount eq 0}">
+		<a href="./otp/first"><button id="manager">관리자페이지</button></a>
+	</c:if>
 </body>
 </html>

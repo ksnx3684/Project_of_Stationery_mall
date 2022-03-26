@@ -14,9 +14,6 @@
 		INSERT INTO USERS_FILE (FILENUM, ID, FILENAME, ORINAME)
 		VALUES (FILE_SEQ.NEXTVAL, #{id}, #{fileName}, #{oriName})
 	</insert>
-	<select id="login" parameterType="UsersDTO" resultType="UsersDTO">
-		SELECT ID, NAME FROM USERS WHERE ID = #{id} AND PW = #{pw}
-	</select>
 	
 	<resultMap type="UsersDTO" id="UsersDTO">
 		<id column="id" property="id"/>
@@ -28,12 +25,22 @@
 		<result column="addressPhone" property="addressPhone"/>
 		<result column="postalCode" property="postalCode"/>
 		<result column="addressDetail" property="addressDetail"/>
+		<result column="userAccount" property="userAccount"/>
 		<association property="usersFileDTO" javaType="usersFileDTO">
 			<id column="fileNum" property="fileNum"/>
 			<result column="fileName" property="fileName"/>
 			<result column="oriName" property="oriName"/>
 		</association>
 	</resultMap>
+	<select id="login" parameterType="UsersDTO" resultMap="UsersDTO">
+		<!-- SELECT ID, NAME FROM USERS WHERE ID = #{id} AND PW = #{pw} -->
+		SELECT U.ID, U.NAME, UF.FILENUM, UF.FILENAME, UF.ORINAME
+		FROM USERS U
+		LEFT OUTER JOIN
+		USERS_FILE UF
+		ON (U.ID = UF.ID)
+		WHERE U.ID = #{id} AND U.PW = #{pw}
+	</select>
 	<select id="mypage" parameterType="UsersDTO" resultMap="UsersDTO">
 		SELECT U.*, UF.*
 		FROM USERS U
@@ -42,6 +49,7 @@
 		ON (U.ID = UF.ID)
 		WHERE U.ID = #{id}
 	</select>
+	
 	<update id="infochange" parameterType="UsersDTO">
 		<!-- UPDATE USERS SET PHONE = #{phone}, EMAIL = #{email}, ADDRESSNAME = #{addressName},
 		ADDRESSPHONE = #{addressPhone}, POSTALCODE = #{postalCode}, ADDRESSDETAIL = #{addressDetail}
@@ -61,7 +69,7 @@
 		VALUES (FILE_SEQ.NEXTVAL, #{id}, #{fileName}, #{oriName})
 	</insert>
 	<delete id="fileDelete" parameterType="UsersFileDTO">
-		DELETE USERS_FILE WHERE FILENUM = #{fileNum}
+		DELETE USERS_FILE WHERE ID = #{id}
 	</delete>
 	<update id="pwchange" parameterType="UsersDTO">
 		UPDATE USERS SET PW = #{pw} WHERE ID = #{id}

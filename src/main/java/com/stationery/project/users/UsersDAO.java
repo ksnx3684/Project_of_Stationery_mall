@@ -39,8 +39,8 @@ public class UsersDAO {
 		return sqlSession.insert(NAMESPACE+"infochangeFile", usersFileDTO);
 	}
 	
-	public int fileDelete(UsersFileDTO usersFileDTO) throws Exception {
-		return sqlSession.delete(NAMESPACE+"fileDelete", usersFileDTO);
+	public int fileDelete(UsersDTO usersDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"fileDelete", usersDTO);
 	}
 	
 	public int pwchange(UsersDTO usersDTO) throws Exception {

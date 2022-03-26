@@ -2,6 +2,9 @@ package com.stationery.project.users;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +20,9 @@ public class UsersService {
 	
 	@Autowired
 	private FileManager fileManager;
+	
+	@Autowired
+	private ServletContext servletContext;
 	
 	public int join(UsersDTO usersDTO, MultipartFile multipartFile) throws Exception {
 		int result = usersDAO.join(usersDTO);
@@ -45,22 +51,56 @@ public class UsersService {
 	public int infochange(UsersDTO usersDTO, MultipartFile multipartFile) throws Exception {
 		int result = usersDAO.infochange(usersDTO);
 		
-		// 파일을 HDD에 저장
-		String fileName = fileManager.save(multipartFile, "resources/upload/users/");
-		
-		// 정보를 DB에 저장 (파일명)
-		UsersFileDTO usersFileDTO = new UsersFileDTO();
-		usersFileDTO.setId(usersDTO.getId());
-		usersFileDTO.setFileName(fileName);
-		usersFileDTO.setOriName(multipartFile.getOriginalFilename());
-		usersDAO.infochangeFile(usersFileDTO);
-		
+		if(multipartFile != null) {
+			// 파일을 HDD에 저장
+			String fileName = fileManager.save(multipartFile, "resources/upload/users/");
+			
+			// 정보를 DB에 저장 (파일명)
+			UsersFileDTO usersFileDTO = new UsersFileDTO();
+			usersFileDTO.setId(usersDTO.getId());
+			usersFileDTO.setFileName(fileName);
+			usersFileDTO.setOriName(multipartFile.getOriginalFilename());
+			usersDAO.infochangeFile(usersFileDTO);
+		}
 		return result;
 	}
 	
-	public int fileDelete(UsersFileDTO usersFileDTO) throws Exception {
+	public int fileDelete(UsersDTO usersDTO, HttpSession httpSession) throws Exception {
 //		fileManager.remove("resources/upload/users/", usersFileDTO.getFileName());
-		return usersDAO.fileDelete(usersFileDTO);
+//		usersFileDTO = usersDAO.mypage(usersDTO);
+//		String rootPath = FileSystemView.getFileSystemView().getHomeDirectory().toString();
+//		String realPath = servletContext.getRealPath("resources/upload/users/");
+//		System.out.println(realPath);
+//		System.out.println(rootPath);
+//		System.out.println(usersFileDTO.getOriName()); // why null??
+//		File file = new File(realPath, "c3f8a061-953f-4220-ae72-0a6a5fcfba72_bom.jpg");
+//		file.delete();
+		
+//		String path = servletContext.getRealPath("resources/upload/users/");
+//		String fileName = usersDTO.getUsersFileDTO().getOriName();
+//		
+//		File deleteFile = new File(path + fileName);
+//		boolean result = deleteFile.delete();
+//		
+////		return usersDAO.fileDelete(usersFileDTO);
+//		usersDAO.fileDelete(usersFileDTO);
+		
+		usersDTO = (UsersDTO)httpSession.getAttribute("mychange");
+		System.out.println(usersDTO.getUsersFileDTO().getFileName());
+		String name = usersDTO.getUsersFileDTO().getFileName();
+		
+//		usersDTO = usersDAO.mypage(usersDTO);
+		int result = usersDAO.fileDelete(usersDTO);
+		
+		if(result > 0) {
+			// check가 true면 성공, false면 실패
+			boolean check = fileManager.remove("resources/upload/users/", name);
+			System.out.println("삭제성공");
+		} else {
+			System.out.println("삭제실패");
+		}
+		
+		return result;
 	}
 	
 	public int pwchange(UsersDTO usersDTO) throws Exception {
