@@ -18,7 +18,7 @@
 	<h4>설명 : ${dto.contents}</h4>
 	<c:forEach items="${dto.productFileDTOs}" var="f">
 		<!-- 수정해라 나중에 -->
-		<img alt="" src="../resources/upload/product/${f.oriName}">
+		<img alt="" src="../resources/upload/product/${f.fileName}">
 	</c:forEach>
 	<hr>
 </body>
