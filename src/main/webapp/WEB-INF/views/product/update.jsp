@@ -23,23 +23,27 @@
 			<div>
 				<c:choose>
 					<c:when test="${state.first}">
-					썸네일 ${f.oriName} <button type="button" data-fileNum="${f.fileNum}" class="fileDeleteBtn">X</button> 
+					대표이미지 ${f.oriName} <button type="button" data-fileNum="${f.fileNum}" class="fileDeleteBtn_t">X</button> 
 						<%-- 대표사진<input type="file" name="files" value="${f.fileName}"> --%>
 				<!-- 		나중에 썸네일 수정하기
 						
 						파일선택버튼을 눌렀으면 히든 보내줌 아니면 지워 
 						수정안하는 경우에는 히든 보내지마   -->
 						<%-- <input type="hidden" name="fileNum" value="${f.fileNum}">  --%>
+				
 					</c:when>
+						
 					
 					<c:otherwise>
-					사진 ${f.oriName} <button type="button" data-fileNum="${f.fileNum}" class="fileDeleteBtn">X</button> 
+					기본이미지 ${f.oriName} <button type="button" data-fileNum="${f.fileNum}" class="fileDeleteBtn">X</button> 
 					
 						<%-- 사진 <input type="file" name="files" value="${f.fileName}"> --%>
 					</c:otherwise>
 					
 				</c:choose>
 			</div>
+			<div id="fileResult_t"></div>
+			<!-- 썸네일에 fileName을 넣어야되는데 fileManger를 거쳐야 얻을 수 있음 여러 파일중에서 썸네일을 어떻게 구분해서 prductcontroller까지 보내지  -->
 		</c:forEach>
 	</div>
 	

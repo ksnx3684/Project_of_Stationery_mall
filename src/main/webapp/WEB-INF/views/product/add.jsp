@@ -64,7 +64,6 @@
 	썸네일<input type="file" name="files">
 	</div>
 
-
 		<div id="fileResult"> 
 		
 		</div>

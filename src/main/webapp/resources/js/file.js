@@ -59,11 +59,11 @@ fileAdd.addEventListener("click",function(event){
 
 })
 
-
-
 //------------------
 const fileDeleteBtn = document.querySelectorAll(".fileDeleteBtn")
+const fileDeleteBtn_t = document.querySelectorAll(".fileDeleteBtn_t")
 const files =document.querySelector("#files")
+const fileResult_t = document.getElementById("fileResult_t")
 
 // x클릭하면 그 파일의 파일num 넘어가고 파일 삭제됨 
 //근데 썸네일삭제하면 썸네일 다시넣어줘야되는데 
@@ -76,28 +76,23 @@ files.addEventListener("click",function(event){
     if(event.target.classList.contains("fileDeleteBtn")){ //x눌렀을시 
 
         let check = confirm("삭제시 복구 불가능함 삭제할겨? ")
-        console.log('fdsafs')
         if(!check){
             return;
         }
 	
-	
         let fileNum = event.target.getAttribute("data-fileNum")
        	console.log(fileNum); //잘나옴 
  
- 
-	      let xhttp = new XMLHttpRequest();
-	      xhttp.open("POST","./fileDelete");
-	      xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded")
-	      xhttp.send("fileNum="+fileNum);
-
-
+	    let xhttp = new XMLHttpRequest();
+	    xhttp.open("POST","./fileDelete");
+	    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+	    xhttp.send("fileNum="+fileNum);
 
 	    xhttp.onreadystatechange = function(){
 	        if(this.readyState==4 && this.status==200){
-	        console.log("ㄹㅇㅁㄹㅇㄴㄹ")
-	        console.log(this.responseText)
-	        let result = this.responseText.trim();
+                console.log("ㄹㅇㅁㄹㅇㄴㄹ")
+                console.log(this.responseText)
+	            let result = this.responseText.trim();
 	        	if(result=='1'){
 	               console.log("file 삭제 ")
 	               event.target.parentNode.remove();
@@ -106,11 +101,80 @@ files.addEventListener("click",function(event){
 	                alert('file 삭제 실패')
 	            }
 	        }
+	    }
+    }
+
+    //Thumbnail
+    //썸네일 삭제시 다시 태그 생성 
+    if(event.target.classList.contains("fileDeleteBtn_t")){ //x눌렀을시 
+	console.log('t click')
+        let check = confirm("삭제시 복구 불가능함 삭제할겨? ")
+        if(!check){
+            return;
+        }
 	
+        let fileNum = event.target.getAttribute("data-fileNum")
+ 
+	    let xhttp = new XMLHttpRequest();
+	    xhttp.open("POST","./fileDelete");
+	    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+	    xhttp.send("fileNum="+fileNum);
+
+	    xhttp.onreadystatechange = function(){
+	        if(this.readyState==4 && this.status==200){
+                console.log("ㄹㅇㅁㄹㅇㄴㄹ")
+                console.log(this.responseText)
+	            let result = this.responseText.trim();
+	        	if(result=='1'){
+	               console.log("file 삭제 ")
+                   console.log('아래')
+                   console.log(event.target.parentNode)
+	               event.target.parentNode.remove();
+	              
+	            }else{
+	                alert('file 삭제 실패')
+	            }
+	        }
 	    }
 
 
+
+    let div =document.createElement('div') //<div id=del+num></div>
+    div.setAttribute("id","del"+num);
+
+
+    let file=document.createElement('input') //<input>
+    file.setAttribute("type","file") //<input type="file">
+    file.setAttribute("name","files") //<input type="file" name="files">
+    file.prepend('썸네일')
+
+
+
+    div.append(file);
+
+    
+
+
+    fileResult_t.append(div)
+    fileResult_t.prepend('대표이미지')
+
+	fileResult_t.addEventListener("click",function(event){
+        let cn=  event.target;
    
-}
+        if(cn.classList.contains('del')){
+           let delNum = cn.getAttribute("data-num");
+           document.getElementById(delNum).remove();
+        }
+   
+   })
+
+    }
+//---------
+
+
+
+
+
 })
+
 

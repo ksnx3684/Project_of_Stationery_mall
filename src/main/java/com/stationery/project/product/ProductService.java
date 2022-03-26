@@ -35,7 +35,12 @@ public class ProductService {
 
 	public int add(ProductDTO productDTO, MultipartFile[] files) throws Exception {
 		// thumbnail 넣어줌 db에 insert하기 전에 
+		//나중에 files[0].getOriginalFilename-> 
 		productDTO.setThumbnail(files[0].getOriginalFilename());
+		System.out.println(files[0].getOriginalFilename());
+
+		String thumbnail="";
+		
 		int result = productDAO.add(productDTO); // productDTO에 시퀀스 들어가있
 		
 	
@@ -44,15 +49,29 @@ public class ProductService {
 				// files[i].getSize()==0 //file 비어져있으면 저장 안되도록 하기 위함
 				continue;
 			}
+	
+			//파일 반복문 돌려서 파일매니저save 메서드로 filename얻어 
 				String fileName = fileManager.save(files[i], "resources/upload/product/");
-
+				
+				if(i==0) {
+					thumbnail=fileName;
+				}
+				
+				//파일 DTO 생성 
 				ProductFileDTO productFileDTO = new ProductFileDTO();
 				// productNum은 add 실행 후 생성됨
+					
 				productFileDTO.setProductNum(productDTO.getProductNum());
 				productFileDTO.setFileName(fileName);
 				productFileDTO.setOriName(files[i].getOriginalFilename());
+				
 				productDAO.addFile(productFileDTO);
 		}
+		
+		productDTO.setThumbnail(thumbnail);
+		//update?update query문에 썸네일 추가하면 update.jsp에서 file 추가안했을때 files null나와서 에러뜸
+		
+		
 		return result;
 	}
 

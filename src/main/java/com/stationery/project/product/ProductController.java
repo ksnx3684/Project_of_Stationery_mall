@@ -91,6 +91,7 @@ public class ProductController {
 	public String update(ProductDTO productDTO,MultipartFile[] files)throws Exception{
 		int result=productService.update(productDTO,files);
 
+System.out.println("!!!"+files.length);
 		return "redirect:./list";
 	}
 

@@ -16,8 +16,10 @@
 	<h3>상품명 : ${dto.name}</h3>
 	<h4>가격 : ${dto.price}</h4>
 	<h4>설명 : ${dto.contents}</h4>
+
 	<c:forEach items="${dto.productFileDTOs}" var="f">
-		<!-- 수정해라 나중에 f.fileName으로 -->
+		<!-- 수정해라 나중에 f.fileName으로 --> 
+
 		<img alt="" src="../resources/upload/product/${f.oriName}">
 	</c:forEach>
 	<hr>

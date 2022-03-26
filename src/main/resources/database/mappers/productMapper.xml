@@ -141,7 +141,7 @@
 	</delete>
 	
 	<update id="update" parameterType="ProductDTO" >
-		update product set categorynum=#{categoryNum},name=#{name},contents=#{contents},thumbnail=#{thumbnail},price=#{price},stock=#{stock}
+		update product set categorynum=#{categoryNum},name=#{name},contents=#{contents},price=#{price},stock=#{stock}
 		where productnum=#{productNum}
 	</update>
 </mapper>
