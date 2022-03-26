@@ -22,14 +22,13 @@
 		<c:forEach items="${dto.productFileDTOs}" var="f"  varStatus="state">
 			<div>
 				<c:choose>
-				
 					<c:when test="${state.first}">
 					썸네일 ${f.oriName} <button type="button" data-fileNum="${f.fileNum}" class="fileDeleteBtn">X</button> 
 						<%-- 대표사진<input type="file" name="files" value="${f.fileName}"> --%>
-						<!-- 나중에 썸네일 수정하기 -->
+				<!-- 		나중에 썸네일 수정하기
 						
-						<!-- 파일선택버튼을 눌렀으면 히든 보내줌 아니면 지워  -->
-						<!-- 수정안하는 경우에는 히든 보내지마  -->
+						파일선택버튼을 눌렀으면 히든 보내줌 아니면 지워 
+						수정안하는 경우에는 히든 보내지마   -->
 						<%-- <input type="hidden" name="fileNum" value="${f.fileNum}">  --%>
 					</c:when>
 					

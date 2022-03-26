@@ -25,6 +25,9 @@
 
 		<c:forEach items="${list}" var="list">
 			<!-- 원래는 os기준 경로로 작성해야됨 fileName으로 가져오게끔  -->
+			<!-- fileName으로 변경 -->
+
+		
 			<img alt="" src="../resources/upload/product/${list.thumbnail}">
 			<a href="./detail?productNum=${list.productNum}">${list.name}</a> 
 			 ${list.price}원 	
