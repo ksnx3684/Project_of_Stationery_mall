@@ -16,10 +16,12 @@ public class ProductDAO {
 	private final String NAMESPACE="com.stationery.project.product.ProductDAO.";
 
 	
-//	public List<ProductFileDTO> listFile(ProductDTO productDTO)throws Exception{
-//		return sqlSession.selectList(NAMESPACE+"listFile",productDTO);
-//	}
+	public List<ProductFileDTO> listFile(ProductDTO productDTO)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"listFile",productDTO);
+	}
 
+	
+	
 	public int fileDelete(ProductFileDTO productFileDTO)throws Exception{
 		return sqlSession.delete(NAMESPACE+"fileDelete",productFileDTO);
 	}

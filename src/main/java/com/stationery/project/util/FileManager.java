@@ -16,12 +16,27 @@ public class FileManager {
 	@Autowired
 	private ServletContext servletContext; //tomcat
 	
+	public boolean remove(String path,String fileName)throws Exception{
+		//file을 HDD에서 삭제 
+		//필요한 정보 : 저장된 파일명, 저장된 폴더명 
+		
+		//1. 실제경로 받아오기 
+		path = servletContext.getRealPath(path);
+		//2.파일의정보를 담고있는 클래스 준비 
+		File file = new File(path, fileName);
+		//3.삭제 
+		return file.delete(); // t/f return
+		
+	}
+	
 	public String save(MultipartFile multipartFile,String path)throws Exception{
 		//HDD : realpath 폴더
 		String realPath = servletContext.getRealPath(path);
 		//file명 
 		System.out.println(realPath);
 	///Users/jyp/Desktop/workspace_sts3/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/Stationery_Project/resources/upload/product/
+		
+		
 		File file= new File(realPath);
 		
 		if(!file.exists()) {

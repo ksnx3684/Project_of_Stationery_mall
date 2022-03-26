@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.stationery.project.util.FileManager;
 import com.stationery.project.util.Pager;
 
@@ -60,8 +61,26 @@ public class ProductService {
 	}
 
 	public int delete(ProductDTO productDTO) throws Exception {
-		return productDAO.delete(productDTO);
-	}
+		List<ProductFileDTO> ar = productDAO.listFile(productDTO);
+		//ar에 파일명 들어있음 
+		int result = productDAO.delete(productDTO);
+		
+		//db에서 삭제 성공했으면 OS도움받아 삭제 
+		if(result > 0) {
+//			for(int i=0;i<ar.size();i++) {
+//				ar.get(i);
+//			}
+			//for(Collection에서 꺼낼타입명 변수명: Collection의변수명){}
+			for(ProductFileDTO dto:ar) {
+				//check가 true면 삭제 성공 false면 삭제 실패
+				boolean check= fileManager.remove("resources/upload/product/", dto.getFileName());
+				
+			}
+		}
+		
+		return result;
+}
+	
 
 	public int update(ProductDTO productDTO,MultipartFile[] files) throws Exception {
 		System.out.println("!"+files.length); 

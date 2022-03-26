@@ -5,6 +5,11 @@
 
 <mapper namespace="com.stationery.project.product.ProductDAO">
 
+	<select id="listFile" parameterType="ProductFileDTO" resultType="ProductFileDTO">
+	select * from product_file
+	where productnum =#{productNum}
+	</select>
+
 	<delete id="fileDelete" parameterType="ProductFileDTO">
 		delete product_file where fileNum=#{fileNum}
 	</delete>
