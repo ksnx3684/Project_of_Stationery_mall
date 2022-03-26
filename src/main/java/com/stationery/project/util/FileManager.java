@@ -17,7 +17,11 @@ public class FileManager {
 	private ServletContext servletContext; //tomcat
 	
 	public String save(MultipartFile multipartFile,String path)throws Exception{
+		//HDD : realpath 폴더
 		String realPath = servletContext.getRealPath(path);
+		//file명 
+		System.out.println(realPath);
+	///Users/jyp/Desktop/workspace_sts3/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/Stationery_Project/resources/upload/product/
 		File file= new File(realPath);
 		
 		if(!file.exists()) {
@@ -28,7 +32,8 @@ public class FileManager {
 		String fileName=UUID.randomUUID().toString();
 		fileName = fileName+"_"+oriName;
 		
-		file =new File(file,fileName);
+		//file HDD에 저장 
+		file =new File(file,fileName);//이 경로에 이 파일명 
 		FileCopyUtils.copy(multipartFile.getBytes(), file);
 
 		

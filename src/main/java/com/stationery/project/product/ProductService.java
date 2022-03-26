@@ -64,6 +64,7 @@ public class ProductService {
 	}
 
 	public int update(ProductDTO productDTO,MultipartFile[] files) throws Exception {
+		System.out.println("!"+files.length); 
 		int result = productDAO.update(productDTO); // productDTO에 시퀀스 들어가있
 		
 	

@@ -30,7 +30,7 @@
 						
 						<!-- 파일선택버튼을 눌렀으면 히든 보내줌 아니면 지워  -->
 						<!-- 수정안하는 경우에는 히든 보내지마  -->
-						<input type="hidden" name="fileNum" value="${f.fileNum}"> 
+						<%-- <input type="hidden" name="fileNum" value="${f.fileNum}">  --%>
 					</c:when>
 					
 					<c:otherwise>
