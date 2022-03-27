@@ -19,8 +19,8 @@
 
 	<c:forEach items="${dto.productFileDTOs}" var="f">
 		<!-- 수정해라 나중에 f.fileName으로 --> 
-
-		<img alt="" src="../resources/upload/product/${f.oriName}">
+${f.fileName}
+		<img alt="" src="../resources/upload/product/${f.fileName}">
 	</c:forEach>
 	<hr>
 </body>

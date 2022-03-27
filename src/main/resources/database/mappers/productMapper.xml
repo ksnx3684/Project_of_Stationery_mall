@@ -5,6 +5,12 @@
 
 <mapper namespace="com.stationery.project.product.ProductDAO">
 
+	<update id="updateThumbnail" parameterType="ProductDTO">
+	update product set thumbnail=#{thumbnail}
+	where productnum=#{productNum}
+	</update>
+
+
 	<select id="listFile" parameterType="ProductFileDTO" resultType="ProductFileDTO">
 	select * from product_file
 	where productnum =#{productNum}

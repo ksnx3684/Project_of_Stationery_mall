@@ -36,7 +36,8 @@ public class ProductService {
 	public int add(ProductDTO productDTO, MultipartFile[] files) throws Exception {
 		// thumbnail 넣어줌 db에 insert하기 전에 
 		//나중에 files[0].getOriginalFilename-> 
-		productDTO.setThumbnail(files[0].getOriginalFilename());
+		
+//		productDTO.setThumbnail(files[0].getOriginalFilename());
 		System.out.println(files[0].getOriginalFilename());
 
 		String thumbnail="";
@@ -70,7 +71,8 @@ public class ProductService {
 		
 		productDTO.setThumbnail(thumbnail);
 		//update?update query문에 썸네일 추가하면 update.jsp에서 file 추가안했을때 files null나와서 에러뜸
-		
+		int result2=productDAO.updateThumbnail(productDTO);
+		System.out.println("updateResult:"+result2);
 		
 		return result;
 	}

@@ -16,6 +16,10 @@ public class ProductDAO {
 	private final String NAMESPACE="com.stationery.project.product.ProductDAO.";
 
 	
+	public int updateThumbnail(ProductDTO productDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"updateThumbnail", productDTO);
+	}
+	
 	public List<ProductFileDTO> listFile(ProductDTO productDTO)throws Exception{
 		return sqlSession.selectList(NAMESPACE+"listFile",productDTO);
 	}
