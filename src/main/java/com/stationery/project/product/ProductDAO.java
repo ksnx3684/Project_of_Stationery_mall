@@ -16,6 +16,9 @@ public class ProductDAO {
 	private final String NAMESPACE="com.stationery.project.product.ProductDAO.";
 
 	
+	
+	
+	
 	public int updateThumbnail(ProductDTO productDTO) throws Exception{
 		return sqlSession.update(NAMESPACE+"updateThumbnail", productDTO);
 	}
@@ -24,7 +27,6 @@ public class ProductDAO {
 		return sqlSession.selectList(NAMESPACE+"listFile",productDTO);
 	}
 
-	
 	
 	public int fileDelete(ProductFileDTO productFileDTO)throws Exception{
 		return sqlSession.delete(NAMESPACE+"fileDelete",productFileDTO);

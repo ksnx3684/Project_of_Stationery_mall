@@ -29,7 +29,7 @@
 						
 						파일선택버튼을 눌렀으면 히든 보내줌 아니면 지워 
 						수정안하는 경우에는 히든 보내지마   -->
-						<%-- <input type="hidden" name="fileNum" value="${f.fileNum}">  --%>
+					<%-- 	<input type="hidden" name="fileNum" value="${f.fileNum}" id="hiddenfileNum">  --%>
 				
 					</c:when>
 						
@@ -44,7 +44,7 @@
 			</div>
 			<div id="fileResult_t"></div>
 			<!-- 썸네일에 fileName을 넣어야되는데 fileManger를 거쳐야 얻을 수 있음 여러 파일중에서 썸네일을 어떻게 구분해서 prductcontroller까지 보내지  -->
-		<!-- 	<input type="hidden" name="thumbnail" value=> -->
+	
 		</c:forEach>
 	</div>
 	

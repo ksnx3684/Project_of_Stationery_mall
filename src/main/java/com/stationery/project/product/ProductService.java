@@ -1,4 +1,4 @@
-package com.stationery.project.product;
+package com.stationery.project.product; 
 
 import java.util.List;
 
@@ -20,6 +20,9 @@ public class ProductService {
 	private FileManager fileManager;
 
 	
+	public int updateThumbnail(ProductDTO productDTO)throws Exception{
+		return productDAO.updateThumbnail(productDTO);
+	}
 	
 	public int fileDelete(ProductFileDTO productFileDTO)throws Exception{
 		return productDAO.fileDelete(productFileDTO);
@@ -72,7 +75,6 @@ public class ProductService {
 		productDTO.setThumbnail(thumbnail);
 		//update?update query문에 썸네일 추가하면 update.jsp에서 file 추가안했을때 files null나와서 에러뜸
 		int result2=productDAO.updateThumbnail(productDTO);
-		System.out.println("updateResult:"+result2);
 		
 		return result;
 	}

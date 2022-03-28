@@ -23,9 +23,14 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	//안될시 삭제 (add.jsp에 카테고리 출력위해 )
+	// (add.jsp에 카테고리 출력위해 )
 	@Autowired
 	private CategoryService categoryService;
+	
+	@PostMapping("updateThumbnail")
+	public void updateThumbnail(ProductDTO productDTO)throws Exception{
+		int result= productService.updateThumbnail(productDTO);
+	}
 	
 	@PostMapping("fileDelete")
 	public ModelAndView fileDelete(ProductFileDTO productFileDTO)throws Exception{
