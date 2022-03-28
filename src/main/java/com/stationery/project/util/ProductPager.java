@@ -1,6 +1,6 @@
 package com.stationery.project.util;
 
-public class Pager {
+public class ProductPager {
 
 	private Long perPage;// 페이지당보여줄 row 개수
 	private Long page;// page 번호

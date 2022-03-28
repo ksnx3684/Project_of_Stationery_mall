@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.stationery.project.util.FileManager;
-import com.stationery.project.util.Pager;
+import com.stationery.project.util.ProductFileManager;
+import com.stationery.project.util.ProductPager;
 
 @Service
 public class ProductService {
@@ -17,7 +17,7 @@ public class ProductService {
 	@Autowired
 	private ProductDAO productDAO;
 	@Autowired
-	private FileManager fileManager;
+	private ProductFileManager fileManager;
 
 	public int updateThumbnail(ProductDTO productDTO) throws Exception {
 		return productDAO.updateThumbnail(productDTO);
@@ -27,7 +27,7 @@ public class ProductService {
 		return productDAO.fileDelete(productFileDTO);
 	}
 
-	public List<ProductDTO> list(Pager pager) throws Exception {
+	public List<ProductDTO> list(ProductPager pager) throws Exception {
 		pager.makeRow();
 		pager.makeNum(productDAO.total(pager));
 		List<ProductDTO> ar = productDAO.list(pager);

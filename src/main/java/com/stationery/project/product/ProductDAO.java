@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.stationery.project.util.Pager;
+import com.stationery.project.util.ProductPager;
 
 @Repository
 public class ProductDAO {
@@ -33,7 +33,7 @@ public class ProductDAO {
 	}
 	
 	
-	public Long total(Pager pager)throws Exception{
+	public Long total(ProductPager pager)throws Exception{
 			return sqlSession.selectOne(NAMESPACE+"total", pager);
 	}
 	
@@ -41,7 +41,7 @@ public class ProductDAO {
 		return sqlSession.insert(NAMESPACE+"addFile",productFileDTO);
 	}
 	
-	public List<ProductDTO> list(Pager pager) throws Exception{
+	public List<ProductDTO> list(ProductPager pager) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"list",pager);
 	}
 	

@@ -14,7 +14,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import com.stationery.project.product.ProductDAO;
 import com.stationery.project.product.ProductDTO;
 import com.stationery.project.product.ProductFileDTO;
-import com.stationery.project.util.Pager;
+import com.stationery.project.util.ProductPager;
 
 
 public class ProductTest extends MyJunitTest{
@@ -33,7 +33,7 @@ private ProductDAO productDAO;
 	
 	//@Test
 	public void listTest() throws Exception{
-		Pager pager = new Pager();
+		ProductPager pager = new ProductPager();
 		pager.setSearch("스티커");
 		List<ProductDTO> ar=productDAO.list(pager);
 		assertEquals(2, ar.size());

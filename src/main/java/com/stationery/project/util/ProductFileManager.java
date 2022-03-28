@@ -11,7 +11,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 @Component
-public class FileManager {
+public class ProductFileManager {
 	
 	@Autowired
 	private ServletContext servletContext; //tomcat
