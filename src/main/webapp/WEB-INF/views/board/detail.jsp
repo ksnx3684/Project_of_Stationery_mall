@@ -6,6 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	img {
+	width : 200px;
+	height : 200px;
+	}
+
+</style>
 </head>
 <body>
 	<h1>${board} Detail Page</h1>
@@ -18,10 +25,12 @@
 		첨부사진
 		<c:forEach items="${dto.fileDTOs}" var="f"> <!-- 파일 다운로드 -->
 			<h3>${f.oriName}</h3>
+		<!-- 	<img alt="" src="../resources/upload/product/fileName(UUID)">  -->
+			<img alt="" src="../resources/upload/notices/${f.fileName}">
 		</c:forEach>
 	</c:if>
 	
-
+	<hr>
 	
 	<a href="./list">List</a>
 	<!-- 작성자만 수정과 삭제가 가능하게끔  -->
