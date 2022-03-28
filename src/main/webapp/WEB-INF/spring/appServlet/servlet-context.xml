@@ -33,6 +33,8 @@
 
 	<beans:bean class="com.stationery.project.interceptor.AlreadyLoginInterceptor" id="AlreadyLoginInterceptor"/>
 	<beans:bean class="com.stationery.project.interceptor.LoginInterceptor" id="LoginInterceptor"/>
+	<beans:bean class="com.stationery.project.interceptor.MychangeInterceptor" id="MychangeInterceptor"/>
+	<beans:bean class="com.stationery.project.interceptor.OtpInterceptor" id="OtpInterceptor"/>
 	<beans:bean class="com.stationery.project.interceptor.WithdrawalInterceptor" id="WithdrawalInterceptor"/>
 	<beans:bean class="com.stationery.project.interceptor.JoinInterceptor" id="JoinInterceptor"/>
 	<interceptors>
@@ -47,6 +49,7 @@
     	<interceptor>
     		<mapping path="/users/infochange"/>
     		<mapping path="/users/mychange"/>
+    		<mapping path="/users/mychangecheck"/>
     		<mapping path="/users/mypage"/>
     		<mapping path="/users/orderlist"/>
     		<mapping path="/users/pwchange"/>
@@ -54,6 +57,15 @@
     		<mapping path="/users/withdrawal"/>
     		<mapping path="/users/withdrawalfinal"/>
 			<beans:ref bean="LoginInterceptor"/>
+		</interceptor>
+		<interceptor>
+    		<mapping path="/users/mychange"/>
+			<beans:ref bean="MychangeInterceptor"/>
+		</interceptor>
+		<interceptor>
+    		<mapping path="/users/otp/*"/>
+    		<mapping path="/admin/*"/>
+			<beans:ref bean="OtpInterceptor"/>
 		</interceptor>
 		<interceptor>
     		<mapping path="/users/withdrawalfinal"/>

@@ -14,6 +14,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.stationery.project.order.UsersOrderDTO;
+import com.stationery.project.util.Otp;
+
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("/users/*")
@@ -23,29 +30,31 @@ public class UsersController {
 	private UsersService usersService;
 	
 	// join form 이동
-	@RequestMapping(value = "join", method = RequestMethod.GET)
+	@GetMapping("join")
 	public void join() throws Exception {	
 	}
 	
 	// joinCheck form 이동
-	@RequestMapping(value = "joinCheck", method = RequestMethod.GET)
+	@GetMapping("joinCheck")
 	public void joinCheck() throws Exception {
 	}
 	
 	// join 기능
-	@RequestMapping(value = "join", method = RequestMethod.POST)
-	public String join(UsersDTO usersDTO) throws Exception {
-		int result = usersService.join(usersDTO);
+	@PostMapping("join")
+	public String join(UsersDTO usersDTO, MultipartFile multipartFile) throws Exception {
+		System.out.println(multipartFile.getOriginalFilename());
+		System.out.println(multipartFile.getSize());
+		int result = usersService.join(usersDTO, multipartFile);
 		return "redirect:../";
 	}
 	
 	// login form 이동
-	@RequestMapping(value = "login", method = RequestMethod.GET)
+	@GetMapping("login")
 	public void login(Model model, @CookieValue(value="remember", defaultValue="", required = false) String rememberId) throws Exception {
 	}
 	
 	// login 기능
-	@RequestMapping(value = "login", method = RequestMethod.POST)
+	@PostMapping("login")
 	public String login(UsersDTO usersDTO, Model model, String remember, HttpSession httpSession, HttpServletResponse httpServletResponse) throws Exception {
 		
 		if(remember != null && remember.equals("1")) { // login.jsp의 remember 값이 null이 아니거나 "1"일 경우
@@ -70,62 +79,96 @@ public class UsersController {
 		}
 		model.addAttribute("message", message);
 		model.addAttribute("path", p);
-		
+
 		String path = "common/result";
 		
 		return path;
 	}
 	// logout 기능
-	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	@GetMapping("logout")
 	public String logout(HttpSession httpSession) throws Exception {
 		httpSession.invalidate();
 		return "redirect:../";
 	}
 	
 	// wishlist form 이동
-	@RequestMapping(value = "wishlist", method = RequestMethod.GET)
+	@GetMapping("wishlist")
 	public void wishlist(Model model, HttpSession httpSession) throws Exception {
 		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
 		List<WishListDTO> list = usersService.wishlist(usersDTO);
 		model.addAttribute("wishlistDTO", list);
 	}
 	
-	// orderlist form 이동
-	@RequestMapping(value = "orderlist", method = RequestMethod.GET)
-	public void orderlist() throws Exception {
-		
-	}
-	
 	// mypage form 이동
-	@RequestMapping(value = "mypage", method = RequestMethod.GET)
+	@GetMapping("mypage")
 	public void mypage(Model model, HttpSession httpSession) throws Exception {
 		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
 		usersDTO = usersService.mypage(usersDTO);
 		model.addAttribute("usersDTO", usersDTO);
 	}
 	
+	// mychangecheck form 이동
+	@GetMapping("mychangecheck")
+	public void mychangecheck() throws Exception {
+	}
+	
+	// mychangecheck 기능
+	@PostMapping("mychangecheck")
+	public String mychangecheck(UsersDTO usersDTO, Model model, HttpSession httpSession, HttpServletResponse httpServletResponse) throws Exception {
+		
+		usersDTO = usersService.login(usersDTO); // 로그인 기능
+		
+		String message = "아이디 또는 비밀번호가 일치하지 않습니다";
+		String p = "./mychangecheck";
+		
+		if(usersDTO != null) {
+			httpSession.setAttribute("mychange", usersDTO); // "mychange"에 로그인 세션 삽입
+			message = "회원정보 수정 페이지로 이동합니다";
+			p = "./mychange";
+		}
+		model.addAttribute("message", message);
+		model.addAttribute("path", p);
+		
+		String path = "common/result";
+		
+		return path;
+	}
+	
 	// mychange form 이동
-	@RequestMapping(value = "mychange", method = RequestMethod.GET)
+	@GetMapping("mychange")
 	public void mychange() throws Exception {
 	}
 	
 	// infochange form 이동
-	@RequestMapping(value = "infochange", method = RequestMethod.GET)
+	@GetMapping("infochange")
 	public void infochange(HttpSession httpSession, Model model) throws Exception {
-		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
+		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("mychange");
 		usersDTO = usersService.mypage(usersDTO);
 		model.addAttribute("usersDTO", usersDTO);
 	}
 	
 	// infochange 기능
-	@RequestMapping(value = "infochange", method = RequestMethod.POST)
-	public String infochange(UsersDTO usersDTO) throws Exception {
-		int result = usersService.infochange(usersDTO);
-		return "redirect:../";
+	@PostMapping("infochange")
+	public String infochange(UsersDTO usersDTO, MultipartFile multipartFile) throws Exception {
+
+		int result = usersService.infochange(usersDTO, multipartFile);
+
+		return "redirect:./mypage";
+	}
+	
+	@PostMapping("fileDelete")
+	public ModelAndView fileDelete(UsersDTO usersDTO, HttpSession httpSession) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = usersService.fileDelete(usersDTO, httpSession);
+		
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result", result);
+		
+		return mv;
 	}
 	
 	// pwchange form 이동
-	@RequestMapping(value = "pwchange", method = RequestMethod.GET)
+	@GetMapping("pwchange")
 	public void pwchange(HttpSession httpSession, Model model) throws Exception {
 		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
 		usersDTO = usersService.mypage(usersDTO);
@@ -133,7 +176,7 @@ public class UsersController {
 	}
 	
 	// pwchange 기능
-	@RequestMapping(value = "pwchange", method = RequestMethod.POST)
+	@PostMapping("pwchange")
 	public String pwchange(UsersDTO usersDTO) throws Exception {
 		int result = usersService.pwchange(usersDTO);
 		return "redirect:../";
@@ -180,6 +223,15 @@ public class UsersController {
 		httpSession.invalidate();
 		System.out.println(users.getId());
 		return "redirect:../";
+	}
+	
+	// orderlist form 이동
+	@GetMapping("orderlist")
+	public String orderlist(Model model, HttpSession httpSession) throws Exception {
+		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
+		List<UsersOrderDTO> orderlist = usersService.orderlist(usersDTO);
+		model.addAttribute("orderlist", orderlist);
+		return "users/orderlist";
 	}
 	
 }

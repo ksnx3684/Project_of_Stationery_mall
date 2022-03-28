@@ -112,3 +112,57 @@ btn.addEventListener("click", function(){
     }
     frm.submit();
 });
+
+
+const fileDeleteBtn = document.querySelector(".fileDeleteBtn");
+const files = document.querySelector("#files");
+const profile = document.querySelector("#profile");
+
+// 버튼을 클릭했을 때 각각의 fileNum 콘솔에 출력
+files.addEventListener("click", function(event){
+
+    if(event.target.classList.contains('fileDeleteBtn')){
+        let div = document.createElement('div'); // <div></div>
+        div.setAttribute("id", "fileupload");
+
+        let file = document.createElement("input"); // <input>
+        file.setAttribute("type", "file"); // <input type="file">
+        file.setAttribute("name", "multipartFile"); // <input type="file" name="multipartFile">
+        file.setAttribute("id", "multipartFile"); // <input type="file" name="multipartFile" id="multipartFile">
+
+        div.append(file);
+
+        profile.append(div);
+    }
+
+    if(event.target.classList.contains('fileDeleteBtn')){
+        
+        // ajax로 파라미터는 fileNum, method는 post, url은 fileDelete, controller의 메서드 명 : fileDelete
+        let check = window.confirm("삭제하시겠습니까?");
+
+        if(!check){
+            return;
+        }
+
+        let fileNum = event.target.getAttribute("data-fileNum");
+
+        let xhttp = new XMLHttpRequest();
+
+        xhttp.open("POST", "./fileDelete");
+
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        xhttp.send("fileNum=" + fileNum);
+
+        xhttp.onreadystatechange=function(){
+            if(this.readyState == 4 && this.status == 200){
+                let result = this.responseText.trim();
+                if(result = '1'){
+                    console.log("file 삭제");
+                    files.remove();
+                    // event.target.parentNode.remove();
+                }
+            }
+        }
+    }
+});

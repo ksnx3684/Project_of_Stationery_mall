@@ -299,6 +299,6 @@
     
     
 
-    <script src="../resources/js/joinCheck.js"></script>
+    <script src="../resources/js/users/joinCheck.js"></script>
 </body>
 </html>

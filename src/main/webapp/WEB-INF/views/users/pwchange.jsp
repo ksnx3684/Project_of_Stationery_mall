@@ -25,7 +25,7 @@
         </fieldset>
     </form>
     </div>
-    <script type="text/javascript" src="../resources/js/pwchange.js"></script>
+    <script type="text/javascript" src="../resources/js/users/pwchange.js"></script>
     <script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>
 </body>
 </html>

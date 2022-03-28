@@ -16,6 +16,7 @@ public class UsersDTO {
 	private String addressPhone;
 	private Integer postalCode;
 	private String addressDetail;
+	private UsersFileDTO usersFileDTO;
 	
 	public String getId() {
 		return id;
@@ -89,5 +90,10 @@ public class UsersDTO {
 	public void setAddressDetail(String addressDetail) {
 		this.addressDetail = addressDetail;
 	}
-	
+	public UsersFileDTO getUsersFileDTO() {
+		return usersFileDTO;
+	}
+	public void setUsersFileDTO(UsersFileDTO usersFileDTO) {
+		this.usersFileDTO = usersFileDTO;
+	}
 }

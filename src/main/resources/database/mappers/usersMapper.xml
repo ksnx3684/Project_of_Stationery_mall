@@ -10,16 +10,46 @@
 		VALUES (#{id}, #{pw}, #{name}, #{phone}, #{email}, #{gender}, SYSDATE, 1, #{addressName},
 		#{addressPhone}, #{postalCode}, #{addressDetail})
 	</insert>
-	<select id="login" parameterType="UsersDTO" resultType="UsersDTO">
-		SELECT ID, NAME FROM USERS WHERE ID = #{id} AND PW = #{pw}
+	<insert id="joinFile" parameterType="UsersFileDTO">
+		INSERT INTO USERS_FILE (FILENUM, ID, FILENAME, ORINAME)
+		VALUES (FILE_SEQ.NEXTVAL, #{id}, #{fileName}, #{oriName})
+	</insert>
+	
+	<resultMap type="UsersDTO" id="UsersDTO">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="phone" property="phone"/>
+		<result column="email" property="email"/>
+		<result column="joinDate" property="joinDate"/>
+		<result column="addressName" property="addressName"/>
+		<result column="addressPhone" property="addressPhone"/>
+		<result column="postalCode" property="postalCode"/>
+		<result column="addressDetail" property="addressDetail"/>
+		<result column="userAccount" property="userAccount"/>
+		<association property="usersFileDTO" javaType="usersFileDTO">
+			<id column="fileNum" property="fileNum"/>
+			<result column="fileName" property="fileName"/>
+			<result column="oriName" property="oriName"/>
+		</association>
+	</resultMap>
+	<select id="login" parameterType="UsersDTO" resultMap="UsersDTO">
+		<!-- SELECT ID, NAME FROM USERS WHERE ID = #{id} AND PW = #{pw} -->
+		SELECT U.ID, U.NAME, UF.FILENUM, UF.FILENAME, UF.ORINAME
+		FROM USERS U
+		LEFT OUTER JOIN
+		USERS_FILE UF
+		ON (U.ID = UF.ID)
+		WHERE U.ID = #{id} AND U.PW = #{pw}
 	</select>
-	<select id="wishlist" parameterType="UsersDTO" resultType="WishListDTO">
-		SELECT * FROM WISHLIST WHERE ID = #{id}
+	<select id="mypage" parameterType="UsersDTO" resultMap="UsersDTO">
+		SELECT U.*, UF.*
+		FROM USERS U
+		    LEFT OUTER JOIN
+		    USERS_FILE UF
+		ON (U.ID = UF.ID)
+		WHERE U.ID = #{id}
 	</select>
-	<select id="mypage" parameterType="UsersDTO" resultType="UsersDTO">
-		SELECT ID, NAME, PHONE, EMAIL, JOINDATE, ADDRESSNAME, ADDRESSPHONE, POSTALCODE, ADDRESSDETAIL
-		FROM USERS WHERE ID = #{id}
-	</select>
+	
 	<update id="infochange" parameterType="UsersDTO">
 		<!-- UPDATE USERS SET PHONE = #{phone}, EMAIL = #{email}, ADDRESSNAME = #{addressName},
 		ADDRESSPHONE = #{addressPhone}, POSTALCODE = #{postalCode}, ADDRESSDETAIL = #{addressDetail}
@@ -34,6 +64,13 @@
         END
     	}
 	</update>
+	<insert id="infochangeFile" parameterType="UsersFileDTO">
+		INSERT INTO USERS_FILE (FILENUM, ID, FILENAME, ORINAME)
+		VALUES (FILE_SEQ.NEXTVAL, #{id}, #{fileName}, #{oriName})
+	</insert>
+	<delete id="fileDelete" parameterType="UsersFileDTO">
+		DELETE USERS_FILE WHERE ID = #{id}
+	</delete>
 	<update id="pwchange" parameterType="UsersDTO">
 		UPDATE USERS SET PW = #{pw} WHERE ID = #{id}
 	</update>
@@ -43,4 +80,69 @@
  	<delete id="withdrawalfinal" parameterType="UsersDTO">
  		DELETE USERS WHERE ID = #{id}
  	</delete>
+ 	<select id="wishlist" parameterType="UsersDTO" resultType="WishListDTO">
+		SELECT * FROM WISHLIST WHERE ID = #{id}
+	</select>
+	
+	<!-- <resultMap type="UsersDTO" id="UsersDTO">
+		<result column="id" property="id"/>
+		<result column="pw" property="pw"/>
+		<result column="name" property="name"/>
+		<result column="phone" property="phone"/>
+		<result column="email" property="email"/>
+		<result column="gender" property="gender"/>
+		<result column="joinDate" property="joinDate"/>
+		<result column="userAccount" property="userAccount"/>
+		<result column="addressName" property="addressName"/>
+		<result column="addressPhone" property="addressPhone"/>
+		<result column="postalCode" property="postalCode"/>
+		<result column="addressDetail" property="addressDetail"/>
+		<collection property="usersFileDTO" resultMap="UsersFileDTO"/>
+	</resultMap> -->
+	<resultMap type="UsersOrderDTO" id="UsersOrderDTO">
+		<result column="orderNum" property="orderNum"/>
+		<result column="id" property="id"/>
+		<result column="orderDate" property="orderDate"/>
+		<result column="orderCheck" property="orderCheck"/>
+		<result column="payCheck" property="payCheck"/>
+		<result column="totalPrice" property="totalPrice"/>
+		<result column="addressName" property="addressName"/>
+		<result column="addressPhone" property="addressPhone"/>
+		<result column="addressPostal" property="addressPostal"/>
+		<result column="addressDetail" property="addressDetail"/>
+		<result column="memo" property="memo"/>
+		<!-- <collection property="orderDetailDTO" resultMap="OrderDetailDTO"/> -->
+		<collection property="productDTO" resultMap="ProductDTO"/>
+	</resultMap>
+	<resultMap type="ProductDTO" id="ProductDTO">
+		<result column="productNum" property="productNum"/>
+		<result column="categoryNum" property="categoryNum"/>
+		<result column="name" property="name"/>
+		<result column="contents" property="contents"/>
+		<result column="thumbnail" property="thumbnail"/>
+		<result column="price" property="price"/>
+		<result column="stock" property="stock"/>
+		<result column="regDate" property="regDate"/>
+	</resultMap>
+	<select id="orderlist" parameterType="UsersDTO" resultMap="UsersOrderDTO">
+		SELECT O.ORDERNUM, O.ORDERDATE, P.NAME, O.TOTALPRICE, O.ORDERCHECK, O.PAYCHECK
+		FROM USERS_ORDER O, ORDER_DETAIL D, PRODUCT P
+		WHERE O.ORDERNUM = D.ORDERNUM
+		AND D.PRODUCTNUM = P.PRODUCTNUM
+		AND O.ID = #{id}
+	</select>
+	
+	
+	<!-- 관리자 페이지 -->
+	<select id="usersList" parameterType="UsersDTO" resultType="UsersDTO">
+		SELECT ID, NAME, PHONE, EMAIL, GENDER, JOINDATE, USERACCOUNT
+		FROM USERS
+		ORDER BY JOINDATE ASC
+	</select>
+	<select id="usersOrderList" parameterType="UsersOrderDTO" resultType="UsersOrderDTO">
+		SELECT ORDERNUM, ID, ORDERDATE, ORDERCHECK, PAYCHECK, TOTALPRICE, MEMO
+		FROM USERS_ORDER
+		ORDER BY ORDERNUM ASC
+	</select>
+	
 </mapper>

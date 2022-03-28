@@ -107,11 +107,27 @@
             <input type="text" placeholder="배송연락처" name="addressPhone" id="addressPhone">
         </fieldset>
         <fieldset>
+            <legend>프로필사진(최대10MB)</legend>
+            <div id="profile">
+                <div id="files">
+                    <c:choose>
+                        <c:when test="${usersDTO.usersFileDTO.oriName ne null}">
+                            <a href="../resources/upload/users/${usersDTO.usersFileDTO.fileName}">${usersDTO.usersFileDTO.oriName}</a>
+                            <button type="button" data-fileNum="${usersDTO.usersFileDTO.fileNum}" class="fileDeleteBtn">X</button>
+                        </c:when>
+                        <c:otherwise>
+                            <input type="file" name="multipartFile" id="multipartFile">
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
             <button type="button" id="btn">수정</button>
         </fieldset>
     </form>
     </div>
-    <script type="text/javascript" src="../resources/js/infochange.js"></script>
+    <script type="text/javascript" src="../resources/js/users/infochange.js"></script>
     <script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>
 </body>
 </html>
