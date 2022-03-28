@@ -75,6 +75,6 @@
 
 
 
- <script src="../resources/js/file.js"></script> 
+ <script src="../resources/js/productFileUpdate.js"></script> 
 </body>
 </html>

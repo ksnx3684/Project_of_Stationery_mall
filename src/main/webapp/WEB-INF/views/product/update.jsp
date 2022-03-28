@@ -60,6 +60,6 @@
 	<button type="submit">Update</button>
 </form>
 
-	<script type="text/javascript" src="../resources/js/file.js"></script>
+	<script type="text/javascript" src="../resources/js/productFileUpdate.js"></script>
 </body>
 </html>
