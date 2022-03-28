@@ -122,4 +122,12 @@ public class UsersService {
 	public List<UsersOrderDTO> orderlist(UsersDTO usersDTO) throws Exception {
 		return usersDAO.orderlist(usersDTO);
 	}
+	
+	public List<UsersDTO> usersList(UsersDTO usersDTO) throws Exception {
+		return usersDAO.usersList(usersDTO);
+	}
+	
+	public List<UsersOrderDTO> usersOrderList(UsersOrderDTO usersOrderDTO) throws Exception {
+		return usersDAO.usersOrderList(usersOrderDTO);
+	}
 }

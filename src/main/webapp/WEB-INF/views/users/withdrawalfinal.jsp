@@ -13,6 +13,6 @@
 <form class="frm" action="./withdrawalfinal" method="post">
 	<button id="final" type="submit">회원탈퇴</button>
 </form>
-<script type="text/javascript" src="../resources/js/withdrawalfinal.js"></script>
+<script type="text/javascript" src="../resources/js/users/withdrawalfinal.js"></script>
 </body>
 </html>

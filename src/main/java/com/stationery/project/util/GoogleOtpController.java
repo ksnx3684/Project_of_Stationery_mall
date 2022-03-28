@@ -115,7 +115,7 @@ public class GoogleOtpController {
         }
         
         if(check_code){
-        	return "redirect:../nf15ndf894khqiv730jifds";
+        	return "redirect:../../admin/nf15ndf894khqiv730jifds";
         }else{
         	return "redirect:first?result=fail_otp";
         }

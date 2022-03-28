@@ -64,7 +64,7 @@
 		</interceptor>
 		<interceptor>
     		<mapping path="/users/otp/*"/>
-    		<mapping path="/users/nf15ndf894khqiv730jifds"/>
+    		<mapping path="/admin/*"/>
 			<beans:ref bean="OtpInterceptor"/>
 		</interceptor>
 		<interceptor>

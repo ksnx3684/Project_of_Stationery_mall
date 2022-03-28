@@ -17,8 +17,8 @@ public class OtpInterceptor extends HandlerInterceptorAdapter {
 		if(request.getHeader("referer") == null) {
 			check = false;
 			request.setAttribute("message", "권한 없음");
-			request.setAttribute("path", "../../");
-			RequestDispatcher view = request.getRequestDispatcher("../../WEB-INF/views/common/result.jsp");
+			request.setAttribute("path", "../");
+			RequestDispatcher view = request.getRequestDispatcher("../WEB-INF/views/common/result.jsp");
 			view.forward(request, response);
 		}
 	

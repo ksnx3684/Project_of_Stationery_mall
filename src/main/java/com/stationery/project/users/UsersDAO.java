@@ -62,4 +62,12 @@ public class UsersDAO {
 	public List<UsersOrderDTO> orderlist(UsersDTO usersDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"orderlist", usersDTO);
 	}
+	
+	public List<UsersDTO> usersList(UsersDTO usersDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"usersList", usersDTO);
+	}
+	
+	public List<UsersOrderDTO> usersOrderList(UsersOrderDTO usersOrderDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"usersOrderList", usersOrderDTO);
+	}
 }
