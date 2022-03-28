@@ -2,6 +2,7 @@ package com.stationery.project.product;
 
 import java.util.List;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -107,7 +108,12 @@ public class ProductService {
 
 	public int update(ProductDTO productDTO,MultipartFile[] files) throws Exception {
 		System.out.println("!"+files.length); 
+		
+		String thumbnail="";
+		
 		int result = productDAO.update(productDTO); // productDTO에 시퀀스 들어가있
+		
+		System.out.println("check:"+productDTO.getCheck());
 		
 	
 		for (int i = 0; i < files.length; i++) {
@@ -115,8 +121,19 @@ public class ProductService {
 				// files[i].getSize()==0 //file 비어져있으면 저장 안되도록 하기 위함
 				continue;
 			}
+			
+		
+			
 				String fileName = fileManager.save(files[i], "resources/upload/product/");
+				if(productDTO.getCheck()==1) {
+					if(i==0) {
+						thumbnail=fileName;
+					}
+					
+				}
 
+				System.out.println("thumbnail:"+thumbnail);
+				
 				ProductFileDTO productFileDTO = new ProductFileDTO();
 				// productNum은 add 실행 후 생성됨
 				productFileDTO.setProductNum(productDTO.getProductNum());
@@ -124,6 +141,13 @@ public class ProductService {
 				productFileDTO.setOriName(files[i].getOriginalFilename());
 				productDAO.addFile(productFileDTO);
 		}
+		
+		if(productDTO.getCheck()==1) {
+		productDTO.setThumbnail(thumbnail);
+		int result2=productDAO.updateThumbnail(productDTO);
+		}
+		
+		System.out.println("%%"+thumbnail);
 		return result;
 	}
 }

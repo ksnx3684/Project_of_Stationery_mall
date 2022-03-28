@@ -65,7 +65,8 @@ const fileDeleteBtn_t = document.querySelectorAll(".fileDeleteBtn_t")
 const files =document.querySelector("#files")
 const fileResult_t = document.getElementById("fileResult_t")
 // const hiddenfileNum = document.getElementById("hiddenfileNum")
-
+const tCheck=document.getElementById("tCheck")
+tCheck.setAttribute("value","2")
 
 // x클릭하면 그 파일의 파일num 넘어가고 파일 삭제됨 
 //근데 썸네일삭제하면 썸네일 다시넣어줘야되는데 
@@ -114,12 +115,20 @@ files.addEventListener("click",function(event){
     //Thumbnail
     //썸네일 삭제시 다시 태그 생성 
     if(event.target.classList.contains("fileDeleteBtn_t")){ //x눌렀을시 
-	console.log('t click')
+
+        tCheck.setAttribute("value","1")
+   
+
+	console.log('대표이미지 삭제 click')
         let check = confirm("삭제시 복구 불가능함 삭제할겨? ")
+
         if(!check){
             return;
         }
 	
+        tCheck.setAttribute("value","1")
+        console.log("value:"+tCheck.getAttribute("value"))
+
         let fileNum = event.target.getAttribute("data-fileNum")
  
 	    let xhttp = new XMLHttpRequest();
@@ -182,9 +191,7 @@ files.addEventListener("click",function(event){
 
    //대표이미지 X누르지 않았을시 
     }
-    // else{
-    //     hiddenfileNum.remove();
-    // }
+
 
 
     

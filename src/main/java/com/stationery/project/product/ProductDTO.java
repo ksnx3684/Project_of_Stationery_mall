@@ -18,8 +18,19 @@ public class ProductDTO {
 	private List<ProductFileDTO> productFileDTOs;
 	
 	
+	private Integer check; //1->썸네일 변경 2->유지 
 	
 	
+	
+	
+	
+
+	public Integer getCheck() {
+		return check;
+	}
+	public void setCheck(Integer check) {
+		this.check = check;
+	}
 	public List<ProductFileDTO> getProductFileDTOs() {
 		return productFileDTOs;
 	}

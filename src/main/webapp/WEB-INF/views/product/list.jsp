@@ -28,7 +28,6 @@
 			<!-- fileName으로 변경 -->
 
 			<img alt="" src="../resources/upload/product/${list.thumbnail}">
-			${list.thumbnail}
 			<a href="./detail?productNum=${list.productNum}">${list.name}</a> 
 			 ${list.price}원 	
 			<hr>
