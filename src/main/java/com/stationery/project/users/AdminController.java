@@ -39,19 +39,23 @@ public class AdminController {
 	
 	@GetMapping("usersDetail")
 	public void usersDetail(Model model, UsersDTO usersDTO) throws Exception {
-		usersDTO = usersService.mypage(usersDTO);
+		usersDTO = usersService.usersDetail(usersDTO);
 		model.addAttribute("usersDetail", usersDTO);
-	}
-	
-	@GetMapping("orderDetail")
-	public void orderDetail(Model model, UsersOrderDTO usersOrderDTO) throws Exception {
-		
 	}
 	
 	@GetMapping("usersOrderList")
 	public void usersOrderList(Model model, UsersOrderDTO usersOrderDTO) throws Exception {
 		List<UsersOrderDTO> list = usersService.usersOrderList(usersOrderDTO);
 		model.addAttribute("usersOrderList", list);
-		}
+	}
+	
+	@GetMapping("usersOrderDetail")
+	public void usersOrderDetail(Model model, UsersOrderDTO usersOrderDTO) throws Exception {
+		List<UsersOrderDTO> list = usersService.usersOrderDetail(usersOrderDTO);
+		model.addAttribute("usersOrderDetail", list);
+		System.out.println(list.get(0).getOrderDetailDTO().getDetailNum());
+		System.out.println(list.get(1).getOrderDetailDTO().getDetailNum());
+		
+	}
 
 }

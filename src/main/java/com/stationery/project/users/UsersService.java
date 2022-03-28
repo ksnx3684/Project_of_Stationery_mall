@@ -127,7 +127,15 @@ public class UsersService {
 		return usersDAO.usersList(usersDTO);
 	}
 	
+	public UsersDTO usersDetail(UsersDTO usersDTO) throws Exception {
+		return usersDAO.usersDetail(usersDTO);
+	}
+	
 	public List<UsersOrderDTO> usersOrderList(UsersOrderDTO usersOrderDTO) throws Exception {
 		return usersDAO.usersOrderList(usersOrderDTO);
+	}
+	
+	public List<UsersOrderDTO> usersOrderDetail(UsersOrderDTO usersOrderDTO) throws Exception {
+		return usersDAO.usersOrderDeatil(usersOrderDTO);
 	}
 }
