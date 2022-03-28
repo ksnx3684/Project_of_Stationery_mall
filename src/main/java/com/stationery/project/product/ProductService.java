@@ -41,7 +41,7 @@ public class ProductService {
 		//나중에 files[0].getOriginalFilename-> 
 		
 //		productDTO.setThumbnail(files[0].getOriginalFilename());
-		System.out.println(files[0].getOriginalFilename());
+//		System.out.println(files[0].getOriginalFilename());
 
 		String thumbnail="";
 		
