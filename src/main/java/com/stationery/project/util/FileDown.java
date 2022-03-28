@@ -11,7 +11,9 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import org.springframework.stereotype.Component;
+
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.view.AbstractView;
 
@@ -19,12 +21,15 @@ import com.stationery.project.file.FileDTO;
 
 
 
+
 @Component
 public class FileDown extends AbstractView {
+
 	
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+
 		// TODO Auto-generated method stub
 		System.out.println("File Down 실행");
 		
@@ -46,10 +51,11 @@ public class FileDown extends AbstractView {
 		path = sc.getRealPath(path);
 		
 		File file = new File(path, fileDTO.getFileName());
-		
+
 		System.out.println(file.exists());
 		System.out.println(file.isFile());
 		
+
 		//Encoding 처리
 		response.setCharacterEncoding("UTF-8");
 		
@@ -68,12 +74,15 @@ public class FileDown extends AbstractView {
 		OutputStream os = response.getOutputStream();
 		
 		//최종 전송
+
 		FileCopyUtils.copy(f1, os);
 		
 		//연결 끊기
 		os.close();
 		f1.close();
 		
-	}
 
+		
+	}
 }
+

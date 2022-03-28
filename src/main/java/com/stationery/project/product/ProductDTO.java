@@ -2,27 +2,61 @@ package com.stationery.project.product;
 
 import java.sql.Date;
 
+
+import java.util.List;
+
 public class ProductDTO {
 
-	private Long productNum;
-	private Long categoryNum;
+	private Integer productNum;
+	private Integer categoryNum;
 	private String name;
 	private String contents;
 	private String thumbnail;
-	private Long price;
-	private Long stock;
+	private Integer price;
+	private Integer stock;
 	private Date regDate;
 	
-	public Long getProductNum() {
+	private ProductFileDTO productFileDTO;
+	private List<ProductFileDTO> productFileDTOs;
+	
+	
+	private Integer check; //1->썸네일 변경 2->유지 
+	
+	
+	
+	
+	
+
+
+	public Integer getCheck() {
+		return check;
+	}
+	public void setCheck(Integer check) {
+		this.check = check;
+	}
+	public List<ProductFileDTO> getProductFileDTOs() {
+		return productFileDTOs;
+	}
+	public void setProductFileDTOs(List<ProductFileDTO> productFileDTOs) {
+		this.productFileDTOs = productFileDTOs;
+	}
+	public ProductFileDTO getProductFileDTO() {
+		return productFileDTO;
+	}
+	public void setProductFileDTO(ProductFileDTO productFileDTO) {
+		this.productFileDTO = productFileDTO;
+	}
+	public Integer getProductNum() {
 		return productNum;
 	}
-	public void setProductNum(Long productNum) {
+	public void setProductNum(Integer productNum) {
 		this.productNum = productNum;
 	}
-	public Long getCategoryNum() {
+	public Integer getCategoryNum() {
 		return categoryNum;
 	}
-	public void setCategoryNum(Long categoryNum) {
+	public void setCategoryNum(Integer categoryNum) {
+
 		this.categoryNum = categoryNum;
 	}
 	public String getName() {
@@ -43,16 +77,19 @@ public class ProductDTO {
 	public void setThumbnail(String thumbnail) {
 		this.thumbnail = thumbnail;
 	}
-	public Long getPrice() {
+
+	public Integer getPrice() {
 		return price;
 	}
-	public void setPrice(Long price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
-	public Long getStock() {
+	
+	public Integer getStock() {
 		return stock;
 	}
-	public void setStock(Long stock) {
+	public void setStock(Integer stock) {
+
 		this.stock = stock;
 	}
 	public Date getRegDate() {
@@ -62,4 +99,8 @@ public class ProductDTO {
 		this.regDate = regDate;
 	}
 	
+
+	
 }
+
+

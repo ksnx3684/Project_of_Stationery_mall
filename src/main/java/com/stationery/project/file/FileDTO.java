@@ -1,10 +1,12 @@
 package com.stationery.project.file;
 
 public class FileDTO {
+
 	
 	private Long fileNum;
 	private String fileName;
 	private String oriName;
+
 	public Long getFileNum() {
 		return fileNum;
 	}
@@ -27,3 +29,4 @@ public class FileDTO {
 	
 
 }
+

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.stationery.project.category.CategoryDAO">
+
+	<!-- 최상위 카테고리만 -->
+	<select id="catelist" resultType="CategoryDTO">
+		select * from product_category
+		where parentid is null order by categorynum asc
+	</select>
+
+	<insert id="add" parameterType="CategoryDTO">
+		insert into PRODUCT_CATEGORY(categorynum,categoryname,parentid)
+		values(#{categoryNum},#{categoryName},#{parentId})
+	</insert>
+
+	<select id="allList" resultType="CategoryDTO">
+		select LEVEL, CATEGORYNUM, CATEGORYNAME, PARENTID from product_category 
+        START WITH PARENTID IS NULL CONNECT BY PRIOR CATEGORYNUM=PARENTID
+		order by categorynum asc
+	</select>
+	
+	<!-- delete,update, -->
+</mapper>

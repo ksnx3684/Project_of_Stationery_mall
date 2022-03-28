@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.stationery.project.product.ProductDAO">
+
+	<update id="updateThumbnail" parameterType="ProductDTO">
+	update product set thumbnail=#{thumbnail}
+	where productnum=#{productNum}
+	</update>
+
+
+	<select id="listFile" parameterType="ProductFileDTO" resultType="ProductFileDTO">
+	select * from product_file
+	where productnum =#{productNum}
+	</select>
+
+	<delete id="fileDelete" parameterType="ProductFileDTO">
+		delete product_file where fileNum=#{fileNum}
+	</delete>
+
+
+<!-- 카테고리table과 product table join  -->
+<!--최상위 카테고리번호를 parentid로 가진 컬럼들을 조회-->
+<!-- 이제 productfileDTO랑 연결해서 list.jsp 에 보내야돼  -->
+<!-- productfileDTO 랑 productDTO outer join으로 연결 	 -->
+<!-- 연결한 이유 : productfileDTO에 있는 fileName 가져오기 위함 -->
+<!-- ??????????????????????????????????? detail에만 fileName 있음 되나? -->
+<!-- thumbnail에 oriname 넣었으니께 product_file이랑 join 안해도됨 ? 나중에 수정 삭제 할때 상관 없나?  -->
+<!-- 파일 수정/삭제할때 생각해보고 productfile join 할지 말지 생각 --> 
+	<select id="list" parameterType="Pager" resultType="ProductDTO" resultMap="listResult">
+	
+		select * from
+		(select rownum R,A.* from(select * from product_category C
+		inner join
+		(select * from product P
+		left outer join product_file F
+		using(productnum)) PF
+		using(categorynum)
+		where name like'%'||#{search}||'%' 
+		and (C.parentid like'%'||#{categoryNum}||'%') order by productnum desc)A)
+		where R between #{startRow} and #{lastRow}
+		
+		
+<!-- 		select * from
+		(select rownum R,A.* from(select * from product P
+		inner join product_category C
+		using(categorynum) 
+		where name like'%'||#{search}||'%' 
+		and C.parentid like'%'||#{categoryNum}||'%'  order by productnum desc)A)
+		where R between #{startRow} and #{lastRow}
+		 -->
+
+		
+<!-- 	select * from product P
+		inner join product_category C
+		using(categorynum) 
+		where name like'%'||#{search}||'%' 
+		and C.parentid like'%'||#{categoryNum}||'%'   -->	
+	</select>
+	
+	<resultMap type="ProductDTO" id="listResult">
+		<id column="productNum" property="productNum"></id>
+		<result column="categoryNum" property="categoryNum"/>
+		<result column="name" property="name"/>
+		<result column="contents" property="contents"/>
+		<result column="thumbnail" property="thumbnail"/>
+		<result column="price" property="price"/>
+		<result column="stock" property="stock"/>
+		<result column="regDate" property="regDate"/>
+		<association property="productFileDTO" javaType="ProductFileDTO">
+			<id column="fileNum" property="fileNum"/> <!-- pk -->
+			<result column="fileName" property="fileName"/>
+			<result column="oriName" property="oriName"/>
+			<result column="productNum" property="productNum"/>
+		</association>
+	</resultMap>
+	
+	
+	<select id="total" resultType="java.lang.Long" parameterType="Pager">
+	select count(productnum) from product P
+		inner join product_category C
+		using(categorynum) 
+		where name like'%'||#{search}||'%' 
+		and C.parentid like'%'||#{categoryNum}||'%' 
+	</select>
+	
+	
+	<!-- detail  -->
+	<select id="detail" parameterType="ProductDTO" resultType="ProductDTO" resultMap="files"> 
+		select * from product P 
+		left join product_file F
+		using(productnum)
+		where productnum=#{productNum} 
+		order by thumbnailCheck asc
+	<!-- 	
+		select P.*,F.*
+		from product P
+		left join product_file F
+		using(productnum)
+		where p.productnum=${productNum} -->
+	</select>
+	
+		<resultMap type="ProductDTO" id="files">
+		<id column="productNum" property="productNum"></id>
+		<result column="categoryNum" property="categoryNum"/>
+		<result column="name" property="name"/>
+		<result column="contents" property="contents"/>
+		<result column="thumbnail" property="thumbnail"/>
+		<result column="price" property="price"/>
+		<result column="stock" property="stock"/>
+		<result column="regDate" property="regDate"/>
+		<collection property="productFileDTOs" javaType="List" ofType="ProductFileDTO">
+			<id column="fileNum" property="fileNum"/> <!-- pk -->
+			<result column="fileName" property="fileName"/>
+			<result column="oriName" property="oriName"/>
+			<result column="productNum" property="productNum"/>
+			<result column="thumbnailCheck" property="thumbnailCheck"/>
+
+		</collection>
+	</resultMap>
+	
+	<insert id="addFile" parameterType="ProductFileDTO">
+		insert into product_file(filenum,productnum,filename,oriname,thumbnailCheck)
+		values(PRODUCT_FILE_SEQ.nextval,#{productNum},#{fileName},#{oriName},#{thumbnailCheck})
+	</insert>
+
+
+	<!--file때문에  productnum 먼저추가해야됨 -->
+	<insert id="add" parameterType="ProductDTO">
+		<selectKey keyProperty="productNum" order="BEFORE" resultType="java.lang.Integer">
+			select product_seq.nextval from dual
+		</selectKey> 
+		insert into
+		PRODUCT(PRODUCTNUM,CATEGORYNUM,NAME,CONTENTS,THUMBNAIL,PRICE,STOCK,REGDATE)
+		values(#{productNum},#{categoryNum},#{name},#{contents},#{thumbnail},#{price},#{stock},sysdate)
+		
+		<!-- product,productcategory join select -->
+		<!-- insert into
+		PRODUCT(CATEGORYNUM,PRODUCTNUM,NAME,CONTENTS,THUMBNAIL,PRICE,STOCK,REGDATE)
+		values((select categorynum
+		from product_category
+		where categoryname='#{}'),#{productNum},#{name},#{contents},#{thumbnail},#{price},#{stock},sysdate)
+		 -->
+	</insert>
+	
+	<delete id="delete" parameterType="ProductDTO">
+		delete product where productnum=#{productNum}
+	</delete>
+	
+	<update id="update" parameterType="ProductDTO" >
+		update product set categorynum=#{categoryNum},name=#{name},contents=#{contents},price=#{price},stock=#{stock}
+		where productnum=#{productNum}
+	</update>
+</mapper>
+
