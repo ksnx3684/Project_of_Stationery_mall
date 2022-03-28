@@ -61,7 +61,7 @@
 <!--  -->
 
 	<div>
-	썸네일<input type="file" name="files">
+	썸네일<input type="file" name="t_files">
 	</div>
 
 		<div id="fileResult"> 
@@ -75,6 +75,6 @@
 
 
 
- <script src="../resources/js/productFileUpdate.js"></script> 
+ <script src="../resources/js/product/productFileUpdate.js"></script> 
 </body>
 </html>

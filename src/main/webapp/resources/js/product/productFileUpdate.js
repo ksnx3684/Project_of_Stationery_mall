@@ -161,7 +161,7 @@ files.addEventListener("click",function(event){
 
     let file=document.createElement('input') //<input>
     file.setAttribute("type","file") //<input type="file">
-    file.setAttribute("name","files") //<input type="file" name="files">
+    file.setAttribute("name","t_files") //<input type="file" name="files">
     file.prepend('썸네일')
 
     // //<input type="hidden" name="fileNum" value="${f.fileNum}"> 

@@ -92,7 +92,8 @@
 		select * from product P 
 		left join product_file F
 		using(productnum)
-		where productnum=#{productNum} -->
+		where productnum=#{productNum} 
+		order by thumbnailCheck asc
 	<!-- 	
 		select P.*,F.*
 		from product P
@@ -115,12 +116,14 @@
 			<result column="fileName" property="fileName"/>
 			<result column="oriName" property="oriName"/>
 			<result column="productNum" property="productNum"/>
+			<result column="thumbnailCheck" property="thumbnailCheck"/>
+
 		</collection>
 	</resultMap>
 	
 	<insert id="addFile" parameterType="ProductFileDTO">
-		insert into product_file(filenum,productnum,filename,oriname)
-		values(PRODUCT_FILE_SEQ.nextval,#{productNum},#{fileName},#{oriName})
+		insert into product_file(filenum,productnum,filename,oriname,thumbnailCheck)
+		values(PRODUCT_FILE_SEQ.nextval,#{productNum},#{fileName},#{oriName},#{thumbnailCheck})
 	</insert>
 
 

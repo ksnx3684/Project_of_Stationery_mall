@@ -64,8 +64,8 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="add",method = RequestMethod.POST)
-	public String add(ProductDTO productDTO,MultipartFile[] files)throws Exception{
-		int result=productService.add(productDTO,files);
+	public String add(ProductDTO productDTO,MultipartFile[] files,MultipartFile t_files)throws Exception{
+		int result=productService.add(productDTO,files,t_files);
 		System.out.println(result);
 		return "redirect:./list";
 	}
@@ -93,8 +93,8 @@ public class ProductController {
 	}
 	
 	@PostMapping("update")
-	public String update(ProductDTO productDTO,MultipartFile[] files)throws Exception{
-		int result=productService.update(productDTO,files);
+	public String update(ProductDTO productDTO,MultipartFile[] files,MultipartFile t_files)throws Exception{
+		int result=productService.update(productDTO,files,t_files);
 
 
 		return "redirect:./list";

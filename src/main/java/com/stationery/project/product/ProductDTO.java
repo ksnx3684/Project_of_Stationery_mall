@@ -25,6 +25,7 @@ public class ProductDTO {
 	
 	
 
+
 	public Integer getCheck() {
 		return check;
 	}
