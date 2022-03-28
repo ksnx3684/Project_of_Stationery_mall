@@ -9,9 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.stationery.project.board.BoardDTO;
+import com.stationery.project.board.faq.FaqDTO;
 import com.stationery.project.users.UsersDTO;
 
-public class WriterCheckInterceptor extends HandlerInterceptorAdapter {
+public class FaqCheckInterceptor extends HandlerInterceptorAdapter {
 	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
@@ -31,9 +32,9 @@ public class WriterCheckInterceptor extends HandlerInterceptorAdapter {
 		
 		//writer 정보
 		Map<String, Object> map = modelAndView.getModel();
-		BoardDTO boardDTO = (BoardDTO) map.get("dto");
+		FaqDTO faqDTO = (FaqDTO) map.get("dto");
 		
-		if(!usersDTO.getId().equals(boardDTO.getId())) {
+		if(!usersDTO.getId().equals(faqDTO.getId())) {
 			//spring 문법
 			//1. foward
 			modelAndView.addObject("message", "수정 권한이 없습니다.");

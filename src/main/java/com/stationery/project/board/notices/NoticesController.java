@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,6 +27,18 @@ public class NoticesController {
 	public String board() {
 		return "notices";
 	}
+	
+	@PostMapping("fileDelete")
+	public ModelAndView fileDelete(NoticesFileDTO noticesFileDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		System.out.println(noticesFileDTO.getFileNum());
+		int result = noticesService.fileDelete(noticesFileDTO);
+		System.out.println(result);
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result",result);
+		return mv;
+	}
+	
 	
 	@RequestMapping(value = "fileDown", method=RequestMethod.GET)
 	public ModelAndView fileDown(NoticesFileDTO noticesFileDTO)throws Exception{
@@ -78,9 +91,10 @@ public class NoticesController {
 	}
 	
 	@RequestMapping(value = "update", method=RequestMethod.POST)
-	public ModelAndView update(NoticesDTO noticesDTO)throws Exception{
+	public ModelAndView update(NoticesDTO noticesDTO, MultipartFile [] files)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = noticesService.update(noticesDTO);
+		// 수정 파일 번호 같이 넘겨주기
+		int result = noticesService.update(noticesDTO, files);
 		mv.setViewName("redirect:./list");
 		return mv;
 	}
@@ -89,6 +103,7 @@ public class NoticesController {
 	public String update(NoticesDTO noticesDTO, Model model)throws Exception{
 		BoardDTO boardDTO = noticesService.detail(noticesDTO);
 		model.addAttribute("dto", boardDTO);
+		
 		return "board/update";
 	}
 	

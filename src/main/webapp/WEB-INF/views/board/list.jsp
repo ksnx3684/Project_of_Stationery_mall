@@ -31,9 +31,9 @@ rel="stylesheet">
 					<button type="submit">검색</button>
 				</fieldset>
 			</form>
-			
-			<a href="./add" class="add-board">글작성</a>
-			
+			<c:if test ="${not empty auth}">
+				<a href="./add" class="add-board">글작성</a>
+			</c:if>
 		</div>
 
 

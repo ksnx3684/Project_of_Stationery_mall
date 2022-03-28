@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.stationery.project.board.BoardDAO;
 import com.stationery.project.board.BoardDTO;
 import com.stationery.project.board.BoardFileDTO;
@@ -16,6 +18,13 @@ public class NoticesDAO implements BoardDAO{
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.stationery.project.board.notices.NoticesDAO.";
 	
+	
+	
+	@Override
+	public int fileDelete(BoardFileDTO boardFileDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"fileDelete", boardFileDTO);
+	}
+
 	public List<NoticesFileDTO> listFile(BoardDTO boardDTO)throws Exception{
 		return sqlSession.selectList(NAMESPACE+"listFile", boardDTO);
 	}
@@ -64,5 +73,12 @@ public class NoticesDAO implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.update(NAMESPACE+"update", boardDTO);
 	}
+
+//	@Override
+//	public int updateFile(BoardFileDTO boardFileDTO) throws Exception {
+//		// TODO Auto-generated method stub
+//		return sqlSession.update(NAMESPACE+"updateFile", boardFileDTO);
+//	}
+//	
 	
 }

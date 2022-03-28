@@ -12,23 +12,37 @@ import com.stationery.project.util.FileManager;
 import com.stationery.project.util.Pager;
 
 @Service
-public class NoticesService implements BoardService{
-	
+public class NoticesService implements BoardService {
+
 	@Autowired
 	private NoticesDAO noticesDAO;
 	@Autowired
 	private FileManager fileManager;
-	
-	public NoticesFileDTO detailFile(NoticesFileDTO noticesFileDTO) throws Exception{
+
+	public int fileDelete(NoticesFileDTO noticesFileDTO) throws Exception {
+		noticesFileDTO = noticesDAO.detailFile(noticesFileDTO);
+		int result = noticesDAO.fileDelete(noticesFileDTO);
+		System.out.println(result);
+
+		if (result > 0) {
+			boolean check = fileManager.remove("resources/upload/notices/", noticesFileDTO.getFileName());
+
+		}
+
+		return result;
+
+	}
+
+	public NoticesFileDTO detailFile(NoticesFileDTO noticesFileDTO) throws Exception {
 		return noticesDAO.detailFile(noticesFileDTO);
 	}
-	
+
 	@Override
 	public List<BoardDTO> list(Pager pager) throws Exception {
 		pager.makeRow();
-		
+
 		pager.makeNum(noticesDAO.total(pager));
-		
+
 		return noticesDAO.list(pager);
 	}
 
@@ -41,53 +55,73 @@ public class NoticesService implements BoardService{
 	@Override
 	public int add(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
 		// TODO Auto-generated method stub
-		int result=noticesDAO.add(boardDTO);
-		//1. HDD에 저장
-		for(int i=0;i<files.length;i++) {
-			if(files[i].isEmpty()) {
-			 //files[i].getSize()==0
+		int result = noticesDAO.add(boardDTO);
+		// 1. HDD에 저장
+		for (int i = 0; i < files.length; i++) {
+			if (files[i].isEmpty()) {
+				// files[i].getSize()==0
 				continue;
 			}
 			String fileName = fileManager.save(files[i], "resources/upload/notices/");
 			System.out.println("file save");
-		//2. DB에 저장
+			// 2. DB에 저장
 			NoticesFileDTO noticesFileDTO = new NoticesFileDTO();
 			noticesFileDTO.setNum(boardDTO.getNum());
 			noticesFileDTO.setFileName(fileName);
 			noticesFileDTO.setOriName(files[i].getOriginalFilename());
 			result = noticesDAO.addFile(noticesFileDTO);
 		}
-		
+
 		return result;
 	}
 
 	@Override
-	public int update(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return noticesDAO.update(boardDTO);
+	public int update(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
+
+		
+		// 수정 내용 먼저 update
+		int result = noticesDAO.update(boardDTO);
+
+		// file update
+		// 1. HDD에 저장
+		for (int i = 0; i < files.length; i++) {
+			if (files[i].isEmpty()) {
+				// files[i].getSize()==0
+				continue;
+			}
+			String fileName = fileManager.save(files[i], "resources/upload/notices/");
+			System.out.println("file save");
+			// 2. DB에 저장
+			NoticesFileDTO noticesFileDTO = new NoticesFileDTO();
+			noticesFileDTO.setNum(boardDTO.getNum());
+			noticesFileDTO.setFileName(fileName);
+			noticesFileDTO.setOriName(files[i].getOriginalFilename());
+			result = noticesDAO.addFile(noticesFileDTO);
+		}
+
+		return result;
 	}
 
 	@Override
 	public int delete(BoardDTO boardDTO) throws Exception {
-		//num 으로 HDD에 저장된 파일명 조회
-				List<NoticesFileDTO> ar = noticesDAO.listFile(boardDTO);
-				
-				int result = noticesDAO.delete(boardDTO);
-				
-				if(result > 0) {
+		// num 으로 HDD에 저장된 파일명 조회
+		List<NoticesFileDTO> ar = noticesDAO.listFile(boardDTO);
+
+		int result = noticesDAO.delete(boardDTO);
+
+		if (result > 0) {
 //					for(int i=0;i<ar.size();i++) {
 //						ar.get(i);
 //					}
-					//for(Collection에서 꺼낼타입명 변수명: Collection의변수명){}
-					for(NoticesFileDTO dto:ar) {
-						//check가 true면 삭제 성공 false면 삭제 실패
-						boolean check= fileManager.remove("resources/upload/notice/", dto.getFileName());
-						
-					}
-				}
-				
-				return result;
+			// for(Collection에서 꺼낼타입명 변수명: Collection의변수명){}
+			for (NoticesFileDTO dto : ar) {
+				// check가 true면 삭제 성공 false면 삭제 실패
+				boolean check = fileManager.remove("resources/upload/notices/", dto.getFileName());
+
+			}
+		}
+
+		return result;
 	}
-	
-	
+
 }
