@@ -1,5 +1,6 @@
 package com.stationery.project.product;
 
+import java.lang.StackWalker.Option;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,11 @@ public class ProductController {
 	@Autowired
 	private CategoryService categoryService;
 	
+//	@PostMapping("optionAdd")
+//	public void optionAdd(List<OptionDTO> options)throws Exception{
+//		int result=productService.optionAdd(options);
+//	}
+//	
 	@PostMapping("updateThumbnail")
 	public void updateThumbnail(ProductDTO productDTO)throws Exception{
 		int result= productService.updateThumbnail(productDTO);
@@ -72,14 +78,18 @@ public class ProductController {
 	@RequestMapping(value="add",method = RequestMethod.POST)
 	public String add(ProductDTO productDTO,MultipartFile[] files,MultipartFile t_files)throws Exception{
 		int result=productService.add(productDTO,files,t_files);
-		System.out.println(result);
+
+
 		return "redirect:./list";
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
 	public ModelAndView detail(ProductDTO productDTO,ModelAndView mv) throws Exception{
 		productDTO=productService.detail(productDTO);
+		List<OptionDTO> ar=productService.optionList(productDTO);
 		mv.addObject("dto",productDTO);
+		mv.addObject("option", ar);
+		System.out.println(ar);
 		mv.setViewName("product/detail");
 		
 		return mv;

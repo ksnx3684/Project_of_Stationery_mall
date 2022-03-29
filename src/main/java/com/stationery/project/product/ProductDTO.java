@@ -18,7 +18,8 @@ public class ProductDTO {
 	
 	private ProductFileDTO productFileDTO;
 	private List<ProductFileDTO> productFileDTOs;
-	
+//	private List<OptionDTO> optionDTOs;
+//	
 	
 	private Integer check; //1->썸네일 변경 2->유지 
 	

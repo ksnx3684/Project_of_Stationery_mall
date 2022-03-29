@@ -18,6 +18,22 @@ public class ProductService {
 	private ProductDAO productDAO;
 	@Autowired
 	private ProductFileManager fileManager;
+	
+//	public int optionAdd(List<OptionDTO> options)throws Exception{
+//		for(int i=0; i<options.size();i++) {
+//			OptionDTO optionDTO= new OptionDTO();
+//			optionDTO.setOptionContents(options[i].getOptionConetents);
+//			optionDTO.setOptionStock(null);
+//			optionDTO.setProductNum(null);
+//			
+//			productDAO.optionAdd(optionDTO);
+//		}
+//		
+//	}
+	
+	public List<OptionDTO> optionList(ProductDTO productDTO)throws Exception{
+		return productDAO.optionList(productDTO);
+	}
 
 	public int updateThumbnail(ProductDTO productDTO) throws Exception {
 		return productDAO.updateThumbnail(productDTO);

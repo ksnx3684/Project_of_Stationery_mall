@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.stationery.project.product.OptionDTO;
 import com.stationery.project.product.ProductDAO;
 import com.stationery.project.product.ProductDTO;
 import com.stationery.project.product.ProductFileDTO;
@@ -23,7 +24,22 @@ public class ProductTest extends MyJunitTest{
 private ProductDAO productDAO;
 
 
-	@Test
+public void optioninsert() throws Exception{
+	OptionDTO optionDTO = new OptionDTO();
+	optionDTO.setProductNum(253);
+	optionDTO.setOptionStock(2);
+	optionDTO.setOptionContents("빨강");
+}
+
+//@Test
+public void optionList() throws Exception{
+	ProductDTO productDTO= new ProductDTO();
+	productDTO.setProductNum(254);
+	List<OptionDTO>ar =productDAO.optionList(productDTO);
+	assertEquals(2, ar.size());
+}
+
+	//@Test
 	public void filedeletetest() throws Exception{
 		ProductFileDTO productFileDTO= new ProductFileDTO();
 		productFileDTO.setFileNum((long) 67);

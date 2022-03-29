@@ -15,8 +15,13 @@ public class ProductDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.stationery.project.product.ProductDAO.";
 
+	public int optionAdd(OptionDTO optionDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"optionAdd", optionDTO);
+	}
 	
-	
+	public List<OptionDTO> optionList(ProductDTO productDTO)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"optionList",productDTO);
+	}
 	
 	
 	public int updateThumbnail(ProductDTO productDTO) throws Exception{
