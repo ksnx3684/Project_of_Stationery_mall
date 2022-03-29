@@ -61,8 +61,8 @@ public class ProductController {
 	public ModelAndView list(ModelAndView mv,Pager pager) throws Exception{
 		List<CategoryDTO> ar1=categoryService.catelist();
 		List<ProductDTO> ar=productService.list(pager);
-		mv.addObject("list",ar);
 		mv.addObject("cateList",ar1);
+		mv.addObject("list",ar);
 		mv.setViewName("product/list");
 		return mv;
 	}

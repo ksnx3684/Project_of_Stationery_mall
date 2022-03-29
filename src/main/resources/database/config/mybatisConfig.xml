@@ -16,7 +16,6 @@
 		<typeAlias type="com.stationery.project.users.UsersFileDTO" alias="UsersFileDTO"/>
 		<typeAlias type="com.stationery.project.users.WishListDTO" alias="WishListDTO"/>
    		<typeAlias type="com.stationery.project.util.Pager" alias="Pager"/>
- <!--   		<typeAlias type="com.stationery.project.util.ProductPager" alias="ProductPager"/> -->
    		<typeAlias type="com.stationery.project.board.BoardDTO" alias="BoardDTO"/>
    		<typeAlias type="com.stationery.project.board.BoardFileDTO" alias="BoardFileDTO"/>
    		<typeAlias type="com.stationery.project.board.faq.FaqDTO" alias="FaqDTO"/>

@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:import url="../template/header_css.jsp"></c:import>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp"  rel="stylesheet">
+
 </head>
 <body>
 	<h1>List Page</h1>
@@ -23,16 +26,28 @@
 		</form>
 
 
+
+
+		
 		<c:forEach items="${list}" var="list">
-			<!-- 원래는 os기준 경로로 작성해야됨 fileName으로 가져오게끔  -->
-			<!-- fileName으로 변경 -->
-
-			<img alt="" src="../resources/upload/product/${list.thumbnail}">
+		<li>
+			<div class="thumbnail">
+			<a href="./detail?productNum=${list.productNum}">
+				<img alt="" src="../resources/upload/product/${list.thumbnail}">
+			</a> 
+			</div>
+			<div class="productName">
 			<a href="./detail?productNum=${list.productNum}">${list.name}</a> 
+			</div>
+			<div class="price">
 			 ${list.price}원 	
-			<hr>
+			 </div>
+		<a href=""><span class="material-icons-outlined">shopping_cart</span></a>
+		<a href=""><span class="material-icons-outlined">favorite_border</span></a>
+		</li>
+		<hr>
 		</c:forEach>
-
+	
 
 		<div>
 			<c:if test="${pager.pre}">
