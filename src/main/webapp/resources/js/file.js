@@ -16,6 +16,8 @@ fileAdd.addEventListener("click", function() {
 
     count++;
 
+
+
     let div = document.createElement("div");
     div.setAttribute("id", "del"+num);
 
@@ -29,6 +31,7 @@ fileAdd.addEventListener("click", function() {
     button.setAttribute("data-num", "del"+num)
     button.innerHTML="DEL";
 
+   //div.append(p);
     div.append(file);
     div.append(button);
 
