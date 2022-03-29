@@ -42,15 +42,26 @@ textarea {
 
 #fileContainer {
     text-align: center;
-    
+    margin: 0 auto;
 }
+
 
 .alignCenter {
     display: inline-block;
     width: 50%;
+    
 }
+
+.alignCenter div {
+    display: flex;
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+}
+
 
 #btnList {
     text-align: center;
    
 }
+

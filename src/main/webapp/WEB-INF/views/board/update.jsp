@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="../resources/css/boardForm.css" rel="styleSheet" />
  <!--  jQuery, bootstrap -->
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
@@ -35,18 +36,23 @@
 				</c:forEach>
 			</div>
 			
-			<div id="fileResult">
+			<div id="fileContainer">
+			<div id="fileResult" class="alignCenter">
 	
 	
 			</div>
 			
-			<div>
+			<div class="fileAdd">
 				<button type="button" id="fileAdd">FileAdd</button>
 			</div>
+		</div>
 		</c:if>
+		
+		<div id="btnList">
 		<button type="submit">UPDATE</button>
 		<!-- 취소 버튼 누를 시 뒤로 가기-->
-		<button type="button" id="addCancel">취소</button>		
+		<button type="button" id="addCancel">취소</button>	
+		</div>	
 	</form>
 	<script>
     $(document).ready(function() {

@@ -52,13 +52,10 @@
 		<c:if test="${board eq 'notices'}">
 			<div id="fileContainer">
 				<div id="fileResult" class="alignCenter">
-
-					<!--
+			<!--
 				<div>
 					<input type="file" name="files"><button type="button">DEL</button>
 				</div>
-				<input type="file" name="files">
-				<input type="file" name="files"> 
 			-->
 				</div>
 				<div class="fileAdd">
@@ -73,7 +70,7 @@
 			<button type="button" id="addCancel">취소</button>
 		</div>
 	</form>
-
+	
 <script>
     $(document).ready(function() {
       $('#summernote').summernote({
