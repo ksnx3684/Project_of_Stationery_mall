@@ -3,9 +3,38 @@ const fileAdd = document.getElementById("fileAdd");
 const del = document.getElementsByClassName("del");
 const fileDeleteBtn = document.querySelectorAll(".fileDeleteBtn");
 const files = document.querySelector("#files");
+const addCancel = document.querySelector("#addCancel");
+const title = document.querySelector("#title");
+const contents = document.querySelector("#summernote");
 
 let count = 0;
 let num = 0; //id 용도
+
+
+function addSubmit() {
+    let titleValue = title.value;
+    if(!titleValue)
+    {
+        alert("제목을 입력해주세요");
+        title.focus();
+        return false;
+    }
+
+    let contentValue = contents.value;
+    if(!contentValue) {
+        alert("본문을 입력해주세요");
+        contents.focus();
+        return false;
+    }
+
+  }
+
+//취소버튼 누를시 list로 
+addCancel.addEventListener("click", function() {
+    console.log('cancel click');
+   window.location.href = 'list';
+})
+
 
 fileAdd.addEventListener("click", function() {
 
@@ -17,6 +46,7 @@ fileAdd.addEventListener("click", function() {
     count++;
 
 
+    
 
     let div = document.createElement("div");
     div.setAttribute("id", "del"+num);
@@ -29,7 +59,7 @@ fileAdd.addEventListener("click", function() {
     button.setAttribute("type", "button");
     button.className="del";
     button.setAttribute("data-num", "del"+num)
-    button.innerHTML="DEL";
+    button.innerHTML="삭제";
 
    //div.append(p);
     div.append(file);
@@ -79,3 +109,6 @@ files.addEventListener("click", function(event) {
         }
     }
 });
+
+//---------------------------------------------------------
+

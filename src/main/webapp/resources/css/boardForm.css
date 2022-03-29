@@ -39,3 +39,18 @@ textarea {
     width: 80%;
     margin: 0 auto;
 }
+
+#fileContainer {
+    text-align: center;
+    
+}
+
+.alignCenter {
+    display: inline-block;
+    width: 50%;
+}
+
+#btnList {
+    text-align: center;
+   
+}
