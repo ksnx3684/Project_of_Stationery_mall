@@ -20,6 +20,8 @@ public class Pager {
 	// ------------- JSP 사용 변수 ----------------
 	private Long startNum;
 	private Long lastNum;
+	//product
+	private Integer categoryNum;
 
 	private boolean pre;
 	private boolean next;
@@ -183,6 +185,13 @@ public class Pager {
 
 	public void setSearch(String search) {
 		this.search = search;
+	}
+	public Integer getCategoryNum() {
+		
+		return categoryNum;
+	}
+	public void setCategoryNum(Integer categoryNum) {
+		this.categoryNum = categoryNum;
 	}
 
 	public String getKind() {

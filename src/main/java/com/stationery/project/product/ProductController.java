@@ -16,7 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.stationery.project.category.CategoryDTO;
 import com.stationery.project.category.CategoryService;
-import com.stationery.project.util.ProductPager;
+import com.stationery.project.util.Pager;
+
 
 @Controller
 @RequestMapping(value = "/product/*")
@@ -57,7 +58,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "list", method=RequestMethod.GET)
-	public ModelAndView list(ModelAndView mv,ProductPager pager) throws Exception{
+	public ModelAndView list(ModelAndView mv,Pager pager) throws Exception{
 		List<CategoryDTO> ar1=categoryService.catelist();
 		List<ProductDTO> ar=productService.list(pager);
 		mv.addObject("list",ar);

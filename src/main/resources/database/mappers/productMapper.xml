@@ -33,7 +33,7 @@
 	<!-- thumbnail에 oriname 넣었으니께 product_file이랑 join 안해도됨 ? 나중에 수정 삭제 할때 상관 
 		없나? -->
 	<!-- 파일 수정/삭제할때 생각해보고 productfile join 할지 말지 생각 -->
-	<select id="list" parameterType="ProductPager" resultType="ProductDTO"
+	<select id="list" parameterType="Pager" resultType="ProductDTO"
 		resultMap="listResult">
 
 		select * from
