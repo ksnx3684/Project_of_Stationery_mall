@@ -22,7 +22,7 @@
 
 </head>
 <body>
-	<h1>${board} AddPage</h1>
+	<h1>${board} Add Page</h1>
 	<!-- <div id="container"> -->
 	<form action="./add" method="post" enctype="multipart/form-data"
 		style="width: 100%" onsubmit="return addSubmit();">
@@ -41,7 +41,7 @@
 					</tr>
 					<tr>
 						<td><textarea name="contents" rows="" cols=""
-								placeholder="글 내용을 입력하세요."  id="summernote"></textarea></td>
+								placeholder="글 내용을 입력하세요." id="summernote"></textarea></td>
 					</tr>
 
 				</tbody>
@@ -86,8 +86,11 @@
                     ['style', ['bold', 'italic', 'underline']],
                     ['font', ['strikethrough']],
                     ['fontsize', ['fontsize']],
+                    ['para', ['paragraph']],
                     ['color', ['color']],
+                    ['table', ['table']],
                     ['height', ['height']],
+                    ['highlight', ['highlight']],
                     ['Insert', ['link']],
                  ]
       });

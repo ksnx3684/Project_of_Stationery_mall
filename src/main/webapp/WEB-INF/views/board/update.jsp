@@ -60,8 +60,11 @@
             ['style', ['bold', 'italic', 'underline']],
             ['font', ['strikethrough']],
             ['fontsize', ['fontsize']],
+            ['para', ['paragraph']],
             ['color', ['color']],
+            ['table', ['table']],
             ['height', ['height']],
+            ['highlight', ['highlight']],
             ['Insert', ['link']],
                  ]
       });
