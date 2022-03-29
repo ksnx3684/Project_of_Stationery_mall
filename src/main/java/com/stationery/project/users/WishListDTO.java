@@ -1,10 +1,14 @@
 package com.stationery.project.users;
 
+import com.stationery.project.product.ProductDTO;
+
 public class WishListDTO {
 
 	private Integer wishNum;
 	private String id;
 	private Integer productNum;
+	private ProductDTO productDTO;
+	
 	
 	public Integer getWishNum() {
 		return wishNum;
@@ -24,7 +28,12 @@ public class WishListDTO {
 	public void setProductNum(Integer productNum) {
 		this.productNum = productNum;
 	}
-	
+	public ProductDTO getProductDTO() {
+		return productDTO;
+	}
+	public void setProductDTO(ProductDTO productDTO) {
+		this.productDTO = productDTO;
+	}
 	
 	
 }

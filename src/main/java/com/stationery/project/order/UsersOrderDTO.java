@@ -1,6 +1,7 @@
 package com.stationery.project.order;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.stationery.project.product.ProductDTO;
 
@@ -17,8 +18,10 @@ public class UsersOrderDTO {
 	private Integer addressPostal;
 	private String addressDetail;
 	private String memo;
-	private OrderDetailDTO orderDetailDTO;
+	private List<OrderDetailDTO> orderDetailDTOs;
 	private ProductDTO productDTO;
+	private List<ProductDTO> productDTOs;
+	
 	
 	public Long getOrderNum() {
 		return orderNum;
@@ -86,16 +89,22 @@ public class UsersOrderDTO {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
-	public OrderDetailDTO getOrderDetailDTO() {
-		return orderDetailDTO;
+	public List<OrderDetailDTO> getOrderDetailDTOs() {
+		return orderDetailDTOs;
 	}
-	public void setOrderDetailDTO(OrderDetailDTO orderDetailDTO) {
-		this.orderDetailDTO = orderDetailDTO;
+	public void setOrderDetailDTOs(List<OrderDetailDTO> orderDetailDTOs) {
+		this.orderDetailDTOs = orderDetailDTOs;
 	}
 	public ProductDTO getProductDTO() {
 		return productDTO;
 	}
 	public void setProductDTO(ProductDTO productDTO) {
 		this.productDTO = productDTO;
+	}
+	public List<ProductDTO> getProductDTOs() {
+		return productDTOs;
+	}
+	public void setProductDTOs(List<ProductDTO> productDTOs) {
+		this.productDTOs = productDTOs;
 	}
 }

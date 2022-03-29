@@ -11,23 +11,21 @@
 <body>
     <div class="li_table">
         <ul>
-            <li class="menu">주문번호</li>
-            <li class="menu">ID</li>
-            <li class="menu">주문날짜</li>
-            <li class="menu">주문상태</li>
-            <li class="menu">결제상태</li>
-            <li class="menu">총 금액</li>
-            <li class="menu">메모</li>
+            <li class="menu orderNum">주문번호</li>
+            <li class="menu ID">ID</li>
+            <li class="menu orderDate">주문날짜</li>
+            <li class="menu orderCheck">주문상태</li>
+            <li class="menu payCheck">결제상태</li>
+            <li class="menu totalPrice">총 금액</li>
         </ul>
         <c:forEach items="${usersOrderList}" var="dto">
         <ul>
-            <a href="./orderDetail?orderNum=${dto.orderNum}"><li class="list">${dto.orderNum}</li></a>
-            <li class="list">${dto.id}</li>
-            <li class="list">${dto.orderDate}</li>
-            <li class="list" id="order" value="${dto.orderCheck}"></li>
-            <li class="list" id="pay" value="${dto.payCheck}"></li>
-            <li class="list">${dto.totalPrice}</li>
-            <li class="list">${dto.memo}</li>          
+            <a href="./usersOrderDetail?orderNum=${dto.orderNum}"><li class="list orderNum">${dto.orderNum}</li></a>
+            <li class="list ID">${dto.id}</li>
+            <li class="list orderDate">${dto.orderDate}</li>
+            <li class="list orderCheck" id="order" value="${dto.orderCheck}"></li>
+            <li class="list payCheck" id="pay" value="${dto.payCheck}"></li>
+            <li class="list totalPrice">${dto.totalPrice}</li>       
         </ul>
         </c:forEach>
     </div>

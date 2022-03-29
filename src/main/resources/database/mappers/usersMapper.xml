@@ -33,7 +33,6 @@
 		</association>
 	</resultMap>
 	<select id="login" parameterType="UsersDTO" resultMap="UsersDTO">
-		<!-- SELECT ID, NAME FROM USERS WHERE ID = #{id} AND PW = #{pw} -->
 		SELECT U.ID, U.NAME, UF.FILENUM, UF.FILENAME, UF.ORINAME
 		FROM USERS U
 		LEFT OUTER JOIN
@@ -51,9 +50,6 @@
 	</select>
 	
 	<update id="infochange" parameterType="UsersDTO">
-		<!-- UPDATE USERS SET PHONE = #{phone}, EMAIL = #{email}, ADDRESSNAME = #{addressName},
-		ADDRESSPHONE = #{addressPhone}, POSTALCODE = #{postalCode}, ADDRESSDETAIL = #{addressDetail}
-		WHERE ID = #{id} -->
 		{CALL
         DECLARE
         BEGIN
@@ -80,27 +76,22 @@
  	<delete id="withdrawalfinal" parameterType="UsersDTO">
  		DELETE USERS WHERE ID = #{id}
  	</delete>
- 	<select id="wishlist" parameterType="UsersDTO" resultType="WishListDTO">
-		SELECT * FROM WISHLIST WHERE ID = #{id}
+ 	
+ 	<resultMap type="WishListDTO" id="WishListDTO">
+ 		<id column="wishNum" property="wishNum"/>
+ 		<result column="id" property="id"/>
+ 		<result column="productNum" property="productNum"/>
+ 		<collection property="productDTO" resultMap="ProductDTO"/>
+ 	</resultMap>
+ 	<select id="wishlist" parameterType="UsersDTO" resultMap="WishListDTO">
+		SELECT * FROM WISHLIST
+		NATURAL JOIN
+		PRODUCT
+		WHERE ID = #{id}
 	</select>
 	
-	<!-- <resultMap type="UsersDTO" id="UsersDTO">
-		<result column="id" property="id"/>
-		<result column="pw" property="pw"/>
-		<result column="name" property="name"/>
-		<result column="phone" property="phone"/>
-		<result column="email" property="email"/>
-		<result column="gender" property="gender"/>
-		<result column="joinDate" property="joinDate"/>
-		<result column="userAccount" property="userAccount"/>
-		<result column="addressName" property="addressName"/>
-		<result column="addressPhone" property="addressPhone"/>
-		<result column="postalCode" property="postalCode"/>
-		<result column="addressDetail" property="addressDetail"/>
-		<collection property="usersFileDTO" resultMap="UsersFileDTO"/>
-	</resultMap> -->
 	<resultMap type="UsersOrderDTO" id="UsersOrderDTO">
-		<result column="orderNum" property="orderNum"/>
+		<id column="orderNum" property="orderNum"/>
 		<result column="id" property="id"/>
 		<result column="orderDate" property="orderDate"/>
 		<result column="orderCheck" property="orderCheck"/>
@@ -110,9 +101,17 @@
 		<result column="addressPhone" property="addressPhone"/>
 		<result column="addressPostal" property="addressPostal"/>
 		<result column="addressDetail" property="addressDetail"/>
-		<result column="memo" property="memo"/>
-		<collection property="productDTO" resultMap="ProductDTO"/>
-		<collection property="orderDetailDTO" resultMap="OrderDetailDTO"/>
+		<result column="memo" property="memo"/>	
+		<collection property="orderDetailDTOs" javaType="List" resultMap="OrderDetailDTO"/>
+	</resultMap>
+	<resultMap type="OrderDetailDTO" id="OrderDetailDTO">
+		<result column="detailNum" property="detailNum"/>
+		<result column="orderNum" property="orderNum"/>
+		<result column="productNum" property="productNum"/>
+		<result column="count" property="count"/>
+		<result column="price" property="price"/>
+		<result column="name" property="name"/>
+		<collection property="productDTOs" javaType="List" resultMap="ProductDTO"/>
 	</resultMap>
 	<resultMap type="ProductDTO" id="ProductDTO">
 		<result column="productNum" property="productNum"/>
@@ -124,19 +123,22 @@
 		<result column="stock" property="stock"/>
 		<result column="regDate" property="regDate"/>
 	</resultMap>
-	<resultMap type="OrderDetailDTO" id="OrderDetailDTO">
-		<result column="detailNum" property="detailNum"/>
-		<result column="orderNum" property="orderNum"/>
-		<result column="productNum" property="productNum"/>
-		<result column="count" property="count"/>
-		<result column="price" property="price"/>
-	</resultMap>
-	<select id="orderlist" parameterType="UsersDTO" resultMap="UsersOrderDTO">
-		SELECT O.ORDERNUM, O.ORDERDATE, P.NAME, O.TOTALPRICE, O.ORDERCHECK, O.PAYCHECK
-		FROM USERS_ORDER O, ORDER_DETAIL D, PRODUCT P
-		WHERE O.ORDERNUM = D.ORDERNUM
-		AND D.PRODUCTNUM = P.PRODUCTNUM
-		AND O.ID = #{id}
+	<select id="orderlist" parameterType="UsersDTO" resultType="UsersOrderDTO">
+		SELECT ORDERNUM, ORDERDATE, TOTALPRICE, ORDERCHECK, PAYCHECK
+		FROM USERS_ORDER
+		WHERE ID = #{id}
+		ORDER BY ORDERNUM
+	</select>
+	<select id="orderDetail" parameterType="UsersOrderDTO" resultMap="UsersOrderDTO">
+		SELECT UO.*, OD.*, P.*
+		FROM USERS_ORDER UO
+		LEFT OUTER JOIN
+		ORDER_DETAIL OD
+		ON (UO.ORDERNUM = OD.ORDERNUM)
+		LEFT OUTER JOIN
+		PRODUCT P
+		ON (OD.PRODUCTNUM = P.PRODUCTNUM)
+		WHERE UO.ORDERNUM = #{orderNum}
 	</select>
 	
 	
@@ -159,12 +161,27 @@
 		FROM USERS_ORDER
 		ORDER BY ORDERNUM ASC
 	</select>
+	
 	<select id="usersOrderDetail" parameterType="UsersOrderDTO" resultMap="UsersOrderDTO">
-		SELECT UO.*, OD.*
+		<!-- SELECT UO.*, OD.*
 		FROM USERS_ORDER UO
-			LEFT OUTER JOIN
-			ORDER_DETAIL OD
+		LEFT OUTER JOIN
+		ORDER_DETAIL OD
 		ON (UO.ORDERNUM = OD.ORDERNUM)
+		WHERE UO.ORDERNUM = #{orderNum} -->
+		SELECT UO.*, OD.*, P.*
+		FROM USERS_ORDER UO
+		LEFT OUTER JOIN
+		ORDER_DETAIL OD
+		ON (UO.ORDERNUM = OD.ORDERNUM)
+		LEFT OUTER JOIN
+		PRODUCT P
+		ON (OD.PRODUCTNUM = P.PRODUCTNUM)
 		WHERE UO.ORDERNUM = #{orderNum}
+	</select>
+	
+	<select id="usersOrderProduct" parameterType="OrderDetailDTO" resultMap="OrderDetailDTO">
+		SELECT * FROM ORDER_DETAIL
+		WHERE ORDERNUM = #{orderNum}
 	</select>
 </mapper>

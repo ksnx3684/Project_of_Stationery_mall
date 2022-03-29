@@ -8,14 +8,22 @@
 <title>주문상세</title>
 </head>
 <body>
-	<c:forEach items="${usersOrderDetail}" var="od">
-		<h1>주문번호 : ${od.orderNum}</h1>
-		<h1>ID : ${od.id}</h1>
-		<h1>주문날짜 : ${od.orderDate}</h1>
-		<h1>배송지 : ${od.addressDetail}</h1>
-		<h1>총 금액 : ${od.totalPrice}</h1>
-		<h1>메모 : ${od.memo}</h1>
-		<h1>상품 : ${od.orderDetailDTO.detailNum}</h1>
-	</c:forEach>
+
+		<h1>주문번호 : ${usersOrderDetail.orderNum}</h1>
+		<h1>ID : ${usersOrderDetail.id}</h1>
+		<h1>주문날짜 : ${usersOrderDetail.orderDate}</h1>
+		<h1>총 금액 : ${usersOrderDetail.totalPrice}</h1>
+		<h1>배송지 : ${usersOrderDetail.addressDetail}</h1>
+		<h1>메모 : ${usersOrderDetail.memo}</h1>
+		
+		<%-- <c:forEach items="${usersOrderDetail.orderDetailDTOs}" var="d">
+			<h1>상품 : ${d.productNum}</h1>
+		</c:forEach> --%>
+		<%-- <c:forEach items="${usersOrderDetail.orderDetailDTOs[0].productDTOs}" var="d">
+			<h1>상품 : ${d.name}</h1>
+		</c:forEach> --%>
+		<c:forEach items="${usersOrderDetail.orderDetailDTOs}" var="d">
+			<h1>상품 : ${d.name}</h1>
+		</c:forEach>
 </body>
 </html>

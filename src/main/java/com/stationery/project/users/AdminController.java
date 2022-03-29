@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.stationery.project.order.OrderDetailDTO;
 import com.stationery.project.order.UsersOrderDTO;
 
 @Controller
@@ -51,11 +52,14 @@ public class AdminController {
 	
 	@GetMapping("usersOrderDetail")
 	public void usersOrderDetail(Model model, UsersOrderDTO usersOrderDTO) throws Exception {
-		List<UsersOrderDTO> list = usersService.usersOrderDetail(usersOrderDTO);
-		model.addAttribute("usersOrderDetail", list);
-		System.out.println(list.get(0).getOrderDetailDTO().getDetailNum());
-		System.out.println(list.get(1).getOrderDetailDTO().getDetailNum());
-		
+		usersOrderDTO = usersService.usersOrderDetail(usersOrderDTO);
+		model.addAttribute("usersOrderDetail", usersOrderDTO);
+	}
+	
+	@GetMapping("usersOrderProduct")
+	public void usersOrderProduct(Model model, OrderDetailDTO orderDetailDTO) throws Exception {
+		List<OrderDetailDTO> list = usersService.usersOrderProduct(orderDetailDTO);
+		model.addAttribute("usersOrderProduct", list);
 	}
 
 }

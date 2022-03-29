@@ -8,9 +8,9 @@
 <title>회원상세</title>
 </head>
 <body>
-	<%-- <c:if test="${usersDetail.usersFileDTO.oriName ne null}">
+	<c:if test="${usersDetail.usersFileDTO.oriName ne null}">
 		<img class="image" src="../resources/upload/users/${usersDetail.usersFileDTO.fileName}">
-	</c:if> --%>
+	</c:if>
 	<h1>아이디 : ${usersDetail.id}</h1>
 	<h1>이름 : ${usersDetail.name}</h1>
 	<h1>전화번호 : ${usersDetail.phone}</h1>

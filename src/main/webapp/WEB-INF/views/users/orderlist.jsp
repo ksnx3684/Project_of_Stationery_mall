@@ -12,20 +12,18 @@
     <div class="li_table">
         <ul>
             <li class="menu">주문번호</li>
-            <li class="menu">주문날짜</li>
-            <li class="menu">상품명</li>
-            <li class="menu">주문금액</li>
+            <li class="menu">주문날짜</li>         
             <li class="menu">주문상태</li>
             <li class="menu">결제상태</li>
+            <li class="menu">주문금액</li>
         </ul>
         <c:forEach items="${orderlist}" var="dto">
         <ul>
-            <li class="list">${dto.orderNum}</li>
+            <a href="./orderDetail?orderNum=${dto.orderNum}"><li class="list">${dto.orderNum}</li></a>
             <li class="list">${dto.orderDate}</li>
-            <li class="list">${dto.productDTO.name}</li>
-            <li class="list">${dto.totalPrice}</li>
             <li class="list" id="order" value="${dto.orderCheck}"></li>
             <li class="list" id="pay" value="${dto.payCheck}"></li>
+            <li class="list">${dto.totalPrice}</li>
         </ul>
         </c:forEach>
     </div>

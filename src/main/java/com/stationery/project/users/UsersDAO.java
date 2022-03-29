@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.stationery.project.order.OrderDetailDTO;
 import com.stationery.project.order.UsersOrderDTO;
 
 @Repository
@@ -63,6 +64,10 @@ public class UsersDAO {
 		return sqlSession.selectList(NAMESPACE+"orderlist", usersDTO);
 	}
 	
+	public UsersOrderDTO orderDetail(UsersOrderDTO usersOrderDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"orderDetail", usersOrderDTO);
+	}
+	
 	public List<UsersDTO> usersList(UsersDTO usersDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"usersList", usersDTO);
 	}
@@ -75,7 +80,11 @@ public class UsersDAO {
 		return sqlSession.selectList(NAMESPACE+"usersOrderList", usersOrderDTO);
 	}
 	
-	public List<UsersOrderDTO> usersOrderDeatil(UsersOrderDTO usersOrderDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"usersOrderDetail", usersOrderDTO);
+	public UsersOrderDTO usersOrderDeatil(UsersOrderDTO usersOrderDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"usersOrderDetail", usersOrderDTO);
+	}
+	
+	public List<OrderDetailDTO> usersOrderProduct(OrderDetailDTO orderDetailDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"usersOrderProduct", orderDetailDTO);
 	}
 }

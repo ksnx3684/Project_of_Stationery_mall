@@ -1,5 +1,7 @@
 package com.stationery.project.order;
 
+import java.util.List;
+
 import com.stationery.project.product.ProductDTO;
 
 public class OrderDetailDTO {
@@ -9,8 +11,17 @@ public class OrderDetailDTO {
 	private Long productNum;
 	private Long count;
 	private Long price;
-	private ProductDTO productDTO;
+	private String name;
 	
+	private List<ProductDTO> productDTOs;
+	
+	
+	public List<ProductDTO> getProductDTOs() {
+		return productDTOs;
+	}
+	public void setProductDTOs(List<ProductDTO> productDTOs) {
+		this.productDTOs = productDTOs;
+	}
 	public Long getDetailNum() {
 		return detailNum;
 	}
@@ -41,10 +52,10 @@ public class OrderDetailDTO {
 	public void setPrice(Long price) {
 		this.price = price;
 	}
-	public ProductDTO getProductDTO() {
-		return productDTO;
+	public String getName() {
+		return name;
 	}
-	public void setProductDTO(ProductDTO productDTO) {
-		this.productDTO = productDTO;
+	public void setName(String name) {
+		this.name = name;
 	}
 }

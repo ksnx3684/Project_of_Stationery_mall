@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.stationery.project.order.OrderDetailDTO;
 import com.stationery.project.order.UsersOrderDTO;
 import com.stationery.project.util.Otp;
 
@@ -232,6 +233,14 @@ public class UsersController {
 		List<UsersOrderDTO> orderlist = usersService.orderlist(usersDTO);
 		model.addAttribute("orderlist", orderlist);
 		return "users/orderlist";
+	}
+	
+	// orderdetail form 이동
+	@GetMapping("orderDetail")
+	public String orderDetail(Model model, UsersOrderDTO usersOrderDTO) throws Exception {
+		usersOrderDTO = usersService.usersOrderDetail(usersOrderDTO);
+		model.addAttribute("orderDetail", usersOrderDTO);
+		return "users/orderDetail";
 	}
 	
 }

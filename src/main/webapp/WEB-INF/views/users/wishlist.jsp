@@ -12,7 +12,7 @@
 	<c:forEach items="${wishlistDTO}" var="dto">
 		<h1>wishNum : ${dto.wishNum}</h1>
 		<h1>id : ${dto.id}</h1>
-		<h1>productNum : ${dto.productNum}</h1>
+		<h1>name : ${dto.productDTO.name}</h1>
 	</c:forEach>
 </body>
 </html>
