@@ -35,22 +35,28 @@
 	<!-- 파일 수정/삭제할때 생각해보고 productfile join 할지 말지 생각 -->
 	
 	<!-- categoryNum, search 넘어와 -->
-	<select id="list" parameterType="Pager" resultType="ProductDTO"
-		resultMap="listResult">
+	<select id="list" parameterType="Pager" resultType="ProductDTO" >
+		
+	 select * from 
+        (select rownum R,PC.* from
+        (select * from product P left outer join product_category
+        C using(categorynum)
+        where productnum>0 
+        and name like'%'||#{search}||'%' and parentid like '%'||#{categoryNum}||'%'
+        order by productnum desc)PC)
+        where R between #{startRow} and #{lastRow} 
 
-		select * from
-		(select rownum R,A.* from(select * from product_category
-		C
+<!-- 	select * from
+		(select rownum R,A.* from(select * from product_category C
 		inner join
 		(select * from product P
 		left outer join product_file F
 		using(productnum)) PF
 		using(categorynum)
-		where name
-		like'%'||#{search}||'%'
+		where name like'%'||#{search}||'%' 
 		and (C.parentid like'%'||#{categoryNum}||'%') order by productnum desc)A)
-		where R between #{startRow} and #{lastRow}
-
+		where R between #{startRow} and #{lastRow} 
+ -->
 
 		<!-- select * from (select rownum R,A.* from(select * from product P inner 
 			join product_category C using(categorynum) where name like'%'||#{search}||'%' 
@@ -62,7 +68,7 @@
 			where name like'%'||#{search}||'%' and C.parentid like'%'||#{categoryNum}||'%' -->
 	</select>
 
-	<resultMap type="ProductDTO" id="listResult">
+<!-- 	<resultMap type="ProductDTO" id="listResult">
 		<id column="productNum" property="productNum"></id>
 		<result column="categoryNum" property="categoryNum" />
 		<result column="name" property="name" />
@@ -73,13 +79,13 @@
 		<result column="regDate" property="regDate" />
 		<association property="productFileDTO"
 			javaType="ProductFileDTO">
-			<id column="fileNum" property="fileNum" /> <!-- pk -->
+			<id column="fileNum" property="fileNum" /> pk
 			<result column="fileName" property="fileName" />
 			<result column="oriName" property="oriName" />
 			<result column="productNum" property="productNum" />
 		</association>
 	</resultMap>
-
+ -->
 
 	<select id="total" resultType="java.lang.Long"
 		parameterType="Pager">

@@ -1,0 +1,59 @@
+
+
+ul{
+    display: table-block;
+    position: relative;
+}
+
+
+body{
+    line-height: 25px;
+    font: 15px 'Nanum Gothic','Roboto','Verdana','Open Sans','Dotum','AppleGothic','돋움','Dotum','Helvetica','sans-serif','xeicon' !important;
+    font-family: Verdana,Dotum,AppleGothic,sans-serif;
+    color: #353535;
+    background: #fff;
+    -webkit-text-size-adjust: none;
+}
+
+.container {
+    width: 1200px;
+    box-sizing: border-box;
+    margin: 40px auto;
+    padding: 20px;
+  }
+
+  
+  .container:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+
+  .card {
+    float: left;
+    margin-right: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: all .1s ease-out;
+  }
+
+  .card:last-child {
+    margin: 0;
+  }
+  
+  .card > div> a >img {
+    width: 250px;
+    height: 250px;
+    z-index: 1;
+  }
+  .figure {
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.16);
+    width: 250px;
+    height: 332px;
+    z-index: 5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all .1s ease-out;
+  }

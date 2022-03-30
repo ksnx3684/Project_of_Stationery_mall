@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/header_css.jsp"></c:import>
+ <link rel="stylesheet" href="../resources/css/product/productList.css"> 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp"  rel="stylesheet">
 
 </head>
@@ -27,15 +28,15 @@
 
 
 
-
-		
+<div class="container">
+		<ul>
 		<c:forEach items="${list}" var="list">
-		<li>
+		<li class="card">
 			<div class="thumbnail">
 			<a href="./detail?productNum=${list.productNum}">
 				<img alt="" src="../resources/upload/product/${list.thumbnail}">
 			</a> 
-			</div>
+			</div class="figure">
 			<div class="productName">
 			<a href="./detail?productNum=${list.productNum}">${list.name}</a> 
 			</div>
@@ -45,9 +46,10 @@
 		<a href=""><span class="material-icons-outlined">shopping_cart</span></a>
 		<a href=""><span class="material-icons-outlined">favorite_border</span></a>
 		</li>
-		<hr>
+		<!-- <hr> -->
 		</c:forEach>
-	
+		</ul>
+</div>	
 
 		<div>
 			<c:if test="${pager.pre}">

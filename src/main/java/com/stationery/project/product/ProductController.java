@@ -23,10 +23,10 @@ import com.stationery.project.util.Pager;
 @RequestMapping(value = "/product/*")
 public class ProductController {
 	
-	@ModelAttribute("board")
-	public String board() {
-		return "product";
-	}
+//	@ModelAttribute("board")
+//	public String board() {
+//		return "product";
+//	}
 
 	@Autowired
 	private ProductService productService;

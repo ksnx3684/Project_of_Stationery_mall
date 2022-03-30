@@ -46,7 +46,9 @@ public class ProductService {
 
 	public List<ProductDTO> list(Pager pager) throws Exception {
 		pager.makeRow();
+		pager.setPerBlock(20);
 		pager.makeNum(productDAO.total(pager));
+		
 		List<ProductDTO> ar = productDAO.list(pager);
 		return ar;
 	}
