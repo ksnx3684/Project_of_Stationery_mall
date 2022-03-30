@@ -1,5 +1,6 @@
 package com.stationery.project.product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,6 +17,10 @@ public class ProductDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.stationery.project.product.ProductDAO.";
 
+	public int optionDelete(OptionDTO optionDTO)throws Exception{
+		return sqlSession.delete(NAMESPACE+"optionDelete",optionDTO);
+	}
+	
 	public int optionAdd(OptionDTO optionDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"optionAdd", optionDTO);
 	}

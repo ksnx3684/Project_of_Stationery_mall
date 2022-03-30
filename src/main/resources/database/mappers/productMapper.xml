@@ -5,6 +5,9 @@
 
 <mapper namespace="com.stationery.project.product.ProductDAO">
 
+	<delete id="optionDelete" parameterType="OptionDTO">
+   		delete product_option where productnum=#{productNum} and optionNum=#{optionNum}
+	</delete>
 
 	<update id="updateThumbnail" parameterType="ProductDTO">
 		update product set thumbnail=#{thumbnail}

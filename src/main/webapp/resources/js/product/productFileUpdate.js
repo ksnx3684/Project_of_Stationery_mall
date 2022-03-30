@@ -81,8 +81,7 @@ tCheck.setAttribute("value","2")
 
 files.addEventListener("click",function(event){
     if(event.target.classList.contains("fileDeleteBtn")){ //x눌렀을시 
-        console.log(event.target.classList.contains("hiddenfileNum"))
-
+    
         let check = confirm("삭제시 복구 불가능함 삭제할겨? ")
         if(!check){
             return;
@@ -98,7 +97,7 @@ files.addEventListener("click",function(event){
 
 	    xhttp.onreadystatechange = function(){
 	        if(this.readyState==4 && this.status==200){
-                console.log("ㄹㅇㅁㄹㅇㄴㄹ")
+            
                 console.log(this.responseText)
 	            let result = this.responseText.trim();
 	        	if(result=='1'){

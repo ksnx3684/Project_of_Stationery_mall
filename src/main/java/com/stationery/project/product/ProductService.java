@@ -1,7 +1,9 @@
 package com.stationery.project.product;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,20 +22,25 @@ public class ProductService {
 	@Autowired
 	private ProductFileManager fileManager;
 	
-//	public int optionAdd(List<OptionDTO> options)throws Exception{
-//		for(int i=0; i<options.size();i++) {
-//			OptionDTO optionDTO= new OptionDTO();
-//			optionDTO.setOptionContents(options[i].getOptionConetents);
-//			optionDTO.setOptionStock(null);
-//			optionDTO.setProductNum(null);
-//			
-//			productDAO.optionAdd(optionDTO);
-//		}
-//		
-//	}
+	public int optionDelete(OptionDTO optionDTO)throws Exception{
+	return	productDAO.optionDelete(optionDTO);
+	}
 	
-	public List<OptionDTO> optionList(ProductDTO productDTO)throws Exception{
-		return productDAO.optionList(productDTO);
+	public int optionAdd(String[] options,int productNum)throws Exception{
+		int result=0;
+		for(int i = 0; i < options.length; i+=2) {
+			OptionDTO optionDTO= new OptionDTO();
+			optionDTO.setProductNum(productNum);
+			optionDTO.setOptionContents(options[i]);
+			optionDTO.setOptionStock(Integer.parseInt(options[i+1]));
+			result=productDAO.optionAdd(optionDTO);
+		}
+		return result;
+		
+	}
+	
+	public ArrayList<OptionDTO> optionList(ProductDTO productDTO)throws Exception{
+		return (ArrayList<OptionDTO>) productDAO.optionList(productDTO);
 	}
 
 	public int updateThumbnail(ProductDTO productDTO) throws Exception {

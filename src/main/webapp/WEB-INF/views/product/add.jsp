@@ -13,8 +13,8 @@
 		<input type="hidden" name="productNum" value="${dto.productNum}">
 		상품 이름<input type="text" name="name"> 설명
 		<textarea name="contents" rows="15" cols="40"></textarea>
-		가격<input type="text" name="price"  placeholder="숫자만 입력"> 
-		재고<input type="text" name="stock" placeholder="숫자만 입력">
+		가격<input type="text" name="price" placeholder="숫자만 입력"> 재고<input
+			type="text" name="stock" placeholder="숫자만 입력">
 
 		<!-- product에 카테고리 번호를 넣어야됨  -->
 		<!-- 카테고리 이름을 가져와야됨 -->
@@ -37,35 +37,37 @@
 
 				</c:forEach>
 			</select>
+		</div>
+		<hr><!--------옵션------------->
 
-			<hr>
-	
-				<div>
-				<h5>옵션이 없는 상품일 경우 입력하지 마세요</h5>
-				<div id="optionResult"></div>
-				   <button id="optionAdd_btn" type="button">옵션 추가</button>
-	
-				</div>
-			<hr>
+		<div id="options">
+			<h5>옵션이 없는 상품일 경우 입력하지 마세요</h5>
+			<div id="optionResult"></div>
+			<button id="optionAdd_btn" type="button">옵션 추가</button>
 
-			<div>
-				대표이미지<input type="file" name="t_files">
-			</div>
+		</div>
+		<hr><!--------파일------------->
 
-			<!--기본이미지 파일추가 생성되는 곳 -->
-			
-			<div id="fileResult"></div>
-			<div>
-				<button type="button" id="fileAdd">FileAdd</button>
-			</div>
+		<div>
+			대표이미지<input type="file" name="t_files">
+		</div>
 
-			<button type="submit">ADD</button>
+		<!--기본이미지 파일추가 생성되는 곳 -->
 
+		<div id="fileResult"></div>
+		<div>
+			<button type="button" id="fileAdd">FileAdd</button>
+		</div>
 
+		<button type="submit">ADD</button>
+
+	</form>
 
 
 
-<script src="../resources/js/product/productOption.js"></script>
-			<script src="../resources/js/product/productFileUpdate.js"></script>
+
+
+	<script src="../resources/js/product/productOption.js"></script>
+	<script src="../resources/js/product/productFileUpdate.js"></script>
 </body>
 </html>

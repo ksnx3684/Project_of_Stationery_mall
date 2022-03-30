@@ -1,6 +1,7 @@
 package com.stationery.project.product;
 
 import java.lang.StackWalker.Option;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,6 @@ import com.stationery.project.util.Pager;
 @RequestMapping(value = "/product/*")
 public class ProductController {
 	
-//	@ModelAttribute("board")
-//	public String board() {
-//		return "product";
-//	}
 
 	@Autowired
 	private ProductService productService;
@@ -35,11 +32,15 @@ public class ProductController {
 	@Autowired
 	private CategoryService categoryService;
 	
-//	@PostMapping("optionAdd")
-//	public void optionAdd(List<OptionDTO> options)throws Exception{
-//		int result=productService.optionAdd(options);
-//	}
-//	
+	@PostMapping("optionDelete")
+	public ModelAndView optionDelete(OptionDTO optionDTO)throws Exception{
+		ModelAndView mv= new ModelAndView();
+		int result =productService.optionDelete(optionDTO);
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result",result);
+		return mv;
+	}
+	
 	@PostMapping("updateThumbnail")
 	public void updateThumbnail(ProductDTO productDTO)throws Exception{
 		int result= productService.updateThumbnail(productDTO);
@@ -77,9 +78,10 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="add",method = RequestMethod.POST)
-	public String add(ProductDTO productDTO,MultipartFile[] files,MultipartFile t_files)throws Exception{
+	public String add(ProductDTO productDTO,MultipartFile[] files,MultipartFile t_files,String[] options)throws Exception{
 		int result=productService.add(productDTO,files,t_files);
-
+		int productNum=productDTO.getProductNum();
+		productService.optionAdd(options,productNum);
 
 		return "redirect:./list";
 	}
@@ -103,16 +105,20 @@ public class ProductController {
 	}
 
 	@GetMapping("update")
-	public void update(ProductDTO productDTO,Model model) throws Exception{
+	public void update(ProductDTO productDTO,Model model,ArrayList<OptionDTO> optionDTO) throws Exception{
 		productDTO=productService.detail(productDTO);
+		optionDTO=productService.optionList(productDTO);
 		model.addAttribute("dto",productDTO);
+		model.addAttribute("options", optionDTO);
 		
 	}
 	
 	@PostMapping("update")
-	public String update(ProductDTO productDTO,MultipartFile[] files,MultipartFile t_files)throws Exception{
+	public String update(ProductDTO productDTO,MultipartFile[] files,MultipartFile t_files,String[] options)throws Exception{
 		int result=productService.update(productDTO,files,t_files);
-
+		int productNum=productDTO.getProductNum();
+		productService.optionAdd(options, productNum);
+		
 
 		return "redirect:./list";
 	}
