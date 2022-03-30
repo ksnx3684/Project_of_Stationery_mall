@@ -24,6 +24,7 @@
 	<a href="./mychangecheck"><button id="update">내 정보 변경</button></a>
 	<a href="./wishlist"><button id="wishlist">위시리스트</button></a>
 	<a href="./orderlist"><button id="orderlist">주문내역</button></a>
+	<a href="../cart/view"><button id="cart">장바구니</button></a>
 	<a href="/project/users/logout">로그아웃</a>
 	<c:if test="${usersDTO.userAccount eq 0}">
 		<a href="./otp/first"><button id="manager">관리자페이지</button></a>

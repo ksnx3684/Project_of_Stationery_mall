@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.stationery.project.cart.CartDTO;
+import com.stationery.project.cart.CartService;
 import com.stationery.project.order.OrderDetailDTO;
 import com.stationery.project.order.UsersOrderDTO;
 import com.stationery.project.util.Otp;
@@ -242,5 +244,5 @@ public class UsersController {
 		model.addAttribute("orderDetail", usersOrderDTO);
 		return "users/orderDetail";
 	}
-	
+
 }

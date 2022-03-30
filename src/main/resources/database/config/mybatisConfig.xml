@@ -20,6 +20,7 @@
    		<typeAlias type="com.stationery.project.board.notices.NoticesFileDTO" alias="NoticesFileDTO"/>
    		<typeAlias type="com.stationery.project.order.OrderDetailDTO" alias="OrderDetailDTO"/>
    		<typeAlias type="com.stationery.project.order.UsersOrderDTO" alias="UsersOrderDTO"/>
-   		<typeAlias type="com.stationery.project.product.ProductDTO" alias="ProductDTO"/>	
+   		<typeAlias type="com.stationery.project.product.ProductDTO" alias="ProductDTO"/>
+   		<typeAlias type="com.stationery.project.cart.CartDTO" alias="CartDTO"/>	
 	</typeAliases>
 </configuration>
