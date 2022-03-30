@@ -27,6 +27,7 @@ public class CartController {
 //		return "cart/view";
 //	}
 	
+	// 장바구니 보기
 	@GetMapping("view")
 	public void view(Model model, HttpSession httpSession) throws Exception {
 		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");

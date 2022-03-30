@@ -101,8 +101,15 @@
 		<result column="addressPhone" property="addressPhone"/>
 		<result column="addressPostal" property="addressPostal"/>
 		<result column="addressDetail" property="addressDetail"/>
-		<result column="memo" property="memo"/>	
+		<result column="memo" property="memo"/>
+		<collection property="payMethodDTO" resultMap="PayMethodDTO"/>
 		<collection property="orderDetailDTOs" javaType="List" resultMap="OrderDetailDTO"/>
+	</resultMap>
+	<resultMap type="PayMethodDTO" id="PayMethodDTO">
+		<result column="orderNum" property="orderNum"/>
+		<result column="cardName" property="cardName"/>
+		<result column="cardNum" property="cardNum"/>
+		<result column="cardExp" property="cardExp"/>
 	</resultMap>
 	<resultMap type="OrderDetailDTO" id="OrderDetailDTO">
 		<result column="detailNum" property="detailNum"/>
@@ -169,7 +176,7 @@
 		ORDER_DETAIL OD
 		ON (UO.ORDERNUM = OD.ORDERNUM)
 		WHERE UO.ORDERNUM = #{orderNum} -->
-		SELECT UO.*, OD.*, P.*
+		SELECT UO.*, OD.*, P.*, PM.*
 		FROM USERS_ORDER UO
 		LEFT OUTER JOIN
 		ORDER_DETAIL OD
@@ -177,6 +184,9 @@
 		LEFT OUTER JOIN
 		PRODUCT P
 		ON (OD.PRODUCTNUM = P.PRODUCTNUM)
+		LEFT OUTER JOIN
+		PAY_METHOD PM
+		ON (UO.ORDERNUM = PM.ORDERNUM)
 		WHERE UO.ORDERNUM = #{orderNum}
 	</select>
 	

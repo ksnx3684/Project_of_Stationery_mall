@@ -21,6 +21,7 @@ public class UsersOrderDTO {
 	private List<OrderDetailDTO> orderDetailDTOs;
 	private ProductDTO productDTO;
 	private List<ProductDTO> productDTOs;
+	private PayMethodDTO payMethodDTO;
 	
 	
 	public Long getOrderNum() {
@@ -106,5 +107,11 @@ public class UsersOrderDTO {
 	}
 	public void setProductDTOs(List<ProductDTO> productDTOs) {
 		this.productDTOs = productDTOs;
+	}
+	public PayMethodDTO getPayMethodDTO() {
+		return payMethodDTO;
+	}
+	public void setPayMethodDTO(PayMethodDTO payMethodDTO) {
+		this.payMethodDTO = payMethodDTO;
 	}
 }
