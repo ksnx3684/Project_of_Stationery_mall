@@ -10,16 +10,13 @@
 <body>
 	<h1>Product Add page</h1>
 	<form action="./add" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="productNum" value="${dto.productNum}">
+		<input type="hidden" name="productNum" value="${dto.productNum}" id="getProductNum">
 		상품 이름<input type="text" name="name"> 설명
 		<textarea name="contents" rows="15" cols="40"></textarea>
 		가격<input type="text" name="price" placeholder="숫자만 입력"> 재고<input
 			type="text" name="stock" placeholder="숫자만 입력">
 
-		<!-- product에 카테고리 번호를 넣어야됨  -->
-		<!-- 카테고리 이름을 가져와야됨 -->
-		<!-- 여기에 어케 카테고리 이름을 가져옴? -->
-		<!-- 컨트롤러에서  카테고리 서비스 호출-->
+		<hr><!--------카테고리------------->
 		<div>
 			category <select name="categoryNum">
 				<c:forEach items="${list}" var="list">

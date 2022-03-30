@@ -81,8 +81,9 @@ public class ProductController {
 	public String add(ProductDTO productDTO,MultipartFile[] files,MultipartFile t_files,String[] options)throws Exception{
 		int result=productService.add(productDTO,files,t_files);
 		int productNum=productDTO.getProductNum();
+		if(options!=null) {
 		productService.optionAdd(options,productNum);
-
+		}
 		return "redirect:./list";
 	}
 	
@@ -105,9 +106,12 @@ public class ProductController {
 	}
 
 	@GetMapping("update")
-	public void update(ProductDTO productDTO,Model model,ArrayList<OptionDTO> optionDTO) throws Exception{
+	public void update(Model model,ProductDTO productDTO,ArrayList<OptionDTO> optionDTO) throws Exception{
+		
 		productDTO=productService.detail(productDTO);
 		optionDTO=productService.optionList(productDTO);
+		List<CategoryDTO> ar=categoryService.allList();
+		model.addAttribute("list",ar);
 		model.addAttribute("dto",productDTO);
 		model.addAttribute("options", optionDTO);
 		
@@ -117,8 +121,9 @@ public class ProductController {
 	public String update(ProductDTO productDTO,MultipartFile[] files,MultipartFile t_files,String[] options)throws Exception{
 		int result=productService.update(productDTO,files,t_files);
 		int productNum=productDTO.getProductNum();
+		if(options!=null) {
 		productService.optionAdd(options, productNum);
-		
+		}
 
 		return "redirect:./list";
 	}

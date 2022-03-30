@@ -15,9 +15,25 @@
 		<textarea name="contents" rows="10" cols="10">${dto.contents}</textarea>
 		가격<input type="text" name="price" value="${dto.price}"> 재고<input
 			type="text" name="stock" value="${dto.stock}">
+		
+<hr><!--------카테고리------------->		
 		<div>
-			category<input type="text" name="categoryNum"
-				value="${dto.categoryNum}">
+			category <select name="categoryNum">
+				<c:forEach items="${list}" var="list">
+					<c:choose>
+						<c:when test="${list.parentId eq null}">
+							<!--parentid가 null -> 최상위카테고리 -->
+							<optgroup label="${list.categoryName}">
+							</optgroup>
+						</c:when>
+						<c:otherwise>
+							<option value="${list.categoryNum}">
+								&nbsp;&nbsp;&nbsp;${list.categoryName}</option>
+						</c:otherwise>
+					</c:choose>
+
+				</c:forEach>
+			</select>
 		</div>
 <hr><!--------옵션------------->
 	<div id="options">

@@ -154,9 +154,6 @@ public class ProductService {
 			productDAO.addFile(productFileDTO);
 		}
 
-
-		
-		
 		
 		if (productDTO.getCheck() == 1) {//썸네일 수정했다면 
 			String thumbnail = fileManager.save(t_files, "resources/upload/product/");
