@@ -22,6 +22,25 @@ public class ProductService {
 	@Autowired
 	private ProductFileManager fileManager;
 	
+	public int stockUpdate(OptionDTO optionDTOs)throws Exception{
+		
+		int result=0;
+		
+		for(int i=0; i<stocks.size();i++) {
+			if(stocks.get(i).getOptionStock()!=null) {
+			OptionDTO optionDTO = new OptionDTO();
+			optionDTO.setOptionNum(stocks.get(i).getOptionNum());
+			optionDTO.setOptionStock(stocks.get(i).getOptionStock());
+			optionDTO.setProductNum(stocks.get(i).getProductNum());
+			
+			result= productDAO.stockUpdate(optionDTO);
+			System.out.println("result"+i+result);
+			}
+		}
+
+		return result;
+		}
+	
 	public int optionDelete(OptionDTO optionDTO)throws Exception{
 	return	productDAO.optionDelete(optionDTO);
 	}

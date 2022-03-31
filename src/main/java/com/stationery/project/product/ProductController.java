@@ -4,6 +4,7 @@ import java.lang.StackWalker.Option;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,8 @@ public class ProductController {
 	// (add.jsp에 카테고리 출력위해 )
 	@Autowired
 	private CategoryService categoryService;
+	
+	
 	
 	@PostMapping("optionDelete")
 	public ModelAndView optionDelete(OptionDTO optionDTO)throws Exception{
@@ -118,13 +121,31 @@ public class ProductController {
 	}
 	
 	@PostMapping("update")
-	public String update(ProductDTO productDTO,MultipartFile[] files,MultipartFile t_files,String[] options)throws Exception{
+	public String update(ProductDTO productDTO,MultipartFile[] files,MultipartFile t_files,String[] options, ArrayList<OptionDTO> optionDTOs)throws Exception{
 		int result=productService.update(productDTO,files,t_files);
 		int productNum=productDTO.getProductNum();
-		if(options!=null) {
+		
+	System.out.println(optionDTOs);
+		
+		if(options!=null) { //option추가한경우에만 
 		productService.optionAdd(options, productNum);
 		}
+		
+		
+		
+		for(int i =0;i<optionDTOs.size();i++) {
+	
+			System.out.println("optionNum"+optionDTOs.get(i).getOptionNum());
+		}
+		
+		//stock update 
 
+//		System.out.println(optionDTOs.get(0).getOptionNum());
+//		System.out.println(optionDTOs.get(1).getOptionNum());
+//		int result2= productService.stockUpdate(optionDTOs);
+	
+
+		
 		return "redirect:./list";
 	}
 

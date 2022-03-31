@@ -6,6 +6,13 @@ public class OptionDTO {
 	private Integer productNum;
 	private String optionContents;
 	private Integer optionStock;
+	
+	
+	public OptionDTO() {
+	
+		
+	}
+	
 	public Integer getOptionNum() {
 		return optionNum;
 	}

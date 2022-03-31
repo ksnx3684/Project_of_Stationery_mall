@@ -5,6 +5,14 @@
 
 <mapper namespace="com.stationery.project.product.ProductDAO">
 
+
+	<!-- update option stock -->
+	<update id="stockUpdate" parameterType="OptionDTO">
+		update product_option 
+		set optionstock=#{optionStock}+optionstock
+		where productnum=#{productNum} and optionnum=#{optionNum}
+	</update>
+
 	<delete id="optionDelete" parameterType="OptionDTO">
    		delete product_option where productnum=#{productNum} and optionNum=#{optionNum}
 	</delete>

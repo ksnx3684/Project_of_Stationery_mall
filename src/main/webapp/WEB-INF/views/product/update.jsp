@@ -36,11 +36,19 @@
 			</select>
 		</div>
 <hr><!--------옵션------------->
+	<form:form action="./update" method="post" enctype="multipart/form-data">
 	<div id="options">
 		<div id="oriOption">
-			<c:forEach items="${options}" var="options">
+			<c:forEach items="${options}" var="options" varStatus="state">
+	
 				<li>
 				<button type="button">${options.optionContents}</button>	
+				재고: ${options.optionStock}
+		
+			
+				재고 추가 :<input type="text" name="optionDTOs[${state.index}].optionStock"> 
+				<input type="hidden" name="optionDTOs[${state.index}].optionNum" value="${options.optionNum}">
+				<input type="hidden" name="optionDTOs[${state.index}].productNum" value="${options.productNum}">
 				<button type="button" data-fileNum="${options.optionNum}" class="optionDeleteBtn">X</button>
 				</li>
 
@@ -52,6 +60,7 @@
 		<button type="button" id="optionAdd_btn">옵션 추가</button>
 	
 	</div>
+	</form:form>
 <hr><!--------파일------------->
 
 
