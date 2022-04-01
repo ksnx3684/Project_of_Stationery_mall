@@ -25,5 +25,6 @@
    		<typeAlias type="com.stationery.project.product.ProductDTO" alias="ProductDTO"/>
 		<typeAlias type="com.stationery.project.category.CategoryDTO" alias="CategoryDTO"/>
 		<typeAlias type="com.stationery.project.product.ProductFileDTO" alias="ProductFileDTO"/>
+		<typeAlias type="com.stationery.project.board.qnas.QnasDTO" alias="QnasDTO"/>
 	</typeAliases>
 </configuration>
