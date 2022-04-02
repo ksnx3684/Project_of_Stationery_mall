@@ -27,10 +27,10 @@ let addressPhoneCheck = false;
 // ID Check
 id.addEventListener("blur", function(){
     if(id.value == ""){
-        idResult.innerHTML = "필수 입력사항입니다";
+        // idResult.innerHTML = "필수 입력사항입니다";
         idCheck = false;
     } else {
-        idResult.innerHTML = "";
+        // idResult.innerHTML = "";
         idCheck = true;
     }
 });

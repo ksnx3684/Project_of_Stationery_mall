@@ -7,23 +7,62 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 </head>
+<link rel="stylesheet" href="../resources/css/join.css">
 <body>
+    <script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        function idChecker(){
+            let idValue = $('#id').val(); //id값이 "id"인 입력란의 값을 저장
+            $.ajax({
+                url: "./idChecker", //Controller에서 인식할 주소
+                type: "post", //POST 방식으로 전달
+                data: {id:idValue},
+
+                success:function(cnt){ // UsersDAO에서 return한 cnt를 매개변수로 받는다
+                    if(cnt != 1) { // cnt가 1이 아닐 경우 사용 가능 출력
+                        $('.idResult').css("display", "none");
+                        $('.id_ok').css("display", "inline-block");
+                        $('.id_no').css("display", "none");
+                        if($('#id').val() == ""){ // 아이디 입력칸이 비어 있다면 필수입력사항 멘트 출력
+                            $('.idResult').css("display", "inline-block");
+                            $('.id_ok').css("display", "none");
+                            $('.id_no').css("display", "none");
+                        }
+                    } else { // cnt가 1일 경우 사용 불가 출력
+                        $('.idResult').css("display", "none");
+                        $('.id_no').css("display", "inline-block");
+                        $('.id_ok').css("display", "none");
+                    }
+                    console.log("처리 성공");
+                },
+                error:function(){
+                    alert("에러발생");
+                }
+            });
+            
+            
+        };
+    </script>
+
     <div id = total>
     <form class="frm" action="./join" method="post" id="frm" enctype="multipart/form-data">
         <fieldset>
             <legend>ID</legend>
-            <input type="text" placeholder="ID" name="id" id="id">
-            <div id="idResult"></div>
+            <input type="text" placeholder="ID" name="id" id="id" required oninput="idChecker()">
+            <!-- <div id="idResult"></div> -->
+            <span class="idResult">필수 입력사항입니다</span>
+            <span class="id_ok">사용 가능한 아이디입니다</span>
+            <span class="id_no">이미 사용 중인 아이디입니다</span>
         </fieldset>
         <fieldset>
             <legend>비밀번호</legend>
             <input type="password" placeholder="8글자 이상 12글자 이하" name="pw" id="pw">
-            <div id="pwResult"></div>
+            <span id="pwResult"></span>
         </fieldset>
         <fieldset>
             <legend>비밀번호 확인</legend>
             <input type="password" placeholder="8글자 이상 12글자 이하" name="pw2" id="pw2">
-            <div id="pwResultCheck"></div>
+            <span id="pwResultCheck"></span>
         </fieldset>
         <fieldset>
             <legend>이름</legend>
@@ -130,7 +169,7 @@
         </fieldset>
     </form>
     </div>
+
     <script type="text/javascript" src="../resources/js/users/join.js"></script>
-    <script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>
 </body>
 </html>

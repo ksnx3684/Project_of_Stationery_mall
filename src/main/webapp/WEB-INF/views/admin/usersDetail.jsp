@@ -20,5 +20,6 @@
 	<h1>배송지 연락처 : ${usersDetail.addressPhone}</h1>
 	<h1>우편번호 : ${usersDetail.postalCode}</h1>
 	<h1>배송지 주소 : ${usersDetail.addressDetail}</h1>
+
 </body>
 </html>

@@ -42,6 +42,10 @@ public class UsersService {
 		return result;
 	}
 	
+	public int idChecker(String id) throws Exception {
+		return usersDAO.idChecker(id);
+	}
+	
 	public UsersDTO login(UsersDTO usersDTO) throws Exception {
 		return usersDAO.login(usersDTO);
 	}

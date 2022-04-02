@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -46,6 +48,14 @@ public class UsersController {
 		System.out.println(multipartFile.getSize());
 		int result = usersService.join(usersDTO, multipartFile);
 		return "redirect:../";
+	}
+	
+	// ID 중복 체크 기능
+	@PostMapping("idChecker")
+	@ResponseBody
+	public int idCheck(@RequestParam("id") String id) throws Exception {
+		int result = usersService.idChecker(id);
+		return result;
 	}
 	
 	// login form 이동

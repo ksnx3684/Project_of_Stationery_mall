@@ -25,6 +25,11 @@ public class UsersDAO {
 		return sqlSession.insert(NAMESPACE+"joinFile", usersFileDTO);
 	}
 	
+	public int idChecker(String id) throws Exception {
+		int cnt = sqlSession.selectOne(NAMESPACE+"idChecker", id);
+		return cnt;
+	}
+	
 	public UsersDTO login(UsersDTO usersDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"login", usersDTO);
 	}
