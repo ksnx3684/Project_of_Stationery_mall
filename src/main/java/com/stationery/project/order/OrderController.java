@@ -20,11 +20,5 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 
-	// 장바구니에 담긴 상품들을 주문페이지로 불러오기
-	@GetMapping("order")
-	public void order(Model model, HttpSession httpSession) throws Exception {
-		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
-		List<CartDTO> list = orderService.order(usersDTO);
-		model.addAttribute("order",list);
-	}
+	
 }

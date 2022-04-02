@@ -16,6 +16,7 @@
 	<h1>최종 결제금액 : </h1>
 	<br>
 	
+	
 	<h1>배송주소</h1>
 	기본배송지<input type="radio" id="defaultAddress" value="defaultAddress">
 	새로입력<input type="radio" id="newAddress" value="newAddress"><br>

@@ -16,7 +16,5 @@ public class OrderDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.stationery.project.order.OrderDAO.";
 
-	public List<CartDTO> order(UsersDTO usersDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"cartOrder", usersDTO);
-	}
+	
 }

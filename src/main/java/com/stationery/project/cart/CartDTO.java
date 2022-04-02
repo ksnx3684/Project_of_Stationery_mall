@@ -13,7 +13,13 @@ public class CartDTO {
 	private Long productCount;
 	private Long totalPrice;
 	private UsersDTO usersDTO;
-//	private List<ProductDTO> productDTOs;
+	public List<ProductDTO> getProductDTOs() {
+		return productDTOs;
+	}
+	public void setProductDTOs(List<ProductDTO> productDTOs) {
+		this.productDTOs = productDTOs;
+	}
+	private List<ProductDTO> productDTOs;
 	private ProductDTO productDTO;
 	
 	public ProductDTO getProductDTO() {

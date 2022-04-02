@@ -3,6 +3,7 @@ package com.stationery.project.users;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -13,17 +14,13 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.stationery.project.cart.CartDTO;
 import com.stationery.project.cart.CartService;
-import com.stationery.project.order.OrderDetailDTO;
 import com.stationery.project.order.UsersOrderDTO;
-import com.stationery.project.util.Otp;
 
-import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("/users/*")
@@ -77,6 +74,14 @@ public class UsersController {
 		
 		if(usersDTO != null) {
 			httpSession.setAttribute("auth", usersDTO); // "auth"에 로그인 세션 삽입
+			
+//			Cookie cookie1 = new Cookie("ordername", usersDTO.getName());
+//			Cookie cookie2 = new Cookie("orderphone", usersDTO.getPhone());
+//			Cookie cookie3 = new Cookie("orderaddress", usersDTO.getAddressDetail());
+//			httpServletResponse.addCookie(cookie1);
+//			httpServletResponse.addCookie(cookie2);
+//			httpServletResponse.addCookie(cookie3);
+			
 			message = "로그인 성공";
 			p = "../";
 		}
@@ -89,8 +94,16 @@ public class UsersController {
 	}
 	// logout 기능
 	@GetMapping("logout")
-	public String logout(HttpSession httpSession) throws Exception {
+	public String logout(HttpSession httpSession, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
 		httpSession.invalidate();
+		Cookie[] cookies = httpServletRequest.getCookies();
+		if(cookies != null) {
+			for(int i = 0; i < cookies.length; i++) {
+				cookies[i].setMaxAge(0);
+				httpServletResponse.addCookie(cookies[i]);
+			}
+		}
+		
 		return "redirect:../";
 	}
 	

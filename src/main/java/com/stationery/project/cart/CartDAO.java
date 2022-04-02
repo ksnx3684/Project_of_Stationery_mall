@@ -19,8 +19,15 @@ public class CartDAO {
 //		return sqlSession.selectOne(NAMESPACE+"view", usersDTO);
 //	}
 	
-	public List<CartDTO> view(UsersDTO usersDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"view", usersDTO);
+	public List<CartDTO> cartlist(UsersDTO usersDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"cartlist", usersDTO);
 	}
 
+	public int cartlistDelete(Long caNum) throws Exception {
+		return sqlSession.delete(NAMESPACE+"cartlistDelete", caNum);
+	}
+	
+	public CartDTO cartOrder(Long cartNum) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"cartOrder", cartNum);
+	}
 }

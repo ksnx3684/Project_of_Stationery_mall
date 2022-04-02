@@ -14,8 +14,6 @@ public class OrderService {
 	@Autowired
 	private OrderDAO orderDAO;
 	
-	public List<CartDTO> order(UsersDTO usersDTO) throws Exception {
-		return orderDAO.order(usersDTO);
-	}
+	
 	
 }

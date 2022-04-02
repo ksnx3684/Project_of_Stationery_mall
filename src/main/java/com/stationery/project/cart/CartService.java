@@ -17,7 +17,15 @@ public class CartService {
 //		return cartDAO.view(usersDTO);
 //	}
 	
-	public List<CartDTO> view(UsersDTO usersDTO) throws Exception {
-		return cartDAO.view(usersDTO);
+	public List<CartDTO> cartlist(UsersDTO usersDTO) throws Exception {
+		return cartDAO.cartlist(usersDTO);
+	}
+	
+	public int cartlistDelete(Long caNum) throws Exception {
+		return cartDAO.cartlistDelete(caNum);
+	}
+	
+	public CartDTO cartOrder(Long cartNum) throws Exception {
+		return cartDAO.cartOrder(cartNum);
 	}
 }

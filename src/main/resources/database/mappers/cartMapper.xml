@@ -12,7 +12,7 @@
 		<result column="totalPrice" property="totalPrice"/>
 		<collection property="usersDTO" resultMap="UsersDTO"/>
 		<collection property="productDTO" resultMap="ProductDTO"/>
-		<!-- <collection property="productDTOs" javaType="List" resultMap="ProductDTO"/> -->
+		<collection property="productDTOs" javaType="List" resultMap="ProductDTO"/>
 	</resultMap>
 	<resultMap type="UsersDTO" id="UsersDTO">
 		<id column="id" property="id"/>
@@ -36,10 +36,23 @@
 		<result column="stock" property="stock"/>
 		<result column="regDate" property="regDate"/>
 	</resultMap>
-	<select id="view" parameterType="UsersDTO" resultMap="CartDTO">
+	<select id="cartlist" parameterType="UsersDTO" resultMap="CartDTO">
 		SELECT * FROM CART
 		NATURAL JOIN PRODUCT WHERE ID = #{id}
 	</select>
-
+	<delete id="cartlistDelete" parameterType="Long">
+		DELETE CART WHERE CARTNUM = #{cartNum}
+	</delete>
+	<select id="cartOrder" parameterType="Long" resultMap="CartDTO">
+		SELECT *
+		FROM CART C
+		LEFT OUTER JOIN
+		PRODUCT P
+		ON (C.PRODUCTNUM = P.PRODUCTNUM)
+		LEFT OUTER JOIN
+		USERS U
+		ON (C.ID = U.ID)
+		WHERE C.CARTNUM = #{cartNum}
+	</select>
 
 </mapper>

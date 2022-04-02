@@ -5,8 +5,8 @@
 }
 
 .tg td{
-    background-color:#fff
-    ;border-color:#ccc;
+    background-color:#fff;
+    border-color:#ccc;
     border-style:solid;
     border-width:0px;
     color:#333;
@@ -46,7 +46,7 @@
 }
 
 .tg .tg-daby{
-    background-color:#e2e2e2;
+    background-color:rgb(228, 254, 213);
     border-color:inherit;
     color:#000000;
     text-align:center;
@@ -54,7 +54,14 @@
 }
 
 .tg .tg-10pf{
-    background-color:#e2e2e2;
+    background-color:rgb(228, 254, 213);
     text-align:left;
     vertical-align:top
+}
+
+.mainStreet{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
 }
