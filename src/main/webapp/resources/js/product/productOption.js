@@ -4,6 +4,7 @@ const oriOption= document.getElementById("oriOption")
 const optionDeleteBtn=document.getElementById("optionDeleteBtn")
 const options = document.getElementById("options")
 const getProductNum= document.getElementById("getProductNum")
+const stockForm = document.getElementById("stockForm")
 
 let count1 =0;
 let num1=0; 
@@ -45,6 +46,9 @@ options.addEventListener("click",function(event){
 
 //옵션추가 버튼 클릭시 
 optionAdd_btn.addEventListener("click",function(){
+
+stockForm.setAttribute("readonly","true");
+
 //기존의 옵션이 없는 경우 
 if(oriOption==null){
     if(count1>4){
@@ -59,6 +63,8 @@ if(oriOption==null){
     }
     
 }
+
+
 
     count1++;
 

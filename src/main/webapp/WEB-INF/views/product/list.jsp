@@ -7,12 +7,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/header_css.jsp"></c:import>
- <link rel="stylesheet" href="../resources/css/product/productList.css"> 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp"  rel="stylesheet">
+<link rel="stylesheet" href="../resources/css/product/productList.css">
+<link
+	href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp"
+	rel="stylesheet">
 
 </head>
 <body>
 	<h1>List Page</h1>
+
+
 	<a href="./add">ADD</a>
 	<div>
 
@@ -26,30 +30,38 @@
 			<button type="submit">검색</button>
 		</form>
 
+		<!-- id -->
+		<button type="hidden" id="id" value="${auth.id}"></button>
 
 
-<div class="container">
-		<ul>
-		<c:forEach items="${list}" var="list">
-		<li class="card">
-			<div class="thumbnail">
-			<a href="./detail?productNum=${list.productNum}">
-				<img alt="" src="../resources/upload/product/${list.thumbnail}">
-			</a> 
-			</div class="figure">
-			<div class="productName">
-			<a href="./detail?productNum=${list.productNum}">${list.name}</a> 
-			</div>
-			<div class="price">
-			 ${list.price}원 	
-			 </div>
-		<a href=""><span class="material-icons-outlined">shopping_cart</span></a>
-		<a href=""><span class="material-icons-outlined">favorite_border</span></a>
-		</li>
-		<!-- <hr> -->
-		</c:forEach>
-		</ul>
-</div>	
+		<!-- list -->
+		<div class="container">
+			<ul id="ultag">
+				<c:forEach items="${list}" var="list">
+					<li class="card">
+						<div class="thumbnail">
+							<a href="./detail?productNum=${list.productNum}"> 
+								<img alt="" src="../resources/upload/product/${list.thumbnail}">
+							</a>
+						</div>	
+						<!-- </div class="figure"> -->
+							<div class="productName">
+							<a href="./detail?productNum=${list.productNum}">${list.name}</a>
+							</div>
+							
+							<div class="price">${list.price}원</div> 
+							
+							<a href=""><span class="material-icons-outlined">shopping_cart</span></a> 
+							
+		
+							<span class="material-icons-outlined" id="wishlist" class="wishlist" data-num="${list.productNum}">favorite_border</span>
+
+					</li>
+	
+				</c:forEach>
+			</ul>
+
+		</div>
 
 		<div>
 			<c:if test="${pager.pre}">
@@ -66,5 +78,7 @@
 				<a href="./list?page=${pager.lastNum+1}">NEXT</a>
 			</c:if>
 		</div>
+
+		<script src="../resources/js/users/wishlist.js"></script>
 </body>
 </html>

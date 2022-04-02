@@ -82,6 +82,14 @@ public class ProductController {
 	
 	@RequestMapping(value="add",method = RequestMethod.POST)
 	public String add(ProductDTO productDTO,MultipartFile[] files,MultipartFile t_files,String[] options)throws Exception{
+		if(productDTO.getStock()==null) {
+			int stock=0;
+			for(int i=1;i<options.length;i+=2) {
+				stock=stock+Integer.parseInt(options[i]);
+				System.out.println(options[i]);
+			}
+			productDTO.setStock(stock);
+		}
 		int result=productService.add(productDTO,files,t_files);
 		int productNum=productDTO.getProductNum();
 		if(options!=null) {
@@ -121,23 +129,19 @@ public class ProductController {
 	}
 	
 	@PostMapping("update")
-	public String update(ProductDTO productDTO,MultipartFile[] files,MultipartFile t_files,String[] options, ArrayList<OptionDTO> optionDTOs)throws Exception{
+	public String update(ProductDTO productDTO,MultipartFile[] files,MultipartFile t_files,String[] options,String[] optionStock,String[] optionNum)throws Exception{
 		int result=productService.update(productDTO,files,t_files);
 		int productNum=productDTO.getProductNum();
 		
-	System.out.println(optionDTOs);
+
 		
 		if(options!=null) { //option추가한경우에만 
 		productService.optionAdd(options, productNum);
 		}
 		
 		
-		
-		for(int i =0;i<optionDTOs.size();i++) {
-	
-			System.out.println("optionNum"+optionDTOs.get(i).getOptionNum());
-		}
-		
+		productService.stockUpdate(optionStock,optionNum,productNum);
+
 		//stock update 
 
 //		System.out.println(optionDTOs.get(0).getOptionNum());

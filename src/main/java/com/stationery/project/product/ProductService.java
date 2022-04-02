@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.stationery.project.util.Pager;
 import com.stationery.project.util.ProductFileManager;
 
-
 @Service
 public class ProductService {
 
@@ -22,43 +21,43 @@ public class ProductService {
 	@Autowired
 	private ProductFileManager fileManager;
 	
-	public int stockUpdate(OptionDTO optionDTOs)throws Exception{
-		
-		int result=0;
-		
-		for(int i=0; i<stocks.size();i++) {
-			if(stocks.get(i).getOptionStock()!=null) {
-			OptionDTO optionDTO = new OptionDTO();
-			optionDTO.setOptionNum(stocks.get(i).getOptionNum());
-			optionDTO.setOptionStock(stocks.get(i).getOptionStock());
-			optionDTO.setProductNum(stocks.get(i).getProductNum());
-			
-			result= productDAO.stockUpdate(optionDTO);
-			System.out.println("result"+i+result);
-			}
-		}
+	
 
-		return result;
+
+	public int stockUpdate(String[] optionStock, String[] optionNum, int productNum) throws Exception {
+int result=0;
+		for (int i = 0; i < optionStock.length; i++) {
+			
+			
+			OptionDTO optionDTO = new OptionDTO();
+			optionDTO.setOptionStock(Integer.parseInt(optionStock[i]));
+			optionDTO.setOptionNum(Integer.parseInt(optionNum[i]));
+			optionDTO.setProductNum(productNum);
+			result=productDAO.stockUpdate(optionDTO);
+		
 		}
-	
-	public int optionDelete(OptionDTO optionDTO)throws Exception{
-	return	productDAO.optionDelete(optionDTO);
+		
+		return result;
 	}
-	
-	public int optionAdd(String[] options,int productNum)throws Exception{
-		int result=0;
-		for(int i = 0; i < options.length; i+=2) {
-			OptionDTO optionDTO= new OptionDTO();
+
+	public int optionDelete(OptionDTO optionDTO) throws Exception {
+		return productDAO.optionDelete(optionDTO);
+	}
+
+	public int optionAdd(String[] options, int productNum) throws Exception {
+		int result = 0;
+		for (int i = 0; i < options.length; i += 2) {
+			OptionDTO optionDTO = new OptionDTO();
 			optionDTO.setProductNum(productNum);
 			optionDTO.setOptionContents(options[i]);
-			optionDTO.setOptionStock(Integer.parseInt(options[i+1]));
-			result=productDAO.optionAdd(optionDTO);
+			optionDTO.setOptionStock(Integer.parseInt(options[i + 1]));
+			result = productDAO.optionAdd(optionDTO);
 		}
 		return result;
-		
+
 	}
-	
-	public ArrayList<OptionDTO> optionList(ProductDTO productDTO)throws Exception{
+
+	public ArrayList<OptionDTO> optionList(ProductDTO productDTO) throws Exception {
 		return (ArrayList<OptionDTO>) productDAO.optionList(productDTO);
 	}
 
@@ -74,7 +73,7 @@ public class ProductService {
 		pager.makeRow();
 		pager.setPerBlock(20);
 		pager.makeNum(productDAO.total(pager));
-		
+
 		List<ProductDTO> ar = productDAO.list(pager);
 		return ar;
 	}
@@ -151,8 +150,7 @@ public class ProductService {
 		return result;
 	}
 
-	public int update(ProductDTO productDTO, MultipartFile[] files,MultipartFile t_files) throws Exception {
-
+	public int update(ProductDTO productDTO, MultipartFile[] files, MultipartFile t_files) throws Exception {
 
 		int result = productDAO.update(productDTO); // productDTO에 시퀀스 들어가있
 
@@ -173,8 +171,7 @@ public class ProductService {
 			productDAO.addFile(productFileDTO);
 		}
 
-		
-		if (productDTO.getCheck() == 1) {//썸네일 수정했다면 
+		if (productDTO.getCheck() == 1) {// 썸네일 수정했다면
 			String thumbnail = fileManager.save(t_files, "resources/upload/product/");
 			ProductFileDTO productFileDTO = new ProductFileDTO();
 			// productNum은 add 실행 후 생성됨
@@ -189,7 +186,6 @@ public class ProductService {
 			int result2 = productDAO.updateThumbnail(productDTO);
 		}
 
-	
 		return result;
 	}
 }

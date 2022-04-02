@@ -29,6 +29,16 @@ public class UsersController {
 	@Autowired
 	private UsersService usersService;
 	
+	@PostMapping("deleteWishList")
+	public void deleteWishList(WishListDTO wishListDTO) throws Exception{
+		usersService.deleteWishList(wishListDTO);
+	}
+	
+	@PostMapping("addWishList")
+	public void addWishList(WishListDTO wishListDTO) throws Exception{
+		usersService.addWishList(wishListDTO);
+	}
+	
 	// join form 이동
 	@GetMapping("join")
 	public void join() throws Exception {	

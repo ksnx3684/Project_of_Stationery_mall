@@ -5,7 +5,6 @@
 
 <mapper namespace="com.stationery.project.product.ProductDAO">
 
-
 	<!-- update option stock -->
 	<update id="stockUpdate" parameterType="OptionDTO">
 		update product_option 

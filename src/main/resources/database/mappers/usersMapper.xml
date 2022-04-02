@@ -3,7 +3,19 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
+    
+    
 <mapper namespace="com.stationery.project.users.UsersDAO">
+
+	<delete id="deleteWishList" parameterType="WishListDTO">
+		DELETE wishlist WHERE ID = #{id} and productnum=#{productNum}
+	</delete>
+
+	<insert id="addWishList" parameterType="WishListDTO">
+	    insert into wishlist
+	    values(wishlist_seq.nextval,#{id},#{productNum})
+	</insert>
+
 	<insert id="join" parameterType="UsersDTO">
 		INSERT INTO USERS (ID, PW, NAME, PHONE, EMAIL, GENDER, JOINDATE, USERACCOUNT, ADDRESSNAME,
 		ADDRESSPHONE, POSTALCODE, ADDRESSDETAIL)

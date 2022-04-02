@@ -13,8 +13,11 @@
 		<input type="hidden" name="productNum" value="${dto.productNum}" id="getProductNum">
 		상품 이름<input type="text" name="name"> 설명
 		<textarea name="contents" rows="15" cols="40"></textarea>
-		가격<input type="text" name="price" placeholder="숫자만 입력"> 재고<input
-			type="text" name="stock" placeholder="숫자만 입력">
+		가격<input type="text" name="price" placeholder="숫자만 입력"> 
+
+
+		재고<input type="text" name="stock" placeholder="숫자만 입력" id="stockForm" >
+
 
 		<hr><!--------카테고리------------->
 		<div>

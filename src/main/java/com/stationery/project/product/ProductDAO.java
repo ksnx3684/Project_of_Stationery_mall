@@ -13,9 +13,14 @@ import com.stationery.project.util.Pager;
 @Repository
 public class ProductDAO {
 	
+	
+	
+	
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.stationery.project.product.ProductDAO.";
+	
+	
 	
 	public int stockUpdate(OptionDTO optionDTO)throws Exception{
 		return sqlSession.update(NAMESPACE+"stockUpdate", optionDTO);

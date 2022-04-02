@@ -11,10 +11,15 @@
 	<h1>update page</h1>
 	<form action="./update" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="productNum" value="${dto.productNum}" id="getProductNum">
-		상품 이름<input type="text" name="name" value="${dto.name}"> 설명
-		<textarea name="contents" rows="10" cols="10">${dto.contents}</textarea>
-		가격<input type="text" name="price" value="${dto.price}"> 재고<input
-			type="text" name="stock" value="${dto.stock}">
+		상품 이름<input type="text" name="name" value="${dto.name}">
+		설명<textarea name="contents" rows="10" cols="10">${dto.contents}</textarea>
+		가격<input type="text" name="price" value="${dto.price}">
+		
+		
+
+		<c:if test="${empty options}">
+			재고<input type="text" name="stock" value="${dto.stock}" id="stockForm">
+		</c:if>
 		
 <hr><!--------카테고리------------->		
 		<div>
@@ -45,10 +50,10 @@
 				<button type="button">${options.optionContents}</button>	
 				재고: ${options.optionStock}
 		
-			
-				재고 추가 :<input type="text" name="optionDTOs[${state.index}].optionStock"> 
-				<input type="hidden" name="optionDTOs[${state.index}].optionNum" value="${options.optionNum}">
-				<input type="hidden" name="optionDTOs[${state.index}].productNum" value="${options.productNum}">
+				재고 추가 <input type="text" name="optionStock" value="0"> 
+				
+				<input type="hidden" name="optionNum" value="${options.optionNum}">
+				<input type="hidden" name="productNum" value="${options.productNum}">
 				<button type="button" data-fileNum="${options.optionNum}" class="optionDeleteBtn">X</button>
 				</li>
 
