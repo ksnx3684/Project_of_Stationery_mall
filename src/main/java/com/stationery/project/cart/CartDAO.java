@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.stationery.project.order.OrderDetailDTO;
+import com.stationery.project.order.UsersOrderDTO;
 import com.stationery.project.users.UsersDTO;
 
 @Repository
@@ -30,4 +32,9 @@ public class CartDAO {
 	public CartDTO cartOrder(Long cartNum) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"cartOrder", cartNum);
 	}
+	
+	public int order(UsersOrderDTO usersOrderDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"order", usersOrderDTO);
+	}
+	
 }

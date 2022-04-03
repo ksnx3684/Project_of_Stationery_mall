@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.stationery.project.order.OrderDetailDTO;
+import com.stationery.project.order.UsersOrderDTO;
 import com.stationery.project.users.UsersController;
 import com.stationery.project.users.UsersDTO;
 import com.stationery.project.users.UsersService;
@@ -107,5 +109,14 @@ public class CartController extends UsersController{ // UsersController에서 �
 		
 		model.addAttribute("order", lists);
 		model.addAttribute("myinfo", usersDTO);
+	}
+	
+	// 주문 정보 DB에 전송
+	@PostMapping("order")
+	public String order(UsersOrderDTO usersOrderDTO) throws Exception {
+		
+		cartService.order(usersOrderDTO);
+		
+		return "redirect:./orderComplete";
 	}
 }

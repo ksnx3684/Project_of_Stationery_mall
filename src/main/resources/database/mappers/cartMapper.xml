@@ -54,5 +54,20 @@
 		ON (C.ID = U.ID)
 		WHERE C.CARTNUM = #{cartNum}
 	</select>
+	
+	<insert id="order" parameterType="UsersOrderDTO">
+		INSERT ALL
+		INTO USERS_ORDER(ORDERNUM, ID, ORDERDATE, ORDERCHECK, PAYCHECK, TOTALPRICE, ADDRESSNAME, ADDRESSPHONE, ADDRESSPOSTAL, ADDRESSDETAIL, MEMO, CARDNAME, CARDNUM, CARDEXP)
+		VALUES(USERS_ORDER_SEQ.NEXTVAL, #{id}, SYSDATE, #{orderCheck}, #{payCheck}, #{totalPrice}, #{addressName}, #{addressPhone}, #{addressPostal}, #{addressDetail}, #{memo}, #{cardName}, #{cardNum}, #{cardExp})			
+		<foreach collection="list">
+			INTO ORDER_DETAIL(DETAILNUM, ORDERNUM, PRODUCTNUM, COUNT, PRICE, NAME)
+			VALUES(ORDER_DETAIL_SEQ.NEXTVAL, USERS_ORDER_SEQ.NEXTVAL, #{productNum}, #{count}, #{price}, #{name})
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	<!-- <insert id="orderDetail" parameterType="OrderDetailDTO">
+			INSERT INTO ORDER_DETAIL(DETAILNUM, ORDERNUM, PRODUCTNUM, COUNT, PRICE, NAME)
+			VALUES(ORDER_DETAIL_SEQ.NEXTVAL, USERS_ORDER_SEQ.NEXTVAL, #{productNum}, #{count}, #{price}, #{name})
+	</insert> -->
 
 </mapper>

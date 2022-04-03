@@ -35,7 +35,7 @@
 		<result column="stock" property="stock"/>
 		<result column="regDate" property="regDate"/>
 	</resultMap>
-	<select id="cartOrder" parameterType="UsersDTO" resultMap="CartDTO">
+	<select id="order" parameterType="UsersDTO" resultMap="CartDTO">
 		SELECT *
 		FROM CART C
 		LEFT OUTER JOIN

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.stationery.project.order.OrderDetailDTO;
+import com.stationery.project.order.UsersOrderDTO;
 import com.stationery.project.users.UsersDTO;
 
 @Service
@@ -28,4 +30,9 @@ public class CartService {
 	public CartDTO cartOrder(Long cartNum) throws Exception {
 		return cartDAO.cartOrder(cartNum);
 	}
+	
+	public int order(UsersOrderDTO usersOrderDTO) throws Exception {
+		return cartDAO.order(usersOrderDTO);
+	}
+	
 }

@@ -12,16 +12,9 @@ public class OrderDetailDTO {
 	private Long count;
 	private Long price;
 	private String name;
-	
 	private List<ProductDTO> productDTOs;
 	
 	
-	public List<ProductDTO> getProductDTOs() {
-		return productDTOs;
-	}
-	public void setProductDTOs(List<ProductDTO> productDTOs) {
-		this.productDTOs = productDTOs;
-	}
 	public Long getDetailNum() {
 		return detailNum;
 	}
@@ -57,5 +50,11 @@ public class OrderDetailDTO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public List<ProductDTO> getProductDTOs() {
+		return productDTOs;
+	}
+	public void setProductDTOs(List<ProductDTO> productDTOs) {
+		this.productDTOs = productDTOs;
 	}
 }

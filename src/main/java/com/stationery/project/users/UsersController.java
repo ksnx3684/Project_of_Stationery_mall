@@ -41,6 +41,11 @@ public class UsersController {
 	public void joinCheck() throws Exception {
 	}
 	
+	// 휴대폰 본인인증 form
+	@GetMapping("identification")
+	public void identification() throws Exception {
+	}
+	
 	// join 기능
 	@PostMapping("join")
 	public String join(UsersDTO usersDTO, MultipartFile multipartFile) throws Exception {
@@ -106,13 +111,13 @@ public class UsersController {
 	@GetMapping("logout")
 	public String logout(HttpSession httpSession, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
 		httpSession.invalidate();
-		Cookie[] cookies = httpServletRequest.getCookies();
-		if(cookies != null) {
-			for(int i = 0; i < cookies.length; i++) {
-				cookies[i].setMaxAge(0);
-				httpServletResponse.addCookie(cookies[i]);
-			}
-		}
+//		Cookie[] cookies = httpServletRequest.getCookies();
+//		if(cookies != null) {
+//			for(int i = 0; i < cookies.length; i++) {
+//				cookies[i].setMaxAge(0);
+//				httpServletResponse.addCookie(cookies[i]);
+//			}
+//		}
 		
 		return "redirect:../";
 	}
@@ -263,7 +268,7 @@ public class UsersController {
 	// orderdetail form 이동
 	@GetMapping("orderDetail")
 	public String orderDetail(Model model, UsersOrderDTO usersOrderDTO) throws Exception {
-		usersOrderDTO = usersService.usersOrderDetail(usersOrderDTO);
+		usersOrderDTO = usersService.orderDetail(usersOrderDTO);
 		model.addAttribute("orderDetail", usersOrderDTO);
 		return "users/orderDetail";
 	}

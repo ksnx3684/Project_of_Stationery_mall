@@ -1,4 +1,3 @@
-<%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -10,6 +9,7 @@
 </head>
 <link rel="stylesheet" href="../resources/css/order.css">
 <body>
+    <form action="./order" method="post" enctype="multipart/form-data">
     <script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>
 
     <!-- <script>
@@ -40,18 +40,33 @@
     </script> -->
 
 
-
+    
     <script>
         function displayView(select){
             let defaultAddress = document.getElementById("defaultAddress"); // 기본배송지
             let newAddress = document.getElementById("newAddress"); // 새로입력
 
-            if(select == 0){
+            if(select == 0){ // 기본배송지
                 defaultAddress.style.display = 'block';
                 newAddress.style.display = 'none';
-            } else {
+                $('#addressDetail1').attr('disabled', false); // 기본배송지의 최종주소 활성화
+                $('#postalCode1').attr('disabled', false); // 기본배송지의 우편번호 활성화
+                $('#postalCode').attr('disabled', true); // 새로입력의 우편번호 비활성
+                $('#address').attr('disabled', true); // 새로입력의 주소 비활성
+                $('#detailAddress').attr('disabled', true); // 새로입력의 상세주소 비활성
+                $('#extraAddress').attr('disabled', true); // 새로입력의 참고항목 비활성
+                $('#addressDetail2').attr('disabled', true); // 새로입력의 최종주소 비활성
+                
+            } else { // 새로입력
                 defaultAddress.style.display = 'none';
                 newAddress.style.display = 'block';
+                $('#addressDetail1').attr('disabled', true); // 기본배송지의 최종주소 비활성
+                $('#postalCode1').attr('disabled', true); // 기본배송지의 우편번호 비활성
+                $('#postalCode').attr('disabled', false); // 새로입력의 우편번호 활성화
+                $('#address').attr('disabled', false); // 새로입력의 주소 활성화
+                $('#detailAddress').attr('disabled', false); // 새로입력의 상세주소 활성화
+                $('#extraAddress').attr('disabled', false); // 새로입력의 참고항목 활성화
+                $('#addressDetail2').attr('disabled', false); // 새로입력의 최종주소 활성화
             }
         }
     </script>
@@ -60,6 +75,7 @@
 		<h1>상품갯수 : ${dto.productCount}</h1>
 		<h1>가격 : ${dto.productDTO.price}</h1>
 	</c:forEach> -->
+
     <div class="mainStreet">
         <h1>주문 작성</h1>
         <table class="tg" style="table-layout: fixed; width: 800px">
@@ -78,8 +94,9 @@
             <tbody>
             <c:forEach items="${order}" var="dto">
                 <tr class="contents">
+                <input type="hidden" name="productNum" value="${dto.productNum}">
                 <td class="tg-af47 name"><input type="hidden" name="name" value="${dto.productDTO.name}">${dto.productDTO.name}</td>
-                <td class="tg-af47 con count"><input type="hidden" name="productCount" value="${dto.productCount}">${dto.productCount}</td>
+                <td class="tg-af47 con count"><input type="hidden" name="count" value="${dto.productCount}">${dto.productCount}</td>
                 <td class="tg-af47 con price"><input type="hidden" name="price" value="${dto.productDTO.price}">${dto.productDTO.price}</td>
                 </tr>
             </c:forEach>
@@ -90,29 +107,37 @@
             </tr>
             </tbody>
         </table>
-	
+        
+        <input type="hidden" name="id" id="id" value="${myinfo.id}" readonly>
+        <input type="hidden" name="orderCheck" id="orderCheck" value="0" readonly>
+        <input type="hidden" name="payCheck" id="payCheck" value="0" readonly>
+
         <h1 class="totalPrice">최종 결제금액 : </h1>
         <br>
         <h1>배송주소</h1>
         기본배송지<input type="radio" name="col" onclick="displayView('0')" value="defaultAddress" checked>
         새로입력<input type="radio" name="col" onclick="displayView('1')" value="newAddress">
         <br>
-        <legend>이름</legend><input type="text" value="${myinfo.name}">
+        <legend>이름</legend><input type="text" name="addressName" id="addressName" value="${myinfo.name}">
         <br>
-        <legend>전화번호</legend><input type="text" value="${myinfo.phone}">
+        <legend>전화번호</legend><input type="text" name="addressPhone" id="addressPhone" value="${myinfo.phone}">
         <br>
         배송주소
+            <!-- 기본배송지 -->
             <div id="defaultAddress">
-                <input type="text" name="addressDetail" id="addressDetail" value="${myinfo.addressDetail}" readonly> 
+                <input type="text" name="addressPostal" id="postalCode1" value="${myinfo.postalCode}" readonly>
+                <br>
+                <input type="text" name="addressDetail" id="addressDetail1" value="${myinfo.addressDetail}" readonly> 
             </div>
+            <!-- 기본배송지 -->
+            <!-- 새로입력 -->
             <div id="newAddress" style="display:none">
-                <input type="text" placeholder="배송지명" name="addressName" id="addressName"><br>
-                <input type="text" name="postalCode" id="postalCode" placeholder="우편번호" readonly>
+                <input type="text" name="addressPostal" id="postalCode" placeholder="우편번호" readonly disabled>
                 <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-                <input type="text" name="address" id="address" placeholder="주소" readonly><br>
-                <input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소">
-                <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목">
-                <input type="hidden" name="addressDetail" id="addressDetail" readonly>
+                <input type="text" name="address" id="address" placeholder="주소" readonly disabled><br>
+                <input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소" disabled>
+                <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" disabled>
+                <input type="hidden" name="addressDetail" id="addressDetail2" readonly disabled>
                 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
                 <script>
                     function sample6_execDaumPostcode() {
@@ -163,16 +188,62 @@
                     }
                 </script>
             </div>
+            <!-- 새로입력 -->
         <br>
-        
-        <h1>결제수단</h1>
-        카드<input type="radio" id="card" value="card" checked>
-        무통장입금<input type="radio" id="cash" value="cash">
-        
-        <div><input type="checkbox"> 동의합니다. (전자상거래법 제 8조 제2항)</div>
-        <button>결제하기</button>
-    </div>
+        배송요청메모<div class="memo">
+            <input type="text" name="memo" id="memo" placeholder="30자 이내">
+        </div>
+
+        <script>
+            function payDisplayView(select){
+                let kakaopay = document.getElementById("kakaopay"); // 카카오페이
+                let cashpay = document.getElementById("cashpay"); // 무통장입금
     
+                if(select == 0){ // 카카오페이
+                    kakaopay.style.display = 'block';
+                    cashpay.style.display = 'none';
+                    $('#kakao').attr('disabled', false); // 카카오페이 cardName 활성화
+                    $('#cardNum1').attr('disabled', false); // 카카오페이 cardNum1 활성화
+                    $('#cardExp1').attr('disabled', false); // 카카오페이 cardExp1 활성화
+                    $('#cash').attr('disabled', true); // 무통장입금 cardName 비활성
+                    $('#cardNum2').attr('disabled', true); // 무통장입금 cardNum2 활성화
+                    $('#cardExp2').attr('disabled', true); // 무통장입금 cardExp2 활성화
+
+                } else { // 무통장입금
+                    kakaopay.style.display = 'none';
+                    cashpay.style.display = 'block';
+                    $('#kakao').attr('disabled', true); // 카카오페이 cardName 비활성
+                    $('#cardNum1').attr('disabled', true); // 카카오페이 cardNum1 비활성
+                    $('#cardExp1').attr('disabled', true); // 카카오페이 cardExp1 비활성
+                    $('#cash').attr('disabled', false); // 무통장입금 cardName 활성화
+                    $('#cardNum2').attr('disabled', false); // 무통장입금 cardNum2 활성화
+                    $('#cardExp2').attr('disabled', false); // 무통장입금 cardExp2 활성화               
+                }
+            }
+        </script>
+        <h1>결제수단</h1>
+        카카오페이<input type="radio" name="payment" id="kakaobtn" onclick="payDisplayView('0')" value="kakao" checked>
+        무통장입금<input type="radio" name="payment" id="cashbtn" onclick="payDisplayView('1')" value="cash">
+
+        <div id="kakaopay">
+            <input type="hidden" name="cardName" id="kakao" value="카카오페이">
+            <input type="hidden" name="cardNum" id="cardNum1" value="0">
+            <input type="hidden" name="cardExp" id="cardExp1" value="2022/01/01">
+        </div>
+        <div id="cashpay" style="display:none">
+            <input type="hidden" name="cardName" id="cash" value="무통장입금" disabled>
+            <input type="hidden" name="cardNum" id="cardNum2" value="1" disabled>
+            <input type="hidden" name="cardExp" id="cardExp2" value="2022/01/01" disabled>
+            <div>입금계좌 : 신한은행 이병훈 111-111111-11-111</div>
+        </div>
+        <br>
+        <div><input type="checkbox"> 동의합니다. (전자상거래법 제 8조 제2항)</div>
+
+        <div id="payConfirm">
+            <button>결제하기</button>
+        </div>
+    </div>
+    </form>
     
     <script type="text/javascript" src="../resources/js/cart/order.js"></script>
 </body>

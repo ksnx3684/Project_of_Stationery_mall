@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>주문완료</title>
 </head>
 <body>
-
+<h1>주문이 완료되었습니다</h1>
+<a href="../"><button>메인으로 돌아가기</button></a>
 </body>
 </html>

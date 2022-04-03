@@ -13,7 +13,7 @@
 		<h1>총 금액 : ${orderDetail.totalPrice}</h1>
 		<h1>배송지 : ${orderDetail.addressDetail}</h1>
 		<h1>메모 : ${orderDetail.memo}</h1>
-		<h1>결제수단 : ${orderDetail.payMethodDTO.cardName}</h1>
+		<h1>결제수단 : ${orderDetail.cardName}</h1>
 		
 		<c:forEach items="${orderDetail.orderDetailDTOs}" var="d">
 			<h1>상품 : ${d.name}</h1>

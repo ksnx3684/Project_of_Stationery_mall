@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.stationery.project.product.ProductDTO;
 
-public class UsersOrderDTO {
+public class UsersOrderDTO extends OrderDetailDTO {
 
 	private Long orderNum;
 	private String id;
@@ -18,10 +18,12 @@ public class UsersOrderDTO {
 	private Integer addressPostal;
 	private String addressDetail;
 	private String memo;
+	private String cardName;
+	private Long cardNum;
+	private String cardExp;
 	private List<OrderDetailDTO> orderDetailDTOs;
-	private ProductDTO productDTO;
 	private List<ProductDTO> productDTOs;
-	private PayMethodDTO payMethodDTO;
+	private ProductDTO productDTO;
 	
 	
 	public Long getOrderNum() {
@@ -90,17 +92,29 @@ public class UsersOrderDTO {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
+	public String getCardName() {
+		return cardName;
+	}
+	public void setCardName(String cardName) {
+		this.cardName = cardName;
+	}
+	public Long getCardNum() {
+		return cardNum;
+	}
+	public void setCardNum(Long cardNum) {
+		this.cardNum = cardNum;
+	}
+	public String getCardExp() {
+		return cardExp;
+	}
+	public void setCardExp(String cardExp) {
+		this.cardExp = cardExp;
+	}
 	public List<OrderDetailDTO> getOrderDetailDTOs() {
 		return orderDetailDTOs;
 	}
 	public void setOrderDetailDTOs(List<OrderDetailDTO> orderDetailDTOs) {
 		this.orderDetailDTOs = orderDetailDTOs;
-	}
-	public ProductDTO getProductDTO() {
-		return productDTO;
-	}
-	public void setProductDTO(ProductDTO productDTO) {
-		this.productDTO = productDTO;
 	}
 	public List<ProductDTO> getProductDTOs() {
 		return productDTOs;
@@ -108,10 +122,11 @@ public class UsersOrderDTO {
 	public void setProductDTOs(List<ProductDTO> productDTOs) {
 		this.productDTOs = productDTOs;
 	}
-	public PayMethodDTO getPayMethodDTO() {
-		return payMethodDTO;
+	public ProductDTO getProductDTO() {
+		return productDTO;
 	}
-	public void setPayMethodDTO(PayMethodDTO payMethodDTO) {
-		this.payMethodDTO = payMethodDTO;
+	public void setProductDTO(ProductDTO productDTO) {
+		this.productDTO = productDTO;
 	}
+	
 }

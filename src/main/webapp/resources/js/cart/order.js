@@ -22,6 +22,8 @@ window.onload = function(){
     const newText1 = document.createTextNode(totaling);
     const newText2 = document.createElement('input');
     newText2.setAttribute("type","hidden");
+    newText2.setAttribute("name", "totalPrice");
+    newText2.setAttribute("id", "totalPrice");
     newText2.setAttribute("value", totaling);
     totalPrice[0].appendChild(newText1);
     totalPrice[0].appendChild(newText2);
@@ -42,3 +44,12 @@ window.onload = function(){
 // });
 
 
+const btnCheck = document.querySelector(".mainStreet");
+btnCheck.addEventListener("mousemove", function(){
+    
+    let address = document.querySelector("#address").value;
+    let detailAddress = document.querySelector('#detailAddress').value;
+    let extraAddress = document.querySelector("#extraAddress").value;
+
+    document.querySelector("#addressDetail2").value = address + detailAddress + extraAddress;
+});
