@@ -37,4 +37,8 @@ public class CartDAO {
 		return sqlSession.insert(NAMESPACE+"order", usersOrderDTO);
 	}
 	
+	public int orderDetail(OrderDetailDTO orderDetailDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"orderDetail", orderDetailDTO);
+	}
+	
 }

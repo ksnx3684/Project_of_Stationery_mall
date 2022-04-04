@@ -35,4 +35,7 @@ public class CartService {
 		return cartDAO.order(usersOrderDTO);
 	}
 	
+	public int orderDetail(OrderDetailDTO orderDetailDTO) throws Exception {
+		return cartDAO.orderDetail(orderDetailDTO);
+	}
 }

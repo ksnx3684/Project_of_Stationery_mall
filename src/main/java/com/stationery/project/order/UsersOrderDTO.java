@@ -3,6 +3,7 @@ package com.stationery.project.order;
 import java.sql.Date;
 import java.util.List;
 
+import com.stationery.project.cart.CartDTO;
 import com.stationery.project.product.ProductDTO;
 
 public class UsersOrderDTO extends OrderDetailDTO {
@@ -24,8 +25,15 @@ public class UsersOrderDTO extends OrderDetailDTO {
 	private List<OrderDetailDTO> orderDetailDTOs;
 	private List<ProductDTO> productDTOs;
 	private ProductDTO productDTO;
+	private List<CartDTO> cartDTOs;
 	
 	
+	public List<CartDTO> getCartDTOs() {
+		return cartDTOs;
+	}
+	public void setCartDTOs(List<CartDTO> cartDTOs) {
+		this.cartDTOs = cartDTOs;
+	}
 	public Long getOrderNum() {
 		return orderNum;
 	}

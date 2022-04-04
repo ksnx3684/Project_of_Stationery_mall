@@ -197,29 +197,46 @@
         <script>
             function payDisplayView(select){
                 let kakaopay = document.getElementById("kakaopay"); // 카카오페이
+                let kakaoPayConfirm = document.getElementById("kakaoPayConfirm") // 카카오페이 버튼
                 let cashpay = document.getElementById("cashpay"); // 무통장입금
+                let cahsPayConfirm = document.getElementById("cashPayConfirm"); // 무통장입금 버튼
     
                 if(select == 0){ // 카카오페이
                     kakaopay.style.display = 'block';
+                    kakaoPayConfirm.style.display = 'block';
                     cashpay.style.display = 'none';
+                    cashPayConfirm.style.display = 'none';
                     $('#kakao').attr('disabled', false); // 카카오페이 cardName 활성화
                     $('#cardNum1').attr('disabled', false); // 카카오페이 cardNum1 활성화
                     $('#cardExp1').attr('disabled', false); // 카카오페이 cardExp1 활성화
+                    $('#payRequest1').attr('disabled', false); // 카카오페이 요청 활성화
                     $('#cash').attr('disabled', true); // 무통장입금 cardName 비활성
-                    $('#cardNum2').attr('disabled', true); // 무통장입금 cardNum2 활성화
-                    $('#cardExp2').attr('disabled', true); // 무통장입금 cardExp2 활성화
+                    $('#cardNum2').attr('disabled', true); // 무통장입금 cardNum2 비활성
+                    $('#cardExp2').attr('disabled', true); // 무통장입금 cardExp2 비활성
+                    $('#payRequest2').attr('disabled', true); // 무통장입금 요청 비활성
 
                 } else { // 무통장입금
                     kakaopay.style.display = 'none';
+                    kakaoPayConfirm.style.display = 'none';
                     cashpay.style.display = 'block';
+                    cashPayConfirm.style.display = 'block';
                     $('#kakao').attr('disabled', true); // 카카오페이 cardName 비활성
                     $('#cardNum1').attr('disabled', true); // 카카오페이 cardNum1 비활성
                     $('#cardExp1').attr('disabled', true); // 카카오페이 cardExp1 비활성
+                    $('#payRequest1').attr('disabled', true); // 카카오페이 요청 비활성
                     $('#cash').attr('disabled', false); // 무통장입금 cardName 활성화
                     $('#cardNum2').attr('disabled', false); // 무통장입금 cardNum2 활성화
-                    $('#cardExp2').attr('disabled', false); // 무통장입금 cardExp2 활성화               
+                    $('#cardExp2').attr('disabled', false); // 무통장입금 cardExp2 활성화
+                    $('#payRequest2').attr('disabled', false); // 무통장입금 요청 활성화               
                 }
             }
+            // function lawCheck(){
+            //     let lawChecking = $("input:checkbox[id='law']").is('checked');
+            //     if(!lawChecking){
+            //         alert("전자상거래법에 동의해주세요");
+            //         return false;
+            //     }
+            // }
         </script>
         <h1>결제수단</h1>
         카카오페이<input type="radio" name="payment" id="kakaobtn" onclick="payDisplayView('0')" value="kakao" checked>
@@ -237,10 +254,18 @@
             <div>입금계좌 : 신한은행 이병훈 111-111111-11-111</div>
         </div>
         <br>
-        <div><input type="checkbox"> 동의합니다. (전자상거래법 제 8조 제2항)</div>
+        <!-- <div><input type="checkbox" id="law" value="0"> 동의합니다. (전자상거래법 제 8조 제2항)</div> -->
+        <div>전자상거래법 제 8조 제2항에 동의하고 결제합니다.</div>
+        <br>
+        <div id="kakaoPayConfirm">
+            <input type="hidden" name="payRequest" id="payRequest1" value="kakao">
+            <img src="../resources/img/payment_icon_yellow_medium.png">
+            <button id="finalPay">결제하기</button>
+        </div>
 
-        <div id="payConfirm">
-            <button>결제하기</button>
+        <div id="cashPayConfirm" style="display:none">
+            <input type="hidden" name="payRequest" id="payRequest2" value="cash" disabled>
+            <button id="finalPay">결제하기</button>
         </div>
     </div>
     </form>

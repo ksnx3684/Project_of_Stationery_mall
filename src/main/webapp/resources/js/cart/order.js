@@ -1,6 +1,8 @@
 const totalPrice = document.getElementsByClassName("totalPrice");
 const count = document.querySelectorAll(".count");
 const price = document.querySelectorAll(".price");
+const law = document.getElementById("law");
+let finalPay = document.getElementById("finalPay");
 
 const total = new Array;
 let totaling = 0;
@@ -53,3 +55,10 @@ btnCheck.addEventListener("mousemove", function(){
 
     document.querySelector("#addressDetail2").value = address + detailAddress + extraAddress;
 });
+
+// finalPay.addEventListener("click", function(){
+//     if(law.checked != true){
+//         alert("전자상거래법에 동의해주세요");
+//         return false;
+//     }
+// });

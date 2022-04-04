@@ -2,10 +2,11 @@ package com.stationery.project.cart;
 
 import java.util.List;
 
+import com.stationery.project.order.UsersOrderDTO;
 import com.stationery.project.product.ProductDTO;
 import com.stationery.project.users.UsersDTO;
 
-public class CartDTO {
+public class CartDTO extends UsersOrderDTO {
 
 	private Long cartNum;
 	private String id;
@@ -13,21 +14,11 @@ public class CartDTO {
 	private Long productCount;
 	private Long totalPrice;
 	private UsersDTO usersDTO;
-	public List<ProductDTO> getProductDTOs() {
-		return productDTOs;
-	}
-	public void setProductDTOs(List<ProductDTO> productDTOs) {
-		this.productDTOs = productDTOs;
-	}
+	
 	private List<ProductDTO> productDTOs;
 	private ProductDTO productDTO;
 	
-	public ProductDTO getProductDTO() {
-		return productDTO;
-	}
-	public void setProductDTO(ProductDTO productDTO) {
-		this.productDTO = productDTO;
-	}
+	
 	public Long getCartNum() {
 		return cartNum;
 	}
@@ -64,11 +55,17 @@ public class CartDTO {
 	public void setUsersDTO(UsersDTO usersDTO) {
 		this.usersDTO = usersDTO;
 	}
-//	public List<ProductDTO> getProductDTOs() {
-//		return productDTOs;
-//	}
-//	public void setProductDTOs(List<ProductDTO> productDTOs) {
-//		this.productDTOs = productDTOs;
-//	}
+	public List<ProductDTO> getProductDTOs() {
+		return productDTOs;
+	}
+	public void setProductDTOs(List<ProductDTO> productDTOs) {
+		this.productDTOs = productDTOs;
+	}
+	public ProductDTO getProductDTO() {
+		return productDTO;
+	}
+	public void setProductDTO(ProductDTO productDTO) {
+		this.productDTO = productDTO;
+	}
 	
 }

@@ -21,6 +21,8 @@ import com.stationery.project.users.UsersController;
 import com.stationery.project.users.UsersDTO;
 import com.stationery.project.users.UsersService;
 
+import oracle.jdbc.proxy.annotation.Post;
+
 
 @Controller
 @RequestMapping("/cart/*")
@@ -33,6 +35,7 @@ public class CartController extends UsersController{ // UsersController에서 �
 	private UsersService usersService;
 	
 	List<CartDTO> lists = new ArrayList<CartDTO>();
+	int totalsize = 0;
 	
 //	@GetMapping("view")
 //	public String view(Model model, HttpSession httpSession, CartDTO cartDTO) throws Exception {
@@ -100,8 +103,6 @@ public class CartController extends UsersController{ // UsersController에서 �
 	// 주문 폼으로 가기
 	@GetMapping("order")
 	public void order(Model model, HttpSession httpSession) throws Exception {
-	
-		//usersDTO = usersService.mypage(usersDTO);	
 		
 		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
 		
@@ -113,10 +114,30 @@ public class CartController extends UsersController{ // UsersController에서 �
 	
 	// 주문 정보 DB에 전송
 	@PostMapping("order")
-	public String order(UsersOrderDTO usersOrderDTO) throws Exception {
+	public String order(UsersOrderDTO usersOrderDTO, OrderDetailDTO orderDetailDTO, String payRequest) throws Exception {
 		
-		cartService.order(usersOrderDTO);
+		if(payRequest.equals("kakao")) {
+
+			return "redirect:../order/kakaoPay";
+			
+		} else {
+			
+			cartService.order(usersOrderDTO);
+
+			for(int i = 0; i < lists.size(); i++) {
+				orderDetailDTO.setProductNum(lists.get(i).getProductNum());
+				orderDetailDTO.setName(lists.get(i).getProductDTO().getName());
+				orderDetailDTO.setCount(lists.get(i).getProductCount());
+				orderDetailDTO.setPrice(lists.get(i).getProductDTO().getPrice());
+				
+				cartService.orderDetail(orderDetailDTO);
+			}
+			
+			return "redirect:../order/orderComplete";
+			
+		}
 		
-		return "redirect:./orderComplete";
+		
 	}
+		
 }

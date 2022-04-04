@@ -56,18 +56,19 @@
 	</select>
 	
 	<insert id="order" parameterType="UsersOrderDTO">
+		INSERT INTO USERS_ORDER(ORDERNUM, ID, ORDERDATE, ORDERCHECK, PAYCHECK, TOTALPRICE, ADDRESSNAME, ADDRESSPHONE, ADDRESSPOSTAL, ADDRESSDETAIL, MEMO, CARDNAME, CARDNUM, CARDEXP)
+		VALUES(USERS_ORDER_SEQ.NEXTVAL, #{id}, SYSDATE, #{orderCheck}, #{payCheck}, #{totalPrice}, #{addressName}, #{addressPhone}, #{addressPostal}, #{addressDetail}, #{memo}, #{cardName}, #{cardNum}, #{cardExp})
+	</insert>
+	<insert id="orderDetail" parameterType="List">
+		INSERT INTO ORDER_DETAIL(DETAILNUM, ORDERNUM, PRODUCTNUM, COUNT, PRICE, NAME)
+		VALUES(ORDER_DETAIL_SEQ.NEXTVAL, (SELECT NVL(MAX(ORDERNUM), 0) FROM USERS_ORDER), #{productNum}, #{count}, #{price}, #{name})
+	</insert>
+	<!-- <insert id="order" parameterType="CartDTO">
 		INSERT ALL
 		INTO USERS_ORDER(ORDERNUM, ID, ORDERDATE, ORDERCHECK, PAYCHECK, TOTALPRICE, ADDRESSNAME, ADDRESSPHONE, ADDRESSPOSTAL, ADDRESSDETAIL, MEMO, CARDNAME, CARDNUM, CARDEXP)
-		VALUES(USERS_ORDER_SEQ.NEXTVAL, #{id}, SYSDATE, #{orderCheck}, #{payCheck}, #{totalPrice}, #{addressName}, #{addressPhone}, #{addressPostal}, #{addressDetail}, #{memo}, #{cardName}, #{cardNum}, #{cardExp})			
-		<foreach collection="list">
-			INTO ORDER_DETAIL(DETAILNUM, ORDERNUM, PRODUCTNUM, COUNT, PRICE, NAME)
-			VALUES(ORDER_DETAIL_SEQ.NEXTVAL, USERS_ORDER_SEQ.NEXTVAL, #{productNum}, #{count}, #{price}, #{name})
-		</foreach>
+		VALUES(USERS_ORDER_SEQ.NEXTVAL, #{id}, SYSDATE, #{orderCheck}, #{payCheck}, #{totalPrice}, #{addressName}, #{addressPhone}, #{addressPostal}, #{addressDetail}, #{memo}, #{cardName}, #{cardNum}, #{cardExp})
+		INTO ORDER_DETAIL(DETAILNUM, ORDERNUM, PRODUCTNUM, COUNT, PRICE, NAME)
+		VALUES(ORDER_DETAIL_SEQ.NEXTVAL, USERS_ORDER_SEQ.NEXTVAL, #{productNum}, #{count}, #{price}, #{name})
 		SELECT * FROM DUAL
-	</insert>
-	<!-- <insert id="orderDetail" parameterType="OrderDetailDTO">
-			INSERT INTO ORDER_DETAIL(DETAILNUM, ORDERNUM, PRODUCTNUM, COUNT, PRICE, NAME)
-			VALUES(ORDER_DETAIL_SEQ.NEXTVAL, USERS_ORDER_SEQ.NEXTVAL, #{productNum}, #{count}, #{price}, #{name})
 	</insert> -->
-
 </mapper>
