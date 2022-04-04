@@ -5,6 +5,13 @@
 
 <mapper namespace="com.stationery.project.product.ProductDAO">
 
+	<!-- 옵션없는 상품 재고 업데이트 -->
+	<update id="productStockUpdate" parameterType="ProductDTO">
+		update product
+		set stock=#{stock}+stock
+		where productnum=#{productNum}
+	</update>
+
 	<!-- update option stock -->
 	<update id="stockUpdate" parameterType="OptionDTO">
 		update product_option 
@@ -192,7 +199,7 @@
 	<update id="update" parameterType="ProductDTO">
 		update product
 		set
-		categorynum=#{categoryNum},name=#{name},contents=#{contents},price=#{price},stock=#{stock}
+		categorynum=#{categoryNum},name=#{name},contents=#{contents},price=#{price},stock=stock+#{stock}
 		where productnum=#{productNum}
 	</update>
 	

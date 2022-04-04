@@ -44,9 +44,11 @@ options.addEventListener("click",function(event){
 
 })
 
-//옵션추가 버튼 클릭시 
+//옵션추가 버튼 클릭시 총재고 폼 삭제 
 optionAdd_btn.addEventListener("click",function(){
+    if(stockForm!=null){
     stockForm.remove();
+    }
 
 //상품재고 폼 삭제 
 if(stockForm!=null){
@@ -101,17 +103,22 @@ if(oriOption==null){
     num1++;
 })
 
+
 //옵션 재고 합 
-let sum=0;
-for(i=0;i<stock.length;i++){
-    sum=+stock
-}
+// if(stock!=null){
+// let sum=0;
+// alert(stock.value)
+// for(i=0;i<stock.length;i++){
+//     sum+=stock.value
+// }
+// }
 
+//옵션재고 합 보내는 form 
+// let totalStockForm=document.createElement('input')
+// totalStockForm.setAttribute("type","hidden") 
+// totalStockForm.setAttribute("name","optionSum") 
+// totalStockForm.setAttribute("value",sum);
 
-let totalStockForm=document.createElement('input')
-totalStockForm.setAttribute("type","hidden") 
-totalStockForm.setAttribute("name","stock") 
-totalStockForm.setAttribute("value",sum);
 
 
 

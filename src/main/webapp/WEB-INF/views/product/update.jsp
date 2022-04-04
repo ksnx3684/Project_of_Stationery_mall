@@ -16,11 +16,22 @@
 		가격<input type="text" name="price" value="${dto.price}">
 		
 		
-
-		<c:if test="${empty options}">
+<!-- 재고 -->
+		<c:choose>
+			<c:when test="${empty options}">
+				재고<input type="text" value="${dto.stock}" id="stockForm" readonly>
+				재고 추가 <input type="text" name="stock" value="0"> 
+			</c:when>
+			<c:otherwise>
+				재고<input type="hidden" value="${dto.stock}" id="stockForm">
+				재고 추가 <input type="hidden" name="stock" value="0"> 
+			</c:otherwise>
+		</c:choose>
+		<%-- <c:if test="${empty options}"> 
 			재고<input type="text" name="stock" value="${dto.stock}" id="stockForm">
+			재고 추가 <input type="text" name="stock" value="0"> 
 		</c:if>
-		
+		 --%>
 <hr><!--------카테고리------------->		
 		<div>
 			category <select name="categoryNum">

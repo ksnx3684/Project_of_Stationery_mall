@@ -129,27 +129,22 @@ public class ProductController {
 	}
 	
 	@PostMapping("update")
-	public String update(ProductDTO productDTO,MultipartFile[] files,MultipartFile t_files,String[] options,String[] optionStock,String[] optionNum)throws Exception{
+	public String update(ProductDTO productDTO,MultipartFile[] files,MultipartFile t_files,String[] options,String[] optionStock,String[] optionNum, Integer productStock)throws Exception{
 		int result=productService.update(productDTO,files,t_files);
 		int productNum=productDTO.getProductNum();
 		
-
 		
 		if(options!=null) { //option추가한경우에만 
 		productService.optionAdd(options, productNum);
 		}
 		
+		//option 재고 추가 
+		if(optionStock!=null) {
+			productService.stockUpdate(optionStock,optionNum,productNum);
+		}
 		
-		productService.stockUpdate(optionStock,optionNum,productNum);
 
-		//stock update 
 
-//		System.out.println(optionDTOs.get(0).getOptionNum());
-//		System.out.println(optionDTOs.get(1).getOptionNum());
-//		int result2= productService.stockUpdate(optionDTOs);
-	
-
-		
 		return "redirect:./list";
 	}
 

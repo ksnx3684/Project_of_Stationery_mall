@@ -21,21 +21,30 @@ public class ProductService {
 	@Autowired
 	private ProductFileManager fileManager;
 	
-	
+	public int productStockUpdate(int productNum,int stock) throws Exception{
+		ProductDTO productDTO=new ProductDTO();
+		productDTO.setStock(stock);
+		productDTO.setProductNum(productNum);
+		return productDAO.productStockUpdate(productDTO);
+	}
 
 
 	public int stockUpdate(String[] optionStock, String[] optionNum, int productNum) throws Exception {
-int result=0;
+		int result=0;
+		int sum=0;
 		for (int i = 0; i < optionStock.length; i++) {
-			
-			
 			OptionDTO optionDTO = new OptionDTO();
 			optionDTO.setOptionStock(Integer.parseInt(optionStock[i]));
 			optionDTO.setOptionNum(Integer.parseInt(optionNum[i]));
 			optionDTO.setProductNum(productNum);
 			result=productDAO.stockUpdate(optionDTO);
-		
+			sum+=Integer.parseInt(optionStock[i]);
 		}
+		//총재고에 추가 
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setStock(sum);
+		productDTO.setProductNum(productNum);
+		productDAO.productStockUpdate(productDTO);
 		
 		return result;
 	}

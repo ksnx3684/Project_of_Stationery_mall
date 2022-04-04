@@ -21,6 +21,9 @@ public class ProductDAO {
 	private final String NAMESPACE="com.stationery.project.product.ProductDAO.";
 	
 	
+	public int productStockUpdate(ProductDTO productDTO)throws Exception{
+		return sqlSession.update(NAMESPACE+"productStockUpdate", productDTO);
+	}
 	
 	public int stockUpdate(OptionDTO optionDTO)throws Exception{
 		return sqlSession.update(NAMESPACE+"stockUpdate", optionDTO);
