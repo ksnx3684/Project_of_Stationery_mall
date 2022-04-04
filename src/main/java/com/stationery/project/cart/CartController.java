@@ -117,8 +117,12 @@ public class CartController extends UsersController{ // UsersController에서 �
 	public String order(UsersOrderDTO usersOrderDTO, OrderDetailDTO orderDetailDTO, String payRequest) throws Exception {
 		
 		if(payRequest.equals("kakao")) {
-
+			
 			return "redirect:../order/kakaoPay";
+			
+		} else if(payRequest.equals("naver")) {
+			
+			return "redirect:../order/naverPay";
 			
 		} else {
 			
@@ -131,12 +135,12 @@ public class CartController extends UsersController{ // UsersController에서 �
 				orderDetailDTO.setPrice(lists.get(i).getProductDTO().getPrice());
 				
 				cartService.orderDetail(orderDetailDTO);
+				
 			}
 			
 			return "redirect:../order/orderComplete";
 			
 		}
-		
 		
 	}
 		

@@ -17,6 +17,11 @@ public class OrderController {
 	@GetMapping("kakaoPay")
 	public void kakaoPay() throws Exception {
 	}
+	
+	// 네이버페이 결제 진행 화면
+	@GetMapping("naverPay")
+	public void naverPay() throws Exception {
+	}
 
 	// 주문 완료 폼
 	@GetMapping("orderComplete")

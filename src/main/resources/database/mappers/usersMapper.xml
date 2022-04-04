@@ -105,6 +105,9 @@
 		<result column="addressPostal" property="addressPostal"/>
 		<result column="addressDetail" property="addressDetail"/>
 		<result column="memo" property="memo"/>
+		<result column="cardName" property="cardName"/>
+		<result column="cardNum" property="cardNum"/>
+		<result column="cardExp" property="cardExp"/>
 		<!-- <collection property="payMethodDTO" resultMap="PayMethodDTO"/> -->
 		<collection property="orderDetailDTOs" javaType="List" resultMap="OrderDetailDTO"/>
 	</resultMap>

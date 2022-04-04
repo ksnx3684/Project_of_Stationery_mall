@@ -181,9 +181,7 @@ public class UsersController {
 	// infochange 기능
 	@PostMapping("infochange")
 	public String infochange(UsersDTO usersDTO, MultipartFile multipartFile) throws Exception {
-
 		int result = usersService.infochange(usersDTO, multipartFile);
-
 		return "redirect:./mypage";
 	}
 	
@@ -247,9 +245,7 @@ public class UsersController {
 	// withdrawalfinal 기능
 	@PostMapping("withdrawalfinal")
 	public String withdrawalfinal(UsersDTO usersDTO, HttpSession httpSession) throws Exception {
-		
 		UsersDTO users = (UsersDTO)httpSession.getAttribute("withdrawal");
-		
 		int result = usersService.withdrawalfinal(users);
 		httpSession.invalidate();
 		System.out.println(users.getId());

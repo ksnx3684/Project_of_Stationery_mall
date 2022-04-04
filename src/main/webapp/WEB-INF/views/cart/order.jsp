@@ -115,8 +115,8 @@
         <h1 class="totalPrice">최종 결제금액 : </h1>
         <br>
         <h1>배송주소</h1>
-        기본배송지<input type="radio" name="col" onclick="displayView('0')" value="defaultAddress" checked>
-        새로입력<input type="radio" name="col" onclick="displayView('1')" value="newAddress">
+        <input type="radio" name="col" onclick="displayView('0')" value="defaultAddress" checked>기본배송지
+        <input type="radio" name="col" onclick="displayView('1')" value="newAddress">새로입력
         <br>
         <legend>이름</legend><input type="text" name="addressName" id="addressName" value="${myinfo.name}">
         <br>
@@ -198,37 +198,72 @@
             function payDisplayView(select){
                 let kakaopay = document.getElementById("kakaopay"); // 카카오페이
                 let kakaoPayConfirm = document.getElementById("kakaoPayConfirm") // 카카오페이 버튼
+                let naverpay = document.getElementById("naverpay"); // 네이버페이
+                let naverPayConfirm = document.getElementById("naverPayConfirm"); // 네이버페이 버튼
                 let cashpay = document.getElementById("cashpay"); // 무통장입금
                 let cahsPayConfirm = document.getElementById("cashPayConfirm"); // 무통장입금 버튼
     
                 if(select == 0){ // 카카오페이
                     kakaopay.style.display = 'block';
                     kakaoPayConfirm.style.display = 'block';
+                    naverpay.style.display = 'none';
+                    naverPayConfirm.style.display = 'none';
                     cashpay.style.display = 'none';
                     cashPayConfirm.style.display = 'none';
                     $('#kakao').attr('disabled', false); // 카카오페이 cardName 활성화
                     $('#cardNum1').attr('disabled', false); // 카카오페이 cardNum1 활성화
                     $('#cardExp1').attr('disabled', false); // 카카오페이 cardExp1 활성화
                     $('#payRequest1').attr('disabled', false); // 카카오페이 요청 활성화
+                    $('#naver').attr('disabled', true); // 네이버페이 cardName 비활성
+                    $('#cardNum2').attr('disabled', true); // 네이버페이 cardNum2 비활성
+                    $('#cardExp2').attr('disabled', true); // 네이버페이 cardExp2 비활성
+                    $('#payRequest2').attr('disabled', true); // 네이버페이 요청 비활성
                     $('#cash').attr('disabled', true); // 무통장입금 cardName 비활성
-                    $('#cardNum2').attr('disabled', true); // 무통장입금 cardNum2 비활성
-                    $('#cardExp2').attr('disabled', true); // 무통장입금 cardExp2 비활성
-                    $('#payRequest2').attr('disabled', true); // 무통장입금 요청 비활성
+                    $('#cardNum3').attr('disabled', true); // 무통장입금 cardNum3 비활성
+                    $('#cardExp3').attr('disabled', true); // 무통장입금 cardExp3 비활성
+                    $('#payRequest3').attr('disabled', true); // 무통장입금 요청 비활성
+
+                } else if(select == 1) { // 네이버페이
+                    kakaopay.style.display = 'none';
+                    kakaoPayConfirm.style.display = 'none';
+                    naverpay.style.display = 'block';
+                    naverPayConfirm.style.display = 'block';
+                    cashpay.style.display = 'none';
+                    cashPayConfirm.style.display = 'none';
+                    $('#kakao').attr('disabled', true); // 카카오페이 cardName 비활성
+                    $('#cardNum1').attr('disabled', true); // 카카오페이 cardNum1 비활성
+                    $('#cardExp1').attr('disabled', true); // 카카오페이 cardExp1 비활성
+                    $('#payRequest1').attr('disabled', true); // 카카오페이 요청 비활성
+                    $('#naver').attr('disabled', false); // 네이버페이 cardName 활성화
+                    $('#cardNum2').attr('disabled', false); // 네이버페이 cardNum2 활성화
+                    $('#cardExp2').attr('disabled', false); // 네이버페이 cardExp2 활성화
+                    $('#payRequest2').attr('disabled', false); // 네이버페이 요청 활성화
+                    $('#cash').attr('disabled', true); // 무통장입금 cardName 비활성
+                    $('#cardNum3').attr('disabled', true); // 무통장입금 cardNum3 비활성
+                    $('#cardExp3').attr('disabled', true); // 무통장입금 cardExp3 비활성
+                    $('#payRequest3').attr('disabled', true); // 무통장입금 요청 비활성
 
                 } else { // 무통장입금
                     kakaopay.style.display = 'none';
                     kakaoPayConfirm.style.display = 'none';
+                    naverpay.style.display = 'none';
+                    naverPayConfirm.style.display = 'none';
                     cashpay.style.display = 'block';
                     cashPayConfirm.style.display = 'block';
                     $('#kakao').attr('disabled', true); // 카카오페이 cardName 비활성
                     $('#cardNum1').attr('disabled', true); // 카카오페이 cardNum1 비활성
                     $('#cardExp1').attr('disabled', true); // 카카오페이 cardExp1 비활성
                     $('#payRequest1').attr('disabled', true); // 카카오페이 요청 비활성
+                    $('#naver').attr('disabled', true); // 네이버페이 cardName 비활성
+                    $('#cardNum2').attr('disabled', true); // 네이버페이 cardNum2 비활성
+                    $('#cardExp2').attr('disabled', true); // 네이버페이 cardExp2 비활성
+                    $('#payRequest2').attr('disabled', true); // 네이버페이 요청 비활성
                     $('#cash').attr('disabled', false); // 무통장입금 cardName 활성화
-                    $('#cardNum2').attr('disabled', false); // 무통장입금 cardNum2 활성화
-                    $('#cardExp2').attr('disabled', false); // 무통장입금 cardExp2 활성화
-                    $('#payRequest2').attr('disabled', false); // 무통장입금 요청 활성화               
+                    $('#cardNum3').attr('disabled', false); // 무통장입금 cardNum3 활성화
+                    $('#cardExp3').attr('disabled', false); // 무통장입금 cardExp3 활성화
+                    $('#payRequest3').attr('disabled', false); // 무통장입금 요청 활성화               
                 }
+                
             }
             // function lawCheck(){
             //     let lawChecking = $("input:checkbox[id='law']").is('checked');
@@ -238,19 +273,27 @@
             //     }
             // }
         </script>
+        
+        
         <h1>결제수단</h1>
-        카카오페이<input type="radio" name="payment" id="kakaobtn" onclick="payDisplayView('0')" value="kakao" checked>
-        무통장입금<input type="radio" name="payment" id="cashbtn" onclick="payDisplayView('1')" value="cash">
+        <input type="radio" name="payment" id="kakaobtn" onclick="payDisplayView('0')" value="kakao" checked><img src="../resources/img/payment_icon_yellow_medium.png" style="width:60px; height:25px">카카오페이<br><br>
+        <input type="radio" name="payment" id="naverbtn" onclick="payDisplayView('1')" value="naver"><img src="../resources/img/naverpay.png" style="width:74px; height:18px">네이버페이<br><br>
+        <input type="radio" name="payment" id="cashbtn" onclick="payDisplayView('2')" value="cash">무통장입금
 
         <div id="kakaopay">
             <input type="hidden" name="cardName" id="kakao" value="카카오페이">
             <input type="hidden" name="cardNum" id="cardNum1" value="0">
             <input type="hidden" name="cardExp" id="cardExp1" value="2022/01/01">
         </div>
-        <div id="cashpay" style="display:none">
-            <input type="hidden" name="cardName" id="cash" value="무통장입금" disabled>
+        <div id="naverpay" style="display:none">
+            <input type="hidden" name="cardName" id="kakao" value="네이버페이" disabled>
             <input type="hidden" name="cardNum" id="cardNum2" value="1" disabled>
             <input type="hidden" name="cardExp" id="cardExp2" value="2022/01/01" disabled>
+        </div>
+        <div id="cashpay" style="display:none">
+            <input type="hidden" name="cardName" id="cash" value="무통장입금" disabled>
+            <input type="hidden" name="cardNum" id="cardNum3" value="2" disabled>
+            <input type="hidden" name="cardExp" id="cardExp3" value="2022/01/01" disabled>
             <div>입금계좌 : 신한은행 이병훈 111-111111-11-111</div>
         </div>
         <br>
@@ -259,13 +302,16 @@
         <br>
         <div id="kakaoPayConfirm">
             <input type="hidden" name="payRequest" id="payRequest1" value="kakao">
-            <img src="../resources/img/payment_icon_yellow_medium.png">
-            <button id="finalPay">결제하기</button>
+            <button id="kakaoPay">결제하기</button>
+        </div>
+        <div id="naverPayConfirm" style="display:none">
+            <input type="hidden" name="payRequest" id="payRequest2" value="naver" disabled>
+            <button id="naverPay">결제하기</button>
         </div>
 
         <div id="cashPayConfirm" style="display:none">
-            <input type="hidden" name="payRequest" id="payRequest2" value="cash" disabled>
-            <button id="finalPay">결제하기</button>
+            <input type="hidden" name="payRequest" id="payRequest3" value="cash" disabled>
+            <button id="cashPay">결제하기</button>
         </div>
     </div>
     </form>
