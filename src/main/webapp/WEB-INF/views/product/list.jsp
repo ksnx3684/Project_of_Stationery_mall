@@ -10,7 +10,6 @@
 <body>
 	<h1>List Page</h1>
 	<a href="./add">ADD</a>
-	<div>
 
 		<form action="./list" method="get">
 			<select name="categoryNum">
@@ -49,5 +48,7 @@
 				<a href="./list?page=${pager.lastNum+1}">NEXT</a>
 			</c:if>
 		</div>
+	
+
 </body>
 </html>

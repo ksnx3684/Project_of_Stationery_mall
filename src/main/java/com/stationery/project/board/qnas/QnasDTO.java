@@ -3,16 +3,17 @@ package com.stationery.project.board.qnas;
 import com.stationery.project.board.BoardDTO;
 
 public class QnasDTO extends BoardDTO{
-	private Long productNum;
+	private Integer productNum;
 	private Integer type;
 	private Long ref;
 	private Long step;
 	private Long depth;
 	
-	public Long getProductNum() {
+
+	public Integer getProductNum() {
 		return productNum;
 	}
-	public void setProductNum(Long productNum) {
+	public void setProductNum(Integer productNum) {
 		this.productNum = productNum;
 	}
 	public Integer getType() {

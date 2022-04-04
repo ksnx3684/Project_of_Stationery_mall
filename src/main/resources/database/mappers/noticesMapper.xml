@@ -5,6 +5,10 @@
     
 <mapper namespace="com.stationery.project.board.notices.NoticesDAO">
 
+	<select id="qnasList" parameterType="QnasDTO">
+		SELECT * FROM QNAS
+	</select>
+
 	<insert id="updateFile" parameterType="NoticesFileDTO">
 		INSERT INTO NOTICES_FILE (FILENUM, NUM, FILENAME, ORINAME)
  		VALUES (NOTICES_FILE_SEQ.NEXTVAL, #{num}, #{fileName}, #{oriName})

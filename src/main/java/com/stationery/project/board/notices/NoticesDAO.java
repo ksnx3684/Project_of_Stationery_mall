@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.stationery.project.board.BoardDAO;
 import com.stationery.project.board.BoardDTO;
 import com.stationery.project.board.BoardFileDTO;
+import com.stationery.project.board.qnas.QnasDTO;
 import com.stationery.project.util.Pager;
 
 @Repository
@@ -17,7 +18,6 @@ public class NoticesDAO implements BoardDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.stationery.project.board.notices.NoticesDAO.";
-	
 	
 	
 	@Override

@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.stationery.project.board.BoardDTO;
+import com.stationery.project.board.qnas.QnasDTO;
+import com.stationery.project.board.qnas.QnasService;
 import com.stationery.project.category.CategoryDTO;
 import com.stationery.project.category.CategoryService;
+import com.stationery.project.util.Pager;
 import com.stationery.project.util.ProductPager;
 
 @Controller
@@ -28,7 +32,8 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
-	
+	@Autowired
+	private QnasService qnasService;
 	// (add.jsp에 카테고리 출력위해 )
 	@Autowired
 	private CategoryService categoryService;
@@ -77,8 +82,13 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public ModelAndView detail(ProductDTO productDTO,ModelAndView mv) throws Exception{
+	public ModelAndView detail(ProductDTO productDTO,ModelAndView mv, Pager pager) throws Exception{
 		productDTO=productService.detail(productDTO);
+		QnasDTO qnasDTO = new QnasDTO();
+		qnasDTO.setProductNum(productDTO.getProductNum());
+		List<BoardDTO> qnasDTOs = qnasService.detailList(qnasDTO);
+		//List<BoardDTO> qnasDTOs = qnasService.list(pager);
+		mv.addObject("qnaDto",qnasDTOs);
 		mv.addObject("dto",productDTO);
 		mv.setViewName("product/detail");
 		

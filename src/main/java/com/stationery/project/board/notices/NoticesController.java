@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.stationery.project.board.BoardDTO;
+import com.stationery.project.board.qnas.QnasDTO;
 import com.stationery.project.util.Pager;
 
 @Controller

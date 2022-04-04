@@ -53,5 +53,48 @@
 
 		</div>
 	</div>
+	
+	<div class="table-container">
+		<h1>${board} qnas Page</h1>
+
+
+
+		<table class="table-basic">
+			<thead>
+				<tr>
+					<th>글번호</th>
+					<th>글제목</th>
+					<th>작성자</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${requestScope.qnaDto}" var="dto">
+					<tr>
+						<td>${dto.num}</td>
+						<td><a href="./detail?num=${dto.num}">${dto.title}</a></td>
+						<td>${dto.id}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+<%-- 		<div class="pager">
+			<c:if test="${pager.pre}">
+				<a href="./list?page=${pager.startNum-1}">◀</a>
+			</c:if>
+
+			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+				<a href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a>
+			</c:forEach>
+
+			<c:if test="${pager.next}">
+				<a href="./list?page=${pager.lastNum+1}">▶</a>
+			</c:if>
+
+		</div>
+ --%>
+	</div>
+	
+	
 </body>
 </html>
