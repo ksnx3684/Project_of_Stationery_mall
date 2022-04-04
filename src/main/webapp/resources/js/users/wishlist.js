@@ -42,8 +42,8 @@ ultag.addEventListener("click",function(event){
                         let result = this.responseText.trim();
                         if(result=='1'){
                         console.log("wishlist 추가 ")
-                    
-                        console.log(event.target.parentNode)
+                        }else if(result=='2'){
+                            alert('이미 위시리스트에 추가된 상품입니다.')
                         }else{
                             alert('wishlist 추가 실패')
                         }
@@ -69,8 +69,10 @@ ultag.addEventListener("click",function(event){
                         console.log("wishlist 삭제 ")
                     
                         console.log(event.target.parentNode)
-                        }else{
+                        }
+                        else{
                             alert('wishlist 삭제 실패')
+
                         }
                     }
                 }

@@ -30,13 +30,26 @@ public class UsersController {
 	private UsersService usersService;
 	
 	@PostMapping("deleteWishList")
-	public void deleteWishList(WishListDTO wishListDTO) throws Exception{
-		usersService.deleteWishList(wishListDTO);
+	public ModelAndView deleteWishList(WishListDTO wishListDTO) throws Exception{
+		ModelAndView mv= new ModelAndView();
+		int result=usersService.deleteWishList(wishListDTO);
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result",result);
+		return mv;
 	}
 	
 	@PostMapping("addWishList")
-	public void addWishList(WishListDTO wishListDTO) throws Exception{
+	public ModelAndView addWishList(WishListDTO wishListDTO) throws Exception{
+		ModelAndView mv= new ModelAndView();
+		int result=2;
+		WishListDTO ck=usersService.wishlistCk(wishListDTO);
+		if(ck==null) {
 		usersService.addWishList(wishListDTO);
+		result=1;
+		}
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result",result);
+		return mv;
 	}
 	
 	// join form 이동

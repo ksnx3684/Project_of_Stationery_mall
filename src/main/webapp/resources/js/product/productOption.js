@@ -46,8 +46,12 @@ options.addEventListener("click",function(event){
 
 //옵션추가 버튼 클릭시 
 optionAdd_btn.addEventListener("click",function(){
+    stockForm.remove();
 
+//상품재고 폼 삭제 
+if(stockForm!=null){
 stockForm.setAttribute("readonly","true");
+}
 
 //기존의 옵션이 없는 경우 
 if(oriOption==null){
@@ -63,9 +67,6 @@ if(oriOption==null){
     }
     
 }
-
-
-
     count1++;
 
     let div =document.createElement('div')
@@ -82,7 +83,7 @@ if(oriOption==null){
     stock.setAttribute("name","options") 
     stock.setAttribute("placeholder","ex) 10")
     stock.setAttribute("id","stock"+num1)
-
+    stock.setAttribute("clss","stock")
 
     let button = document.createElement('button');
     button.setAttribute("type","button");
@@ -100,6 +101,20 @@ if(oriOption==null){
     num1++;
 })
 
+//옵션 재고 합 
+let sum=0;
+for(i=0;i<stock.length;i++){
+    sum=+stock
+}
+
+
+let totalStockForm=document.createElement('input')
+totalStockForm.setAttribute("type","hidden") 
+totalStockForm.setAttribute("name","stock") 
+totalStockForm.setAttribute("value",sum);
+
+
+
 
 // 추가된 태그 삭제 
 optionResult.addEventListener("click",function(event){
@@ -113,6 +128,8 @@ optionResult.addEventListener("click",function(event){
   
 
 })
+
+
 
 
 

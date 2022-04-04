@@ -7,6 +7,10 @@
     
 <mapper namespace="com.stationery.project.users.UsersDAO">
 
+	<select id="wishlistCk" parameterType="WishListDTO" resultType="WishListDTO">
+		SELECT * FROM WISHLIST WHERE ID = #{id} and productNum=#{productNum}
+	</select>
+
 	<delete id="deleteWishList" parameterType="WishListDTO">
 		DELETE wishlist WHERE ID = #{id} and productnum=#{productNum}
 	</delete>

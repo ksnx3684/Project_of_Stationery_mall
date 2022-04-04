@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+#header {
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+
+#header:after {
+    content: "";
+    display: block;
+    *zoom: 1;
+    clear: both;
+}
+
+
+#header .part_01 {
+    position: relative;
+    z-index: 100;
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+    background: rgba(255,255,255,0.2);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}
+
+#header .part_01 .inner {
+    position: relative;
+    width: 100%;
+    max-width: 1260px;
+    height: 40px;
+    margin: 0 auto;
+}
+
+.JS_topMenu {
+    position: relative;
+    z-index: 10;
+    float: right;
+    margin: 0 .7% 0 0;
+    letter-spacing: -4px;
+    font-size: 0;
+}
