@@ -9,3 +9,6 @@
 .idResult{
     display: none;
 }
+#pwResult2, #pwResultCheck1{
+    color:#f90000;
+}

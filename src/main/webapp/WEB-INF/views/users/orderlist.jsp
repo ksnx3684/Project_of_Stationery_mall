@@ -9,6 +9,7 @@
 </head>
 <link rel="stylesheet" href="../resources/css/orderlist.css">
 <body>
+    <h1>주문내역</h1>
     <div class="li_table">
         <ul>
             <li class="menu">주문번호</li>

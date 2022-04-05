@@ -7,7 +7,10 @@
 <meta charset="UTF-8">
 <title>주문</title>
 </head>
-<link rel="stylesheet" href="../resources/css/order.css">
+    <link rel="stylesheet" href="../resources/css/order.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <body>
     <form action="./order" method="post" enctype="multipart/form-data">
     <script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>
@@ -77,7 +80,7 @@
 	</c:forEach> -->
 
     <div class="mainStreet">
-        <h1>주문 작성</h1>
+        <h2>주문 작성</h2>
         <table class="tg" style="table-layout: fixed; width: 800px">
             <colgroup>
             <col style="width: 550px">
@@ -111,33 +114,35 @@
         <input type="hidden" name="id" id="id" value="${myinfo.id}" readonly>
         <input type="hidden" name="orderCheck" id="orderCheck" value="0" readonly>
         <input type="hidden" name="payCheck" id="payCheck" value="0" readonly>
-
-        <h1 class="totalPrice">최종 결제금액 : </h1>
+        
         <br>
-        <h1>배송주소</h1>
-        <input type="radio" name="col" onclick="displayView('0')" value="defaultAddress" checked>기본배송지
-        <input type="radio" name="col" onclick="displayView('1')" value="newAddress">새로입력
+        <h2 class="totalPrice" style="display: inline;">최종 결제금액 : </h2><h2 style="display: inline;">원</h2>
         <br>
-        <legend>이름</legend><input type="text" name="addressName" id="addressName" value="${myinfo.name}">
         <br>
-        <legend>전화번호</legend><input type="text" name="addressPhone" id="addressPhone" value="${myinfo.phone}">
-        <br>
-        배송주소
+        <h2>배송주소</h2>
+        <label><input type="radio" name="col" onclick="displayView('0')" value="defaultAddress" checked>&nbsp;기본배송지&nbsp;</label>
+        <label><input type="radio" name="col" onclick="displayView('1')" value="newAddress">&nbsp;새로입력</label>
+        <br><br>
+        <label>이름</label><br><input type="text" name="addressName" id="addressName" value="${myinfo.name}">
+        <br><br>
+        <label>전화번호</label><br><input type="text" name="addressPhone" id="addressPhone" value="${myinfo.phone}">
+        <br><br>
+        <label>배송주소</label><br>
             <!-- 기본배송지 -->
             <div id="defaultAddress">
                 <input type="text" name="addressPostal" id="postalCode1" value="${myinfo.postalCode}" readonly>
                 <br>
-                <input type="text" name="addressDetail" id="addressDetail1" value="${myinfo.addressDetail}" readonly> 
+                <input type="text" name="addressDetail" id="addressDetail1" value="${myinfo.addressDetail}" style="width:300px" readonly> 
             </div>
             <!-- 기본배송지 -->
             <!-- 새로입력 -->
             <div id="newAddress" style="display:none">
                 <input type="text" name="addressPostal" id="postalCode" placeholder="우편번호" readonly disabled>
                 <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-                <input type="text" name="address" id="address" placeholder="주소" readonly disabled><br>
-                <input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소" disabled>
-                <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" disabled>
-                <input type="hidden" name="addressDetail" id="addressDetail2" readonly disabled>
+                <input type="text" name="address" id="address" placeholder="주소" style="width:300px" readonly disabled><br>
+                <input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소" style="width:300px" disabled>
+                <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" style="width:300px" disabled>
+                <input type="hidden" name="addressDetail" id="addressDetail2" readonly style="width:300px" disabled>
                 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
                 <script>
                     function sample6_execDaumPostcode() {
@@ -190,8 +195,8 @@
             </div>
             <!-- 새로입력 -->
         <br>
-        배송요청메모<div class="memo">
-            <input type="text" name="memo" id="memo" placeholder="30자 이내">
+        <label>배송요청메모</label><br><div class="memo">
+            <input type="text" name="memo" id="memo" placeholder="30자 이내" style="width:300px">
         </div>
 
         <script>
@@ -273,12 +278,12 @@
             //     }
             // }
         </script>
+        <br>
         
-        
-        <h1>결제수단</h1>
-        <input type="radio" name="payment" id="kakaobtn" onclick="payDisplayView('0')" value="kakao" checked><img src="../resources/img/payment_icon_yellow_medium.png" style="width:60px; height:25px">카카오페이<br><br>
-        <input type="radio" name="payment" id="naverbtn" onclick="payDisplayView('1')" value="naver"><img src="../resources/img/naverpay.png" style="width:74px; height:18px">네이버페이<br><br>
-        <input type="radio" name="payment" id="cashbtn" onclick="payDisplayView('2')" value="cash">무통장입금
+        <h2>결제수단</h2>
+        <label><input type="radio" name="payment" id="kakaobtn" onclick="payDisplayView('0')" value="kakao" checked>&nbsp;<img src="../resources/img/payment_icon_yellow_medium.png" style="width:60px; height:25px">&nbsp;카카오페이</label><br><br>
+        <label><input type="radio" name="payment" id="naverbtn" onclick="payDisplayView('1')" value="naver">&nbsp;<img src="../resources/img/naverpay.png" style="width:74px; height:18px">&nbsp;네이버페이</label><br><br>
+        <label><input type="radio" name="payment" id="cashbtn" onclick="payDisplayView('2')" value="cash">&nbsp;무통장입금</label>
 
         <div id="kakaopay">
             <input type="hidden" name="cardName" id="kakao" value="카카오페이">
@@ -302,16 +307,16 @@
         <br>
         <div id="kakaoPayConfirm">
             <input type="hidden" name="payRequest" id="payRequest1" value="kakao">
-            <button id="kakaoPay">결제하기</button>
+            <button id="kakaoPay" class="btn btn-primary">결제하기</button>
         </div>
         <div id="naverPayConfirm" style="display:none">
             <input type="hidden" name="payRequest" id="payRequest2" value="naver" disabled>
-            <button id="naverPay">결제하기</button>
+            <button id="naverPay" class="btn btn-primary">결제하기</button>
         </div>
 
         <div id="cashPayConfirm" style="display:none">
             <input type="hidden" name="payRequest" id="payRequest3" value="cash" disabled>
-            <button id="cashPay">결제하기</button>
+            <button id="cashPay" class="btn btn-primary">결제하기</button>
         </div>
     </div>
     </form>

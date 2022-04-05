@@ -7,13 +7,16 @@
 <meta charset="UTF-8">
 <title>장바구니</title>
 </head>
-<link rel="stylesheet" href="../resources/css/cartlist.css">
+    <link rel="stylesheet" href="../resources/css/cartlist.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <body>
 	<script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>
 
   <form action="./cartlist" method="post">
     <div class="mainStreet">
-      <h1>장바구니</h1>
+    <h2>장바구니</h2>
     <table class="tg" style="table-layout: fixed; width: 800px">
       <colgroup>
         <col style="width: 550px">
@@ -30,7 +33,7 @@
       <tbody>
         <c:forEach items="${cartlist}" var="dto">
           <tr class="contents">
-            <td class="tg-af47 name"><input class="check" name="cartNum" type="checkbox" data-cartNum="${dto.cartNum}" value="${dto.cartNum}">${dto.productDTO.name}</td>
+            <td class="tg-af47 name"><input class="check" name="cartNum" type="checkbox" data-cartNum="${dto.cartNum}" value="${dto.cartNum}">&nbsp;${dto.productDTO.name}</td>
             <td class="tg-af47 con count">${dto.productCount}</td>
             <td class="tg-af47 con price">${dto.productDTO.price}</td>
           </tr>
@@ -48,12 +51,12 @@
     </c:forEach>
     <span class="totalPrice">원</span><br>
       <!-- <a href="./cartOrder"><button id="selectOrder_btn">주문하기</button></a> -->
-      <span class="site-btn clear-btn" id="selectOrder_btn2"><button>주문하기</button></span>
-      <span><a href="../"><button type="button">쇼핑계속하기</button></a></span>
+      <span class="site-btn clear-btn id="selectOrder_btn2"><button class="btn btn-primary">주문하기</button></span>
+      <span><a href="../"><button type="button" class="btn btn-primary">쇼핑계속하기</button></a></span>
   </form>
 
   <form class="frm" action="./cartlistDelete" method="post" style="display: inline;">
-    <span id="selectDelete_btn"><button type="button">선택된 리스트 삭제</button></span>
+    <span id="selectDelete_btn"><button type="button" class="btn btn-danger">선택된 리스트 삭제</button></span>
     <script>
       $("#selectDelete_btn").click(function () {
           let confirm_val = confirm("선택한 상품을 삭제하시겠습니까?");
