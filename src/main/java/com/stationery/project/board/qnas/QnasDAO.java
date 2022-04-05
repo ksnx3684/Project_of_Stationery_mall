@@ -1,8 +1,8 @@
 package com.stationery.project.board.qnas;
 
+import java.util.HashMap;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,8 +16,12 @@ public class QnasDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.stationery.project.board.qnas.QnasDAO.";
 	
-	public List<BoardDTO> list(Pager pager) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"list", pager);
+	public List<BoardDTO> allList(Pager pager) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"allList", pager);
+	}
+	
+	public List<BoardDTO> list(HashMap<String, Object> map) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"list", map);
 	}
 
 	public QnasDTO detail(BoardDTO boardDTO) throws Exception {
@@ -31,6 +35,14 @@ public class QnasDAO {
 
 	public List<BoardDTO> detailList(BoardDTO boardDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"detailList", boardDTO);
+	}
+	
+	public int add(BoardDTO boardDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"add", boardDTO);
+	}
+	
+	public int reply(QnasDTO qnasDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"reply", qnasDTO);
 	}
 	
 }

@@ -2,16 +2,29 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
+
 <mapper namespace="com.stationery.project.board.qnas.QnasDAO">
 
-	<select id="detailList" parameterType="QnasDTO" resultType="QnasDTO">
-		SELECT * FROM QNAS 
-		WHERE PRODUCTNUM=#{productNum}
-	</select>
+ 	<insert id="reply" parameterType="QnasDTO">
+ 		insert into qnas (num, productNum, id, title, contents, type, ref, step, depth)
+ 		values (QNAS_SEQ.NEXTVAL, #{id}, #{title}, #{contents}, #{type}, #{ref}, #{step}, #{depth})
+ 	</insert>
+ 
+ 	<update id="stepUpdate" parameterType="QnasDTO">
+ 		update qnas set step=step+1
+ 		where ref=#{ref} and step>#{step}
+ 	</update>
 
-		<select id="list" parameterType="Pager" resultType="QnasDTO">
- 		SELECT * FROM
+	<insert id="add" parameterType="QnasDTO">
+		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+ 			SELECT QNAS_SEQ.NEXTVAL FROM DUAL
+ 		</selectKey>
+ 		insert into QNAS (num, productNum, id, title, contents, type, ref, step, depth)
+ 		values (#{num}, #{id}, #{title}, #{contents}, #{type}, #{num}, 0, 0)
+	</insert>
+
+	<select id="allList" resultType="QnasDTO" parameterType="Pager">
+		SELECT * FROM
 		    (SELECT rownum R, B.* FROM 
 		        (SELECT * FROM QNAS WHERE 
 		        	NUM>0 
@@ -28,33 +41,58 @@
 		        		</otherwise>
 		        	</choose>	
 		        	LIKE '%'||#{search}||'%'
-		            ORDER BY REF DESC, STEP ASC
+		            ORDER BY NUM DESC
 		         ) B
 		     )
-		WHERE R between #{startRow} and #{lastRow}
- 	</select>
- 	
- 	<select id="total" resultType="Long" parameterType="Pager">
- 		SELECT COUNT(NUM) FROM QNAS
- 		WHERE
- 			NUM>0 
-		    and 	       	
-		     <choose>
-		     	<when test="kind=='col1'">
-		     		TITLE
-		     	</when>
-		     	<when test="kind =='col2'">
-		     		CONTENTS
-		     	</when>
-		     	<otherwise>
-		     		ID
-		     	</otherwise>
-		     </choose>	
-        	LIKE '%'||#{search}||'%' 
- 	</select>
- 	
- 	<select id="detail" parameterType="QnasDTO">
- 		SELECT * FROM QNAS WHERE NUM=#{num}
- 	</select>
+		WHERE R between #{startRow} and #{lastRow} 
+	</select>
+
+	<select id="list" parameterType="hashmap" resultType="QnasDTO">
+		SELECT * FROM
+		(SELECT rownum R, B.* FROM
+		(SELECT * FROM QNAS WHERE
+		NUM>0
+		and
+		<choose>
+			<when test="kind=='col1'">
+				TITLE
+			</when>
+			<when test="kind =='col2'">
+				CONTENTS
+			</when>
+			<otherwise>
+				ID
+			</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%'
+		ORDER BY REF DESC, STEP ASC
+		) B
+		)
+		WHERE R between #{pager.startRow} and #{pager.lastRow} and
+		productNum=#{productNum}
+	</select>
+
+	<select id="total" resultType="Long" parameterType="Pager">
+		SELECT COUNT(NUM) FROM QNAS
+		WHERE
+		NUM>0
+		and
+		<choose>
+			<when test="kind=='col1'">
+				TITLE
+			</when>
+			<when test="kind =='col2'">
+				CONTENTS
+			</when>
+			<otherwise>
+				ID
+			</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%'
+	</select>
+
+	<select id="detail" parameterType="QnasDTO" resultType="QnasDTO">
+		SELECT * FROM QNAS WHERE NUM=#{num}
+	</select>
 
 </mapper>

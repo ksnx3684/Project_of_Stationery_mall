@@ -29,31 +29,8 @@
 			<p class="boardBtn">
 				<button type="button">문의하기</button>
 			</p>
-			<div class="qna-board-list">
-				<table class="table-basic">
+			
 
-					<tbody>
-						<c:forEach items="${requestScope.list}" var="dto">
-							<tr>
-								<td>${dto.num}</td>
-								<td><a href="./detail?num=${dto.num}"> <c:catch>
-											<c:forEach begin="1" end="${dto.depth}">↳&nbsp;</c:forEach>
-										</c:catch> ${dto.title}
-								</a></td>
-								<td>${dto.writer}</td>
-								<td>${dto.regDate}</td>
-								<td>${dto.hit}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-
-
-			</div>
-
-		</div>
-	</div>
-	
 	<div class="table-container">
 		<h1>${board} qnas Page</h1>
 
@@ -78,7 +55,7 @@
 			</tbody>
 		</table>
 
-<%-- 		<div class="pager">
+ 		<div class="pager">
 			<c:if test="${pager.pre}">
 				<a href="./list?page=${pager.startNum-1}">◀</a>
 			</c:if>
@@ -92,7 +69,10 @@
 			</c:if>
 
 		</div>
- --%>
+ 
+	</div>
+				
+		</div>
 	</div>
 	
 	

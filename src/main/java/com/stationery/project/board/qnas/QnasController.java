@@ -26,7 +26,7 @@ public class QnasController {
 	@GetMapping("list")
 	public ModelAndView list(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<BoardDTO> ar = qnasService.list(pager);
+		List<BoardDTO> ar = qnasService.allList(pager);
 		mv.addObject("list",ar);
 		mv.setViewName("board/list");
 		return mv;
@@ -40,6 +40,21 @@ public class QnasController {
 		mv.setViewName("board/detail");
 		
 		return mv;
+	}
+	
+	@GetMapping("add")
+	public ModelAndView add() throws Exception {
+		ModelAndView mv = new ModelAndView();
 		
+		mv.setViewName("board/add");
+		return mv;
+	}
+	
+	public ModelAndView add(QnasDTO qnasDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = qnasService.add(qnasDTO);
+		mv.setViewName("redirect:./list");
+		
+		return mv;
 	}
 }
