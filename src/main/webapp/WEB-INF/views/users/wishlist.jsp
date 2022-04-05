@@ -5,14 +5,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>위시리스트</title>
 </head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <body>
-<h1>1</h1>
-	<c:forEach items="${wishlistDTO}" var="dto">
-		<h1>wishNum : ${dto.wishNum}</h1>
-		<h1>id : ${dto.id}</h1>
-		<h1>productNum : ${dto.productNum}</h1>
-	</c:forEach>
+	<div class="container" style="text-align:center; width:800px">
+		<h2>위시리스트</h2>
+		<table class="table">
+		  <thead>
+			<tr class="success">
+			  <th style="text-align:center">번호</th>
+			  <th style="text-align:center">상품명</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<c:forEach items="${wishlistDTO}" var="dto">
+			<tr class="active">
+			  <td>${dto.wishNum}</td>
+			  <td onclick="location.href='./orderDetail?orderNum=${dto.wishNum}'">${dto.productDTO.name}</td> <!--나중에 링크 수정-->
+			</tr>
+			</c:forEach>
+		  </tbody>
+		</table>
+	</div>
 </body>
 </html>

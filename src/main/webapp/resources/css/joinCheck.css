@@ -59,10 +59,13 @@ a{
 .checkBox textarea{
     width: 96%;
     height: 200px;
-    margin: 0 2%;
+    margin: 2% 2%;
     padding: 10px 0 0 10px;
     background-color: #f7f7f7;
     color: #888;
     border: none;
 }
 
+#total{
+    margin-top: 5%;
+}

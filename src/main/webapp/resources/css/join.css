@@ -1,0 +1,14 @@
+.id_ok{
+    color:rgb(0, 0, 0);
+    display: none;
+}
+.id_no{
+    color:#f90000;
+    display: none;
+}
+.idResult{
+    display: none;
+}
+#pwResult2, #pwResultCheck1{
+    color:#f90000;
+}

@@ -27,21 +27,23 @@ let addressPhoneCheck = false;
 // ID Check
 id.addEventListener("blur", function(){
     if(id.value == ""){
-        idResult.innerHTML = "필수 입력사항입니다";
+        // idResult.innerHTML = "필수 입력사항입니다";
         idCheck = false;
     } else {
-        idResult.innerHTML = "";
+        // idResult.innerHTML = "";
         idCheck = true;
     }
 });
 
 // PW Check
 pw.addEventListener("blur", function(){
-    if(pw.value.length > 7 && pw.value.length < 13){
-        pwResult.innerHTML = "조건에 맞습니다";
+    if(pw.value.length > 7 && pw.value.length < 17){
+        pwResult1.innerHTML = "조건에 맞습니다";
+        pwResult2.innerHTML = "";
         pwCheck = true;
     } else {
-        pwResult.innerHTML = "비밀번호는 8자 이상 12자 이하로 설정하십시오";
+        pwResult1.innerHTML = "";
+        pwResult2.innerHTML = "비밀번호는 8글자 이상 16글자 이하로 설정하십시오";
         pwCheck = false;
     }
 });
@@ -51,17 +53,20 @@ pw.addEventListener("change", function(){
     pwCheck = false;
     pw2Check = false;
     pw2.value = "";
-    pwResultCheck.innerHTML = "";
+    pwResultCheck1.innerHTML = "";
+    pwResultCheck2.innerHTML = "";
     pw.focus();
 });
 
 // PW2 check
 pw2.addEventListener("blur", function(){
     if(pw.value != pw2.value){
-        pwResultCheck.innerHTML = "비밀번호가 일치하지 않습니다";
+        pwResultCheck1.innerHTML = "비밀번호가 일치하지 않습니다";
+        pwResultCheck2.innerHTML = "";
         pw2Check = false;
     } else {
-        pwResultCheck.innerHTML = "비밀번호가 일치합니다";
+        pwResultCheck1.innerHTML = "";
+        pwResultCheck2.innerHTML = "비밀번호가 일치합니다";
         pw2Check = true;
     }
 });

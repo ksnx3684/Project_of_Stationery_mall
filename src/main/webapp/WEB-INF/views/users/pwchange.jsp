@@ -6,24 +6,33 @@
 <meta charset="UTF-8">
 <title>비밀번호 변경</title>
 </head>
+<link rel="stylesheet" href="../resources/css/pwchange.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <body>
     <div id = total>
-    <form class="frm" action="./pwchange" method="post" id="frm" enctype="multipart/form-data">
-        <input type="hidden" name="id" id="id" value="${usersDTO.id}">
-        <fieldset>
-            <legend>새 비밀번호 입력</legend>
-            <input type="password" placeholder="8글자 이상 12글자 이하" name="pw" id="pw">
-            <div id="pwResult"></div>
-        </fieldset>
-        <fieldset>
-            <legend>비밀번호 확인</legend>
-            <input type="password" placeholder="8글자 이상 12글자 이하" name="pw2" id="pw2">
-            <div id="pwResultCheck"></div>
-        </fieldset>
-        <fieldset>
-            <button type="button" id="btn">가입</button>
-        </fieldset>
-    </form>
+        <div class="container" style="width:500px;">
+            <h2 style="text-align: center;">비밀번호 변경</h2>
+            <form class="frm" action="./pwchange" method="post" id="frm" enctype="multipart/form-data">
+                <input type="hidden" name="id" id="id" value="${usersDTO.id}">
+                <div class="form-group">
+                    <label for="pwd">새 비밀번호 입력</label>
+                    <span id="pwResult1"></span>
+                    <span id="pwResult2"></span>
+                    <input type="password" class="form-control" placeholder="8글자 이상 16글자 이하" name="pw" id="pw">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">비밀번호 확인</label>
+                    <span id="pwResultCheck1"></span>
+                    <span id="pwResultCheck2"></span>
+                    <input type="password" class="form-control" placeholder="8글자 이상 16글자 이하" name="pw2" id="pw2">
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" id="btn">변경</button>
+                </div>
+            </form>
+        </div>
     </div>
     <script type="text/javascript" src="../resources/js/users/pwchange.js"></script>
     <script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>

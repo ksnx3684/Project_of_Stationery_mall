@@ -1,10 +1,12 @@
 package com.stationery.project.order;
 
 import java.sql.Date;
+import java.util.List;
 
+import com.stationery.project.cart.CartDTO;
 import com.stationery.project.product.ProductDTO;
 
-public class UsersOrderDTO {
+public class UsersOrderDTO extends OrderDetailDTO {
 
 	private Long orderNum;
 	private String id;
@@ -17,9 +19,21 @@ public class UsersOrderDTO {
 	private Integer addressPostal;
 	private String addressDetail;
 	private String memo;
-	private OrderDetailDTO orderDetailDTO;
+	private String cardName;
+	private Long cardNum;
+	private String cardExp;
+	private List<OrderDetailDTO> orderDetailDTOs;
+	private List<ProductDTO> productDTOs;
 	private ProductDTO productDTO;
+	private List<CartDTO> cartDTOs;
 	
+	
+	public List<CartDTO> getCartDTOs() {
+		return cartDTOs;
+	}
+	public void setCartDTOs(List<CartDTO> cartDTOs) {
+		this.cartDTOs = cartDTOs;
+	}
 	public Long getOrderNum() {
 		return orderNum;
 	}
@@ -86,11 +100,35 @@ public class UsersOrderDTO {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
-	public OrderDetailDTO getOrderDetailDTO() {
-		return orderDetailDTO;
+	public String getCardName() {
+		return cardName;
 	}
-	public void setOrderDetailDTO(OrderDetailDTO orderDetailDTO) {
-		this.orderDetailDTO = orderDetailDTO;
+	public void setCardName(String cardName) {
+		this.cardName = cardName;
+	}
+	public Long getCardNum() {
+		return cardNum;
+	}
+	public void setCardNum(Long cardNum) {
+		this.cardNum = cardNum;
+	}
+	public String getCardExp() {
+		return cardExp;
+	}
+	public void setCardExp(String cardExp) {
+		this.cardExp = cardExp;
+	}
+	public List<OrderDetailDTO> getOrderDetailDTOs() {
+		return orderDetailDTOs;
+	}
+	public void setOrderDetailDTOs(List<OrderDetailDTO> orderDetailDTOs) {
+		this.orderDetailDTOs = orderDetailDTOs;
+	}
+	public List<ProductDTO> getProductDTOs() {
+		return productDTOs;
+	}
+	public void setProductDTOs(List<ProductDTO> productDTOs) {
+		this.productDTOs = productDTOs;
 	}
 	public ProductDTO getProductDTO() {
 		return productDTO;
@@ -98,4 +136,5 @@ public class UsersOrderDTO {
 	public void setProductDTO(ProductDTO productDTO) {
 		this.productDTO = productDTO;
 	}
+	
 }

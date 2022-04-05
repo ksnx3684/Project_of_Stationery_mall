@@ -6,9 +6,11 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.stationery.project.order.OrderDetailDTO;
 import com.stationery.project.order.UsersOrderDTO;
 import com.stationery.project.util.FileManager;
 
@@ -38,6 +40,10 @@ public class UsersService {
 		usersDAO.joinFile(usersFileDTO);
 		
 		return result;
+	}
+	
+	public int idChecker(String id) throws Exception {
+		return usersDAO.idChecker(id);
 	}
 	
 	public UsersDTO login(UsersDTO usersDTO) throws Exception {
@@ -123,11 +129,27 @@ public class UsersService {
 		return usersDAO.orderlist(usersDTO);
 	}
 	
+	public UsersOrderDTO orderDetail(UsersOrderDTO usersOrderDTO) throws Exception {
+		return usersDAO.orderDetail(usersOrderDTO);
+	}
+	
 	public List<UsersDTO> usersList(UsersDTO usersDTO) throws Exception {
 		return usersDAO.usersList(usersDTO);
 	}
 	
+	public UsersDTO usersDetail(UsersDTO usersDTO) throws Exception {
+		return usersDAO.usersDetail(usersDTO);
+	}
+	
 	public List<UsersOrderDTO> usersOrderList(UsersOrderDTO usersOrderDTO) throws Exception {
 		return usersDAO.usersOrderList(usersOrderDTO);
+	}
+	
+	public UsersOrderDTO usersOrderDetail(UsersOrderDTO usersOrderDTO) throws Exception {
+		return usersDAO.usersOrderDeatil(usersOrderDTO);
+	}
+	
+	public List<OrderDetailDTO> usersOrderProduct(OrderDetailDTO orderDetailDTO) throws Exception {
+		return usersDAO.usersOrderProduct(orderDetailDTO);
 	}
 }

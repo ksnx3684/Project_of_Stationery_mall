@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.stationery.project.order.OrderDetailDTO;
 import com.stationery.project.order.UsersOrderDTO;
 
 @Controller
@@ -39,19 +41,26 @@ public class AdminController {
 	
 	@GetMapping("usersDetail")
 	public void usersDetail(Model model, UsersDTO usersDTO) throws Exception {
-		usersDTO = usersService.mypage(usersDTO);
+		usersDTO = usersService.usersDetail(usersDTO);
 		model.addAttribute("usersDetail", usersDTO);
-	}
-	
-	@GetMapping("orderDetail")
-	public void orderDetail(Model model, UsersOrderDTO usersOrderDTO) throws Exception {
-		
 	}
 	
 	@GetMapping("usersOrderList")
 	public void usersOrderList(Model model, UsersOrderDTO usersOrderDTO) throws Exception {
 		List<UsersOrderDTO> list = usersService.usersOrderList(usersOrderDTO);
 		model.addAttribute("usersOrderList", list);
-		}
+	}
+	
+	@GetMapping("usersOrderDetail")
+	public void usersOrderDetail(Model model, UsersOrderDTO usersOrderDTO) throws Exception {
+		usersOrderDTO = usersService.usersOrderDetail(usersOrderDTO);
+		model.addAttribute("usersOrderDetail", usersOrderDTO);
+	}
+	
+	@GetMapping("usersOrderProduct")
+	public void usersOrderProduct(Model model, OrderDetailDTO orderDetailDTO) throws Exception {
+		List<OrderDetailDTO> list = usersService.usersOrderProduct(orderDetailDTO);
+		model.addAttribute("usersOrderProduct", list);
+	}
 
 }
