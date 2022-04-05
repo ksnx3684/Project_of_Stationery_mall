@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+textarea {
+    resize: none;
+    width: 630px;
+    height: 600px;
+}
+
+#container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+#container form {
+    margin: 0 auto;
+}
+
+
+.table-basic{
+    width: 80%;
+    border-collapse: collapse;
+    margin : 0 auto;
+    text-align: center;
+}
+
+.table-basic td, .table-basic th {
+	border-spacing: 0;
+	border-collapse: collapse;
+	height: 40px;
+}
+
+.table-basic input {
+    width: 80%;
+    height: 20px;
+    margin: 0 auto;
+}
+
+.item {
+    width: 80%;
+    margin: 0 auto;
+}
+
+#fileContainer {
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+.alignCenter {
+    display: inline-block;
+    width: 50%;
+    
+}
+
+.alignCenter div {
+    display: flex;
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+}
+
+
+#btnList {
+    text-align: center;
+   
+}
+

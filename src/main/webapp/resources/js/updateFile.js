@@ -3,9 +3,39 @@ const fileAdd = document.getElementById("fileAdd");
 const del = document.getElementsByClassName("del");
 const fileDeleteBtn = document.querySelectorAll(".fileDeleteBtn");
 const files = document.querySelector("#files");
+const title = document.querySelector("#title");
+const contents = document.querySelector("#summernote");
+const addCancel = document.querySelector("#addCancel");
 
 let count = 0;
 let num = 0; //id 용도
+
+// form submit 누를 경우 해당 함수 호출
+function updateSubmit() {
+    let titleValue = title.value;
+    //title 값 가져와서 null 검사, null이면 다시 입력
+    if(!titleValue)
+    {
+        alert("제목을 입력해주세요");
+        title.focus();
+        return false;
+    }
+    
+    //contents 값 가져와서 null 검사
+    let contentValue = contents.value;
+    if(!contentValue) {
+        alert("본문을 입력해주세요");
+        contents.focus();
+        return false;
+    }
+    
+}
+
+//취소 버튼 누를시 뒤로가기
+addCancel.addEventListener("click", function() {
+    console.log('cancel click');
+    window.history.back();
+})
 
 count = files.getElementsByClassName("fileDeleteBtn").length;
 fileAdd.addEventListener("click", function() {
