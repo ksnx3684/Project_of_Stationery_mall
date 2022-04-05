@@ -8,6 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+
+
 	<h1>update page</h1>
 	<form action="./update" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="productNum" value="${dto.productNum}" id="getProductNum">

@@ -5,15 +5,26 @@
 
 <mapper namespace="com.stationery.project.category.CategoryDAO">
 
+	<delete id="delete" parameterType="CategoryDTO">
+		delete product_category
+		where categorynum=#{categoryNum}
+	</delete>
+
 	<!-- 최상위 카테고리만 -->
 	<select id="catelist" resultType="CategoryDTO">
 		select * from product_category
 		where parentid is null order by categorynum asc
 	</select>
 
-	<insert id="add" parameterType="CategoryDTO">
+	<!--최상위카테고리 add -->
+	<insert id="addTopCategory" parameterType="CategoryDTO">
+    	insert into PRODUCT_CATEGORY(categorynum,categoryname,parentid)
+		values((select max(categorynum) from product_category where parentid is null)+100,#{categoryName},null)
+	</insert>
+	<!--하위카테고리 add -->
+	<insert id="addSubCategory" parameterType="CategoryDTO">
 		insert into PRODUCT_CATEGORY(categorynum,categoryname,parentid)
-		values(#{categoryNum},#{categoryName},#{parentId})
+		values((select max(categorynum) from product_category)+1,#{categoryName},(select max(categorynum) from product_category where parentid is null))
 	</insert>
 
 	<select id="allList" resultType="CategoryDTO">

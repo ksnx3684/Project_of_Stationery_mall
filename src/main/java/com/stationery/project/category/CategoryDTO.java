@@ -1,5 +1,6 @@
 package com.stationery.project.category;
 
+
 public class CategoryDTO {
 
 	private Integer categoryNum;
@@ -7,7 +8,7 @@ public class CategoryDTO {
 	private Integer parentId;
 	private Integer level;
 	
-	
+
 
 	public Integer getLevel() {
 		return level;

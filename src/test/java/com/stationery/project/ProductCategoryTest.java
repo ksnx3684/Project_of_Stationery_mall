@@ -26,15 +26,6 @@ public class ProductCategoryTest extends MyJunitTest{
 		assertEquals(3, ar.size());
 	}
 	
-	@Test
-	public void add() throws Exception{
-		CategoryDTO categoryDTO = new CategoryDTO();
-		categoryDTO.setCategoryName("가방/지갑");
-		categoryDTO.setCategoryNum(400);	
-		categoryDTO.setParentId(null);
 	
-		int result= categoryDAO.add(categoryDTO);
-		assertEquals(1, result);
-	}
 
 }
