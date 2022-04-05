@@ -51,6 +51,7 @@ public class CartController extends UsersController{ // UsersController에서 �
 		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
 		List<CartDTO> list = cartService.cartlist(usersDTO);
 		model.addAttribute("cartlist", list);
+		//System.out.println(list.get(3).getProductDTO().getThumbnail());
 	}
 	
 	// 장바구니에서 선택 상품 제거
@@ -110,6 +111,7 @@ public class CartController extends UsersController{ // UsersController에서 �
 		
 		model.addAttribute("order", lists);
 		model.addAttribute("myinfo", usersDTO);
+		//System.out.println(lists.get(0).getProductDTO().getThumbnail());
 	}
 	
 	// 주문 정보 DB에 전송

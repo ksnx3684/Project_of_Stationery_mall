@@ -97,10 +97,15 @@
             <tbody>
             <c:forEach items="${order}" var="dto">
                 <tr class="contents">
-                <input type="hidden" name="productNum" value="${dto.productNum}">
-                <td class="tg-af47 name"><input type="hidden" name="name" value="${dto.productDTO.name}">${dto.productDTO.name}</td>
-                <td class="tg-af47 con count"><input type="hidden" name="count" value="${dto.productCount}">${dto.productCount}</td>
-                <td class="tg-af47 con price"><input type="hidden" name="price" value="${dto.productDTO.price}">${dto.productDTO.price}</td>
+                    <input type="hidden" name="productNum" value="${dto.productNum}">
+                    <td class="tg-af47 name"><input type="hidden" name="name" value="${dto.productDTO.name}">
+                        <c:if test="${dto.productDTO.thumbnail ne null}">
+                            &nbsp;<img class="image" src="../resources/upload/product/${dto.productDTO.thumbnail}" style="width:32px; height: 32px;">
+                        </c:if>
+                        &nbsp;${dto.productDTO.name}
+                    </td>
+                    <td class="tg-af47 con count"><input type="hidden" name="count" value="${dto.productCount}">${dto.productCount}</td>
+                    <td class="tg-af47 con price"><input type="hidden" name="price" value="${dto.productDTO.price}">${dto.productDTO.price}</td>
                 </tr>
             </c:forEach>
             <tr>

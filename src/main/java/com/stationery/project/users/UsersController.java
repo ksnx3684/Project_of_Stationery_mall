@@ -22,6 +22,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.stationery.project.cart.CartDTO;
 import com.stationery.project.cart.CartService;
 import com.stationery.project.order.UsersOrderDTO;
+import com.stationery.project.product.ProductDTO;
+import com.stationery.project.product.ProductService;
 
 
 @Controller
@@ -128,6 +130,7 @@ public class UsersController {
 		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
 		List<WishListDTO> list = usersService.wishlist(usersDTO);
 		model.addAttribute("wishlistDTO", list);
+		//System.out.println(list.get(0).getProductDTO().getThumbnail());
 	}
 	
 	// mypage form 이동
@@ -266,6 +269,7 @@ public class UsersController {
 	public String orderDetail(Model model, UsersOrderDTO usersOrderDTO) throws Exception {
 		usersOrderDTO = usersService.orderDetail(usersOrderDTO);
 		model.addAttribute("orderDetail", usersOrderDTO);
+		// System.out.println(usersOrderDTO.getOrderDetailDTOs().get(1).getProductDTOs().get(0).getThumbnail());
 		return "users/orderDetail";
 	}
 

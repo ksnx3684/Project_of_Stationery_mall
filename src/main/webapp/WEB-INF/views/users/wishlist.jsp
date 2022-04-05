@@ -8,6 +8,7 @@
 <title>위시리스트</title>
 </head>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../resources/css/wishlist.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <body>
@@ -23,8 +24,13 @@
 		  <tbody>
 			<c:forEach items="${wishlistDTO}" var="dto">
 			<tr class="active">
-			  <td>${dto.wishNum}</td>
-			  <td onclick="location.href='./orderDetail?orderNum=${dto.wishNum}'">${dto.productDTO.name}</td> <!--나중에 링크 수정-->
+				<td>${dto.wishNum}</td>
+			  	<td><a href="../product/detail?productNum=${dto.productNum}">
+					<c:if test="${dto.productDTO.thumbnail ne null}">
+                         <img class="image" src="../resources/upload/product/${dto.productDTO.thumbnail}" style="width:32px; height: 32px;">&nbsp;
+                    </c:if>
+                    ${dto.productDTO.name}</a>
+				</td>
 			</tr>
 			</c:forEach>
 		  </tbody>
