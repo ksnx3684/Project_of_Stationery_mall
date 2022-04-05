@@ -71,6 +71,9 @@ rel="stylesheet">
 
 		</div>
 
+		
+		<a href="./add" class="add-board">글작성</a>
+	
 	</div>
 </body>
 </html>

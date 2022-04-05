@@ -1,0 +1,36 @@
+.qna_board {
+    margin: 25px auto;
+    width: 100%;
+    float: left;
+    position: relative;
+}
+
+.qna_board .titleArea {
+    width: 100%;
+    float: left;
+    text-align: left;
+    font-weight: bold;
+}
+
+.titleArea {
+    text-align: center;
+    padding: 30px 0;
+    text-transform: capitalize;
+}
+
+.qna_board .qna-inside {
+    width: 100%;
+    margin-top: 5px;
+    float:left;
+}
+
+.boardBtn {
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: right;
+    position: absolute;
+    right: 0;
+    top: 20px;
+}
+

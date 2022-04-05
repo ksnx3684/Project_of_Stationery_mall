@@ -8,14 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>${board}Add Page</h1>
+	<h1>${board} Add Page</h1>
 
 	<form action="./add" method="post" enctype="multipart/form-data">
 		Title<input type="text" name="title">
 		Writer<input type="text" name="id" value="${auth.id}">
 		Contents <textarea name="contents" rows="" cols=""></textarea>
 
-		<c:if test="${board eq 'notices'}">
+<%-- 		<c:if test="${board eq 'notices'}">
 			<div id="fileResult">
 
 				<!--
@@ -29,10 +29,10 @@
 			<div>
 				<button type="button" id="fileAdd">FileAdd</button>
 			</div>
-		</c:if>
+		</c:if> --%>
 		<button type="submit">ADD</button>
 
 	</form>
-	<script src="../resources/js/file.js"></script>
+<!-- 	<script src="../resources/js/file.js"></script> -->
 </body>
 </html>
