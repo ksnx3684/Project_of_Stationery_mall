@@ -10,7 +10,7 @@ public class OrderDetailDTO {
 	private Long orderNum;
 	private Long productNum;
 	private Long count;
-	private Long price;
+	private Integer price;
 	private String name;
 	private List<ProductDTO> productDTOs;
 	
@@ -39,10 +39,10 @@ public class OrderDetailDTO {
 	public void setCount(Long count) {
 		this.count = count;
 	}
-	public Long getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
-	public void setPrice(Long price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 	public String getName() {
