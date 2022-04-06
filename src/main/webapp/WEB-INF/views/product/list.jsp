@@ -15,20 +15,24 @@
 </head>
 <body>
 	<h1>List Page</h1>
-
-
 	<a href="./add">ADD</a>
-	<div>
+	
 
-		<form action="./list" method="get">
-			<select name="categoryNum">
-				<option value="0">전체</option>
-				<c:forEach items="${cateList}" var="list">
-					<option value="${list.categoryNum}">${list.categoryName}</option>
-				</c:forEach>
-			</select> <input type="text" name="search">
-			<button type="submit">검색</button>
-		</form>
+		<div class="boxbox">
+			<form action="./list" method="get">
+				<select name="categoryNum">
+					<option value="0">전체</option>
+					<c:forEach items="${cateList}" var="list">
+						<option value="${list.categoryNum}">${list.categoryName}</option>
+					</c:forEach>
+				</select>
+
+				 <input type="text" name="search" class="search">
+				 <button type="submit" class="submit">
+					<span class="material-icons-outlined">search</span>
+				</button>
+			</form>
+		</div>
 
 		<!-- id -->
 		<button type="hidden" id="id" value="${auth.id}"></button>
@@ -51,19 +55,15 @@
 							
 							<div class="price">${list.price}원</div> 
 							
-							<a href=""><span class="material-icons-outlined">shopping_cart</span></a> 
-							
+							<a href="../order?productNum=${list.productNum}"><span class="material-icons-outlined">shopping_cart</span></a> 
 		
 							<span class="material-icons-outlined" id="wishlist" class="wishlist" data-num="${list.productNum}">favorite_border</span>
-
 					</li>
-	
 				</c:forEach>
 			</ul>
-
 		</div>
 
-		<div>
+		<div class="pager">
 			<c:if test="${pager.pre}">
 				<a href="./list?page=${pager.startNum-1}">PREVIEW</a>
 			</c:if>

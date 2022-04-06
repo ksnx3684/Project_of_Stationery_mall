@@ -1,3 +1,5 @@
+//지영 추가 
+
 // const wishlist = document.getElementById("wishlist")
 const id= document.getElementById("id")
 const ultag = document.getElementById("ultag")

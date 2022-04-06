@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Category Add Page</h1>
+<h1>Category Edit Page</h1>
 <hr> <!-- 현재 카테고리 목록  -->
 <div id="categoryList">
 <form action="./delete" method="post" enctype="multipart/form-data">
