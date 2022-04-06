@@ -16,10 +16,6 @@ public class CartService {
 	@Autowired
 	private CartDAO cartDAO;
 	
-//	public CartDTO view(UsersDTO usersDTO) throws Exception {
-//		return cartDAO.view(usersDTO);
-//	}
-	
 	public List<CartDTO> cartlist(UsersDTO usersDTO) throws Exception {
 		return cartDAO.cartlist(usersDTO);
 	}

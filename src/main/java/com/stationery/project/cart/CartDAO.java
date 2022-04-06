@@ -17,11 +17,7 @@ public class CartDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.stationery.project.cart.CartDAO.";
-	
-//	public CartDTO view(UsersDTO usersDTO) throws Exception {
-//		return sqlSession.selectOne(NAMESPACE+"view", usersDTO);
-//	}
-	
+
 	public List<CartDTO> cartlist(UsersDTO usersDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"cartlist", usersDTO);
 	}

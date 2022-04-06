@@ -38,13 +38,6 @@ public class CartController extends UsersController{ // UsersController에서 �
 	List<CartDTO> lists = new ArrayList<CartDTO>(); // 카트에 담을 수 있는 전역변수 lists
 	int totalsize = 0;
 	
-//	@GetMapping("view")
-//	public String view(Model model, HttpSession httpSession, CartDTO cartDTO) throws Exception {
-//		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
-//		CartDTO list = cartService.view(usersDTO);
-//		model.addAttribute("view", list);
-//		return "cart/view";
-//	}
 	
 	// 장바구니 보기 (카트 목록 불러오기)
 	@GetMapping("cartlist")
