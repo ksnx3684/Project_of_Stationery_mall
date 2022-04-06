@@ -7,7 +7,7 @@
 
  	<insert id="reply" parameterType="QnasDTO">
  		insert into qnas (num, productNum, id, title, contents, type, ref, step, depth)
- 		values (QNAS_SEQ.NEXTVAL, #{id}, #{title}, #{contents}, #{type}, #{ref}, #{step}, #{depth})
+ 		values (QNAS_SEQ.NEXTVAL, #{productNum}, #{id}, #{title}, #{contents}, #{type}, #{ref}, #{step}, #{depth})
  	</insert>
  
  	<update id="stepUpdate" parameterType="QnasDTO">
@@ -20,7 +20,7 @@
  			SELECT QNAS_SEQ.NEXTVAL FROM DUAL
  		</selectKey>
  		insert into QNAS (num, productNum, id, title, contents, type, ref, step, depth)
- 		values (#{num}, #{id}, #{title}, #{contents}, #{type}, #{num}, 0, 0)
+ 		values (#{num},#{productNum}, #{id}, #{title}, #{contents}, #{type}, #{num}, 0, 0)
 	</insert>
 
 	<select id="allList" resultType="QnasDTO" parameterType="Pager">
@@ -94,5 +94,14 @@
 	<select id="detail" parameterType="QnasDTO" resultType="QnasDTO">
 		SELECT * FROM QNAS WHERE NUM=#{num}
 	</select>
+	
+	<update id="qnaUpdate" parameterType="QnasDTO">
+		UPDATE QNAS SET TITLE=#{title}, CONTENTS=#{contents} WHERE NUM=#{num}
+	</update>
+	
+	<delete id="qnaDelete" parameterType="QnasDTO">
+		DELETE QNAS WHERE NUM=#{num}
+	</delete>
+	
 
 </mapper>

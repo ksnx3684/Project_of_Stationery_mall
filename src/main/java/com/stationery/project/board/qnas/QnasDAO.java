@@ -45,4 +45,11 @@ public class QnasDAO {
 		return sqlSession.insert(NAMESPACE+"reply", qnasDTO);
 	}
 	
+	public int qnaUpdate(BoardDTO boardDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"qnaUpdate", boardDTO);
+	}
+	
+	public int qnaDelete(BoardDTO boardDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"qnaDelete", boardDTO);
+	}
 }

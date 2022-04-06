@@ -20,14 +20,14 @@
 <body>
 	<h1>${board} Update Page</h1>
 
-	<form action="./update" method="POST" enctype="multipart/form-data" onsubmit="return updateSubmit();">
+	<form action="./qnaUpdate" method="POST" enctype="multipart/form-data" onsubmit="return updateSubmit();">
 	<!-- submit 버튼 누를 경우 updateSubmit 함수 호출 -->
 		<input type="hidden" name="num" value="${dto.num}">
 			 글 제목<input type="text" name="title" id="title" value="${dto.title}"> 
 			 작성자<input type="text" name="id" disabled="disabled" value="${dto.id}">
 			 글 내용<textarea name="contents" rows="" cols="" id="summernote">${dto.contents}</textarea>
 	
-		<c:if test="${board eq 'notices'}">
+	<%-- 	<c:if test="${board eq 'notices'}">
 			<div id="files">
 				<c:forEach items="${dto.fileDTOs}" var="f">
 					<div>
@@ -46,7 +46,7 @@
 				<button type="button" id="fileAdd">FileAdd</button>
 			</div>
 		</div>
-		</c:if>
+		</c:if> --%>
 		
 		<div id="btnList">
 		<button type="submit">UPDATE</button>

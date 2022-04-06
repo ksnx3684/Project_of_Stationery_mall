@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.stationery.project.board.BoardDTO;
 import com.stationery.project.util.Pager;
@@ -21,6 +22,8 @@ public class QnasService {
 		pager.makeNum(qnasDAO.total(pager));
 		map.put("pager", pager);
 		map.put("productNum", productNum);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("productNum", productNum);
 		
 		return qnasDAO.list(map);
 	}
@@ -43,6 +46,14 @@ public class QnasService {
 		int result = qnasDAO.add(boardDTO);
 		
 		return result;
+	}
+	
+	public int qnaUpdate(BoardDTO boardDTO) throws Exception {
+		return qnasDAO.qnaUpdate(boardDTO);
+	}
+	
+	public int qnaDelete(BoardDTO boardDTO) throws Exception {
+		return qnasDAO.qnaDelete(boardDTO);
 	}
 
 }

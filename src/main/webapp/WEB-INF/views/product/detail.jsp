@@ -6,6 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.detailBox {
+		border : 1px solid black;
+		width : 500px;
+		heigth : 200px;
+	}
+</style>
 </head>
 
 <body>
@@ -27,7 +34,7 @@
 		<h2 class="titleArea">Q&A</h2>
 		<div id="qnaArea" class="qna-inside">
 			<p class="boardBtn">
-				<button type="button">문의하기</button>
+				<a href="../qnas/qnaAdd?productNum=${dto.productNum}" class="add-board">문의하기</a>
 			</p>
 			
 
@@ -36,19 +43,28 @@
 
 
 
-		<table class="table-basic">
+		<table class="table-basic" id="qnaTable">
 			<thead>
 				<tr>
 					<th>글번호</th>
+					<th>문의유형</th>
 					<th>글제목</th>
 					<th>작성자</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${requestScope.qnaDto}" var="dto">
+				<c:forEach items="${requestScope.qnaDto}" var="dto" varStatus="i">
 					<tr>
 						<td>${dto.num}</td>
-						<td><a href="./detail?num=${dto.num}">${dto.title}</a></td>
+						<td>
+							<c:choose>
+								<c:when test="${dto.type eq 1}">배송문의</c:when>
+								<c:otherwise>상품문의</c:otherwise>
+							</c:choose>
+						</td>
+					<%-- 	<td><a href="../qnas/qnaDetail?num=${dto.num}" class="qna" data-num="qnaDetail${i.index}">${dto.title}</a></td> --%>
+							<td><a href="#" class="qna" data-num="${dto.num}">${dto.title}</a></td>
+							<td><input type="hidden" class="contents" value="${dto.contents}"></td>
 						<td>${dto.id}</td>
 					</tr>
 				</c:forEach>
@@ -74,6 +90,8 @@
 				
 		</div>
 	</div>
+			
+	<script type="text/javascript" src="../resources/js/product/qnas.js"></script>
 	
 	
 </body>
