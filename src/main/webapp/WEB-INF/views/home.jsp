@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:import url="./template/header.jsp"></c:import>
 	<h1>main page!</h1>
 	<c:import url="/category/catelist"></c:import>
 
