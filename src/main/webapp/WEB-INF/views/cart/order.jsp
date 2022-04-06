@@ -97,6 +97,7 @@
             <tbody>
             <c:forEach items="${order}" var="dto">
                 <tr class="contents">
+                    <input type="hidden" name="cartNum" value="${dto.cartNum}">
                     <input type="hidden" name="productNum" value="${dto.productNum}">
                     <td class="tg-af47 name"><input type="hidden" name="name" value="${dto.productDTO.name}">
                         <c:if test="${dto.productDTO.thumbnail ne null}">
