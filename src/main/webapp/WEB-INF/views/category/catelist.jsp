@@ -12,7 +12,7 @@
 <hr>
 <h5>category list</h5>
 <div class="category">
-<a href="/project/category/add">category add</a>
+<a href="/project/category/add">카테고리 추가/삭제</a>
 <p>
 <c:forEach items="${list}" var="list">
 <a href="/project/product/list?categoryNum=${list.categoryNum}">${list.categoryName}</a>

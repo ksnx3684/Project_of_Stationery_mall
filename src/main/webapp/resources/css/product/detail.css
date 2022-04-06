@@ -1,0 +1,152 @@
+@charset "UTF-8";
+
+.other-images {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  width: 250px;
+}
+
+.product {
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.main {
+  margin: 30px 10% 0 10%;
+}
+
+.right-side {
+  width: 100%;
+  margin-left: 30px;
+}
+/*  .items-top {
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+ } */
+
+hr {
+  margin: 30px 0 30px 0;
+  border-top: 1px dotted;
+}
+
+.addToCart {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  padding-left: 10px
+}
+
+.piece {
+    height: 40px;
+    width: 40px;
+    margin: 0;
+    text-align: center;
+    border: 1px solid;
+}
+
+@media only screen and (max-width: 600px)
+{
+  .product {
+    flex-direction: column;
+  }
+  
+  .other-images {
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 60px;
+  }
+  
+  .small-product-image {
+    margin: 10px 20px;
+  }
+  
+  .right-side {
+    margin-left: 0px;
+  }
+  
+  .main-product-image {
+    width: 100%;
+    height: auto;
+  }
+  
+  .main {
+    margin: 30px 5% 0 5%;
+  }
+  
+}
+
+.hidden{
+	display: none;
+	
+}
+
+
+
+
+
+/* option */
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+.formrow {
+	overflow:hidden;
+	position:relative;
+	max-width:150px;
+	padding: 10px;
+
+}
+.checklabel {
+	display:block;
+	width:100%;
+	border:2px solid #000;
+	background:#f2f2f2;
+	border-radius:2px;
+	text-align:center;
+	padding:5px;
+	font-size:17px;
+	border-radius: 6px;
+}
+.checklabel:hover {
+	background:#ddd;
+}
+.checkbox {
+	position:absolute;
+	right:10px;
+
+	width: 117px;
+	height: 2.2em;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	border:none;
+	padding:0;
+	border-radius:0;
+	vertical-align: middle;
+	/* background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='512px' height='512px' viewBox='0 0 512 512' style='enable-background:new 0 0 512 512;' xml:space='preserve'%3e%3cpath d='M448,71.9c-17.3-13.4-41.5-9.3-54.1,9.1L214,344.2l-99.1-107.3c-14.6-16.6-39.1-17.4-54.7-1.8 c-15.6,15.5-16.4,41.6-1.7,58.1c0,0,120.4,133.6,137.7,147c17.3,13.4,41.5,9.3,54.1-9.1l206.3-301.7 C469.2,110.9,465.3,85.2,448,71.9z'/%3e%3c/svg%3e");
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-color:transparent;
+	background-position:-10em -10em; */
+	transition:.3s ease;
+	outline:0;
+}
+ .checkbox:checked + label{
+	border-color:#1a73f0;
+} 
+.checkbox:active + label {
+	background-color: #ddd;
+}
+.checkbox:checked {
+	background-position: 0 0;
+}

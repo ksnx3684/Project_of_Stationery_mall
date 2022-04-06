@@ -1,0 +1,162 @@
+
+/* product */
+ul{
+    display: table-block;
+    position: relative;
+}
+
+
+body{
+    line-height: 25px;
+    font: 15px 'Nanum Gothic','Roboto','Verdana','Open Sans','Dotum','AppleGothic','돋움','Dotum','Helvetica','sans-serif','xeicon' !important;
+    font-family: Verdana,Dotum,AppleGothic,sans-serif;
+    color: #353535;
+    background: #fff;
+    -webkit-text-size-adjust: none;
+}
+
+.container {
+    width: 1200px;
+    box-sizing: border-box;
+    margin: 40px auto;
+    padding: 20px;
+  }
+
+  
+  .container:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+
+  .card {
+  	border:1px solid grey;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: all .1s ease-out;
+  }
+
+  .card:last-child {
+    margin: 0;
+  }
+  
+  .card > div> a >img {
+    width: 250px;
+    height: 250px;
+    z-index: 1;
+  }
+  .figure {
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.16);
+    width: 250px;
+    height: 332px;
+    z-index: 5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all .1s ease-out;
+  }
+  
+  
+/* select box */
+ form >select {
+border-width:0px;
+border-right-width:5px;
+border-color:#c9de73; 
+padding: .8em .5em;
+font-family: inherit;
+border-radius: 0px;
+height:40.6px;
+
+
+ }
+
+ .boxbox {
+ display:flex;
+
+
+	width:400px;
+  display:flex;
+  height:40px;
+  border-style:solid; 
+  border-width:6px;
+  border-color:#c9de73;
+}
+
+form{
+	width:400px;
+}
+
+.submit {
+  font-weight:600;
+  background:#c9de73;
+  color:#fff;
+  height:100%;
+  width:18%;
+  float:right;
+  transition: all 100ms ease-in-out;
+}
+
+
+
+
+.search, .submit {
+  font-size:18px;
+  padding:0 15px;
+  height: 100%; 
+  border:none;
+}
+
+.search {
+  highlight-color: #ff33cc;
+ 
+}
+
+textarea, input {
+   font-family:"open sans", sans-serif;  
+}
+
+textarea:focus, input:focus {
+   color:#afdd3f;
+   outline:none;  
+}
+
+
+
+.submit:hover {
+  background: #32990a;
+}
+
+/* pager */
+.pager {
+    text-align: center;
+    margin: 20px
+}
+.pager a, .pager strong {
+    background: #fff;
+    display: inline-block;
+    margin-right: 3px;
+    padding: 4px 12px;
+    text-decoration: none;
+	line-height: 1.5em;
+	
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.pager a:hover {
+    background-color: #BEBEBE;
+    color: #fff;
+}
+.pager a:active {
+	background: rgba(190, 190, 190, 0.75);
+}
+.pager strong {
+    color: #fff;
+    background-color: #BEBEBE;
+}
+
+  

@@ -4,6 +4,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="../resources/css/product/detail.css">
+<link
+	href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp"
+	rel="stylesheet">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -13,14 +17,62 @@
 	<a href="./delete?productNum=${dto.productNum}">delete</a>
 	<a href="./update?productNum=${dto.productNum}">update</a>
 	<hr>
-	<h3>상품명 : ${dto.name}</h3>
-	<h4>가격 : ${dto.price}</h4>
-	<h4>설명 : ${dto.contents}</h4>
 
-	<c:forEach items="${dto.productFileDTOs}" var="f">
-		<!-- 수정해라 나중에 f.fileName으로 --> 
-		<img alt="" src="../resources/upload/product/${f.fileName}">
+<div class="main">
+<div class="product">
+
+<div class="product-images">
+	<c:forEach items="${dto.productFileDTOs}" var="f" varStatus="state">
+			<c:if test="${state.first}">
+				<img alt="" class="product-image main-product-image" src="../resources/upload/product/${f.fileName}">
+			</c:if>
 	</c:forEach>
+	
+	<div class="other-images">
+	<c:forEach items="${dto.productFileDTOs}" var="f" varStatus="state">	
+	
+				<c:if test="${not state.first}">
+					<img alt="" class="small-product-image" src="../resources/upload/product/${f.fileName}">
+				</c:if>
+			
+	</c:forEach>
+	</div>	
+</div>
+<div class="right-side">
+	
+	
+		<h1>${dto.name}</h1>
+		<hr>
+		<h1>${dto.price}원</h1>
+		<hr>
+		<h4>${dto.contents}</h4>
+	
 	<hr>
+	<form action="../cart/add" method="post" enctype="multipart/form-data">
+	<c:choose>
+		<c:when test="${not empty option}">
+			<c:forEach items="${option}" var="option">
+			<div class="formrow">
+				<input type="radio" class="checkbox" value="${option.optionNum}" name="optionNum"></button>
+				<label class="checklabel" for="${option.optionContents}">${option.optionContents}</label>
+			</div>
+			</c:forEach>
+			</c:when>	
+	</c:choose>
+	<div class="addToCart">
+	<input type="number" name="productCount" class="piece" value="1" />
+        <button type="button"><span class="material-icons-outlined">shopping_cart</span></button> 
+	 </div>
+	</form>
+	
+
+</div><!-- right-side -->
+
+</div><!-- product -->
+</div><!-- main -->
+
+	<hr>
+	
+	<script src="../resources/js/product/cart.js"></script>
 </body>
 </html>

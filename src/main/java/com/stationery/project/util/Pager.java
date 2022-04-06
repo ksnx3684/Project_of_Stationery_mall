@@ -3,7 +3,7 @@ package com.stationery.project.util;
 public class Pager {
 
 	// 페이지당 보여줄 row 갯수
-	private Long perPage;
+	private Long perPage; 
 
 	// 페이지 번호
 	private Long page;
@@ -20,10 +20,16 @@ public class Pager {
 	// ------------- JSP 사용 변수 ----------------
 	private Long startNum;
 	private Long lastNum;
+	//product
+	private Integer categoryNum;
+
 
 	private boolean pre;
 	private boolean next;
 
+	
+//	private Integer perBlock;
+	
 	public void makeRow() {
 		this.startRow = (this.getPage() - 1) * this.getPerPage() + 1;
 		this.lastRow = this.getPage() * this.getPerPage();
@@ -40,6 +46,8 @@ public class Pager {
 
 		// 3. 블럭당 갯수
 		Long perBlock = 10L;
+	
+
 
 		// 4. 전체 Block의 갯수 구하기
 		Long totalBlock = totalPage / perBlock;
@@ -96,10 +104,14 @@ public class Pager {
 			this.lastNum = 0L;
 		}
 
+		
+		
 	}
 
 	public Long getPerPage() {
-		if (this.perPage == null || this.perPage < 1) {
+		if(categoryNum!=null) {
+			this.perPage=20L;
+		}else if (this.perPage == null || this.perPage < 1) {
 			this.perPage = 10L;
 		}
 		return perPage;
@@ -184,6 +196,13 @@ public class Pager {
 	public void setSearch(String search) {
 		this.search = search;
 	}
+	public Integer getCategoryNum() {
+		
+		return categoryNum;
+	}
+	public void setCategoryNum(Integer categoryNum) {
+		this.categoryNum = categoryNum;
+	}
 
 	public String getKind() {
 		return kind;
@@ -191,6 +210,11 @@ public class Pager {
 
 	public void setKind(String kind) {
 		this.kind = kind;
+	}
+
+	public void setPerBlock(int i) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

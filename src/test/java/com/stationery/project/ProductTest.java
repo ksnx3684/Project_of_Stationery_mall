@@ -11,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.stationery.project.product.OptionDTO;
 import com.stationery.project.product.ProductDAO;
 import com.stationery.project.product.ProductDTO;
 import com.stationery.project.product.ProductFileDTO;
-import com.stationery.project.util.ProductPager;
+import com.stationery.project.util.Pager;
+
 
 
 public class ProductTest extends MyJunitTest{
@@ -23,7 +25,22 @@ public class ProductTest extends MyJunitTest{
 private ProductDAO productDAO;
 
 
-	@Test
+public void optioninsert() throws Exception{
+	OptionDTO optionDTO = new OptionDTO();
+	optionDTO.setProductNum(253);
+	optionDTO.setOptionStock(2);
+	optionDTO.setOptionContents("빨강");
+}
+
+//@Test
+public void optionList() throws Exception{
+	ProductDTO productDTO= new ProductDTO();
+	productDTO.setProductNum(254);
+	List<OptionDTO>ar =productDAO.optionList(productDTO);
+	assertEquals(2, ar.size());
+}
+
+	//@Test
 	public void filedeletetest() throws Exception{
 		ProductFileDTO productFileDTO= new ProductFileDTO();
 		productFileDTO.setFileNum((long) 67);
@@ -33,7 +50,7 @@ private ProductDAO productDAO;
 	
 	//@Test
 	public void listTest() throws Exception{
-		ProductPager pager = new ProductPager();
+		Pager pager = new Pager();
 		pager.setSearch("스티커");
 		List<ProductDTO> ar=productDAO.list(pager);
 		assertEquals(2, ar.size());

@@ -14,6 +14,7 @@
    		<typeAlias type="java.util.List" alias="List"/>
    		<typeAlias type="java.lang.String" alias="String"/>
 		<typeAlias type="com.stationery.project.users.UsersDTO" alias="UsersDTO"/>
+		<typeAlias type="com.stationery.project.users.WishListDTO" alias="WishListDTO"/>
 		<typeAlias type="com.stationery.project.users.UsersFileDTO" alias="UsersFileDTO"/>
 		<typeAlias type="com.stationery.project.users.WishListDTO" alias="WishListDTO"/>
    		<typeAlias type="com.stationery.project.util.Pager" alias="Pager"/>
@@ -28,5 +29,7 @@
 		<typeAlias type="com.stationery.project.category.CategoryDTO" alias="CategoryDTO"/>
 		<typeAlias type="com.stationery.project.product.ProductFileDTO" alias="ProductFileDTO"/>
    		<typeAlias type="com.stationery.project.cart.CartDTO" alias="CartDTO"/>
+		<typeAlias type="com.stationery.project.product.OptionDTO" alias="OptionDTO"/>
+
 	</typeAliases>
 </configuration>

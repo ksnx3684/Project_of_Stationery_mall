@@ -17,6 +17,19 @@ public class UsersDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.stationery.project.users.UsersDAO.";
 	
+	public WishListDTO wishlistCk(WishListDTO wishListDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"wishlistCk",wishListDTO);
+	}
+	
+	public int deleteWishList(WishListDTO wishListDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"deleteWishList",wishListDTO);
+		
+	}
+	
+	public int addWishList(WishListDTO wishListDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"addWishList", wishListDTO);
+	}
+	
 	public int join(UsersDTO usersDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"join", usersDTO);
 	}

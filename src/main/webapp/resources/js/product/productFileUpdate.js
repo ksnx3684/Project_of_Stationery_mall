@@ -8,15 +8,6 @@ let num=0; //id용도
 
 fileAdd.addEventListener("click",function(event){
 
-   //fileadd버튼 클릭하면 카운트 +1 되고 
-   //<div id="del"+num></>
-//<input type="file" name="files">
-//<button type= button class=del data-num=del+num>del</>
-{/* <div id="del"+num>
-        <input type="file" name="files">
-        <button type= button class=del data-num=del+num>del</>
-    </> */}
-
     if(count>9){
         alert('파일 첨부는 최대 10개 까지만 가능합니다. ')
         return;
@@ -64,7 +55,6 @@ const fileDeleteBtn = document.querySelectorAll(".fileDeleteBtn")
 const fileDeleteBtn_t = document.querySelectorAll(".fileDeleteBtn_t")
 const files =document.querySelector("#files")
 const fileResult_t = document.getElementById("fileResult_t")
-// const hiddenfileNum = document.getElementById("hiddenfileNum")
 const tCheck=document.getElementById("tCheck")
 tCheck.setAttribute("value","2")
 
@@ -81,15 +71,13 @@ tCheck.setAttribute("value","2")
 
 files.addEventListener("click",function(event){
     if(event.target.classList.contains("fileDeleteBtn")){ //x눌렀을시 
-        console.log(event.target.classList.contains("hiddenfileNum"))
-
-        let check = confirm("삭제시 복구 불가능함 삭제할겨? ")
+    
+        let check = confirm("삭제시 복구 불가능합니다. 삭제하시겠습니까? ")
         if(!check){
             return;
         }
 	
         let fileNum = event.target.getAttribute("data-fileNum")
-       	console.log(fileNum); //잘나옴 
  
 	    let xhttp = new XMLHttpRequest();
 	    xhttp.open("POST","./fileDelete");
@@ -98,7 +86,7 @@ files.addEventListener("click",function(event){
 
 	    xhttp.onreadystatechange = function(){
 	        if(this.readyState==4 && this.status==200){
-                console.log("ㄹㅇㅁㄹㅇㄴㄹ")
+            
                 console.log(this.responseText)
 	            let result = this.responseText.trim();
 	        	if(result=='1'){
