@@ -6,12 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+    <link rel="stylesheet" href="../resources/css/login.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<body>
-    <div class="container" style="width:400px; margin-top: 200px;">
+<body style="background-image: url('../resources/img/joanna-kosinska-RE-8WswW95o-unsplash.jpg')">
+    <div class="total">
+    <div class="container" style="width:400px; margin-top: 50px;">
         <h2 style="text-align: center;">로그인 페이지</h2>
         <form class="frm" action="./login" method="post">
             <div class="form-group">
@@ -30,6 +32,7 @@
                 <a href="./joinCheck"><button type="button" class="btn btn-primary">회원가입</button></a>
             </fieldset>
         </form>
+    </div>
     </div>
 </body>
 </html>

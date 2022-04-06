@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<body>
+<body style="background-image: url('../resources/img/joanna-kosinska-RE-8WswW95o-unsplash.jpg')">
     <script type="text/javascript">
         function idChecker(){
             let idValue = $('#id').val(); //id값이 "id"인 입력란의 값을 저장
@@ -47,7 +47,7 @@
     </script>
 
     <div id = total>
-        <div class="container" style="width:600px;">
+        <div class="container" style="width:600px; background-color: white;">
             <h2 style="text-align: center;">회원가입</h2>
             <form class="frm" action="./join" method="post" id="frm" enctype="multipart/form-data">
                 <div class="form-group">

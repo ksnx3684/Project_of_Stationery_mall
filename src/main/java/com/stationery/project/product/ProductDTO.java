@@ -21,6 +21,7 @@ public class ProductDTO {
 	private List<OptionDTO> optionDTOs;
 
 	
+	
 	private Integer check; //1->썸네일 변경 2->유지 
 	
 	
@@ -28,7 +29,12 @@ public class ProductDTO {
 	
 	
 
-
+	public List<OptionDTO> getOptionDTOs() {
+		return optionDTOs;
+	}
+	public void setOptionDTOs(List<OptionDTO> optionDTOs) {
+		this.optionDTOs = optionDTOs;
+	}
 	public Integer getCheck() {
 		return check;
 	}
