@@ -17,6 +17,11 @@
 		
 		<c:forEach items="${orderDetail.orderDetailDTOs}" var="d">
 			<h1>상품 : ${d.name}</h1>
+			<c:forEach items="${d.productDTOs}" var="dt">
+				<c:if test="${dt.thumbnail ne null}">
+					<img class="image" src="../resources/upload/product/${dt.thumbnail}">
+				</c:if>
+			</c:forEach>
 		</c:forEach>
 
 </body>

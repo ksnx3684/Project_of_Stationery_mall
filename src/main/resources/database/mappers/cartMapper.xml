@@ -39,6 +39,7 @@
 	<select id="cartlist" parameterType="UsersDTO" resultMap="CartDTO">
 		SELECT * FROM CART
 		NATURAL JOIN PRODUCT WHERE ID = #{id}
+		ORDER BY CARTNUM
 	</select>
 	<delete id="cartlistDelete" parameterType="Long">
 		DELETE CART WHERE CARTNUM = #{cartNum}
@@ -71,4 +72,13 @@
 		VALUES(ORDER_DETAIL_SEQ.NEXTVAL, USERS_ORDER_SEQ.NEXTVAL, #{productNum}, #{count}, #{price}, #{name})
 		SELECT * FROM DUAL
 	</insert> -->
+	<delete id="cartOrderDelete" parameterType="Long">
+		DELETE CART WHERE CARTNUM = #{cartNum}
+	</delete>
+	<select id="stock" parameterType="Integer" resultType="Integer">
+		SELECT STOCK FROM PRODUCT WHERE PRODUCTNUM = #{productNum}
+	</select>
+	<update id="stockUpdate" parameterType="ProductDTO">
+		UPDATE PRODUCT SET STOCK = #{stock} WHERE PRODUCTNUM = #{productNum}
+	</update>
 </mapper>

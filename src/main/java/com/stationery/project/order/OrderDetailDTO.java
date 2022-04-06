@@ -4,11 +4,11 @@ import java.util.List;
 
 import com.stationery.project.product.ProductDTO;
 
-public class OrderDetailDTO {
+public class OrderDetailDTO extends ProductDTO{
 
 	private Long detailNum;
 	private Long orderNum;
-	private Long productNum;
+	private Integer productNum;
 	private Long count;
 	private Integer price;
 	private String name;
@@ -27,10 +27,10 @@ public class OrderDetailDTO {
 	public void setOrderNum(Long orderNum) {
 		this.orderNum = orderNum;
 	}
-	public Long getProductNum() {
+	public Integer getProductNum() {
 		return productNum;
 	}
-	public void setProductNum(Long productNum) {
+	public void setProductNum(Integer productNum) {
 		this.productNum = productNum;
 	}
 	public Long getCount() {
