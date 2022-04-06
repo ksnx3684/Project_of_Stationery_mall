@@ -7,11 +7,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	.detailBox {
+ 	.detailBox {
 		border : 1px solid black;
 		width : 500px;
 		heigth : 200px;
-	}
+	} 
+	
+
 </style>
 </head>
 
@@ -63,7 +65,8 @@
 							</c:choose>
 						</td>
 					<%-- 	<td><a href="../qnas/qnaDetail?num=${dto.num}" class="qna" data-num="qnaDetail${i.index}">${dto.title}</a></td> --%>
-							<td><a href="#" class="qna" data-num="${dto.num}">${dto.title}</a></td>
+							<%-- <td><a href="#" class="qna" data-num="${dto.num}">${dto.title}</a></td> --%>
+							<td><button type="button" class="qna accordion" data-num="${dto.num}">${dto.title}</button></td>
 							<td><input type="hidden" class="contents" value="${dto.contents}"></td>
 						<td>${dto.id}</td>
 					</tr>

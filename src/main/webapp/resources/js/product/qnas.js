@@ -28,6 +28,7 @@ qnaTable.addEventListener("click", function(event) {
                    // let br = document.createElement('br');
                     let div= document.createElement('div');
                     div.className="detailBox";
+                   
                     td.setAttribute("colspan",5);
                     tr.append(td);
                 
@@ -43,3 +44,7 @@ qnaTable.addEventListener("click", function(event) {
         }
     }
 });
+
+//---------------------------------------
+
+
