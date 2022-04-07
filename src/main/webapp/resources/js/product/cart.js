@@ -21,8 +21,9 @@ submitBtn.addEventListener("click",function(event){
             }
         }
 
-        console.log(optionNum)
-        if(optionNum==0&&optionCk=="false"){
+
+        //옵션 있는 상품 옵션선택안했을경우 
+        if(optionNum==0&&optionCk=="true"){
             alert("옵션을 선택해주세요")
             
         }else{
@@ -39,6 +40,8 @@ submitBtn.addEventListener("click",function(event){
                     if(result=='1'){
                         console.log("장바구니 추가 성공")
                         alert("장바구니에 추가되었습니다.")
+                    }else if(result=='2'){
+                        alert("이미 장바구니에 추가된 상품입니다.")
                     }else{
                         let check = confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")
                         if(check){

@@ -18,6 +18,10 @@ public class CartDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.stationery.project.cart.CartDAO.";
 
+	public CartDTO cartCk(CartDTO cartDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"cartCk", cartDTO);
+	}
+	
 	public List<CartDTO> cartlist(UsersDTO usersDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"cartlist", usersDTO);
 	}

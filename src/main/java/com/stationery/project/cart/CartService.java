@@ -16,6 +16,10 @@ public class CartService {
 	@Autowired
 	private CartDAO cartDAO;
 	
+	public CartDTO cartCk(CartDTO cartDTO)throws Exception{
+		return cartDAO.cartCk(cartDTO);
+	}
+	
 	public List<CartDTO> cartlist(UsersDTO usersDTO) throws Exception {
 		return cartDAO.cartlist(usersDTO);
 	}

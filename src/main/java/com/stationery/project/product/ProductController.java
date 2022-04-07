@@ -34,8 +34,8 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-//	@Autowired
-//	private CartService cartService;
+	@Autowired
+	private CartService cartService;
 	
 	// (add.jsp에 카테고리 출력위해 )
 	@Autowired
@@ -44,10 +44,17 @@ public class ProductController {
 	@PostMapping("addCart")
 	public ModelAndView addCart(CartDTO cartDTO,HttpSession httpSession)throws Exception{
 		UsersDTO usersDTO=(UsersDTO) httpSession.getAttribute("auth");
+		
 		ModelAndView mv= new ModelAndView();
 		int result=2;
+		Loop1:
 		if(usersDTO.getId()!=null) {
 			cartDTO.setId(usersDTO.getId());
+			Loop2:
+				//같은상품 같은옵션이 장바구니에 있다면 
+			if(cartService.cartCk(cartDTO)!=null) {
+				break Loop1;
+			}
 			result=productService.addCart(cartDTO);
 		}
 		

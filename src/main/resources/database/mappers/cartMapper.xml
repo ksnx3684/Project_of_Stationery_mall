@@ -36,6 +36,10 @@
 		<result column="stock" property="stock"/>
 		<result column="regDate" property="regDate"/>
 	</resultMap>
+	<!-- 지영 추가 -->
+	<select id="cartCk" parameterType="CartDTO" resultType="CartDTO">
+		select * from cart where id=#{id} and productnum=#{productNum} and optionNum=#{optionNum}
+	</select>
 	<select id="cartlist" parameterType="UsersDTO" resultMap="CartDTO">
 		SELECT * FROM CART
 		NATURAL JOIN PRODUCT WHERE ID = #{id}
@@ -55,7 +59,7 @@
 		ON (C.ID = U.ID)
 		WHERE C.CARTNUM = #{cartNum}
 	</select>
-	
+
 	<insert id="order" parameterType="UsersOrderDTO">
 		INSERT INTO USERS_ORDER(ORDERNUM, ID, ORDERDATE, ORDERCHECK, PAYCHECK, TOTALPRICE, ADDRESSNAME, ADDRESSPHONE, ADDRESSPOSTAL, ADDRESSDETAIL, MEMO, CARDNAME, CARDNUM, CARDEXP)
 		VALUES(USERS_ORDER_SEQ.NEXTVAL, #{id}, SYSDATE, #{orderCheck}, #{payCheck}, #{totalPrice}, #{addressName}, #{addressPhone}, #{addressPostal}, #{addressDetail}, #{memo}, #{cardName}, #{cardNum}, #{cardExp})
