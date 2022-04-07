@@ -166,18 +166,18 @@ div.panel {
 					</tbody>
 				</table>
 
-				<div class="pager">
+				<div class="pager" id="pagerArea">
 					<c:if test="${pager.pre}">
-						<a href="./list?page=${pager.startNum-1}">◀</a>
+						<a href="../qnas/list?page=${pager.startNum-1}">◀</a>
 					</c:if>
 
 					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 						<a
-							href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a>
+							href="../qnas/list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a>
 					</c:forEach>
 
 					<c:if test="${pager.next}">
-						<a href="./list?page=${pager.lastNum+1}">▶</a>
+						<a href="../qnas/list?page=${pager.lastNum+1}">▶</a>
 					</c:if>
 
 				</div>

@@ -117,7 +117,29 @@
 		productNum=#{productNum}
 	</select>
 
-	<select id="total" resultType="Long" parameterType="Pager">
+	<select id="total" resultType="Long" parameterType="hashmap">
+		SELECT COUNT(NUM) FROM QNAS
+		WHERE
+		NUM>0
+		and
+		<choose>
+			<when test="kind=='col1'">
+				TITLE
+			</when>
+			<when test="kind =='col2'">
+				CONTENTS
+			</when>
+			<otherwise>
+				ID
+			</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%'
+		and
+		productNum=${productNum}
+	</select>
+	
+	<!-- allList용 pager -->
+	<select id="total2" resultType="Long" parameterType="Pager">
 		SELECT COUNT(NUM) FROM QNAS
 		WHERE
 		NUM>0

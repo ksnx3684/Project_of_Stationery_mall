@@ -48,8 +48,12 @@ public class QnasDAO {
 		return sqlSession.selectOne(NAMESPACE+"detail", boardDTO);
 	}
 	
-	public Long total(Pager pager) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"total", pager);
+	public Long total(HashMap<String, Object> map) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"total", map);
+	}
+	
+	public Long total2(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"total2", pager);
 	}
 
 	public List<BoardDTO> detailList(BoardDTO boardDTO) throws Exception {

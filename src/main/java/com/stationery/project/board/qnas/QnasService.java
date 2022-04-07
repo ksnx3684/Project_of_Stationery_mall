@@ -31,10 +31,10 @@ public class QnasService {
 	public List<BoardDTO> list(Pager pager, int productNum) throws Exception {
 		/* pager와 productNum 같이 넘겨주기 위해 hasgMap 생성 */
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		pager.makeRow();
-		pager.makeNum(qnasDAO.total(pager));
 		map.put("pager", pager);
 		map.put("productNum", productNum);
+		pager.makeRow();
+		pager.makeNum(qnasDAO.total(map));
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("productNum", productNum);
 
@@ -51,7 +51,7 @@ public class QnasService {
 
 	public List<BoardDTO> allList(Pager pager) throws Exception {
 		pager.makeRow();
-		pager.makeNum(qnasDAO.total(pager));
+		pager.makeNum(qnasDAO.total2(pager));
 		return qnasDAO.allList(pager);
 	}
 

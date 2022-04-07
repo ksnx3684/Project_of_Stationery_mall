@@ -32,7 +32,7 @@ function addSubmit() {
 //취소버튼 누를시 list로 
 addCancel.addEventListener("click", function() {
     console.log('cancel click');
-   window.location.href = 'list';
+    window.history.back();
 })
 
 
