@@ -39,10 +39,16 @@ submitBtn.addEventListener("click",function(event){
                     let result = this.responseText.trim();
                     if(result=='1'){
                         console.log("장바구니 추가 성공")
+
+                        let check = confirm("장바구니에 추가되었습니다. 장바구니 화면으로 이동하시겠습니까?")
+                        if(check){
+                            location.replace("../cart/cartlist")
+                        }
+                        return;
                         alert("장바구니에 추가되었습니다.")
                     }else if(result=='2'){
                         alert("이미 장바구니에 추가된 상품입니다.")
-                    }else{
+                    }else{ //3
                         let check = confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")
                         if(check){
                             location.replace("../users/login")

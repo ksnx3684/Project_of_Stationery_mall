@@ -43,12 +43,14 @@ public class ProductController {
 	
 	@PostMapping("addCart")
 	public ModelAndView addCart(CartDTO cartDTO,HttpSession httpSession)throws Exception{
+		
 		UsersDTO usersDTO=(UsersDTO) httpSession.getAttribute("auth");
 		
 		ModelAndView mv= new ModelAndView();
 		int result=2;
 		Loop1:
-		if(usersDTO.getId()!=null) {
+			//로그인했을경우 
+		if(usersDTO!=null) {
 			cartDTO.setId(usersDTO.getId());
 			Loop2:
 				//같은상품 같은옵션이 장바구니에 있다면 
@@ -56,6 +58,8 @@ public class ProductController {
 				break Loop1;
 			}
 			result=productService.addCart(cartDTO);
+		}else { //로그인안했을경우 
+			result=3;
 		}
 		
 		mv.setViewName("common/ajaxResult");
@@ -114,7 +118,6 @@ public class ProductController {
 			int stock=0;
 			for(int i=1;i<options.length;i+=2) {
 				stock=stock+Integer.parseInt(options[i]);
-				System.out.println(options[i]);
 			}
 			productDTO.setStock(stock);
 		}
@@ -132,7 +135,6 @@ public class ProductController {
 		List<OptionDTO> ar=productService.optionList(productDTO);
 		mv.addObject("dto",productDTO);
 		mv.addObject("option", ar);
-		System.out.println(ar);
 		mv.setViewName("product/detail");
 		
 		return mv;
