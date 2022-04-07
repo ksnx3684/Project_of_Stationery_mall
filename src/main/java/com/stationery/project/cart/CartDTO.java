@@ -10,7 +10,7 @@ public class CartDTO extends UsersOrderDTO {
 
 	private Long cartNum;
 	private String id;
-	private Long productNum;
+	private Integer productNum;
 	private Long productCount;
 	private Long totalPrice;
 	private UsersDTO usersDTO;
@@ -39,10 +39,10 @@ public class CartDTO extends UsersOrderDTO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Long getProductNum() {
+	public Integer getProductNum() {
 		return productNum;
 	}
-	public void setProductNum(Long productNum) {
+	public void setProductNum(Integer productNum) {
 		this.productNum = productNum;
 	}
 	public Long getProductCount() {

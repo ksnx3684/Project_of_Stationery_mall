@@ -33,7 +33,13 @@
       <tbody>
         <c:forEach items="${cartlist}" var="dto">
           <tr class="contents">
-            <td class="tg-af47 name"><input class="check" name="cartNum" type="checkbox" data-cartNum="${dto.cartNum}" value="${dto.cartNum}">&nbsp;${dto.productDTO.name}</td>
+            <td class="tg-af47 name">
+              <input class="check" name="cartNum" type="checkbox" data-cartNum="${dto.cartNum}" value="${dto.cartNum}">&nbsp;
+              <c:if test="${dto.productDTO.thumbnail ne null}">
+                <img class="image" src="../resources/upload/product/${dto.productDTO.thumbnail}" style="width:32px; height: 32px;">&nbsp;
+              </c:if>
+              ${dto.productDTO.name}
+            </td>
             <td class="tg-af47 con count">${dto.productCount}</td>
             <td class="tg-af47 con price">${dto.productDTO.price}</td>
           </tr>
@@ -51,7 +57,7 @@
     </c:forEach>
     <span class="totalPrice">원</span><br>
       <!-- <a href="./cartOrder"><button id="selectOrder_btn">주문하기</button></a> -->
-      <span class="site-btn clear-btn id="selectOrder_btn2"><button class="btn btn-primary">주문하기</button></span>
+      <span class="site-btn clear-btn" id="selectOrder_btn2"><button class="btn btn-primary">주문하기</button></span>
       <span><a href="../"><button type="button" class="btn btn-primary">쇼핑계속하기</button></a></span>
   </form>
 
