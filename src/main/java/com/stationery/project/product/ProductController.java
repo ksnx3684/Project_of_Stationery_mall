@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.stationery.project.cart.CartDTO;
+import com.stationery.project.cart.CartService;
 import com.stationery.project.category.CategoryDTO;
 import com.stationery.project.category.CategoryService;
 import com.stationery.project.users.UsersDTO;
@@ -33,6 +34,9 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+//	@Autowired
+//	private CartService cartService;
+	
 	// (add.jsp에 카테고리 출력위해 )
 	@Autowired
 	private CategoryService categoryService;
@@ -40,10 +44,13 @@ public class ProductController {
 	@PostMapping("addCart")
 	public ModelAndView addCart(CartDTO cartDTO,HttpSession httpSession)throws Exception{
 		UsersDTO usersDTO=(UsersDTO) httpSession.getAttribute("auth");
-		cartDTO.setId(usersDTO.getId());
-		
 		ModelAndView mv= new ModelAndView();
-		int result=productService.addCart(cartDTO);
+		int result=2;
+		if(usersDTO.getId()!=null) {
+			cartDTO.setId(usersDTO.getId());
+			result=productService.addCart(cartDTO);
+		}
+		
 		mv.setViewName("common/ajaxResult");
 		mv.addObject("result",result);
 		return mv;
