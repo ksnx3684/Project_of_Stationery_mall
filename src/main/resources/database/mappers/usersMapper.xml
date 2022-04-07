@@ -52,7 +52,7 @@
 		</association>
 	</resultMap>
 	<select id="login" parameterType="UsersDTO" resultMap="UsersDTO">
-		SELECT U.ID, U.NAME, UF.FILENUM, UF.FILENAME, UF.ORINAME
+		SELECT U.*, UF.*
 		FROM USERS U
 		LEFT OUTER JOIN
 		USERS_FILE UF

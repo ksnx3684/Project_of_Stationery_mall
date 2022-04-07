@@ -65,12 +65,19 @@
 
 <aside style="z-index: 3;">
     <div class="sidebar_menu">
-        <ul class="menu_wrap" style="font-size:30px">
+        <ul class="menu_wrap" style="font-size:24px">
             <br>
             <br>
-            <li><a href="/project/product/list">전체상품보기</a></li>
-            <li><a href="2.Information.html">Information</a></li>
-            <li><a href="3.게시글.html">게시글</a></li>
+            <li><a href="/project/product/list">전체상품보기</a></li><br>
+            <li><a href="#">팬시용품</a></li><br>
+            <li><a href="#">필기용품</a></li><br>
+            <li><a href="#">노트/수첩</a></li><br>
+            <li><a href="#">가방/지갑</a></li><br>
+            <li><a href="#">필통/파우치</a></li><br>
+            <li><a href="#">생활/계절용품</a></li><br>
+            <li><a href="#">악세사리</a></li><br>
+            <li><a href="#">완구</a></li><br>
+            <li><a href="#">애완용품</a></li>
         </ul>
 </div>
 </aside>
