@@ -8,9 +8,9 @@
 <title>장바구니</title>
 </head>
     <link rel="stylesheet" href="../resources/css/cartlist.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <c:import url="../template/header.jsp"></c:import>
+	  <link rel="stylesheet" href="../resources/css/hamberger.css">
 <body>
 	<script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>
 
@@ -119,6 +119,6 @@
     </div>
   </form>
   <script type="text/javascript" src="../resources/js/cart/cartlist.js"></script>
-    
+  <script src="../resources/js/hamberger.js"></script>
 </body>
 </html>

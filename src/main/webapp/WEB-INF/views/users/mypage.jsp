@@ -6,9 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<c:import url="../template/header.jsp"></c:import>
+	<link rel="stylesheet" href="../resources/css/hamberger.css">
+	
 </head>
 <body>
 	<c:if test="${usersDTO.usersFileDTO.oriName ne null}">
@@ -33,5 +34,6 @@
 	<c:if test="${usersDTO.userAccount eq 0}">
 		<a href="./otp/first"><button id="manager" class="btn btn-warning">관리자페이지</button></a>
 	</c:if>
+	<script src="../resources/js/hamberger.js"></script>
 </body>
 </html>

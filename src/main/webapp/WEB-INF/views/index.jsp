@@ -6,13 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>네모생각</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<c:import url="./template/header.jsp"></c:import>
+	<link rel="stylesheet" href="./resources/css/hamberger.css">
 </head>
 <body>
-	<c:import url="./template/header.jsp"></c:import>
-	<h1>main page!</h1>
+
+	<h1>네모생각</h1>
 	<c:import url="/category/catelist"></c:import>
 
-	<div class="container" style="margin-bottom: 100px; max-width: 900px; max-height: 450px;"> 
+	<div class="container" style="margin-bottom: 100px; max-width: 900px; max-height: 450px; z-index: 1;"> 
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 		  <!-- Indicators -->
 		  <ol class="carousel-indicators">
@@ -22,7 +25,9 @@
 			<li data-target="#myCarousel" data-slide-to="3"></li>
 			<li data-target="#myCarousel" data-slide-to="4"></li>
 		  </ol>
-	  
+			<!-- <script>
+				$('.carousel').carousel({ interval: 4000 });
+			</script> -->
 		  <!-- Wrapper for slides -->
 		  <div class="carousel-inner">
 			<div class="item active">
@@ -52,8 +57,7 @@
 			<span class="sr-only">Next</span>
 		  </a>
 		</div>
-	  </div>
-
-
+	</div>
+	<script src="./resources/js/hamberger.js"></script>
 </body>
 </html>

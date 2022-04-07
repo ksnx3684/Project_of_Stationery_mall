@@ -32,30 +32,7 @@ public class UsersController {
 
 	@Autowired
 	private UsersService usersService;
-	
-	@PostMapping("deleteWishList")
-	public ModelAndView deleteWishList(WishListDTO wishListDTO) throws Exception{
-		ModelAndView mv= new ModelAndView();
-		int result=usersService.deleteWishList(wishListDTO);
-		mv.setViewName("common/ajaxResult");
-		mv.addObject("result",result);
-		return mv;
-	}
-	
-	@PostMapping("addWishList")
-	public ModelAndView addWishList(WishListDTO wishListDTO) throws Exception{
-		ModelAndView mv= new ModelAndView();
-		int result=2;
-		WishListDTO ck=usersService.wishlistCk(wishListDTO);
-		if(ck==null) {
-		usersService.addWishList(wishListDTO);
-		result=1;
-		}
-		mv.setViewName("common/ajaxResult");
-		mv.addObject("result",result);
-		return mv;
-	}
-	
+		
 	// join form 이동
 	@GetMapping("join")
 	public void join() throws Exception {	
@@ -294,6 +271,31 @@ public class UsersController {
 		model.addAttribute("orderDetail", usersOrderDTO);
 		// System.out.println(usersOrderDTO.getOrderDetailDTOs().get(1).getProductDTOs().get(0).getThumbnail());
 		return "users/orderDetail";
+	}
+	
+	// wishlist 추가 기능
+	@PostMapping("addWishList")
+	public ModelAndView addWishList(WishListDTO wishListDTO) throws Exception{
+		ModelAndView mv= new ModelAndView();
+		int result=2;
+		WishListDTO ck=usersService.wishlistCk(wishListDTO);
+		if(ck==null) {
+		usersService.addWishList(wishListDTO);
+		result=1;
+		}
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result",result);
+		return mv;
+	}
+	
+	// wishlist 삭제 기능
+	@PostMapping("deleteWishList")
+	public ModelAndView deleteWishList(WishListDTO wishListDTO) throws Exception{
+		ModelAndView mv= new ModelAndView();
+		int result=usersService.deleteWishList(wishListDTO);
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result",result);
+		return mv;
 	}
 
 }
