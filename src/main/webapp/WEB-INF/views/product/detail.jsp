@@ -137,7 +137,7 @@ div.panel {
 											<a href="../qnas/qnaUpdate?num=${dto.num}"><br>질문수정</a>
 										</c:if>
 										
-										<%-- 보류 --%>
+										<%-- 보류
 										<c:choose>
 											<c:when test="${auth.userAccount eq 0}">
 												<c:choose>
@@ -150,6 +150,16 @@ div.panel {
 												</c:choose>
 											</c:when>
 										</c:choose>
+										 --%>
+										 
+										 <c:choose>
+													<c:when test="${dto.step eq 0}">
+														<a href="../qnas/qnaReply?num=${dto.num}"><br>답변달기</a>
+													</c:when>
+													<c:otherwise>
+														<a href="../qnas/qnaUpdate?num=${dto.num}"><br>답변수정</a>
+													</c:otherwise>
+												</c:choose>
 									</div></td>
 							</tr>
 						</c:forEach>
