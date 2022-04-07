@@ -129,15 +129,26 @@ div.panel {
 												src="../resources/upload/qnas/${f.fileName}">
 										</c:forEach>
 										
-										<a data-delNum="${dto.num}" href="../qnas/qnaDelete?num=${dto.num}&productNum=${dto.productNum}" onclick="return confirm('정말 삭제하시겠습니까?');">질문삭제</a>
 										<%-- 답변 달린지 구분하는 코드 추가... --%>
+
+										<%-- 작성자만 수정 및 삭제하게끔 --%>
+										<c:if test="${auth.id eq dto.id}">
+										<a data-delNum="${dto.num}" href="../qnas/qnaDelete?num=${dto.num}&productNum=${dto.productNum}" onclick="return confirm('정말 삭제하시겠습니까?');">질문삭제</a>
+											<a href="../qnas/qnaUpdate?num=${dto.num}"><br>질문수정</a>
+										</c:if>
+										
+										<%-- 보류 --%>
 										<c:choose>
-											<c:when test="${dto.step eq 0}">
-												<a href="../qnas/qnaReply?num=${dto.num}"><br>답변달기</a>
+											<c:when test="${auth.userAccount eq 0}">
+												<c:choose>
+													<c:when test="${dto.step eq 0}">
+														<a href="../qnas/qnaReply?num=${dto.num}"><br>답변달기</a>
+													</c:when>
+													<c:otherwise>
+														<a href="../qnas/qnaUpdate?num=${dto.num}"><br>답변수정</a>
+													</c:otherwise>
+												</c:choose>
 											</c:when>
-											<c:otherwise>
-												<a href="../qnas/qnaUpdate?num=${dto.num}"><br>답변수정</a>
-											</c:otherwise>
 										</c:choose>
 									</div></td>
 							</tr>
