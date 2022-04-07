@@ -39,32 +39,35 @@
 	</div>	
 </div>
 <div class="right-side">
-	
-	
 		<h1>${dto.name}</h1>
 		<hr>
 		<h1>${dto.price}원</h1>
 		<hr>
 		<h4>${dto.contents}</h4>
+		<hr>
 	
-	<hr>
-	<form action="../cart/add" method="post" enctype="multipart/form-data">
-	<c:choose>
-		<c:when test="${not empty option}">
+	<!-- js로 보내주기 위함 -->
+	<input type="hidden" value="${dto.productNum}" id="productNum">
+	
+	
+	
+	<form action="./addCart" method="post" enctype="multipart/form-data">
+		<c:if test="${not empty option}">
 			<c:forEach items="${option}" var="option">
 			<div class="formrow">
-				<input type="radio" class="checkbox" value="${option.optionNum}" name="optionNum"></button>
+				<input type="radio" class="checkbox" value="${option.optionNum}" name="optionNum">
 				<label class="checklabel" for="${option.optionContents}">${option.optionContents}</label>
 			</div>
 			</c:forEach>
-			</c:when>	
-	</c:choose>
+		</c:if>	
 	<div class="addToCart">
-	<input type="number" name="productCount" class="piece" value="1" />
-        <button type="button"><span class="material-icons-outlined">shopping_cart</span></button> 
+	<input type="number" name="productCount" class="piece" value="1" id="piece" min="1" max="100"/>
+        <button type="button" id="submitBtn"><span class="material-icons-outlined">shopping_cart</span></button> 
 	 </div>
 	</form>
 	
+
+
 
 </div><!-- right-side -->
 

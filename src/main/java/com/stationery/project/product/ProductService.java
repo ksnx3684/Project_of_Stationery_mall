@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.stationery.project.cart.CartDTO;
 import com.stationery.project.util.Pager;
 import com.stationery.project.util.ProductFileManager;
 
@@ -20,6 +21,10 @@ public class ProductService {
 	private ProductDAO productDAO;
 	@Autowired
 	private ProductFileManager fileManager;
+	
+	public int addCart(CartDTO cartDTO) throws Exception{
+		return productDAO.addCart(cartDTO);
+	}
 	
 	public int productStockUpdate(int productNum,int stock) throws Exception{
 		ProductDTO productDTO=new ProductDTO();

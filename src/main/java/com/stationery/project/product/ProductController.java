@@ -4,6 +4,8 @@ import java.lang.StackWalker.Option;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.reflection.SystemMetaObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.stationery.project.cart.CartDTO;
 import com.stationery.project.category.CategoryDTO;
 import com.stationery.project.category.CategoryService;
+import com.stationery.project.users.UsersDTO;
 import com.stationery.project.util.Pager;
 
 
@@ -33,7 +37,17 @@ public class ProductController {
 	@Autowired
 	private CategoryService categoryService;
 	
-	
+	@PostMapping("addCart")
+	public ModelAndView addCart(CartDTO cartDTO,HttpSession httpSession)throws Exception{
+		UsersDTO usersDTO=(UsersDTO) httpSession.getAttribute("auth");
+		cartDTO.setId(usersDTO.getId());
+		
+		ModelAndView mv= new ModelAndView();
+		int result=productService.addCart(cartDTO);
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result",result);
+		return mv;
+	}
 	
 	@PostMapping("optionDelete")
 	public ModelAndView optionDelete(OptionDTO optionDTO)throws Exception{

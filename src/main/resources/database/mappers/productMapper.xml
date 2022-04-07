@@ -5,6 +5,11 @@
 
 <mapper namespace="com.stationery.project.product.ProductDAO">
 
+	<insert id="addCart" parameterType="CartDTO">
+		insert into cart(cartNum,id,productNum,optionNum,totalprice,productcount)
+		values(cart_seq.nextval,#{id},#{productNum},#{optionNum},(select price from product where productnum=#{productNum})*#{productCount},#{productCount})
+	</insert>
+
 	<!-- 옵션없는 상품 재고 업데이트 -->
 	<update id="productStockUpdate" parameterType="ProductDTO">
 		update product

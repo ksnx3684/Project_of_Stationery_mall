@@ -126,7 +126,6 @@ files.addEventListener("click",function(event){
 
 	    xhttp.onreadystatechange = function(){
 	        if(this.readyState==4 && this.status==200){
-                console.log("ㄹㅇㅁㄹㅇㄴㄹ")
                 console.log(this.responseText)
 	            let result = this.responseText.trim();
 	        	if(result=='1'){

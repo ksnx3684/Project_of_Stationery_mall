@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.stationery.project.cart.CartDTO;
 import com.stationery.project.util.Pager;
 
 
@@ -20,6 +21,9 @@ public class ProductDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.stationery.project.product.ProductDAO.";
 	
+	public int addCart(CartDTO cartDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"addCart", cartDTO);
+	}
 	
 	public int productStockUpdate(ProductDTO productDTO)throws Exception{
 		return sqlSession.update(NAMESPACE+"productStockUpdate", productDTO);

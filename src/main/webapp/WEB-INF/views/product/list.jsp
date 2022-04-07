@@ -79,6 +79,6 @@
 			</c:if>
 		</div>
 
-		<script src="../resources/js/users/wishlist.js"></script>
+		<script src="../resources/js/product/wishlist.js"></script>
 </body>
 </html>
