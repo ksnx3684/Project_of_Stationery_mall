@@ -24,7 +24,7 @@
 <body>
 	<h1>${board} Add Page</h1>
 	<!-- <div id="container"> -->
-	<form action="./qnaAdd" method="post" style="width: 100%" onsubmit="return addSubmit();">
+	<form action="./qnaAdd" method="post" style="width: 100%" onsubmit="return addSubmit();" enctype="multipart/form-data">
 		<div class="item">
 			<table class="table-basic">
 				<tbody>
@@ -60,8 +60,16 @@
 				</tbody>
 			</table>
 		</div>
-		<!-- 	</div>
- -->
+		
+			<div id="fileContainer">
+				<div id="fileResult" class="alignCenter">
+
+
+				</div>
+				<div class="fileAdd">
+					<button type="button" id="fileAdd">파일추가</button>
+				</div>
+			</div>
 		
 		<hr>
 		<div id="btnList">

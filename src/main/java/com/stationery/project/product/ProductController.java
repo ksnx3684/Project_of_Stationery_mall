@@ -1,6 +1,5 @@
 package com.stationery.project.product;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.stationery.project.board.BoardDTO;
-import com.stationery.project.board.qnas.QnasDTO;
 import com.stationery.project.board.qnas.QnasService;
-import com.stationery.project.board.qnas.QnasVO;
 import com.stationery.project.category.CategoryDTO;
 import com.stationery.project.category.CategoryService;
 import com.stationery.project.util.Pager;
@@ -36,6 +33,7 @@ public class ProductController {
 	private ProductService productService;
 	@Autowired
 	private QnasService qnasService;
+	
 	// (add.jsp에 카테고리 출력위해 )
 	@Autowired
 	private CategoryService categoryService;

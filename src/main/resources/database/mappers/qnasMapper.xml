@@ -4,7 +4,25 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.stationery.project.board.qnas.QnasDAO">
-
+	<delete id="fileDelete" parameterType="QnasFileDTO">
+		DELETE QNAS_FILE WHERE FILENUM=#{fileNum}
+ 	</delete>
+ 	
+ 	<select id="listFile" parameterType="BoardDTO" resultType="QnasFileDTO">
+ 		SELECT * FROM QNAS_FILE
+ 		WHERE NUM=#{num}
+ 	</select>
+ 
+  	<select id="detailFile" parameterType="QnasFileDTO" resultType="QnasFileDTO">
+ 		SELECT * FROM QNAS_FILE
+ 		WHERE FILENUM=#{fileNum}
+ 	</select>
+ 
+  	<insert id="addFile" parameterType="BoardFileDTO">
+ 		INSERT INTO QNAS_FILE (FILENUM, NUM, FILENAME, ORINAME)
+ 		VALUES (QNAS_FILE_SEQ.NEXTVAL, #{num}, #{fileName}, #{oriName})
+ 	</insert>
+ 	
  	<insert id="reply" parameterType="QnasDTO">
  		insert into qnas (num, productNum, id, title, contents, type, ref, step, depth)
  		values (QNAS_SEQ.NEXTVAL, #{productNum}, #{id}, #{title}, #{contents}, #{type}, #{ref}, #{step}, #{depth})
@@ -47,6 +65,33 @@
 		WHERE R between #{startRow} and #{lastRow} 
 	</select>
 
+	<select id="detail" parameterType="QnasDTO" resultMap="detailResult">
+			SELECT Q.*, QF.*
+		FROM
+	        QNAS Q
+	            LEFT OUTER JOIN
+	        QNAS_FILE QF
+	        	ON Q.NUM=QF.NUM
+		WHERE   Q.NUM=#{num} 
+ 	</select>
+ 	
+ 	<resultMap type="QnasDTO" id="detailResult">
+ 		<id column="num" property="num"/>
+ 		<result column="productNum" property="productNum"/>
+ 		<result column="id" property="id"/>
+ 		<result column="title" property="title"/>
+ 		<result column="contents" property="contents"/>
+ 		<result column="type" property="type"/>
+ 		<result column="ref" property="ref"/>
+ 		<result column="step" property="step"/>
+ 		<result column="depth" property="depth"/>
+ 		<collection property="fileDTOs" javaType="List" ofType="QnasFileDTO">
+ 			<id column="fileNum" property="fileNum"/>
+ 			<result column="fileName" property="fileName"/>
+ 			<result column="oriName" property="oriName"/>
+ 		</collection>
+ 	</resultMap>
+	
 	<select id="list" parameterType="hashmap" resultType="QnasDTO">
 		SELECT * FROM
 		(SELECT rownum R, B.* FROM
@@ -91,10 +136,6 @@
 		LIKE '%'||#{search}||'%'
 	</select>
 
-	<select id="detail" parameterType="QnasDTO" resultType="QnasDTO">
-		SELECT * FROM QNAS WHERE NUM=#{num}
-	</select>
-	
 	<update id="qnaUpdate" parameterType="QnasDTO">
 		UPDATE QNAS SET TITLE=#{title}, CONTENTS=#{contents} WHERE NUM=#{num}
 	</update>

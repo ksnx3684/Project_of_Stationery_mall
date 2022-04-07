@@ -1,5 +1,7 @@
 package com.stationery.project.board.qnas;
 
+import java.util.List;
+
 import com.stationery.project.board.BoardDTO;
 
 public class QnasDTO extends BoardDTO{
@@ -9,7 +11,15 @@ public class QnasDTO extends BoardDTO{
 	private Long step;
 	private Long depth;
 	
+	private List<QnasDTO> fileDTOs;
+	
 
+	public List<QnasDTO> getFileDTOs() {
+		return fileDTOs;
+	}
+	public void setFileDTOs(List<QnasDTO> fileDTOs) {
+		this.fileDTOs = fileDTOs;
+	}
 	public Integer getProductNum() {
 		return productNum;
 	}

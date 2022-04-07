@@ -51,7 +51,7 @@ rel="stylesheet">
 						<td>${dto.num}</td>
 						<c:choose>
 						<c:when test="${board eq 'qnas'}">
-							<td><a href="./qnaDetail?num=${dto.num}">${dto.title}</a></td>
+							<td><a href="./qnaDetail?num=${dto.num}&productNum=${dto.productNum}">${dto.title}</a></td>
 						</c:when>
 						<c:otherwise>
 							<td><a href="./detail?num=${dto.num}">${dto.title}</a></td>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.stationery.project.board.BoardDTO;
+import com.stationery.project.board.BoardFileDTO;
 import com.stationery.project.util.Pager;
 
 @Repository
@@ -15,6 +16,24 @@ public class QnasDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.stationery.project.board.qnas.QnasDAO.";
+	
+	public int fileDelete(QnasFileDTO qnasFileDTO) throws Exception{ 
+		return sqlSession.delete(NAMESPACE+"fileDelete", qnasFileDTO);
+	}
+	
+	public List<QnasFileDTO> listFile(BoardDTO boardDTO)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"listFile", boardDTO);
+	}
+	
+	public QnasFileDTO detailFile(QnasFileDTO qnasFileDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"detailFile", qnasFileDTO);
+	}
+
+	public int addFile(BoardFileDTO boardFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(NAMESPACE+"addFile", boardFileDTO);
+	}
+	
 	
 	public List<BoardDTO> allList(Pager pager) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"allList", pager);
@@ -43,6 +62,10 @@ public class QnasDAO {
 	
 	public int reply(QnasDTO qnasDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"reply", qnasDTO);
+	}
+	
+	public int stepUpdate(QnasDTO qnasDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"stepUpdate", qnasDTO);
 	}
 	
 	public int qnaUpdate(BoardDTO boardDTO) throws Exception {

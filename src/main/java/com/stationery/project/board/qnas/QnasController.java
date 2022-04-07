@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.stationery.project.board.BoardDTO;
@@ -24,6 +25,35 @@ public class QnasController {
 	@ModelAttribute("board")
 	public String board() {
 		return "qnas";
+	}
+	
+	@PostMapping("fileDelete")
+	public ModelAndView fileDelete(QnasFileDTO qnasFileDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		System.out.println(qnasFileDTO.getFileNum());
+		int result = qnasService.fileDelete(qnasFileDTO);
+		System.out.println(result);
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result",result);
+		return mv;
+	}
+
+	@PostMapping("qnaReply")
+	public ModelAndView reply(QnasDTO qnasDTO, @RequestParam(value="productNum") Integer productNum) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = qnasService.reply(qnasDTO);
+		mv.setViewName("redirect:../product/detail?productNum="+productNum);
+		
+		return mv;
+	}
+	
+	@GetMapping("qnaReply")
+	public ModelAndView reply(QnasDTO qnasDTO, ModelAndView mv) throws Exception {
+		BoardDTO boardDTO = qnasService.detail(qnasDTO);
+		mv.addObject("dto",boardDTO); //부모글번호 넘겨주기 위해
+		mv.setViewName("board/qnaReply");
+		
+		return mv;
 	}
 	
 	@GetMapping("list")
@@ -54,10 +84,10 @@ public class QnasController {
 	}
 	
 	@PostMapping("qnaAdd")
-	public ModelAndView add(QnasDTO qnasDTO, @RequestParam(value="productNum") Integer productNum) throws Exception {
+	public ModelAndView add(QnasDTO qnasDTO, MultipartFile [] files, @RequestParam(value="productNum") Integer productNum) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		System.out.println(productNum);
-		int result = qnasService.add(qnasDTO);
+		int result = qnasService.add(qnasDTO, files);
 		mv.setViewName("redirect:../product/detail?productNum="+productNum);
 		
 		return mv;
@@ -81,8 +111,8 @@ public class QnasController {
 	}
 	
 	@GetMapping("qnaDelete")
-	public String qnaDelete(QnasDTO qnasDTO) throws Exception {
+	public String qnaDelete(QnasDTO qnasDTO, @RequestParam(value="productNum") Integer productNum) throws Exception {
 		int result = qnasService.qnaDelete(qnasDTO);
-		return "redirect:./list";
+		return "redirect:../product/detail?productNum="+productNum;
 	}
 }
