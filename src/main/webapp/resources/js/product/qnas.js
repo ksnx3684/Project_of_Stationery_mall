@@ -89,32 +89,35 @@ console.log(panel); */
 }  
 
 //---------------------------------------------------------
-// const delBtn = document.querySelectorAll(".delBtn");
-// const contentsArea = document.querySelector("#contentsArea");
+// const pagerArea = document.querySelector("#pagerArea");
+// const pre = '${pager.startNum-1}';
+// const i = '${i}';
+// const kind = '${pager.kind}';
+// const search = '${pager.search}';
+// const next = '${pager.lastNum+1}';
+// const productNum = '${dto.productNum}';
 
-// contentsArea.addEventListener("click", function(event) {
-//     if(event.target.classList.contains("delBtn")) {
-//         console.log("del click");
-//         let check = confirm("삭제시 복구 불가능합니다. 삭제하시겠습니까?");
-//         if(!check) {
-//             return ;
-//         }
-//         let num = event.target.getAttribute("data-delNum");
+// pagerArea.addEventListener("click", function(event) {
+//     if(event.target.classList.contains("pageNum")) {
 
-//         let xhttp = new XMLHttpRequest();
-//         xhttp.open("POST", "../qnas/qnaDelete");
-//         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-//         xhttp.send("num="+num);
+//         console.log("pageNum click");
+//         const xhttp = new XMLHttpRequest();
+//         xhttp.open("GET","../qnas/list?page="+i+"&kind="+kind+"&search="+search+"&productNum="+productNum);
+//         //send("이름 = 값 & 이름2 = 값2...")
+//         xhttp.send();
 
+//         //응답 처리
 //         xhttp.onreadystatechange = function() {
 //             if(this.readyState == 4 && this.status == 200) {
-//                 if(this.responseText.trim()=='1') {
-//                     console.log("file 삭제");
-//                     event.target.parentNode.remove();          
-//                 }else{
-//                     console.log("file 삭제 실패");
+//                 let result = this.responseText.trim();
+//                 if(result=='1') {
+//                     console.log("성공");
 //                 }
-//             }
+//                 else{
+//                     console.log("실패");
+//                 }
 //         }
 //     }
-// });
+//     }
+    
+// })

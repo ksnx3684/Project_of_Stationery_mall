@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link
+	href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|
+Material+Icons+Round|Material+Icons+sharp"
+	rel="stylesheet">
+<link href="../resources/css/table.css" rel="styleSheet" />
+<link href="../resources/css/list.css" rel="styleSheet" />
+<link href="../resources/css/notice.css" rel="styleSheet" />
 <style type="text/css">
 /*  	.detailBox {
 		border : 1px solid black;
@@ -61,21 +68,9 @@ div.panel {
 }
 </style>
 </head>
-
 <body>
-	<h1>Detail Page</h1>
-	<a href="./delete?productNum=${dto.productNum}">delete</a>
-	<a href="./update?productNum=${dto.productNum}">update</a>
-	<hr>
-	<h3>상품명 : ${dto.name}</h3>
-	<h4>가격 : ${dto.price}</h4>
-	<h4>설명 : ${dto.contents}</h4>
 
-	<c:forEach items="${dto.productFileDTOs}" var="f">
-		<!-- 수정해라 나중에 f.fileName으로 -->
-		<img alt="" src="../resources/upload/product/${f.fileName}">
-	</c:forEach>
-	<hr>
+	<h1>${board}List Page</h1>
 
 	<div class="qna_board">
 		<h2 class="titleArea">Q&A</h2>
@@ -122,21 +117,24 @@ div.panel {
 								<td>${dto.id}</td>
 							</tr>
 							<tr>
-								<td colspan="5"><div class="panel contents" id="contentsArea">${dto.contents}
+								<td colspan="5"><div class="panel contents"
+										id="contentsArea">${dto.contents}
 										<c:forEach items="${dto.fileDTOs}" var="f">
 											<h3>${f.oriName}</h3>
 											<img class="qnaImg" alt=""
 												src="../resources/upload/qnas/${f.fileName}">
 										</c:forEach>
-										
+
 										<%-- 답변 달린지 구분하는 코드 추가... --%>
 
 										<%-- 작성자만 수정 및 삭제하게끔 --%>
 										<c:if test="${auth.id eq dto.id}">
-										<a data-delNum="${dto.num}" href="../qnas/qnaDelete?num=${dto.num}&productNum=${dto.productNum}" onclick="return confirm('정말 삭제하시겠습니까?');">질문삭제</a>
+											<a data-delNum="${dto.num}"
+												href="../qnas/qnaDelete?num=${dto.num}&productNum=${dto.productNum}"
+												onclick="return confirm('정말 삭제하시겠습니까?');">질문삭제</a>
 											<a href="../qnas/qnaUpdate?num=${dto.num}"><br>질문수정</a>
 										</c:if>
-										
+
 										<%-- 보류
 										<c:choose>
 											<c:when test="${auth.userAccount eq 0}">
@@ -151,22 +149,22 @@ div.panel {
 											</c:when>
 										</c:choose>
 										 --%>
-										 
-										 <c:choose>
-													<c:when test="${dto.step eq 0}">
-														<a href="../qnas/qnaReply?num=${dto.num}"><br>답변달기</a>
-													</c:when>
-													<c:otherwise>
-														<a href="../qnas/qnaUpdate?num=${dto.num}"><br>답변수정</a>
-													</c:otherwise>
-												</c:choose>
+
+										<c:choose>
+											<c:when test="${dto.step eq 0}">
+												<a href="../qnas/qnaReply?num=${dto.num}"><br>답변달기</a>
+											</c:when>
+											<c:otherwise>
+												<a href="../qnas/qnaUpdate?num=${dto.num}"><br>답변수정</a>
+											</c:otherwise>
+										</c:choose>
 									</div></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 
-				 <div class="pager" id="pagerArea">
+				<!-- <div class="pager" id="pagerArea">
 					<c:if test="${pager.pre}">
 						<a class="pre" href="./list?page=${pager.startNum-1}">◀</a>
 					</c:if>
@@ -180,31 +178,27 @@ div.panel {
 						<a class="next" href="./list?page=${pager.lastNum+1}">▶</a>
 					</c:if>
 
-				</div> 
+				</div> -->
 
-<%-- 				<div class="pager" id="pagerArea">
+				<div class="pager" id="pagerArea">
 					<c:if test="${pager.pre}">
 						<a class="pre" href=#>◀</a>
 					</c:if>
 
 					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-						<a class="pageNum"
-							href=#>${i}</a>
+						<a class="pageNum" href=#>${i}</a>
 					</c:forEach>
 
 					<c:if test="${pager.next}">
 						<a class="next" href=#>▶</a>
 					</c:if>
 
-				</div> --%>
+				</div>
 
 			</div>
 
 		</div>
 	</div>
-
-
 	<script type="text/javascript" src="../resources/js/product/qnas.js"></script>
-
 </body>
 </html>
