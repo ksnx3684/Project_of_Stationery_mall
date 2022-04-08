@@ -57,7 +57,7 @@ fileAdd.addEventListener("click", function() {
     button.setAttribute("type", "button");
     button.className="del";
     button.setAttribute("data-num", "del"+num)
-    button.innerHTML="DEL";
+    button.innerHTML="삭제";
 
     div.append(file);
     div.append(button);
@@ -90,7 +90,7 @@ files.addEventListener("click", function(event) {
         let fileNum = event.target.getAttribute("data-fileNum");
 
         let xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "../notices/fileDelete");
+        xhttp.open("POST", "../qnas/fileDelete");
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send("fileNum="+fileNum);
 
@@ -98,7 +98,8 @@ files.addEventListener("click", function(event) {
             if(this.readyState == 4 && this.status == 200) {
                 if(this.responseText.trim()=='1') {
                     console.log("file 삭제");
-                    event.target.parentNode.remove();          
+                    event.target.parentNode.remove();
+                     
                 }else{
                     console.log("file 삭제 실패");
                 }

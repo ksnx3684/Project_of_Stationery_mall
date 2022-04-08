@@ -14,11 +14,6 @@ Material+Icons+Round|Material+Icons+sharp"
 <link href="../resources/css/list.css" rel="styleSheet" />
 <link href="../resources/css/notice.css" rel="styleSheet" /> -->
 <style type="text/css">
-/*  	.detailBox {
-		border : 1px solid black;
-		width : 500px;
-		heigth : 200px;
-	}  */
 button.accordion {
 	background-color: #FFF;
 	cursor: pointer;
@@ -39,20 +34,6 @@ button.accordion>p {
 button.accordion.active {
 	font-weight: bold;
 	color: #000;
-}
-
-button.accordion:after { // 아코디언이 닫혀 있을 때 화살표 background-size:18px18px;
-	display: inline-block;
-	width: 18px;
-	height: 18px;
-	content: "";
-	float: right;
-	position: relative;
-	top: 18px;
-}
-
-button.accordion.active:after { // 아코디언이 열렸을 때 화살표 이미지를 바꿔준다. content:"";
-	
 }
 
 div.panel {
@@ -108,46 +89,39 @@ div.panel {
 							</tr>
 							<tr>
 								<td colspan="5"><div class="panel contents"
-										id="contentsArea">${dto.contents}
+										id="contentsArea">
+										${dto.contents}
 										<c:forEach items="${dto.fileDTOs}" var="f">
-											<h3>${f.oriName}</h3>
-											<img class="qnaImg" alt=""
+											<div class="qnaImgArea">
+												<h3>for in</h3>
+												<h3>${f.oriName}</h3>
+												<img class="qnaImg" alt=""
 												src="../resources/upload/qnas/${f.fileName}">
+											</div>
 										</c:forEach>
-
-										<%-- 답변 달린지 구분하는 코드 추가... --%>
-
-										<%-- 작성자만 수정 및 삭제하게끔 --%>
-										<c:if test="${auth.id eq dto.id}">
-											<a data-delNum="${dto.num}"
-												href="../qnas/qnaDelete?num=${dto.num}&productNum=${dto.productNum}"
+										
+							 	 	<c:choose>
+										<c:when test="${auth.userAccount eq 0}"> 
+											<c:choose>
+												<c:when test="${dto.step eq 0}">
+													<a href="../qnas/qnaReply?num=${dto.num}"><br>답변달기</a>
+												</c:when>
+												<c:otherwise>
+													<a href="../qnas/qnaUpdate?num=${dto.num}&productNum=${dto.productNum}"><br>답변수정</a>
+													<a data-delNum="${dto.num}" href="../qnas/qnaDelete?num=${dto.num}&productNum=${dto.productNum}"
+														 onclick="return confirm('정말 삭제하시겠습니까?');">답변삭제</a>												
+												</c:otherwise>
+											</c:choose>
+										</c:when>
+										<c:otherwise> 
+											<c:if test="${auth.id eq dto.id}">
+												<a data-delNum="${dto.num}" href="../qnas/qnaDelete?num=${dto.num}&productNum=${dto.productNum}"
 												onclick="return confirm('정말 삭제하시겠습니까?');">질문삭제</a>
-											<a href="../qnas/qnaUpdate?num=${dto.num}"><br>질문수정</a>
-										</c:if>
-
-										<%-- 보류
-										<c:choose>
-											<c:when test="${auth.userAccount eq 0}">
-												<c:choose>
-													<c:when test="${dto.step eq 0}">
-														<a href="../qnas/qnaReply?num=${dto.num}"><br>답변달기</a>
-													</c:when>
-													<c:otherwise>
-														<a href="../qnas/qnaUpdate?num=${dto.num}"><br>답변수정</a>
-													</c:otherwise>
-												</c:choose>
-											</c:when>
-										</c:choose>
-										 --%>
-
-										<c:choose>
-											<c:when test="${dto.step eq 0}">
-												<a href="../qnas/qnaReply?num=${dto.num}"><br>답변달기</a>
-											</c:when>
-											<c:otherwise>
-												<a href="../qnas/qnaUpdate?num=${dto.num}"><br>답변수정</a>
-											</c:otherwise>
-										</c:choose>
+												<a href="../qnas/qnaUpdate?num=${dto.num}&productNum=${dto.productNum}"><br>질문수정</a>
+											</c:if>
+										</c:otherwise>
+									</c:choose>  
+									
 									</div></td>
 							</tr>
 						</c:forEach>

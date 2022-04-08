@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -104,7 +105,6 @@ public class QnasController {
 	@PostMapping("qnaAdd")
 	public ModelAndView add(QnasDTO qnasDTO, MultipartFile [] files, @RequestParam(value="productNum") Integer productNum) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(productNum);
 		int result = qnasService.add(qnasDTO, files);
 		mv.setViewName("redirect:../product/detail?productNum="+productNum);
 		
@@ -120,10 +120,11 @@ public class QnasController {
 	}
 	
 	@PostMapping("qnaUpdate")
-	public ModelAndView qnaUpdate(QnasDTO qnasDTO) throws Exception {
+	public ModelAndView qnaUpdate(QnasDTO qnasDTO, @RequestParam(value="productNum") Integer productNum) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		System.out.println(productNum);
 		int result = qnasService.qnaUpdate(qnasDTO);
-		mv.setViewName("redirect:./list");
+		mv.setViewName("redirect:../product/detail?productNum="+productNum);
 		
 		return mv;
 	}

@@ -25,7 +25,7 @@
 
 </head>
 <body>
-	<h1>${board}Update Page</h1>
+	<h1>${board}UpdatePage</h1>
 
 	<form action="./qnaUpdate" method="POST" enctype="multipart/form-data"
 		onsubmit="return updateSubmit();">
@@ -33,15 +33,30 @@
 		<input type="hidden" name="num" value="${dto.num}"> 글 제목<input
 			type="text" name="title" id="title" value="${dto.title}"> 작성자<input
 			type="text" name="id" disabled="disabled" value="${auth.id}">
+		<input type="hidden" name="productNum" value="${param.productNum}">
 		본문
 		<textarea name="contents" rows="" cols="" id="summernote">${dto.contents}</textarea>
 
 		<hr>
-		<c:forEach items="${dto.fileDTOs}" var="f">
-			<h3>${f.oriName}</h3>
-			<img class="qnaImg" alt=""
-				src="../resources/upload/qnas/${f.fileName}">
-		</c:forEach>
+		<div id="files">
+			<c:forEach items="${dto.fileDTOs}" var="f">
+				<div>
+					${f.oriName}
+					<button type="button" data-fileNum="${f.fileNum}"
+						class="fileDeleteBtn">X</button>
+
+					<img class="qnaImg" alt=""
+						src="../resources/upload/qnas/${f.fileName}">
+				</div>
+			</c:forEach>
+		</div>
+
+		<div id="fileContainer">
+			<div id="fileResult" class="alignCenter"></div>
+			<div class="fileAdd">
+				<button type="button" id="fileAdd">FileAdd</button>
+			</div>
+		</div>
 		<hr>
 
 		<div id="btnList">
