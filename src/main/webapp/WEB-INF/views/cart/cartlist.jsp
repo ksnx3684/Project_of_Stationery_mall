@@ -31,14 +31,24 @@
         </tr>
       </thead>
       <tbody>
-        <c:forEach items="${cartlist}" var="dto">
+        <c:forEach items="${cartlist}" var="dto" varStatus="status">
           <tr class="contents">
             <td class="tg-af47 name">
               <input class="check" name="cartNum" type="checkbox" data-cartNum="${dto.cartNum}" value="${dto.cartNum}">&nbsp;
               <c:if test="${dto.productDTO.thumbnail ne null}">
                 <img class="image" src="../resources/upload/product/${dto.productDTO.thumbnail}" style="width:32px; height: 32px;">&nbsp;
               </c:if>
-              ${dto.productDTO.name}
+              ${dto.productDTO.name}&nbsp;
+              <c:forEach items="${optionlist}" var="op" begin="${status.index}" end="${status.index}">
+                <c:choose>
+                  <c:when test="${op.optionContents ne null}">
+                    ( 옵션 : ${op.optionContents} ) <input class="option" type="hidden" name="optionContents" value="${op.optionContents}" disabled>
+                  </c:when>
+                  <c:otherwise>
+                    <input class="option" type="hidden" name="optionContents" value="${op.optionContents}" disabled>
+                  </c:otherwise>
+                </c:choose>
+              </c:forEach>
             </td>
             <td class="tg-af47 con count">${dto.productCount}</td>
             <td class="tg-af47 con price">${dto.productDTO.price}</td>

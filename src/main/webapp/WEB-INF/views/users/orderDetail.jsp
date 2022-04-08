@@ -16,7 +16,7 @@
 		<h1>결제수단 : ${orderDetail.cardName}</h1>
 		
 		<c:forEach items="${orderDetail.orderDetailDTOs}" var="d">
-			<h1>상품 : ${d.name}</h1>
+			<h1>상품 : ${d.name} ( 옵션 : ${d.optionContents} )</h1>
 			<c:forEach items="${d.productDTOs}" var="dt">
 				<c:if test="${dt.thumbnail ne null}">
 					<img class="image" src="../resources/upload/product/${dt.thumbnail}">

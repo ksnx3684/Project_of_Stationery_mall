@@ -14,11 +14,18 @@ public class CartDTO extends UsersOrderDTO {
 	private Long productCount;
 	private Long totalPrice;
 	private UsersDTO usersDTO;
+	private Long optionNum;
 	
 	private List<ProductDTO> productDTOs;
 	private ProductDTO productDTO;
 	
 	
+	public Long getOptionNum() {
+		return optionNum;
+	}
+	public void setOptionNum(Long optionNum) {
+		this.optionNum = optionNum;
+	}
 	public Long getCartNum() {
 		return cartNum;
 	}

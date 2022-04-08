@@ -17,12 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.stationery.project.order.OrderDetailDTO;
 import com.stationery.project.order.UsersOrderDTO;
+import com.stationery.project.product.OptionDTO;
 import com.stationery.project.product.ProductDTO;
 import com.stationery.project.users.UsersController;
 import com.stationery.project.users.UsersDTO;
 import com.stationery.project.users.UsersService;
-
-import oracle.jdbc.proxy.annotation.Post;
 
 
 @Controller
@@ -36,6 +35,7 @@ public class CartController extends UsersController{ // UsersController에서 �
 	private UsersService usersService;
 	
 	List<CartDTO> lists = new ArrayList<CartDTO>(); // 카트에 담을 수 있는 전역변수 lists
+	List<String> optionlists = new ArrayList<String>(); // 옵션이름을 담을 수 있는 전역변수 optionlists
 	int totalsize = 0;
 	
 	
@@ -44,8 +44,19 @@ public class CartController extends UsersController{ // UsersController에서 �
 	public void cartlist(Model model, HttpSession httpSession) throws Exception {
 		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
 		List<CartDTO> list = cartService.cartlist(usersDTO);
+		List<OptionDTO> optionlist = new ArrayList<OptionDTO>();
+		
+		for(int i = 0; i < list.size(); i++) {
+			if(list.get(i).getOptionNum() == null) {
+				optionlist.add(i, null);
+			} else {
+				optionlist.add(i, cartService.cartoption(list.get(i)));
+			}
+		}
+		
 		model.addAttribute("cartlist", list);
-		//System.out.println(list.get(3).getProductDTO().getThumbnail());
+		model.addAttribute("optionlist", optionlist);
+		
 	}
 	
 	// 장바구니에서 선택 상품 제거
@@ -73,17 +84,20 @@ public class CartController extends UsersController{ // UsersController에서 �
 	
 	// 장바구니에서 주문 폼으로 보내주기
 	@PostMapping("cartlist")
-	public String cartOrder(String[] cartNum) throws Exception {
+	public String cartOrder(String[] cartNum, String[] optionContents) throws Exception {
 
 		int size = 1;
 		size = cartNum.length;
 		lists.clear(); // 초기화
+		optionlists.clear(); // 초기화
 		
 		for(int i = 0; i < size; i++) {
 			Long result = Long.parseLong(cartNum[i]);
 			lists.add(cartService.cartOrder(result)); // lists에 담아서 주문 폼으로 전송
+			if(optionContents.length != 0) {
+				optionlists.add(i, optionContents[i]); // optionlists에 옵션이름을 담아서 주문 폼으로 전송
+			}
 		}
-		
 //		httpSession.setAttribute("order", lists);
 //				
 //		Long result = Long.parseLong(cartNum[0]);
@@ -104,14 +118,15 @@ public class CartController extends UsersController{ // UsersController에서 �
 		usersDTO = usersService.mypage(usersDTO);
 		
 		model.addAttribute("order", lists);
+		model.addAttribute("orderoption", optionlists);
 		model.addAttribute("myinfo", usersDTO);
 		//System.out.println(lists.get(0).getProductDTO().getThumbnail());
 	}
 	
 	// 주문 처리
 	@PostMapping("order")
-	public String order(UsersOrderDTO usersOrderDTO, OrderDetailDTO orderDetailDTO, ProductDTO productDTO,
-			String payRequest, String[] cartNum, String[] productNum, String[] count) throws Exception {
+	public String order(UsersOrderDTO usersOrderDTO, OrderDetailDTO orderDetailDTO, ProductDTO productDTO, OptionDTO optionDTO,
+			String payRequest, String[] cartNum, String[] productNum, String[] count, String[] optionContents) throws Exception {
 		
 		if(payRequest.equals("kakao")) { // 카카오페이
 			
@@ -130,6 +145,12 @@ public class CartController extends UsersController{ // UsersController에서 �
 				orderDetailDTO.setName(lists.get(i).getProductDTO().getName());
 				orderDetailDTO.setCount(lists.get(i).getProductCount());
 				orderDetailDTO.setPrice(lists.get(i).getProductDTO().getPrice());
+				if(optionlists.isEmpty()) {
+					orderDetailDTO.setOptionContents("0");
+				} //else if(optionlists.get(i)) {
+				else {
+					orderDetailDTO.setOptionContents(optionlists.get(i));
+				}
 				cartService.orderDetail(orderDetailDTO); // 주문정보 DB로 전송
 				
 				Long num = Long.parseLong(cartNum[i]);
@@ -137,14 +158,29 @@ public class CartController extends UsersController{ // UsersController에서 �
 				
 				Integer ProductNum = Integer.parseInt(productNum[i]);
 				Integer currentStock = cartService.stock(ProductNum); // 상품의 현 재고 조회
+				Integer currentOptionStock = 0;
+				
+				if(optionContents != null) {
+					if(!optionContents[i].isEmpty()) {
+						optionDTO.setProductNum(ProductNum);
+						optionDTO.setOptionContents(optionContents[i]);
+						currentOptionStock = cartService.optionstock(optionDTO); // 옵션의 현 재고 조회
+					}
+				}
 				
 				Integer Count = Integer.parseInt(count[i]);
 				Integer productCount = currentStock - Count; // 주문한 상품수량만큼 재고에서 차감
 				productDTO.setStock(productCount);
 				productDTO.setProductNum(ProductNum);
-
 				cartService.stockUpdate(productDTO); // 상품의 재고 업데이트
 				
+				if(optionContents != null) {
+					if(!optionContents[i].isEmpty()) {
+						Integer optionCount = currentOptionStock - Count; // 주문한 상품수량만큼 옵션 재고에서 차감
+						optionDTO.setOptionStock(optionCount);
+						cartService.optionstock(optionDTO); // 옵션의 재고 업데이트
+					}
+				}
 			}
 			
 			return "redirect:../order/orderComplete";

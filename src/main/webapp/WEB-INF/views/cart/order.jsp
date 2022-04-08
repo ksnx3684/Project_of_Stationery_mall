@@ -95,7 +95,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${order}" var="dto">
+            <c:forEach items="${order}" var="dto" varStatus="status">
                 <tr class="contents">
                     <input type="hidden" name="cartNum" value="${dto.cartNum}">
                     <input type="hidden" name="productNum" value="${dto.productNum}">
@@ -103,7 +103,17 @@
                         <c:if test="${dto.productDTO.thumbnail ne null}">
                             &nbsp;<img class="image" src="../resources/upload/product/${dto.productDTO.thumbnail}" style="width:32px; height: 32px;">
                         </c:if>
-                        &nbsp;${dto.productDTO.name}
+                        &nbsp;${dto.productDTO.name}&nbsp;
+                        <c:forEach items="${orderoption}" var="op" begin="${status.index}" end="${status.index}">
+                            <c:choose>
+                                <c:when test="${op ne ''}">
+                                    ( 옵션 : ${op} ) <input type="hidden" name="optionContents" value="${op}">
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="hidden" name="optionContents" value="">
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
                     </td>
                     <td class="tg-af47 con count"><input type="hidden" name="count" value="${dto.productCount}">${dto.productCount}</td>
                     <td class="tg-af47 con price"><input type="hidden" name="price" value="${dto.productDTO.price}">${dto.productDTO.price}</td>

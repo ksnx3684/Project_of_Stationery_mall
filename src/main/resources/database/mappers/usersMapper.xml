@@ -141,6 +141,7 @@
 		<result column="count" property="count"/>
 		<result column="price" property="price"/>
 		<result column="name" property="name"/>
+		<result column="optionContents" property="optionContents"/>
 		<collection property="productDTOs" javaType="List" resultMap="ProductDTO"/>
 	</resultMap>
 	<resultMap type="ProductDTO" id="ProductDTO">

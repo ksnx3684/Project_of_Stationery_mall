@@ -6,6 +6,8 @@ let totalPrice = document.querySelectorAll(".totalPrice");
 let cc = 0;
 let dd = 0;
 
+let option = document.querySelectorAll(".option");
+
 for(let i = 0; i < count.length; i++){
     check[i].addEventListener("click", function(){
         if(check[i].checked){
@@ -45,6 +47,8 @@ for(let i = 0; i < count.length; i++){
             // totalPrice = total.textContent;
             // console.log(totalPrice);
  
+            option[i].disabled = false;
+
         } else{
             function sum2(){
                 console.log("unclick");
@@ -56,6 +60,8 @@ for(let i = 0; i < count.length; i++){
                 totalPrice[0].appendChild(newText2);
             }
             sum2();
+
+            option[i].disabled = true;
         }
     })
 };
