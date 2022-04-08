@@ -93,8 +93,6 @@ div.panel {
 										${dto.contents}
 										<c:forEach items="${dto.fileDTOs}" var="f">
 											<div class="qnaImgArea">
-												<h3>for in</h3>
-												<h3>${f.oriName}</h3>
 												<img class="qnaImg" alt=""
 												src="../resources/upload/qnas/${f.fileName}">
 											</div>

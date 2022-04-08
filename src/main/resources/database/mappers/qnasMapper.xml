@@ -91,61 +91,37 @@
  			<result column="oriName" property="oriName"/>
  		</collection>
  	</resultMap>
-	
- 	<select id="list" parameterType="hashmap" resultType="QnasDTO">
-		SELECT * FROM
-		(SELECT rownum R, B.* FROM
-		(SELECT * FROM QNAS WHERE
-		NUM>0
-		and
-		<choose>
-			<when test="kind=='col1'">
-				TITLE
-			</when>
-			<when test="kind =='col2'">
-				CONTENTS
-			</when>
-			<otherwise>
-				ID
-			</otherwise>
-		</choose>
-		LIKE '%'||#{search}||'%'
-		ORDER BY REF DESC, STEP ASC
-		) B
-		)
-		WHERE R between #{pager.startRow} and #{pager.lastRow} and
-		productNum=#{productNum}
-	</select> 
-	<!-- <select id="list" parameterType="hashmap" resultMap="listResult">
-	SELECT Q.*, QF.* 
-	FROM
-		(SELECT * FROM
-		(SELECT rownum R, B.* FROM
-		(SELECT * FROM QNAS WHERE
-		NUM>0
-		and
-		<choose>
-			<when test="kind=='col1'">
-				TITLE
-			</when>
-			<when test="kind =='col2'">
-				CONTENTS
-			</when>
-			<otherwise>
-				ID
-			</otherwise>
-		</choose>
-		LIKE '%'||#{search}||'%'
-		ORDER BY REF DESC, STEP ASC
-		) B
-		)
-		WHERE R between #{pager.startRow} and #{pager.lastRow} and
-		productNum=#{productNum}) Q
 		
-		LEFT OUTER JOIN
-		QNAS_FILE QF
-		ON Q.NUM=QF.NUM
-		WHERE Q.NUM=${num}
+	 <select id="list" parameterType="hashmap" resultMap="listResult">
+			SELECT * FROM 
+				(SELECT rownum R, B.* FROM
+					(SELECT * FROM 
+						(SELECT Q.*, QF.FILENUM, QF.FILENAME, QF.ORINAME
+						FROM
+				        QNAS Q
+				        LEFT OUTER JOIN
+				        QNAS_FILE QF
+				        ON Q.NUM=QF.NUM
+						)  
+					WHERE	
+					NUM>0 and
+						<choose>
+							<when test="kind=='col1'">
+								TITLE
+							</when>
+							<when test="kind =='col2'">
+								CONTENTS
+							</when>
+							<otherwise>
+								ID
+							</otherwise>
+						</choose>
+						LIKE '%'||#{search}||'%'
+						ORDER BY REF DESC, STEP ASC
+					) B
+				)
+			WHERE R between #{pager.startRow} and #{pager.lastRow} and
+			productNum=#{productNum}
 	</select>
 	
 	 <resultMap type="QnasDTO" id="listResult">
@@ -164,7 +140,7 @@
  			<result column="oriName" property="oriName"/>
  		</collection>
  	</resultMap>
- -->
+
 	<select id="total" resultType="Long" parameterType="hashmap">
 		SELECT COUNT(NUM) FROM QNAS
 		WHERE
