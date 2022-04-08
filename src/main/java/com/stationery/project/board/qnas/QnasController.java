@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.stationery.project.board.BoardDTO;
+import com.stationery.project.product.ProductDTO;
 import com.stationery.project.util.Pager;
 
 @Controller
@@ -62,6 +63,23 @@ public class QnasController {
 		List<BoardDTO> ar = qnasService.allList(pager);
 		mv.addObject("list",ar);
 		mv.setViewName("board/list");
+		return mv;
+	}
+	
+	@GetMapping("qnaDetailList")
+	public ModelAndView qnaDetailList(Pager pager, QnasDTO qnasDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		/* qna 파트 */
+		/* 해당 상품의 문의만 가져오기 위해 productNum 같이 넘겨주기 */
+	//	BoardDTO boardDTO = qnasService.detail(qnasDTO);
+		System.out.println("proNum"+qnasDTO.getProductNum());
+		int productNum = qnasDTO.getProductNum();
+		List<BoardDTO> qnasDTOs = qnasService.list(pager, productNum);
+		
+		mv.addObject("qnaDto", qnasDTOs);
+		//mv.addObject("dto", productDTO);
+		mv.setViewName("board/qnaDetailList");
+		
 		return mv;
 	}
 	

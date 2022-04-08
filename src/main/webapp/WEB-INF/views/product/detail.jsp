@@ -76,132 +76,13 @@ div.panel {
 		<img alt="" src="../resources/upload/product/${f.fileName}">
 	</c:forEach>
 	<hr>
+	
+	<!-- qna Ajax로 가져오는 부분 -->
+	<div id="qna-Result">
+		<input type="hidden" name="productNum" value="${dto.productNum}" id="productNum">
 
-	<div class="qna_board">
-		<h2 class="titleArea">Q&A</h2>
-		<div id="qnaArea" class="qna-inside">
-			<p class="boardBtn">
-				<a href="../qnas/qnaAdd?productNum=${dto.productNum}"
-					class="add-board">문의하기</a>
-			</p>
-
-
-			<div class="table-container">
-				<h1>${board}qnasPage</h1>
-
-
-
-				<table class="table-basic" id="qnaTable">
-					<thead>
-						<tr>
-							<th>글번호</th>
-							<th>문의유형</th>
-							<th>글제목</th>
-							<th>작성자</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${requestScope.qnaDto}" var="dto">
-							<tr>
-								<td>${dto.num}</td>
-								<td><c:choose>
-										<c:when test="${dto.type eq 1}">배송문의</c:when>
-										<c:otherwise>상품문의</c:otherwise>
-									</c:choose></td>
-								<%-- 	<td><a href="../qnas/qnaDetail?num=${dto.num}" class="qna" data-num="qnaDetail${i.index}">${dto.title}</a></td> --%>
-								<%-- <td><a href="#" class="qna" data-num="${dto.num}">${dto.title}</a></td> --%>
-								<td><button type="button" class="qna accordion"
-										data-num="${dto.num}">
-										<c:catch>
-											<c:forEach begin="1" end="${dto.depth}">↳&nbsp;</c:forEach>
-										</c:catch>
-										${dto.title}
-
-									</button></td>
-								<%-- <td><input type="hidden" class="contents panel" value="${dto.contents}"></td> --%>
-								<td>${dto.id}</td>
-							</tr>
-							<tr>
-								<td colspan="5"><div class="panel contents" id="contentsArea">${dto.contents}
-										<c:forEach items="${dto.fileDTOs}" var="f">
-											<h3>${f.oriName}</h3>
-											<img class="qnaImg" alt=""
-												src="../resources/upload/qnas/${f.fileName}">
-										</c:forEach>
-										
-										<%-- 답변 달린지 구분하는 코드 추가... --%>
-
-										<%-- 작성자만 수정 및 삭제하게끔 --%>
-										<c:if test="${auth.id eq dto.id}">
-										<a data-delNum="${dto.num}" href="../qnas/qnaDelete?num=${dto.num}&productNum=${dto.productNum}" onclick="return confirm('정말 삭제하시겠습니까?');">질문삭제</a>
-											<a href="../qnas/qnaUpdate?num=${dto.num}"><br>질문수정</a>
-										</c:if>
-										
-										<%-- 보류
-										<c:choose>
-											<c:when test="${auth.userAccount eq 0}">
-												<c:choose>
-													<c:when test="${dto.step eq 0}">
-														<a href="../qnas/qnaReply?num=${dto.num}"><br>답변달기</a>
-													</c:when>
-													<c:otherwise>
-														<a href="../qnas/qnaUpdate?num=${dto.num}"><br>답변수정</a>
-													</c:otherwise>
-												</c:choose>
-											</c:when>
-										</c:choose>
-										 --%>
-										 
-										 <c:choose>
-													<c:when test="${dto.step eq 0}">
-														<a href="../qnas/qnaReply?num=${dto.num}"><br>답변달기</a>
-													</c:when>
-													<c:otherwise>
-														<a href="../qnas/qnaUpdate?num=${dto.num}"><br>답변수정</a>
-													</c:otherwise>
-												</c:choose>
-									</div></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-
-				 <div class="pager" id="pagerArea">
-					<c:if test="${pager.pre}">
-						<a class="pre" href="./list?page=${pager.startNum-1}">◀</a>
-					</c:if>
-
-					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-						<a class="pageNum"
-							href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a>
-					</c:forEach>
-
-					<c:if test="${pager.next}">
-						<a class="next" href="./list?page=${pager.lastNum+1}">▶</a>
-					</c:if>
-
-				</div> 
-
-<%-- 				<div class="pager" id="pagerArea">
-					<c:if test="${pager.pre}">
-						<a class="pre" href=#>◀</a>
-					</c:if>
-
-					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-						<a class="pageNum"
-							href=#>${i}</a>
-					</c:forEach>
-
-					<c:if test="${pager.next}">
-						<a class="next" href=#>▶</a>
-					</c:if>
-
-				</div> --%>
-
-			</div>
-
-		</div>
 	</div>
+
 
 
 	<script type="text/javascript" src="../resources/js/product/qnas.js"></script>

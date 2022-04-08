@@ -10,9 +10,9 @@
 	href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|
 Material+Icons+Round|Material+Icons+sharp"
 	rel="stylesheet">
-<link href="../resources/css/table.css" rel="styleSheet" />
+<!-- <link href="../resources/css/table.css" rel="styleSheet" />
 <link href="../resources/css/list.css" rel="styleSheet" />
-<link href="../resources/css/notice.css" rel="styleSheet" />
+<link href="../resources/css/notice.css" rel="styleSheet" /> -->
 <style type="text/css">
 /*  	.detailBox {
 		border : 1px solid black;
@@ -69,23 +69,16 @@ div.panel {
 </style>
 </head>
 <body>
-
-	<h1>${board}List Page</h1>
-
+	<!--  Qna Detail Ajax 용 페이지입니다. -->
 	<div class="qna_board">
 		<h2 class="titleArea">Q&A</h2>
 		<div id="qnaArea" class="qna-inside">
 			<p class="boardBtn">
-				<a href="../qnas/qnaAdd?productNum=${dto.productNum}"
+				<a href="../qnas/qnaAdd?productNum=${param.productNum}"
 					class="add-board">문의하기</a>
 			</p>
 
-
 			<div class="table-container">
-				<h1>${board}qnasPage</h1>
-
-
-
 				<table class="table-basic" id="qnaTable">
 					<thead>
 						<tr>
@@ -103,8 +96,6 @@ div.panel {
 										<c:when test="${dto.type eq 1}">배송문의</c:when>
 										<c:otherwise>상품문의</c:otherwise>
 									</c:choose></td>
-								<%-- 	<td><a href="../qnas/qnaDetail?num=${dto.num}" class="qna" data-num="qnaDetail${i.index}">${dto.title}</a></td> --%>
-								<%-- <td><a href="#" class="qna" data-num="${dto.num}">${dto.title}</a></td> --%>
 								<td><button type="button" class="qna accordion"
 										data-num="${dto.num}">
 										<c:catch>
@@ -113,7 +104,6 @@ div.panel {
 										${dto.title}
 
 									</button></td>
-								<%-- <td><input type="hidden" class="contents panel" value="${dto.contents}"></td> --%>
 								<td>${dto.id}</td>
 							</tr>
 							<tr>
@@ -164,29 +154,13 @@ div.panel {
 					</tbody>
 				</table>
 
-				<!-- <div class="pager" id="pagerArea">
-					<c:if test="${pager.pre}">
-						<a class="pre" href="./list?page=${pager.startNum-1}">◀</a>
-					</c:if>
-
-					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-						<a class="pageNum"
-							href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a>
-					</c:forEach>
-
-					<c:if test="${pager.next}">
-						<a class="next" href="./list?page=${pager.lastNum+1}">▶</a>
-					</c:if>
-
-				</div> -->
-
-				<div class="pager" id="pagerArea">
+				<div class="pager" id="pagerArea" data-num="${param.productNum}">
 					<c:if test="${pager.pre}">
 						<a class="pre" href=#>◀</a>
 					</c:if>
 
 					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-						<a class="pageNum" href=#>${i}</a>
+						<a class="pageNum" href="#">${i}</a>
 					</c:forEach>
 
 					<c:if test="${pager.next}">
@@ -199,6 +173,47 @@ div.panel {
 
 		</div>
 	</div>
-	<script type="text/javascript" src="../resources/js/product/qnas.js"></script>
+	<script>
+		const acc = document.getElementsByClassName("accordion");
+const contents = document.getElementsByClassName("contents");
+/* 	let panel = acc[0].parentNode.parentNode.nextSibling.nextSibling.children[0].children[0];
+console.log(panel); */
+
+ for(con of contents) {
+     //con.innerHtml = con.innerText.replace(/.$/, '');
+    //마지막 글자 공백으로 변경..근데 왜 안돼
+ }
+
+  for (let i = 0; i < acc.length; i++) {
+      acc[i].onclick = function(event) {	 
+         // 클릭이 일어났을 때 기존에 열려 있던 아코디언을 접는다. (1개의 아코디언만 열리게)
+         console.log(acc[i]);
+         for (let j = 0 ; j<acc.length; j++){
+            // 버튼 상태에 입혀진 active 라는 클래스를 지운다.
+             acc[j].classList.remove("active");
+            
+            // 버튼 다음에 있는 div 콘텐츠 높이를 0으로 만든다. == 아코디언을 접는다.
+             if (this!==acc[j]) {
+            	 console.log(this);
+                 acc[j].parentNode.parentNode.nextSibling.nextSibling.children[0].children[0].style.maxHeight = null;
+             }
+         }
+
+         this.classList.toggle("active");
+        // console.log(this.parentNode.parentNode.nextSibling.nextSibling.children[0].children[0]); //div 제대로 가르킴
+        
+           let panel = this.parentNode.parentNode.nextSibling.nextSibling.children[0].children[0];
+        if (panel.style.maxHeight){
+            this.classList.remove("active");
+            panel.style.maxHeight = null;
+        } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+        }  
+ 
+      } 
+      
+} 
+
+	</script>
 </body>
 </html>
