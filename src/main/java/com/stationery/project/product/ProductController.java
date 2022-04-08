@@ -17,22 +17,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.stationery.project.cart.CartDTO;
 import com.stationery.project.cart.CartService;
 import com.stationery.project.category.CategoryDTO;
 import com.stationery.project.category.CategoryService;
 import com.stationery.project.users.UsersDTO;
 import com.stationery.project.util.Pager;
+import com.stationery.project.board.BoardDTO;
+import com.stationery.project.board.qnas.QnasService;
 
 
 @Controller
 @RequestMapping(value = "/product/*")
 public class ProductController {
-	
 
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private QnasService qnasService;
 	
 	@Autowired
 	private CartService cartService;
@@ -40,6 +42,7 @@ public class ProductController {
 	// (add.jsp에 카테고리 출력위해 )
 	@Autowired
 	private CategoryService categoryService;
+
 	
 	@PostMapping("addCart")
 	public ModelAndView addCart(CartDTO cartDTO,HttpSession httpSession)throws Exception{
@@ -76,40 +79,23 @@ public class ProductController {
 		return mv;
 	}
 	
-	@PostMapping("updateThumbnail")
-	public void updateThumbnail(ProductDTO productDTO)throws Exception{
-		int result= productService.updateThumbnail(productDTO);
-	}
-	
-	@PostMapping("fileDelete")
-	public ModelAndView fileDelete(ProductFileDTO productFileDTO)throws Exception{
-		//filenum 넘어옴 
-		ModelAndView mv= new ModelAndView();
-
-		int result = productService.fileDelete(productFileDTO);
-		
-		mv.setViewName("common/ajaxResult");
-		mv.addObject("result",result);
-		return mv;
-	}
-	
 	@RequestMapping(value = "list", method=RequestMethod.GET)
 	public ModelAndView list(ModelAndView mv,Pager pager) throws Exception{
 		List<CategoryDTO> ar1=categoryService.catelist();
 		List<ProductDTO> ar=productService.list(pager);
 		mv.addObject("cateList",ar1);
 		mv.addObject("list",ar);
+
 		mv.setViewName("product/list");
 		return mv;
 	}
-	
-	@RequestMapping(value = "add",method = RequestMethod.GET)
-	public void add(Model model) throws Exception{
-		//category 받아와 
-		List<CategoryDTO> ar=categoryService.allList();
-		model.addAttribute("list",ar);
-	
-		
+
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public void add(Model model) throws Exception {
+		// category 받아와
+		List<CategoryDTO> ar = categoryService.allList();
+		model.addAttribute("list", ar);
+
 	}
 	
 	@RequestMapping(value="add",method = RequestMethod.POST)
@@ -126,27 +112,37 @@ public class ProductController {
 		if(options!=null) {
 		productService.optionAdd(options,productNum);
 		}
+
 		return "redirect:./list";
 	}
-	
+
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public ModelAndView detail(ProductDTO productDTO,ModelAndView mv) throws Exception{
+
+	public ModelAndView detail(ProductDTO productDTO,ModelAndView mv, Pager pager) throws Exception{
+		/* qna 파트 */
+		/* 해당 상품의 문의만 가져오기 위해 productNum 같이 넘겨주기 */
+		int productNum = productDTO.getProductNum();
+		List<BoardDTO> qnasDTOs = qnasService.list(pager, productNum);
+		
 		productDTO=productService.detail(productDTO);
 		List<OptionDTO> ar=productService.optionList(productDTO);
+		mv.addObject("qnaDto", qnasDTOs);
 		mv.addObject("dto",productDTO);
 		mv.addObject("option", ar);
+
 		mv.setViewName("product/detail");
-		
+
 		return mv;
 	}
-	
-	@RequestMapping(value = "delete",method = RequestMethod.GET)
-	public String delete(ProductDTO productDTO) throws Exception{
-		int result=productService.delete(productDTO);
+
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String delete(ProductDTO productDTO) throws Exception {
+		int result = productService.delete(productDTO);
 		return "redirect:./list";
 	}
 
 	@GetMapping("update")
+
 	public void update(Model model,ProductDTO productDTO,ArrayList<OptionDTO> optionDTO) throws Exception{
 		
 		productDTO=productService.detail(productDTO);
@@ -173,7 +169,6 @@ public class ProductController {
 			productService.stockUpdate(optionStock,optionNum,productNum);
 		}
 		
-
 
 		return "redirect:./list";
 	}

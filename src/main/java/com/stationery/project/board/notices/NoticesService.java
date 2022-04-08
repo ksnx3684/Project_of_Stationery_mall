@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.stationery.project.board.BoardDTO;
 import com.stationery.project.board.BoardService;
+import com.stationery.project.board.qnas.QnasDTO;
 import com.stationery.project.util.FileManager;
 import com.stationery.project.util.Pager;
 
@@ -18,7 +19,8 @@ public class NoticesService implements BoardService {
 	private NoticesDAO noticesDAO;
 	@Autowired
 	private FileManager fileManager;
-
+	
+	
 	public int fileDelete(NoticesFileDTO noticesFileDTO) throws Exception {
 		noticesFileDTO = noticesDAO.detailFile(noticesFileDTO);
 		int result = noticesDAO.fileDelete(noticesFileDTO);

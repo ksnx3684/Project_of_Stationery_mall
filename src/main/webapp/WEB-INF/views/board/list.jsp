@@ -49,7 +49,14 @@ rel="stylesheet">
 				<c:forEach items="${requestScope.list}" var="dto">
 					<tr>
 						<td>${dto.num}</td>
-						<td><a href="./detail?num=${dto.num}">${dto.title}</a></td>
+						<c:choose>
+						<c:when test="${board eq 'qnas'}">
+							<td><a href="./qnaDetail?num=${dto.num}&productNum=${dto.productNum}">${dto.title}</a></td>
+						</c:when>
+						<c:otherwise>
+							<td><a href="./detail?num=${dto.num}">${dto.title}</a></td>
+						</c:otherwise>
+						</c:choose>
 						<td>${dto.id}</td>
 					</tr>
 				</c:forEach>
