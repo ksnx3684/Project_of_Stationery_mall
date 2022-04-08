@@ -23,15 +23,15 @@
 		  </thead>
 		  <tbody>
 			<c:forEach items="${wishlistDTO}" var="dto">
-			<tr class="active">
-				<td>${dto.wishNum}</td>
-			  	<td><a href="../product/detail?productNum=${dto.productNum}">
-					<c:if test="${dto.productDTO.thumbnail ne null}">
-                         <img class="image" src="../resources/upload/product/${dto.productDTO.thumbnail}" style="width:32px; height: 32px;">&nbsp;
-                    </c:if>
-                    ${dto.productDTO.name}</a>
-				</td>
-			</tr>
+				<tr class="active">
+					<td>${dto.wishNum}</td>
+					<td><a href="../product/detail?productNum=${dto.productNum}">
+						<c:if test="${dto.productDTO.thumbnail ne null}">
+							<img class="image" src="../resources/upload/product/${dto.productDTO.thumbnail}" style="width:32px; height: 32px;">&nbsp;
+						</c:if>
+						${dto.productDTO.name}</a>
+					</td>
+				</tr>
 			</c:forEach>
 		  </tbody>
 		</table>
