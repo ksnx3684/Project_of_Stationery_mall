@@ -196,4 +196,5 @@ btn.addEventListener("click", function(){
         return;
     }
     frm.submit();
+    alert("회원가입이 완료되었습니다");
 });

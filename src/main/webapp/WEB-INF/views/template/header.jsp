@@ -12,8 +12,17 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <script> 
+        $(document).ready(function(){
+          $(".dropdown").click(function(){
+            $(".dropdown-menu").animate({
+              height: 'toggle'
+            });
+          });
+        });
+    </script> 
 
-<nav class="navbar navbar-default" style="background-color: #c9de73;">
+<nav class="navbar navbar-default" style="background-color: #cee5d0;">
     <!-- <div class="container-fluid"> -->
         <div class="navbar-header" style="z-index:4">
             <a class="navbar-brand menu-trigger" href=""><input class="leftmenu" type="hidden" value="0">
@@ -39,12 +48,12 @@
         <li><a href="#">Q&A</a></li>
         <li><a href="/project/notices/list">Notices</a></li>
     </ul>
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-right" style="margin-right: 0px;">
         <c:if test="${not empty auth}">
             <li><a href="/project/cart/cartlist">장바구니</a></li>
         </c:if>
         <li class="dropdown">
-            <a href="" class="dropdown-toggle rightmenu" data-toggle="dropdown" role="button" aria-expanded="false">메뉴&nbsp;<span class="caret"></span></a>
+            <a href="" class="dropdown-toggle rightmenu" data-toggle="dropdown" role="button" aria-expanded="false" style="margin-right: 0px">메뉴&nbsp;<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <c:choose>
                     <c:when test="${not empty auth}">
@@ -68,16 +77,16 @@
         <ul class="menu_wrap" style="font-size:24px">
             <br>
             <br>
-            <li><a href="/project/product/list">전체상품보기</a></li><br>
-            <li><a href="#">팬시용품</a></li><br>
-            <li><a href="#">필기용품</a></li><br>
-            <li><a href="#">노트/수첩</a></li><br>
-            <li><a href="#">가방/지갑</a></li><br>
-            <li><a href="#">필통/파우치</a></li><br>
-            <li><a href="#">생활/계절용품</a></li><br>
-            <li><a href="#">악세사리</a></li><br>
-            <li><a href="#">완구</a></li><br>
-            <li><a href="#">애완용품</a></li>
+            <li class="col1" style="display: none;"><a href="/project/product/list">전체상품보기</a></li><br>
+            <li class="col2" style="display: none;"><a href="#">팬시용품</a></li><br>
+            <li class="col3" style="display: none;"><a href="#">필기용품</a></li><br>
+            <li class="col4" style="display: none;"><a href="#">노트/수첩</a></li><br>
+            <li class="col5" style="display: none;"><a href="#">가방/지갑</a></li><br>
+            <li class="col6" style="display: none;"><a href="#">필통/파우치</a></li><br>
+            <li class="col7" style="display: none;"><a href="#">생활/계절용품</a></li><br>
+            <li class="col8" style="display: none;"><a href="#">악세사리</a></li><br>
+            <li class="col9" style="display: none;"><a href="#">완구</a></li><br>
+            <li class="col10" style="display: none;"><a href="#">애완용품</a></li>
         </ul>
 </div>
 </aside>

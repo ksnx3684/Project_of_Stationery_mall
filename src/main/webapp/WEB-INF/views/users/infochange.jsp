@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <label>이름</label>
-                    <input type="text" class="form-control" name="name" id="name" value="${usersDTO.id}" readonly>
+                    <input type="text" class="form-control" name="name" id="name" value="${usersDTO.name}" readonly>
                 </div>
                 <div class="form-group">
                     <label>전화번호</label>
@@ -50,7 +50,7 @@
                     <label>주소</label><br>
                     <input type="text" placeholder="배송지명" name="addressName" id="addressName"><br>
                     <input type="text" name="postalCode" id="postalCode" placeholder="우편번호" readonly>
-                    <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+                    <input type="button" class="btn btn-info" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
                     <input type="text" name="address" id="address" placeholder="주소" readonly><br>
                     <input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소">
                     <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목">

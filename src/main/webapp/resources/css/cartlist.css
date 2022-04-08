@@ -35,7 +35,7 @@
     background-color:#ffffff;
     border-color:inherit;
     color:#000000;  
-    vertical-align:top
+    /* vertical-align:top */
 }
 
 .name{

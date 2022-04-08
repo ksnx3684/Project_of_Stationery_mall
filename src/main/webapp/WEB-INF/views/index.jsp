@@ -13,7 +13,7 @@
 <body>
 
 	<h1>네모생각</h1>
-	<c:import url="/category/catelist"></c:import>
+	<!-- <c:import url="/category/catelist"></c:import> -->
 
 	<div class="container" style="margin-bottom: 100px; max-width: 900px; max-height: 450px; z-index: 1;"> 
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">

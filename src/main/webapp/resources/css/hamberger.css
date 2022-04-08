@@ -76,7 +76,7 @@
 	display: none;
 	width: 20%;
 	height: 100%;
-	background: #345f0ade;
+	background: #F3F0D7de;
 	position: absolute;
 	top:0;
 	left: -100%;
@@ -99,6 +99,6 @@
 	padding: 20px 20px;
 }
 .menu_wrap li a{
-	color: white;
+	color: #a88c66;
 	text-decoration: none;
 }
