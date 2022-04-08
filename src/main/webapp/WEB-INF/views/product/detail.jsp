@@ -14,8 +14,13 @@
 
 <body>
 	<h1>Detail Page</h1>
-	<a href="./delete?productNum=${dto.productNum}">delete</a>
-	<a href="./update?productNum=${dto.productNum}">update</a>
+
+			<c:if test="${auth.userAccount eq 0}">
+	<button><a href="./delete?productNum=${dto.productNum}">delete</a></button>
+	<button><a href="./update?productNum=${dto.productNum}">update</a></button>
+		</c:if>
+		
+
 	<hr>
 
 <div class="main">

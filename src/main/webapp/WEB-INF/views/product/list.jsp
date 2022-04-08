@@ -15,9 +15,7 @@
 </head>
 <body>
 	<h1>List Page</h1>
-	<a href="./add">ADD</a>
-	
-
+		<!-- 검색창 -->
 		<div class="boxbox">
 			<form action="./list" method="get">
 				<select name="categoryNum">
@@ -33,9 +31,14 @@
 				</button>
 			</form>
 		</div>
-
+		
+		<!-- 상품추가 버튼 -->
+		<c:if test="${auth.userAccount eq 0}">
+		<button><a href="./add">상품 추가하기</a></button>
+		</c:if>
+		
 		<!-- id -->
-		<button type="hidden" id="id" value="${auth.id}"></button>
+		<input type="hidden" id="id" value="${auth.id}"></input>
 
 
 		<!-- list -->
@@ -55,9 +58,9 @@
 							
 							<div class="price">${list.price}원</div> 
 							
-							<a href="../order?productNum=${list.productNum}"><span class="material-icons-outlined">shopping_cart</span></a> 
+							<span class="material-icons-outlined cart" data-num="${list.productNum}">shopping_cart</span>
 		
-							<span class="material-icons-outlined" id="wishlist" class="wishlist" data-num="${list.productNum}">favorite_border</span>
+							<span class="material-icons-outlined wishlist" id="wishlist" class="wishlist" data-num="${list.productNum}">favorite_border</span>
 					</li>
 				</c:forEach>
 			</ul>
@@ -79,6 +82,7 @@
 			</c:if>
 		</div>
 
+	
 		<script src="../resources/js/product/wishlist.js"></script>
 </body>
 </html>

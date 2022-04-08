@@ -41,24 +41,42 @@ public class ProductController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	
 	@PostMapping("addCart")
 	public ModelAndView addCart(CartDTO cartDTO,HttpSession httpSession)throws Exception{
-		
 		UsersDTO usersDTO=(UsersDTO) httpSession.getAttribute("auth");
-		
 		ModelAndView mv= new ModelAndView();
-		int result=2;
-		Loop1:
-			//로그인했을경우 
+		int result=2; //기본값은 2
+		Loop1: //1.로그인했을경우 
 		if(usersDTO!=null) {
-			cartDTO.setId(usersDTO.getId());
-			Loop2:
-				//같은상품 같은옵션이 장바구니에 있다면 
-			if(cartService.cartCk(cartDTO)!=null) {
-				break Loop1;
+			cartDTO.setId(usersDTO.getId()); //cartDTO에 id 넣어 
+			int pageCk=1; //listpage인지 detailpage인지 구별 
+			//리스트페이지에서 옵션 있는 상품인경우 디테일페이지로 이동 디테일페이지에서 옵션있는 상품인경우 장바구니 추가 
+			//페이지 구분을 어케하지 
+			
+			Loop2://1-1.같은상품 같은옵션이 장바구니에 있다면 2 (중단)
+			if(cartService.cartCk(cartDTO)!=null) { 
+				break Loop1; 
 			}
-			result=productService.addCart(cartDTO);
-		}else { //로그인안했을경우 
+			
+			OptionDTO optionCk=productService.optionCk(cartDTO); 
+			
+			if(optionCk!=null) { // 옵션 있는경우
+				if(cartDTO.getOptionNum()==0) { //옵션있는데 listpage에서 클릭한 경우 
+					result=4;
+				}else { //옵션있고 detailpage에서 클릭한 경우
+					result=productService.addCart(cartDTO);
+				}
+				
+				
+				
+			}else{ //옵션 없는경우 
+				cartDTO.setProductCount((long)1);
+				result=productService.addCart(cartDTO); //1-2.없다면 추가 1
+			}
+			
+			
+		}else { //2.로그인안했을경우 3
 			result=3;
 		}
 		

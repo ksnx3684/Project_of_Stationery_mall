@@ -22,6 +22,12 @@ public class ProductService {
 	@Autowired
 	private ProductFileManager fileManager;
 	
+	public OptionDTO optionCk(CartDTO cartDTO)throws Exception{
+		OptionDTO optionDTO= new OptionDTO();
+		optionDTO.setProductNum(cartDTO.getProductNum());
+		return productDAO.optionCk(optionDTO);
+	}
+	
 	public int addCart(CartDTO cartDTO) throws Exception{
 		return productDAO.addCart(cartDTO);
 	}

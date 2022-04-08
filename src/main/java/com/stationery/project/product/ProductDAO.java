@@ -13,13 +13,14 @@ import com.stationery.project.util.Pager;
 
 @Repository
 public class ProductDAO {
-	
-	
-	
-	
 	@Autowired
 	private SqlSession sqlSession;
+	
 	private final String NAMESPACE="com.stationery.project.product.ProductDAO.";
+	
+	public OptionDTO optionCk(OptionDTO optionDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"optionCk",optionDTO);
+	}
 	
 	public int addCart(CartDTO cartDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"addCart", cartDTO);
