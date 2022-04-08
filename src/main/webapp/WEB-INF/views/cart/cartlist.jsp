@@ -14,7 +14,7 @@
 <body>
 	<script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>
 
-  <form action="./cartlist" method="post">
+  <form id="frm" action="./cartlist" method="post">
     <div class="mainStreet">
     <h2>장바구니</h2>
     <table class="tg" style="table-layout: fixed; width: 800px">
@@ -67,7 +67,7 @@
     </c:forEach>
     <span class="totalPrice">원</span><br>
       <!-- <a href="./cartOrder"><button id="selectOrder_btn">주문하기</button></a> -->
-      <span class="site-btn clear-btn" id="selectOrder_btn2"><button class="btn btn-primary">주문하기</button></span>
+      <span class="site-btn clear-btn" id="selectOrder_btn2"><button type="button" class="btn btn-primary">주문하기</button></span>
       <span><a href="../"><button type="button" class="btn btn-primary">쇼핑계속하기</button></a></span>
   </form>
 

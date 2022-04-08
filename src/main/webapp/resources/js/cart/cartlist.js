@@ -8,9 +8,15 @@ let dd = 0;
 
 let option = document.querySelectorAll(".option");
 
+let checkcheck = new Array();
+const selectOrder_btn2 = document.getElementById("selectOrder_btn2");
+const frm = document.getElementById("frm");
+
 for(let i = 0; i < count.length; i++){
     check[i].addEventListener("click", function(){
         if(check[i].checked){
+            checkcheck.push("1");
+            console.log(checkcheck.length);
             console.log("click");
             // count[i] = count[i].innerHTML;
             // price[i] = price.innerText;
@@ -51,6 +57,8 @@ for(let i = 0; i < count.length; i++){
 
         } else{
             function sum2(){
+                checkcheck.pop();
+                console.log(checkcheck.length);
                 console.log("unclick");
                 // const newSpan = document.createElement('span');
                 cc = cc - total[i];
@@ -65,6 +73,14 @@ for(let i = 0; i < count.length; i++){
         }
     })
 };
+
+selectOrder_btn2.addEventListener("click", function(){
+    if(!checkcheck.length > 0){
+        alert("상품을 선택하십시오");
+    } else{
+        frm.submit();
+    }
+});
 
 
 
