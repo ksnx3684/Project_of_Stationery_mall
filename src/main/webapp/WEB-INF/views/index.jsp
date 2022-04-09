@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SQUARE MALL</title>
+<title>SQUARE SHOP</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<c:import url="./template/header.jsp"></c:import>
 	<link rel="stylesheet" href="./resources/css/hamberger.css">

@@ -17,11 +17,11 @@
         <table class="table">
             <thead>
                 <tr class="success">
-                    <th style="text-align:center; background-color: #c9de73;">주문번호</th>
-                    <th style="text-align:center; background-color: #c9de73;">주문날짜</th>         
-                    <th style="text-align:center; background-color: #c9de73;">주문상태</th>
-                    <th style="text-align:center; background-color: #c9de73;">결제상태</th>
-                    <th style="text-align:center; background-color: #c9de73;">주문금액</th>
+                    <th style="text-align:center; background-color: #cee5d0;">주문번호</th>
+                    <th style="text-align:center; background-color: #cee5d0;">주문날짜</th>         
+                    <th style="text-align:center; background-color: #cee5d0;">주문상태</th>
+                    <th style="text-align:center; background-color: #cee5d0;">결제상태</th>
+                    <th style="text-align:center; background-color: #cee5d0;">주문금액</th>
                 </tr>
             </thead>
             <tbody>

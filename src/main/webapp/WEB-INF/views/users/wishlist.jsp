@@ -17,8 +17,8 @@
 		<table class="table">
 		  <thead>
 			<tr class="success">
-			  <th style="text-align:center; background-color: #c9de73;">번호</th>
-			  <th style="text-align:center; background-color: #c9de73;">상품명</th>
+			  <th style="text-align:center; background-color: #cee5d0;">번호</th>
+			  <th style="text-align:center; background-color: #cee5d0;">상품명</th>
 			</tr>
 		  </thead>
 		  <tbody>
