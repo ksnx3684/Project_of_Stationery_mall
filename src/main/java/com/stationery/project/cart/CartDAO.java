@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.stationery.project.order.OrderDetailDTO;
 import com.stationery.project.order.UsersOrderDTO;
+import com.stationery.project.product.OptionDTO;
 import com.stationery.project.product.ProductDTO;
 import com.stationery.project.users.UsersDTO;
 
@@ -24,6 +25,10 @@ public class CartDAO {
 	
 	public List<CartDTO> cartlist(UsersDTO usersDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"cartlist", usersDTO);
+	}
+	
+	public OptionDTO cartoption(CartDTO cartDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"cartoption", cartDTO);
 	}
 
 	public int cartlistDelete(Long caNum) throws Exception {
@@ -50,8 +55,16 @@ public class CartDAO {
 		return sqlSession.selectOne(NAMESPACE+"stock", productNum);
 	}
 	
+	public Integer optionstock(OptionDTO optionDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"optionstock", optionDTO);
+	}
+	
 	public int stockUpdate(ProductDTO productDTO) throws Exception {
 		return sqlSession.update(NAMESPACE+"stockUpdate", productDTO);
+	}
+	
+	public int optionstockUpdate(OptionDTO optionDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"optionstockUpdate", optionDTO);
 	}
 	
 }

@@ -1,0 +1,20 @@
+.items{
+    width: 100%;
+    position: relative;
+}
+.each{
+    list-style: none;
+    float: left;
+}
+.thumbnail{
+    margin-right: 20px;
+    margin-bottom: 60px;
+}
+.thumbnail > a{
+    text-align: center;
+    display: block;
+}
+.thumbnail > a > img{
+    width: 250px;
+    height: 250px;
+}

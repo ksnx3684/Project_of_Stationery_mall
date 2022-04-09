@@ -6,9 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<c:import url="../template/header.jsp"></c:import>
+	<link rel="stylesheet" href="../resources/css/hamberger.css">
+	<link rel="stylesheet" href="../resources/css/mypage.css">
+	
 </head>
 <body>
 	<c:if test="${usersDTO.usersFileDTO.oriName ne null}">
@@ -24,6 +26,7 @@
 	<h3>우편번호 : ${usersDTO.postalCode}</h3>
 	<h3>배송지 주소 : ${usersDTO.addressDetail}</h3>
 	<%-- <h1>회원 : ${usersDTO.userAccount}</h1> --%>
+
 	<a href="./mychangecheck"><button id="update" class="btn btn-info">내 정보 변경</button></a>
 	<a href="./wishlist"><button id="wishlist" class="btn btn-primary">위시리스트</button></a>
 	<a href="./orderlist"><button id="orderlist" class="btn btn-primary">주문내역</button></a>
@@ -33,5 +36,6 @@
 	<c:if test="${usersDTO.userAccount eq 0}">
 		<a href="./otp/first"><button id="manager" class="btn btn-warning">관리자페이지</button></a>
 	</c:if>
+	<script src="../resources/js/hamberger.js"></script>
 </body>
 </html>

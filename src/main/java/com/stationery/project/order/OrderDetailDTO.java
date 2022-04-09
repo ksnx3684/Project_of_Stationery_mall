@@ -12,6 +12,7 @@ public class OrderDetailDTO extends ProductDTO{
 	private Long count;
 	private Integer price;
 	private String name;
+	private String optionContents;
 	private List<ProductDTO> productDTOs;
 	
 	
@@ -50,6 +51,12 @@ public class OrderDetailDTO extends ProductDTO{
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getOptionContents() {
+		return optionContents;
+	}
+	public void setOptionContents(String optionContents) {
+		this.optionContents = optionContents;
 	}
 	public List<ProductDTO> getProductDTOs() {
 		return productDTOs;

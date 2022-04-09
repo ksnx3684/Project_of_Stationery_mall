@@ -10,6 +10,7 @@
 		<result column="productNum" property="productNum"/>
 		<result column="productCount" property="productCount"/>
 		<result column="totalPrice" property="totalPrice"/>
+		<result column="optionNum" property="optionNum"/>
 		<collection property="usersDTO" resultMap="UsersDTO"/>
 		<collection property="productDTO" resultMap="ProductDTO"/>
 		<collection property="productDTOs" javaType="List" resultMap="ProductDTO"/>
@@ -45,6 +46,10 @@
 		NATURAL JOIN PRODUCT WHERE ID = #{id}
 		ORDER BY CARTNUM
 	</select>
+	<select id="cartoption" parameterType="CartDTO" resultType="OptionDTO">
+		SELECT OPTIONCONTENTS FROM PRODUCT_OPTION
+		WHERE OPTIONNUM = #{optionNum} AND PRODUCTNUM = #{productNum}
+	</select>
 	<delete id="cartlistDelete" parameterType="Long">
 		DELETE CART WHERE CARTNUM = #{cartNum}
 	</delete>
@@ -65,8 +70,8 @@
 		VALUES(USERS_ORDER_SEQ.NEXTVAL, #{id}, SYSDATE, #{orderCheck}, #{payCheck}, #{totalPrice}, #{addressName}, #{addressPhone}, #{addressPostal}, #{addressDetail}, #{memo}, #{cardName}, #{cardNum}, #{cardExp})
 	</insert>
 	<insert id="orderDetail" parameterType="List">
-		INSERT INTO ORDER_DETAIL(DETAILNUM, ORDERNUM, PRODUCTNUM, COUNT, PRICE, NAME)
-		VALUES(ORDER_DETAIL_SEQ.NEXTVAL, (SELECT NVL(MAX(ORDERNUM), 0) FROM USERS_ORDER), #{productNum}, #{count}, #{price}, #{name})
+		INSERT INTO ORDER_DETAIL(DETAILNUM, ORDERNUM, PRODUCTNUM, COUNT, PRICE, NAME, OPTIONCONTENTS)
+		VALUES(ORDER_DETAIL_SEQ.NEXTVAL, (SELECT NVL(MAX(ORDERNUM), 0) FROM USERS_ORDER), #{productNum}, #{count}, #{price}, #{name}, #{optionContents})
 	</insert>
 	<!-- <insert id="order" parameterType="CartDTO">
 		INSERT ALL
@@ -82,7 +87,14 @@
 	<select id="stock" parameterType="Integer" resultType="Integer">
 		SELECT STOCK FROM PRODUCT WHERE PRODUCTNUM = #{productNum}
 	</select>
+	<select id="optionstock" parameterType="OptionDTO" resultType="Integer">
+		SELECT OPTIONSTOCK FROM PRODUCT_OPTION WHERE PRODUCTNUM = #{productNum} AND OPTIONCONTENTS = #{optionContents}
+	</select>
 	<update id="stockUpdate" parameterType="ProductDTO">
 		UPDATE PRODUCT SET STOCK = #{stock} WHERE PRODUCTNUM = #{productNum}
+	</update>
+	<update id="optionstockUpdate" parameterType="OptionDTO">
+		UPDATE PRODUCT_OPTION SET OPTIONSTOCK = #{optionStock}
+		WHERE OPTIONNUM = #{optionNum} AND OPTIONCONTENTS = #{optionContents}
 	</update>
 </mapper>

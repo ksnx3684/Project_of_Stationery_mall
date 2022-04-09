@@ -64,6 +64,8 @@
     		<mapping path="/users/wishlist"/>
     		<mapping path="/users/withdrawal"/>
     		<mapping path="/users/withdrawalfinal"/>
+    		<mapping path="/cart/*"/>
+    		<mapping path="/order/*"/>
     		<mapping path="/faq/update"/>
     		<mapping path="/faq/delete"/>
     		<mapping path="/notices/update"/>

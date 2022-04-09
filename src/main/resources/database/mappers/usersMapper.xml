@@ -52,12 +52,12 @@
 		</association>
 	</resultMap>
 	<select id="login" parameterType="UsersDTO" resultMap="UsersDTO">
-	  SELECT U.*, UF.*
-      FROM USERS U
-      LEFT OUTER JOIN
-      USERS_FILE UF
-      ON (U.ID = UF.ID)
-      WHERE U.ID = #{id} AND U.PW = #{pw}
+		SELECT U.*, UF.*
+		FROM USERS U
+		LEFT OUTER JOIN
+		USERS_FILE UF
+		ON (U.ID = UF.ID)
+		WHERE U.ID = #{id} AND U.PW = #{pw}
 	</select>
 	<select id="mypage" parameterType="UsersDTO" resultMap="UsersDTO">
 		SELECT U.*, UF.*
@@ -141,6 +141,7 @@
 		<result column="count" property="count"/>
 		<result column="price" property="price"/>
 		<result column="name" property="name"/>
+		<result column="optionContents" property="optionContents"/>
 		<collection property="productDTOs" javaType="List" resultMap="ProductDTO"/>
 	</resultMap>
 	<resultMap type="ProductDTO" id="ProductDTO">

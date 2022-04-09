@@ -8,13 +8,13 @@
 <title>장바구니</title>
 </head>
     <link rel="stylesheet" href="../resources/css/cartlist.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <c:import url="../template/header.jsp"></c:import>
+	  <link rel="stylesheet" href="../resources/css/hamberger.css">
 <body>
 	<script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>
 
-  <form action="./cartlist" method="post">
+  <form id="frm" action="./cartlist" method="post">
     <div class="mainStreet">
     <h2>장바구니</h2>
     <table class="tg" style="table-layout: fixed; width: 800px">
@@ -31,14 +31,24 @@
         </tr>
       </thead>
       <tbody>
-        <c:forEach items="${cartlist}" var="dto">
+        <c:forEach items="${cartlist}" var="dto" varStatus="status">
           <tr class="contents">
             <td class="tg-af47 name">
               <input class="check" name="cartNum" type="checkbox" data-cartNum="${dto.cartNum}" value="${dto.cartNum}">&nbsp;
               <c:if test="${dto.productDTO.thumbnail ne null}">
                 <img class="image" src="../resources/upload/product/${dto.productDTO.thumbnail}" style="width:32px; height: 32px;">&nbsp;
               </c:if>
-              ${dto.productDTO.name}
+              ${dto.productDTO.name}&nbsp;
+              <c:forEach items="${optionlist}" var="op" begin="${status.index}" end="${status.index}">
+                <c:choose>
+                  <c:when test="${op.optionContents ne null}">
+                    ( 옵션 : ${op.optionContents} ) <input class="option" type="hidden" name="optionContents" value="${op.optionContents}" disabled>
+                  </c:when>
+                  <c:otherwise>
+                    <input class="option" type="hidden" name="optionContents" value="${op.optionContents}" disabled>
+                  </c:otherwise>
+                </c:choose>
+              </c:forEach>
             </td>
             <td class="tg-af47 con count">${dto.productCount}</td>
             <td class="tg-af47 con price">${dto.productDTO.price}</td>
@@ -57,7 +67,7 @@
     </c:forEach>
     <span class="totalPrice">원</span><br>
       <!-- <a href="./cartOrder"><button id="selectOrder_btn">주문하기</button></a> -->
-      <span class="site-btn clear-btn" id="selectOrder_btn2"><button class="btn btn-primary">주문하기</button></span>
+      <span class="site-btn clear-btn" id="selectOrder_btn2"><button type="button" class="btn btn-primary">주문하기</button></span>
       <span><a href="../"><button type="button" class="btn btn-primary">쇼핑계속하기</button></a></span>
   </form>
 
@@ -119,6 +129,6 @@
     </div>
   </form>
   <script type="text/javascript" src="../resources/js/cart/cartlist.js"></script>
-    
+  <script src="../resources/js/hamberger.js"></script>
 </body>
 </html>

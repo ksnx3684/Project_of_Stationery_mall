@@ -20,7 +20,6 @@ public class CartDTO extends UsersOrderDTO {
 	private ProductDTO productDTO;
 	
 	
-	
 	public Long getOptionNum() {
 		return optionNum;
 	}
