@@ -13,13 +13,14 @@ import com.stationery.project.board.faq.FaqDAO;
 import com.stationery.project.board.faq.FaqDTO;
 import com.stationery.project.board.notices.NoticesDAO;
 import com.stationery.project.board.notices.NoticesDTO;
+import com.stationery.project.board.qnas.QnasDAO;
 import com.stationery.project.users.UsersDTO;
 
 @Component
-public class WriterInterceptor extends HandlerInterceptorAdapter {
+public class QnaWriterInterceptor extends HandlerInterceptorAdapter {
 
 	@Autowired
-	private NoticesDAO noticesDAO;
+	private QnasDAO qnasDAO;
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -30,10 +31,10 @@ public class WriterInterceptor extends HandlerInterceptorAdapter {
 		
 		BoardDTO boardDTO = new NoticesDTO();
 		boardDTO.setNum(num);
-		boardDTO = noticesDAO.detail(boardDTO);
-		
+		boardDTO = qnasDAO.detail(boardDTO);
+		//userDTO.getUserAccount()!=0
 		UsersDTO usersDTO = (UsersDTO)request.getSession().getAttribute("auth");
-		if(!usersDTO.getId().equals(boardDTO.getId())) {
+		if(usersDTO.getUserAccount()!= 0) {
 			check = false;
 			request.setAttribute("message", "권한이 없습니다");
 			request.setAttribute("path", "./list");

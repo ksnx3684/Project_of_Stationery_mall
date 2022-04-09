@@ -43,6 +43,8 @@
 	<beans:bean class="com.stationery.project.interceptor.BoardDeleteCheckInterceptor" id="BoardDeleteCheckInterceptor"/>
 	<beans:bean class="com.stationery.project.interceptor.QnaCheckInterceptor" id="QnaCheckInterceptor" />
 	<beans:bean class="com.stationery.project.interceptor.QnaDeleteCheckInterceptor" id="QnaDeleteCheckInterceptor" />
+	<beans:bean class="com.stationery.project.interceptor.QnaWriterInterceptor" id="QnaWriterInterceptor" />
+	
 	<interceptors>
 		<interceptor>
     		<mapping path="/users/login"/>
@@ -118,7 +120,11 @@
 			<mapping path="/qnas/qnaDelete"/>
 			<beans:ref bean="QnaDeleteCheckInterceptor" />
 		</interceptor>
-		
+	
+		<interceptor>
+			<mapping path="/qnas/qnaReply"/>
+			<beans:ref bean="QnaWriterInterceptor" />
+		</interceptor>
 		
 	</interceptors>
 	

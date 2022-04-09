@@ -13,7 +13,8 @@ Material+Icons+Round|Material+Icons+sharp"
 <!-- <link href="../resources/css/table.css" rel="styleSheet" />
 <link href="../resources/css/list.css" rel="styleSheet" />
 <link href="../resources/css/notice.css" rel="styleSheet" /> -->
-<style type="text/css">
+<link rel="stylesheet" href="../resources/css/product/qnaDetail.css" />
+<!-- <style type="text/css">
 button.accordion {
 	background-color: #FFF;
 	cursor: pointer;
@@ -47,7 +48,7 @@ div.panel {
 	font-size: 14px;
 	/* line-height: 1.5px; */
 }
-</style>
+</style> -->
 </head>
 <body>
 	<!--  Qna Detail Ajax 용 페이지입니다. -->
@@ -91,35 +92,54 @@ div.panel {
 								<td colspan="5"><div class="panel contents"
 										id="contentsArea">
 										${dto.contents}
-										<c:forEach items="${dto.fileDTOs}" var="f">
+								<%-- 		<c:forEach items="${dto.fileDTOs}" var="f">
 											<div class="qnaImgArea">
 												<img class="qnaImg" alt=""
 												src="../resources/upload/qnas/${f.fileName}">
 											</div>
+										</c:forEach> --%>
+										<div class="imgBox">
+										<c:forEach items="${dto.fileDTOs}" var="f">
+					
+											<!-- 첫 번째 Modal을 여는 클래스 -->
+										    <div class="btn"><img src="../resources/upload/qnas/${f.fileName}"></div>
+										 
+										    <!-- 첫 번째 Modal -->
+										    <div class="modal">
+										 
+										      <!-- 첫 번째 Modal의 내용 -->
+										      <div class="modal-content">
+										        <span class="close">&times;</span>                         
+												<img class="qnaImg" alt="" src="../resources/upload/qnas/${f.fileName}">
+										      </div>
+										    </div>
 										</c:forEach>
-										
-							 	 	<c:choose>
-										<c:when test="${auth.userAccount eq 0}"> 
-											<c:choose>
-												<c:when test="${dto.step eq 0}">
-													<a href="../qnas/qnaReply?num=${dto.num}"><br>답변달기</a>
-												</c:when>
-												<c:otherwise>
-													<a href="../qnas/qnaUpdate?num=${dto.num}&productNum=${dto.productNum}"><br>답변수정</a>
-													<a data-delNum="${dto.num}" href="../qnas/qnaDelete?num=${dto.num}&productNum=${dto.productNum}"
-														 onclick="return confirm('정말 삭제하시겠습니까?');">답변삭제</a>												
-												</c:otherwise>
-											</c:choose>
-										</c:when>
-										<c:otherwise> 
-											<c:if test="${auth.id eq dto.id}">
-												<a data-delNum="${dto.num}" href="../qnas/qnaDelete?num=${dto.num}&productNum=${dto.productNum}"
-												onclick="return confirm('정말 삭제하시겠습니까?');">질문삭제</a>
-												<a href="../qnas/qnaUpdate?num=${dto.num}&productNum=${dto.productNum}"><br>질문수정</a>
-											</c:if>
-										</c:otherwise>
-									</c:choose>  
 									
+										</div>
+
+									<div class="chooseBox">
+								 	 	<c:choose>
+											<c:when test="${auth.userAccount eq 0}"> 
+												<c:choose>
+													<c:when test="${dto.step eq 0}">
+														<a href="../qnas/qnaReply?num=${dto.num}"><br>답변달기</a>
+													</c:when>
+													<c:otherwise>
+														<a href="../qnas/qnaUpdate?num=${dto.num}&productNum=${dto.productNum}"><br>답변수정</a>
+														<a data-delNum="${dto.num}" href="../qnas/qnaDelete?num=${dto.num}&productNum=${dto.productNum}"
+															 onclick="return confirm('정말 삭제하시겠습니까?');"><br>답변삭제</a>												
+													</c:otherwise>
+												</c:choose>
+											</c:when>
+											<c:otherwise> 
+												<c:if test="${auth.id eq dto.id}">
+													<a data-delNum="${dto.num}" href="../qnas/qnaDelete?num=${dto.num}&productNum=${dto.productNum}"
+													onclick="return confirm('정말 삭제하시겠습니까?');"><br>질문삭제</a>
+													<a href="../qnas/qnaUpdate?num=${dto.num}&productNum=${dto.productNum}"><br>질문수정</a>
+												</c:if>
+											</c:otherwise>
+										</c:choose>  
+									</div>
 									</div></td>
 							</tr>
 						</c:forEach>
@@ -151,11 +171,6 @@ const contents = document.getElementsByClassName("contents");
 /* 	let panel = acc[0].parentNode.parentNode.nextSibling.nextSibling.children[0].children[0];
 console.log(panel); */
 
- for(con of contents) {
-     //con.innerHtml = con.innerText.replace(/.$/, '');
-    //마지막 글자 공백으로 변경..근데 왜 안돼
- }
-
   for (let i = 0; i < acc.length; i++) {
       acc[i].onclick = function(event) {	 
          // 클릭이 일어났을 때 기존에 열려 있던 아코디언을 접는다. (1개의 아코디언만 열리게)
@@ -185,6 +200,47 @@ console.log(panel); */
       } 
       
 } 
+  
+//Modal을 가져옵니다.
+var modals = document.getElementsByClassName("modal");
+// Modal을 띄우는 클래스 이름을 가져옵니다.
+var btns = document.getElementsByClassName("btn");
+// Modal을 닫는 close 클래스를 가져옵니다.
+var spanes = document.getElementsByClassName("close");
+var funcs = [];
+ 
+// Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
+function Modal(num) {
+  return function() {
+    // 해당 클래스의 내용을 클릭하면 Modal을 띄웁니다.
+    btns[num].onclick =  function() {
+        modals[num].style.display = "block";
+        console.log(num);
+    };
+ 
+    // <span> 태그(X 버튼)를 클릭하면 Modal이 닫습니다.
+    spanes[num].onclick = function() {
+        modals[num].style.display = "none";
+    };
+  };
+}
+ 
+// 원하는 Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의합니다.
+for(var i = 0; i < btns.length; i++) {
+  funcs[i] = Modal(i);
+}
+ 
+// 원하는 Modal 수만큼 funcs 함수를 호출합니다.
+for(var j = 0; j < btns.length; j++) {
+  funcs[j]();
+}
+ 
+// Modal 영역 밖을 클릭하면 Modal을 닫습니다.
+window.onclick = function(event) {
+  if (event.target.className == "modal") {
+      event.target.style.display = "none";
+  }
+};
 
 	</script>
 </body>

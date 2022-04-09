@@ -123,7 +123,8 @@ public class QnasService {
 		// 6. 답글 insert
 		result = qnasDAO.reply(qnasDTO);
 
-		return result;
-	}
 
+		return result;
+
+}
 }

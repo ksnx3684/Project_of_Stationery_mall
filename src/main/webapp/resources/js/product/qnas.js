@@ -51,43 +51,6 @@
 
 //---------------------------------------
 
-// const acc = document.getElementsByClassName("accordion");
-// const contents = document.getElementsByClassName("contents");
-// /* 	let panel = acc[0].parentNode.parentNode.nextSibling.nextSibling.children[0].children[0];
-// console.log(panel); */
-
-//  for(con of contents) {
-//      //con.innerHtml = con.innerText.replace(/.$/, '');
-//     //마지막 글자 공백으로 변경..근데 왜 안돼
-//  }
-
-//   for (let i = 0; i < acc.length; i++) {
-//       acc[i].onclick = function(event) {	 
-//          // 클릭이 일어났을 때 기존에 열려 있던 아코디언을 접는다. (1개의 아코디언만 열리게)
-//          for (let j = 0 ; j<acc.length; j++){
-//             // 버튼 상태에 입혀진 active 라는 클래스를 지운다.
-//              acc[j].classList.remove("active");
-//             // 버튼 다음에 있는 div 콘텐츠 높이를 0으로 만든다. == 아코디언을 접는다.
-//              if (this!==acc[j]) {
-//                  acc[j].parentNode.parentNode.nextSibling.nextSibling.children[0].children[0].style.maxHeight = null;
-//              }
-//          }
-
-//          this.classList.toggle("active");
-//          console.log(this.parentNode.parentNode.nextSibling.nextSibling.children[0].children[0]); //div 제대로 가르킴
-        
-//            let panel = this.parentNode.parentNode.nextSibling.nextSibling.children[0].children[0];
-//         if (panel.style.maxHeight){
-//             this.classList.remove("active");
-//             panel.style.maxHeight = null;
-//         } else {
-//             panel.style.maxHeight = panel.scrollHeight + "px";
-//         }  
- 
-//       } 
-      
-// }  
-
 //---------------------------------------------------------
 const pagerArea = document.querySelector("#pagerArea");
 const qnaResult = document.querySelector("#qna-Result");
@@ -141,10 +104,6 @@ qnaResult.addEventListener("click", function(event) {
         /* 	let panel = acc[0].parentNode.parentNode.nextSibling.nextSibling.children[0].children[0];
         console.log(panel); */
         
-         for(con of contents) {
-             //con.innerHtml = con.innerText.replace(/.$/, '');
-            //마지막 글자 공백으로 변경..근데 왜 안돼
-         }
         
           for (let i = 0; i < acc.length; i++) {
               acc[i].onclick = function(event) {	 
@@ -178,42 +137,51 @@ qnaResult.addEventListener("click", function(event) {
     }       
 });
 
+qnaResult.addEventListener("click",function(event) {
+    if(event.target.classList.contains("accordion")) {
+    //이벤트 전달
 
-// qnaResult.addEventListener("click", function(event) {
-    
-//     if(event.target.classList.contains("accordion")) {
+    var modals = document.getElementsByClassName("modal");
+    var btns = document.getElementsByClassName("btn");
+    var spanes = document.getElementsByClassName("close");
+    var funcs = [];
+     
+    // Modal을 띄우고 닫는 클릭 이벤트를 정의한 함수
+    function Modal(num) {
+        return function() {
+        // 클릭하면 Modal 띄우기
+        btns[num].onclick =  function() {
+            modals[num].style.display = "block";
+            console.log(num);
+        };
 
-//         let acc=event.target;
-//         console.log(acc);
-//         if(event.target.classList.contains("active")) {
+        // <span> 태그(X 버튼)를 클릭하면 Modal 닫힘
+        spanes[num].onclick = function() {
+            modals[num].style.display = "none";
+        };
+    };
+    }
+           
+    // Modal 수만큼 Modal 함수를 호출해서 funcs 함수에 정의
+    for(var i = 0; i < btns.length; i++) {
+        funcs[i] = Modal(i);
+    }
+           
+     // 원하는 Modal 수만큼 funcs 함수를 호출
+    for(var j = 0; j < btns.length; j++) {
+        funcs[j]();
+    }
+           
+     //Modal 영역 밖을 클릭하면 Modal 꺼지기
+     window.onclick = function(event) {
+        if (event.target.className == "modal") {
+            event.target.style.display = "none";
+            }
+        };
+    }
+});
 
-//             //       클릭이 일어났을 때 기존에 열려 있던 아코디언을 접는다. (1개의 아코디언만 열리게)
-//                        // 버튼 상태에 입혀진 active 라는 클래스를 지운다.
-//                         this.classList.remove("active");
-//                        // 버튼 다음에 있는 div 콘텐츠 높이를 0으로 만든다. == 아코디언을 접는다.
-//                        console.log(acc.parentNode.parentNode.nextSibling.nextSibling.children[0].children[0]);
-//                         if (this!==acc) {
-//                             console.log("in");
-//                             acc.parentNode.parentNode.nextSibling.nextSibling.children[0].children[0].style.maxHeight = null;
-//                         }
-//         }
-		        
-                    
-// 		        acc.classList.toggle("active");
-// 		       // console.log(acc.parentNode.parentNode.nextSibling.nextSibling.children[0].children[0]); //div 제대로 가르킴
-			  
-// 		          let panel = acc.parentNode.parentNode.nextSibling.nextSibling.children[0].children[0];
-// 		       if (panel.style.maxHeight){
-// 		           this.classList.remove("active");
-// 		           panel.style.maxHeight = null;
-// 		       } else {
-// 		           panel.style.maxHeight = panel.scrollHeight + "px";
-// 		       }  
-		
-//     }
-
-// });
-
+  
 
 // //이전 페이지 클릭시
 // pagerArea.addEventListener("click", function(event) {
@@ -269,29 +237,3 @@ qnaResult.addEventListener("click", function(event) {
 
 //----------------------------------------------
 
-
-// for (let i = 0; i < acc.length; i++) {
-//     acc[i].onclick = function(event) {	 
-//        // 클릭이 일어났을 때 기존에 열려 있던 아코디언을 접는다. (1개의 아코디언만 열리게)
-//        for (let j = 0 ; j<acc.length; j++){
-//           // 버튼 상태에 입혀진 active 라는 클래스를 지운다.
-//            acc[j].classList.remove("active");
-//           // 버튼 다음에 있는 div 콘텐츠 높이를 0으로 만든다. == 아코디언을 접는다.
-//            if (this!==acc[j]) {
-//                acc[j].parentNode.parentNode.nextSibling.nextSibling.children[0].children[0].style.maxHeight = null;
-//            }
-//        }
-
-//        this.classList.toggle("active");
-//        console.log(this.parentNode.parentNode.nextSibling.nextSibling.children[0].children[0]); //div 제대로 가르킴
-      
-//          let panel = this.parentNode.parentNode.nextSibling.nextSibling.children[0].children[0];
-//       if (panel.style.maxHeight){
-//           this.classList.remove("active");
-//           panel.style.maxHeight = null;
-//       } else {
-//           panel.style.maxHeight = panel.scrollHeight + "px";
-//       }  
-
-//     } 
-    

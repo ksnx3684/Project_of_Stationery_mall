@@ -27,7 +27,7 @@
 			 작성자<input type="text" name="id" disabled="disabled" value="${dto.id}">
 			 글 내용<textarea name="contents" rows="" cols="" id="summernote">${dto.contents}</textarea>
 	
-		<c:if test="${board eq 'notices'}">
+		<c:if test="${board ne 'faq'}">
 			<div id="files">
 				<c:forEach items="${dto.fileDTOs}" var="f">
 					<div>
@@ -49,7 +49,7 @@
 		</c:if>
 		
 		<div id="btnList">
-		<button type="submit">UPDATE</button>
+		<button type="submit">수정하기</button>
 		<!-- 취소 버튼 누를 시 뒤로 가기-->
 		<button type="button" id="addCancel">취소</button>	
 		</div>	

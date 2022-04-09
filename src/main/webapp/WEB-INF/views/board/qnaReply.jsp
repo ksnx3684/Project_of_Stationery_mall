@@ -37,29 +37,33 @@
 	<h1>${board}Reply Page</h1>
 	<!-- <div id="container"> -->
 	<form action="./qnaReply" method="post" style="width: 100%"
-		onsubmit="return addSubmit();">
+		onsubmit="return addSubmit();" enctype="multipart/form-data">
 		<div class="item">
 			<table class="table-basic">
 				<tbody>
 					<tr>
-						<td><input type="hidden" value="${dto.num}" name="num">
+						<td>
+							<input type="hidden" value="${dto.num}" name="num">
 						</td>
 					</tr>
 					<tr>
-						<td><input type="hidden" name="type" value="${dto.type}"
-							readonly="readonly"></td>
+						<td>
+							<input type="hidden" name="type" value="${dto.type}" readonly="readonly">
+						</td>
 					</tr>
 					<tr>
-						<td><input type="hidden" name="productNum"
-							value="${dto.productNum}"></td>
+						<td><input type="hidden" name="productNum" value="${dto.productNum}">
+						</td>
 					</tr>
 					<tr>
-						<td>Writer <input type="text" name="id" value="${auth.id}"
-							readonly="readonly"></td>
+						<td>
+							Writer <input type="text" name="id" value="${auth.id}" readonly="readonly">
+						</td>
 					</tr>
 					<tr>
-						<td>Title <input type="text" name="title" id="title"
-							value="${dto.id}님, 질문 답변입니다❤" readonly="readonly"></td>
+						<td>
+							Title <input type="text" name="title" id="title" value="${dto.id}님, 질문 답변입니다❤" readonly="readonly">
+						</td>
 					</tr>
 					<tr>
 						<td>본문</td>
@@ -68,14 +72,19 @@
 						<td><textarea name="contents" rows="" cols="" id="summernote">${dto.contents} 답변 : </textarea></td>
 					</tr>
 					<tr>
+						<td>질문 첨부 사진</td>
+					</tr>
+					<tr>
 						<td>
-							<c:forEach items="${dto.fileDTOs}" var="f">
-								<h3>${f.oriName}</h3>
+							<c:forEach items="${dto.fileDTOs}" var="f" varStatus="i">
+								<h3>${i.index+1}</h3>
 								<img class="qnaImg" alt="" src="../resources/upload/qnas/${f.fileName}">
 							</c:forEach>
 							
 						</td>
 					</tr>
+					
+					
 				</tbody>
 			</table>
 		</div>
@@ -83,8 +92,11 @@
  -->
 
 		<hr>
+		
+	
+			
 		<div id="btnList">
-			<button type="submit">글 작성</button>
+			<button type="submit">답글 작성</button>
 			<button type="button" id="addCancel">취소</button>
 		</div>
 	</form>
