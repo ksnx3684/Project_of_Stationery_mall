@@ -16,7 +16,7 @@
 	<a href="/project/category/add">카테고리 추가/삭제</a>
 </c:if>
 
-<div class="nav">
+<div class="nav" id="cate_nav">
 <a href="/project/product/list?categoryNum=0">전체상품</a>
 <c:forEach items="${list}" var="list">
 <a href="/project/product/list?categoryNum=${list.categoryNum}">${list.categoryName}</a>

@@ -8,13 +8,13 @@
 <title>SQUARE SHOP</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<c:import url="./template/header.jsp"></c:import>
+	
 	<link rel="stylesheet" href="./resources/css/hamberger.css">
 	<link rel="stylesheet" href="./resources/css/index.css">
 </head>
 <body>
-	<c:import url="/category/catelist"></c:import>
+	
 	<div class="title"><img src="./resources/img/index/TITLE.png"></div>
-	<!-- <c:import url="/category/catelist"></c:import> -->
 
 	<div class="container"> 
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">

@@ -72,6 +72,8 @@
     </ul>
 </nav>
 
+
+
 <aside style="z-index: 3;">
     <div class="sidebar_menu">
         <ul class="menu_wrap" style="font-size:24px">
@@ -90,6 +92,8 @@
         </ul>
 </div>
 </aside>
+
+<c:import url="/category/catelist"></c:import>
 
 </body>
 </html>
