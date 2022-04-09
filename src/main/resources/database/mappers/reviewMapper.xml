@@ -4,8 +4,35 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.stationery.project.board.review.ReviewDAO">
-		<select id="list" parameterType="Pager" resultType="ReviewDTO">
- 		SELECT * FROM
+	<delete id="fileDelete" parameterType="ReviewFileDTO">
+		DELETE REVIEW_FILE WHERE FILENUM=#{fileNum}
+ 	</delete>
+ 	
+ 	<select id="listFile" parameterType="BoardDTO" resultType="ReviewFileDTO">
+ 		SELECT * FROM REVIEW_FILE
+ 		WHERE NUM=#{num}
+ 	</select>
+ 
+  	<select id="detailFile" parameterType="ReviewFileDTO" resultType="ReviewFileDTO">
+ 		SELECT * FROM REVIEW_FILE
+ 		WHERE FILENUM=#{fileNum}
+ 	</select>
+ 
+  	<insert id="addFile" parameterType="BoardFileDTO">
+ 		INSERT INTO REVIEW_FILE (FILENUM, NUM, FILENAME, ORINAME)
+ 		VALUES (REVIEW_FILE_SEQ.NEXTVAL, #{num}, #{fileName}, #{oriName})
+ 	</insert>
+ 	
+ 	<insert id="add" parameterType="ReviewDTO">
+		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+ 			SELECT REVIEW_SEQ.NEXTVAL FROM DUAL
+ 		</selectKey>
+ 		insert into REVIEW (num, id, detailNum, title, contents)
+ 		values (#{num}, #{id}, #{detailNum}, #{title}, #{contents})
+	</insert>
+	
+	<select id="allList" resultType="ReviewDTO" parameterType="Pager">
+		SELECT * FROM
 		    (SELECT rownum R, B.* FROM 
 		        (SELECT * FROM REVIEW WHERE 
 		        	NUM>0 
@@ -22,33 +49,133 @@
 		        		</otherwise>
 		        	</choose>	
 		        	LIKE '%'||#{search}||'%'
-		            ORDER BY REF DESC, STEP ASC
+		            ORDER BY NUM DESC
 		         ) B
 		     )
-		WHERE R between #{startRow} and #{lastRow}
+		WHERE R between #{startRow} and #{lastRow} 
+	</select>
+	
+	<select id="detail" parameterType="ReviewDTO" resultMap="detailResult">
+			SELECT R.*, RF.*
+		FROM
+	        REVIEW R
+	            LEFT OUTER JOIN
+	        REVIEW_FILE RF
+	        	ON R.NUM=RF.NUM
+		WHERE   R.NUM=#{num} 
  	</select>
  	
- 	<select id="total" resultType="Long" parameterType="Pager">
- 		SELECT COUNT(NUM) FROM REVIEW
- 		WHERE
- 			NUM>0 
-		    and 	       	
-		     <choose>
-		     	<when test="kind=='col1'">
-		     		TITLE
-		     	</when>
-		     	<when test="kind =='col2'">
-		     		CONTENTS
-		     	</when>
-		     	<otherwise>
-		     		ID
-		     	</otherwise>
-		     </choose>	
-        	LIKE '%'||#{search}||'%' 
- 	</select>
+ 	<resultMap type="ReviewDTO" id="detailResult">
+ 		<id column="num" property="num"/>
+ 		<result column="id" property="id"/>
+ 		<result column="detailNum" property="detailNum"/>
+ 		<result column="title" property="title"/>
+ 		<result column="contents" property="contents"/>
+ 		<collection property="fileDTOs" javaType="List" ofType="ReviewFileDTO">
+ 			<id column="fileNum" property="fileNum"/>
+ 			<result column="fileName" property="fileName"/>
+ 			<result column="oriName" property="oriName"/>
+ 		</collection>
+ 	</resultMap>
  	
- 	<select id="detail" parameterType="ReviewDTO">
- 		SELECT * FROM REVIEW WHERE NUM=#{num}
- 	</select>
+<!--  	<select id="list" parameterType="hashmap" resultMap="listResult">
+			SELECT * FROM 
+				(SELECT rownum R, B.* FROM
+					(SELECT OD.*, RV.* FROM
+						(SELECT RR.*, RF.FILENUM, RF.FILENAME, RF.ORINAME
+                         FROM
+                         REVIEW RR
+                         LEFT OUTER JOIN
+                         REVIEW_FILE RF
+                         ON RR.NUM=RF.NUM
+						) RV
+					RIGHT OUTER JOIN
+                    ORDER_DETAIL OD 
+                    ON OD.DETAILNUM=RV.DETAILNUM
+                    WHERE OD.PRODUCTNUM=#{productNum}
+                    )
+					WHERE	
+					NUM>0 and
+						<choose>
+							<when test="kind=='col1'">
+								TITLE
+							</when>
+							<when test="kind =='col2'">
+								CONTENTS
+							</when>
+							<otherwise>
+								ID
+							</otherwise>
+						</choose>
+						LIKE '%'||#{search}||'%'
+						ORDER BY REF DESC, STEP ASC
+					) B
+				)
+			WHERE R between #{pager.startRow} and #{pager.lastRow} and
+			productNum=#{productNum}
+	</select>
+	
+	 <resultMap type="ReviewDTO" id="listResult">
+ 		<id column="num" property="num"/>
+ 		<result column="id" property="id"/>
+ 		<result column="detailNum" property="detailNum"/>
+ 		<result column="title" property="title"/>
+ 		<result column="contents" property="contents"/>
+ 		<collection property="fileDTOs" javaType="List" ofType="ReviewFileDTO">
+ 			<id column="fileNum" property="fileNum"/>
+ 			<result column="fileName" property="fileName"/>
+ 			<result column="oriName" property="oriName"/>
+ 		</collection>
+ 	</resultMap> -->
+	
+<!-- 	<select id="total" resultType="Long" parameterType="hashmap">
+		SELECT COUNT(NUM) FROM REVIEW
+		WHERE
+		NUM>0
+		and
+		<choose>
+			<when test="kind=='col1'">
+				TITLE
+			</when>
+			<when test="kind =='col2'">
+				CONTENTS
+			</when>
+			<otherwise>
+				ID
+			</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%'
+		and
+		productNum=${productNum}
+	</select> -->
+	
+	<!-- allList용 pager -->
+	<select id="total2" resultType="Long" parameterType="Pager">
+		SELECT COUNT(NUM) FROM REVIEW
+		WHERE
+		NUM>0
+		and
+		<choose>
+			<when test="kind=='col1'">
+				TITLE
+			</when>
+			<when test="kind =='col2'">
+				CONTENTS
+			</when>
+			<otherwise>
+				ID
+			</otherwise>
+		</choose>
+		LIKE '%'||#{search}||'%'
+	</select>
+	
+	<update id="reviewUpdate" parameterType="ReviewDTO">
+		UPDATE REVIEW SET TITLE=#{title}, CONTENTS=#{contents} WHERE NUM=#{num}
+	</update>
+	
+	<delete id="reviewDelete" parameterType="ReviewDTO">
+		DELETE REVIEW WHERE NUM=#{num}
+	</delete>
+	
 
 </mapper>
