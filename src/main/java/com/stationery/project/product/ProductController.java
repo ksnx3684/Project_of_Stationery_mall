@@ -114,9 +114,12 @@ public class ProductController {
 	@RequestMapping(value = "list", method=RequestMethod.GET)
 	public ModelAndView list(ModelAndView mv,Pager pager) throws Exception{
 		List<CategoryDTO> ar1=categoryService.catelist();
+		List<CategoryDTO> ar2=categoryService.allList();
 		List<ProductDTO> ar=productService.list(pager);
-		mv.addObject("cateList",ar1);
+		
 		mv.addObject("list",ar);
+		mv.addObject("cateList",ar1);
+		mv.addObject("allcatelist",ar2);
 		mv.setViewName("product/list");
 		return mv;
 	}

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,40 @@
 
 </head>
 <body>
-	<h1>List Page</h1>
+
+<div id="top">
+<!--title -->
+<div id="titleArea">
+		<c:if test="${param.categoryNum eq 0}"> <h2>전체상품</h2></c:if>
+		<c:forEach items="${cateList}" var="list">
+			<c:if test="${list.categoryNum eq param.categoryNum}"><h2>${list.categoryName}</h2></c:if>
+		</c:forEach>
+    <span class="xans-element- xans-layout xans-layout-mobileaction "><a href="javascript:history.back();" ><img src="//img.echosting.cafe24.com/skin/mobile_ko_KR/layout/btn_back.gif" width="33" alt="뒤로가기"></a>
+</span>
+
+<!-- 세부카테고리 메뉴 -->
+	<!-- 파라미터값과 카테고리 번호가 같다면  -->
+	<!-- 카테고리번호가 부모번호에 해당하는 세부카테고리 출력  -->
+<div id="subCategoryMenu">
+<ul class="categoryUl">
+<c:forEach items="${allcatelist}" var="catelist">
+
+	<c:if test="${param.categoryNum eq catelist.categoryNum}">
+		<c:set var="parentId" value="${catelist.categoryNum}"></c:set>
+		<c:forEach items="${allcatelist}" var="catelist">
+			<c:if test="${parentId eq catelist.parentId}">
+				<li>
+					<a>${catelist.categoryName}</a>
+				</li>
+			</c:if>
+		</c:forEach>
+	</c:if>
+	
+</c:forEach>
+</ul>
+</div>
+</div>
+</div>
 		<!-- 검색창 -->
 		<div class="boxbox">
 			<form action="./list" method="get">
@@ -73,10 +107,8 @@
 			<!-- controller mv 에 pager  -->
 
 			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-				<a
-					href="./list?page=${i}&categoryNum=${pager.categoryNum}&search=${pager.search}">${i}</a>
+				<a href="./list?page=${i}&categoryNum=${pager.categoryNum}&search=${pager.search}">${i}</a>
 			</c:forEach>
-
 			<c:if test="${pager.next}">
 				<a href="./list?page=${pager.lastNum+1}">NEXT</a>
 			</c:if>
