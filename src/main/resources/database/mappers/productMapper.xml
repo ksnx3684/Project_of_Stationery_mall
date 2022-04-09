@@ -5,6 +5,11 @@
 
 <mapper namespace="com.stationery.project.product.ProductDAO">
 
+	<!-- 옵션 없는 경우 null -->
+	<select id="optionCk" parameterType="OptionDTO" resultType="OptionDTO">
+		select * from product_option where productnum=#{productNum} and optionNum=1
+	</select>
+
 	<insert id="addCart" parameterType="CartDTO">
 		insert into cart(cartNum,id,productNum,optionNum,totalprice,productcount)
 		values(cart_seq.nextval,#{id},#{productNum},#{optionNum},(select price from product where productnum=#{productNum})*#{productCount},#{productCount})

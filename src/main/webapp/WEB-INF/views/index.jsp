@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="./resources/css/index.css">
 </head>
 <body>
-
+	<c:import url="/category/catelist"></c:import>
 	<div class="title"><img src="./resources/img/index/TITLE.png"></div>
 	<!-- <c:import url="/category/catelist"></c:import> -->
 

@@ -159,4 +159,104 @@ textarea:focus, input:focus {
     background-color: #BEBEBE;
 }
 
+
+
+/* 타이틀 */
+ #titleArea {
+    display: block;
+    position: relative;
+    height: 45px;
+    line-height: 45px;
+
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    text-align: center;
+    font-size: 13px;
+    color: #1e1e1e;
+}
+
+#titleArea span img {
+
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 10px;
+    width: 25px;
+    height: 25px;
+    margin-top: -12.5px;
+} 
+
+
+
+.categoryUl > li {
+	list-style-type: none;
+	float: left;
+}
+
+.categoryUl > li > a {
+    display: block;
+    line-height: 35px;
+    border: 1px solid #ddd;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-indent: 10px;
+    letter-spacing: 0;
+}
+
+.categoryUl > li > a:hover{
+	font-weight: bold;
+}
+.categoryUl > li:hover > a{
+	border: 1px solid green;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+.categoryUl {
+    display: block;
+    position: relative;
+    z-index: 30;
+    width: 101%;
+    margin: 10px 0 20px;
+    border: none;
+
+    line-height: 0;
+    letter-spacing: -4px;
+}
+
+#subCategoryMenu{
+	width: 100%;
+	display: block;
+	
+}
+
+#top{
+	    display: block;
+	position: relative;
+    width: 100%;
+    max-width: 1260px;
+    margin: 22px auto;
+    
+}
+/* 세부 카테고리 메뉴  */
+/* .categoryUl {
+    display: block;
+    position: relative;
+    z-index: 30;
+    width: 101%;
+    margin: 10px 0 20px;
+    border: none;
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px; 
+}
+ */
   
