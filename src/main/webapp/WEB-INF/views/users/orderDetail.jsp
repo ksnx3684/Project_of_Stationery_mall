@@ -6,23 +6,48 @@
 <head>
 <meta charset="UTF-8">
 <title>주문상세</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<c:import url="../template/header.jsp"></c:import>
+	<link rel="stylesheet" href="../resources/css/hamberger.css">
+	<link rel="stylesheet" href="../resources/css/orderDetail.css">
 </head>
 <body>
-		<h1>주문번호 : ${orderDetail.orderNum}</h1>
-		<h1>주문날짜 : ${orderDetail.orderDate}</h1>
-		<h1>총 금액 : ${orderDetail.totalPrice}</h1>
-		<h1>배송지 : ${orderDetail.addressDetail}</h1>
-		<h1>메모 : ${orderDetail.memo}</h1>
-		<h1>결제수단 : ${orderDetail.cardName}</h1>
-		
-		<c:forEach items="${orderDetail.orderDetailDTOs}" var="d">
+		<h2>주문번호 : ${orderDetail.orderNum}</h2>
+		<h2>주문날짜 : ${orderDetail.orderDate}</h2>
+		<h2>결제 금액 : ${orderDetail.totalPrice}</h2>
+		<h2>배송지 : ${orderDetail.addressDetail}</h2>
+		<h2>배송메모 : ${orderDetail.memo}</h2>
+		<h2>결제수단 : ${orderDetail.cardName}</h2>
+		<h2>구매상품</h2>
+		<div class="items">
+			<ul>
+				<c:forEach items="${orderDetail.orderDetailDTOs}" var="d">
+					<li class="each">
+						<div class="thumbnail">
+							<a href="../product/detail?productNum=${d.productNum}">
+								<c:forEach items="${d.productDTOs}" var="dt">
+									<c:if test="${dt.thumbnail ne null}">
+										<img src="../resources/upload/product/${dt.thumbnail}">
+									</c:if>
+								</c:forEach>
+								${d.name} ( 옵션 : ${d.optionContents} )
+							</a>
+						</div>
+					</li>
+				</c:forEach>
+			</ul>
+		</div>
+
+		<!-- <c:forEach items="${orderDetail.orderDetailDTOs}" var="d">
 			<h1>상품 : ${d.name} ( 옵션 : ${d.optionContents} )</h1>
 			<c:forEach items="${d.productDTOs}" var="dt">
 				<c:if test="${dt.thumbnail ne null}">
 					<img class="image" src="../resources/upload/product/${dt.thumbnail}">
 				</c:if>
 			</c:forEach>
-		</c:forEach>
+		</c:forEach> -->
 
+		
+		<script src="../resources/js/hamberger.js"></script>
 </body>
 </html>
