@@ -44,7 +44,6 @@ public class ProductController {
 	private CategoryService categoryService;
 
 	
-	
 	@PostMapping("addCart")
 	public ModelAndView addCart(CartDTO cartDTO,HttpSession httpSession)throws Exception{
 		UsersDTO usersDTO=(UsersDTO) httpSession.getAttribute("auth");
@@ -99,15 +98,26 @@ public class ProductController {
 	
 	@RequestMapping(value = "list", method=RequestMethod.GET)
 	public ModelAndView list(ModelAndView mv,Pager pager) throws Exception{
-		List<CategoryDTO> ar1=categoryService.catelist();
-		List<CategoryDTO> ar2=categoryService.allList();
 		List<ProductDTO> ar=productService.list(pager);
+		List<CategoryDTO> ar2=categoryService.allList();
 		
 		mv.addObject("list",ar);
-		mv.addObject("cateList",ar1);
 		mv.addObject("allcatelist",ar2);
 		mv.setViewName("product/list");
 		return mv;
+	}
+	
+	@RequestMapping(value = "subCateList", method=RequestMethod.GET)
+	public ModelAndView subCateList(ModelAndView mv,Pager pager) throws Exception{
+		
+		List<ProductDTO> ar=productService.subCateList(pager);
+		List<CategoryDTO> ar2=categoryService.allList();
+		
+		mv.addObject("list",ar);
+		mv.addObject("allcatelist",ar2);
+		mv.setViewName("product/list");
+		return mv;
+		
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.GET)

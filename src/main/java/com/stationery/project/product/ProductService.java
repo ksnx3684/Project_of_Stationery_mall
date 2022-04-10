@@ -22,6 +22,15 @@ public class ProductService {
 	@Autowired
 	private ProductFileManager fileManager;
 	
+	public List<ProductDTO> subCateList(Pager pager) throws Exception {
+		pager.makeRow();
+		pager.setPerBlock(20);
+		pager.makeNum(productDAO.total(pager));
+
+		List<ProductDTO> ar = productDAO.subCateList(pager);
+		return ar;
+	}
+	
 	public OptionDTO optionCk(CartDTO cartDTO)throws Exception{
 		OptionDTO optionDTO= new OptionDTO();
 		optionDTO.setProductNum(cartDTO.getProductNum());

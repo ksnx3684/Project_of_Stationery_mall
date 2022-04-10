@@ -61,6 +61,21 @@
         order by productnum desc)PC)
         where R between #{startRow} and #{lastRow} 
 	</select>
+	
+	
+	<select id="subCateList" parameterType="Pager" resultType="ProductDTO" >
+	 	select * from 
+        (select rownum R,PC.* from
+        (select * from product P left outer join product_category
+        C using(categorynum)
+        where productnum>0 
+        and categorynum=#{categoryNum}
+        order by productnum desc)PC)
+        where R between #{startRow} and #{lastRow} 
+	</select>
+	
+	
+	
 
 	<select id="total" resultType="java.lang.Long"
 		parameterType="Pager">

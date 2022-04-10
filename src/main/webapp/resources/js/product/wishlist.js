@@ -1,4 +1,4 @@
-//지영 추가 
+// listpage 위시리스트 + 장바구니
 
 const id= document.getElementById("id")
 const ultag = document.getElementById("ultag")

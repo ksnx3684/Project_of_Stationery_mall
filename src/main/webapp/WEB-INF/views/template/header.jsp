@@ -21,7 +21,7 @@
           });
         });
     </script> 
-
+<div id="header">
 <nav class="navbar navbar-default" style="background-color: #cee5d0;">
     <!-- <div class="container-fluid"> -->
         <div class="navbar-header" style="z-index:4">
@@ -94,6 +94,6 @@
 </aside>
 
 <c:import url="/category/catelist"></c:import>
-
+</div>
 </body>
 </html>
