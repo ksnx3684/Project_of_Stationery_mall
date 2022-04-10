@@ -44,8 +44,8 @@ public class ReviewDAO {
 		return sqlSession.selectOne(NAMESPACE+"detail", boardDTO);
 	}
 
-	public Long total(HashMap<String, Object> map) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"total", map);
+	public Long total(Integer productNum) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"total", productNum);
 	}
 	
 	public Long total2(Pager pager) throws Exception {
@@ -66,5 +66,9 @@ public class ReviewDAO {
 
 	public int reviewDelete(BoardDTO boardDTO) throws Exception {
 		return sqlSession.update(NAMESPACE+"reviewDelete", boardDTO);
+	}
+	
+	public int orderProductNumDetail(BoardDTO boardDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"orderProductNumDetail", boardDTO);
 	}
 }

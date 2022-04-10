@@ -53,6 +53,9 @@ rel="stylesheet">
 						<c:when test="${board eq 'qnas'}">
 							<td><a href="./qnaDetail?num=${dto.num}&productNum=${dto.productNum}">${dto.title}</a></td>
 						</c:when>
+						<c:when test="${board eq 'review'}">
+							<td><a href="./reviewDetail?num=${dto.num}">${dto.title}</a></td>
+						</c:when>
 						<c:otherwise>
 							<td><a href="./detail?num=${dto.num}">${dto.title}</a></td>
 						</c:otherwise>

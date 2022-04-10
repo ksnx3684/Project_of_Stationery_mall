@@ -78,22 +78,22 @@
  		</collection>
  	</resultMap>
  	
-<!--  	<select id="list" parameterType="hashmap" resultMap="listResult">
+  	<select id="list" parameterType="hashmap" resultMap="listResult">
 			SELECT * FROM 
 				(SELECT rownum R, B.* FROM
-					(SELECT OD.*, RV.* FROM
-						(SELECT RR.*, RF.FILENUM, RF.FILENAME, RF.ORINAME
-                         FROM
-                         REVIEW RR
-                         LEFT OUTER JOIN
-                         REVIEW_FILE RF
-                         ON RR.NUM=RF.NUM
-						) RV
-					RIGHT OUTER JOIN
-                    ORDER_DETAIL OD 
-                    ON OD.DETAILNUM=RV.DETAILNUM
-                    WHERE OD.PRODUCTNUM=#{productNum}
-                    )
+					(SELECT * FROM 
+						(SELECT OD.PRODUCTNUM, RV.NUM, RV.ID, RV.TITLE, RV.CONTENTS, RV.FILENUM, RV.FILENAME,RV.ORINAME FROM 
+	                            (SELECT RR.*, RF.FILENUM, RF.FILENAME, RF.ORINAME
+	                            FROM
+	                            REVIEW RR
+	                            LEFT OUTER JOIN
+	                            REVIEW_FILE RF
+	                            ON RR.NUM=RF.NUM
+	                            ) RV  
+						RIGHT OUTER JOIN
+	                    ORDER_DETAIL OD 
+	                    ON OD.DETAILNUM=RV.DETAILNUM
+                   		 )
 					WHERE	
 					NUM>0 and
 						<choose>
@@ -108,7 +108,7 @@
 							</otherwise>
 						</choose>
 						LIKE '%'||#{search}||'%'
-						ORDER BY REF DESC, STEP ASC
+						ORDER BY NUM DESC
 					) B
 				)
 			WHERE R between #{pager.startRow} and #{pager.lastRow} and
@@ -126,28 +126,44 @@
  			<result column="fileName" property="fileName"/>
  			<result column="oriName" property="oriName"/>
  		</collection>
- 	</resultMap> -->
+		<collection property="orderDetailDTOs" javaType="List" ofType="OrderDetailDTO">
+			<id column="detailNum" property="detailNum" />
+			<result column="orderNum" property="orderNum" />
+			<result column="productNum" property="productNum" />
+			<result column="count" property="count" />
+			<result column="price" property="price" />
+			<result column="optionContents" property="optionContents" />
+			<result column="name" property="name" />
+		</collection>
+		</resultMap>
 	
-<!-- 	<select id="total" resultType="Long" parameterType="hashmap">
-		SELECT COUNT(NUM) FROM REVIEW
+ 	<select id="total" parameterType="Integer" resultMap="totalResult">
+		SELECT COUNT(NUM) FROM 
+			(select * from
+			review R
+			right outer join 
+			order_detail OD
+			on R.detailNum = OD.detailNum)
 		WHERE
-		NUM>0
-		and
-		<choose>
-			<when test="kind=='col1'">
-				TITLE
-			</when>
-			<when test="kind =='col2'">
-				CONTENTS
-			</when>
-			<otherwise>
-				ID
-			</otherwise>
-		</choose>
-		LIKE '%'||#{search}||'%'
-		and
 		productNum=${productNum}
-	</select> -->
+	</select> 
+	
+	<resultMap type="ReviewDTO" id="totalResult">
+		<id column="num" property="num"/>
+ 		<result column="id" property="id"/>
+ 		<result column="detailNum" property="detailNum"/>
+ 		<result column="title" property="title"/>
+ 		<result column="contents" property="contents"/>
+ 		<collection property="orderDetailDTOs" ofType="OrderDetailDTO" javaType="List">
+ 			<id column="detailNum" property="detailNum" />
+			<result column="orderNum" property="orderNum" />
+			<result column="productNum" property="productNum" />
+			<result column="count" property="count" />
+			<result column="price" property="price" />
+			<result column="optionContents" property="optionContents" />
+			<result column="name" property="name" />
+ 		</collection>
+	</resultMap>
 	
 	<!-- allList용 pager -->
 	<select id="total2" resultType="Long" parameterType="Pager">
@@ -177,5 +193,8 @@
 		DELETE REVIEW WHERE NUM=#{num}
 	</delete>
 	
+	<select id="orderProductNumDetail" parameterType="ReviewDTO" resultType="Integer">
+		SELECT PRODUCTNUM FROM ORDER_DETAIL WHERE DETAILNUM=#{DETAILNUM}
+	</select>
 
 </mapper>

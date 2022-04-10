@@ -29,8 +29,8 @@
                     <tr class="active">
                         <td><a href="./orderDetail?orderNum=${dto.orderNum}">${dto.orderNum}</a></td>
                         <td>${dto.orderDate}</td>
-                        <td class="orderval"></td><input type="hidden" id="order" value="${dto.orderCheck}">
-                        <td class="payval"></td><input type="hidden" id="pay" value="${dto.payCheck}">
+                        <td class="orderval"><input type="hidden" id="order" value="${dto.orderCheck}"></td>
+                        <td class="payval"><input type="hidden" id="pay" value="${dto.payCheck}"></td>
                         <td>${dto.totalPrice}</td>
                     </tr>
                 </c:forEach>

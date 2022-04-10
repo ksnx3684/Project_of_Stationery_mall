@@ -1,10 +1,13 @@
 package com.stationery.project.board.review;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.stationery.project.board.BoardDTO;
 import com.stationery.project.util.FileManager;
 import com.stationery.project.util.Pager;
@@ -26,11 +29,20 @@ public class ReviewService{
 		return reviewDAO.detailFile(reviewFileDTO);
 	}
 	
-//	public List<BoardDTO> list(Pager pager) throws Exception {
-//		pager.makeRow();
-//		pager.makeNum(reviewDAO.total(pager));
-//		return reviewDAO.list(pager);
-//	}
+	public List<BoardDTO> list(Pager pager, int productNum) throws Exception {
+		/* pager와 productNum 같이 넘겨주기 위해 hasgMap 생성 */
+		System.out.println("ReviewService : "+productNum);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		pager.makeRow();
+		System.out.println(reviewDAO.total(productNum));
+		pager.makeNum(reviewDAO.total(productNum));
+		map.put("pager", pager);
+		map.put("productNum", productNum);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("productNum", productNum);
+
+		return reviewDAO.list(map);
+	}
 
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
 		return reviewDAO.detail(boardDTO);
@@ -84,5 +96,8 @@ public class ReviewService{
 		return result;
 	}
 
+	public int orderProductNumDetail(BoardDTO boardDTO) throws Exception {
+		return reviewDAO.orderProductNumDetail(boardDTO);
+	}
 	
 }

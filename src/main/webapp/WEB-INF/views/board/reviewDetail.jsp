@@ -14,21 +14,20 @@ img {
 </style>
 </head>
 <body>
-	<h1>${board}Detail Page</h1>
+	<h1>${board} Detail Page</h1>
 	
 	<a href="../product/detail?productNum=${param.productNum}">질문상품으로 이동</a>
 	<h3>글 제목 : ${dto.title}</h3>
 	<h3 class="contents">글 내용 : ${dto.contents}</h3>
 	<h3>작성자 : ${dto.id}</h3>
 	
-	<!-- 회원이 남긴 qna의 경우에만 사진이 보이게끔 -->
-	<c:if test="${dto.num eq dto.ref}">
+	
 		<h3>첨부사진</h3>
 		<c:forEach items="${dto.fileDTOs}" var="f">
 			<h3>${f.oriName}</h3>
 			<img alt="" src="../resources/upload/review/${f.fileName}">
 		</c:forEach>
-	</c:if>
+	
 	<hr>
 
 	<a href="./list">List</a>

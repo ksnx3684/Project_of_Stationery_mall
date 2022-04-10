@@ -32,6 +32,7 @@
 								</c:forEach>
 								${d.name} ( 옵션 : ${d.optionContents} )
 							</a>
+						<a href="../review/reviewAdd?productNum=${d.productNum}&detailNum=${d.detailNum}">리뷰작성</a>
 						</div>
 					</li>
 				</c:forEach>
