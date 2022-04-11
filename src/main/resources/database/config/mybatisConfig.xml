@@ -33,6 +33,6 @@
 		<typeAlias type="com.stationery.project.product.OptionDTO" alias="OptionDTO"/>
 		<typeAlias type="com.stationery.project.board.qnas.QnasDTO" alias="QnasDTO"/>
 		<typeAlias type="com.stationery.project.board.qnas.QnasFileDTO" alias="QnasFileDTO"/>
-		<typeAlias type="com.stationery.project.board.review.ReviewDTO" alias="ReviewDTO"/>
+	
 	</typeAliases>
 </configuration>
