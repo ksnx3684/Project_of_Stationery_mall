@@ -56,7 +56,7 @@ const fileDeleteBtn_t = document.querySelectorAll(".fileDeleteBtn_t")
 const files =document.querySelector("#files")
 const fileResult_t = document.getElementById("fileResult_t")
 const tCheck=document.getElementById("tCheck")
-// tCheck.setAttribute("value","2")
+tCheck.setAttribute("value","2")
 
 // x클릭하면 그 파일의 파일num 넘어가고 파일 삭제됨 
 //근데 썸네일삭제하면 썸네일 다시넣어줘야되는데 
@@ -104,7 +104,7 @@ files.addEventListener("click",function(event){
     //썸네일 삭제시 다시 태그 생성 
     if(event.target.classList.contains("fileDeleteBtn_t")){ //x눌렀을시 
 
-        tCheck.setAttribute("value","1")
+        // tCheck.setAttribute("value","1")
    
 
 	console.log('대표이미지 삭제 click')

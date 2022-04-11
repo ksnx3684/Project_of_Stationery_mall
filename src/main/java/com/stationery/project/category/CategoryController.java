@@ -53,14 +53,18 @@ public class CategoryController {
 	
 	@PostMapping("add")
 	public String add(String[] categoryName)throws Exception{
-	
+	System.out.println("length:"+categoryName.length);
 		for(int i=0; i<categoryName.length;i++) {
 			if(i==0) {
 				categoryService.addTopCategory(categoryName[i]);
 			}else {
+				if(categoryName.length==2) {
+					categoryService.addSubCategory(categoryName[0]);
+					break;
+				}
 				categoryService.addSubCategory(categoryName[i]);
 			}
 		}
-	return "redirect:./catelist";
+	return "redirect:../";
 	}
 }

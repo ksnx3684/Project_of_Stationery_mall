@@ -68,7 +68,7 @@ body{
  form >select {
 border-width:0px;
 border-right-width:5px;
-border-color:#c9de73; 
+border-color:#CEE5D0; 
 padding: .8em .5em;
 font-family: inherit;
 border-radius: 0px;
@@ -89,7 +89,7 @@ height:40.6px;
   height:42px;
   border-style:solid; 
   border-width:6px;
-  border-color:#c9de73;
+  border-color:#CEE5D0;
   border-radius: 10px;
   padding-left: 20px;
   border-radius: 20px;
@@ -101,7 +101,7 @@ form{
 
 .submit {
   font-weight:600;
-  background:#c9de73;
+  background:#CEE5D0;
   color:#fff;
   height:100%;
   width:18%;
@@ -119,17 +119,11 @@ form{
   border:none;
 }
 
-.search {
-  highlight-color: #ff33cc;
- 
-}
-
 textarea, input {
    font-family:"open sans", sans-serif;  
 }
 
 textarea:focus, input:focus {
-   color:#afdd3f;
    outline:none;  
 }
 
@@ -225,7 +219,7 @@ textarea:focus, input:focus {
 	font-weight: bold;
 }
 .categoryUl > li:hover > a{
-	border: 1px solid green;
+	border: 1px solid #CEE5D0;
 }
 
 ul {

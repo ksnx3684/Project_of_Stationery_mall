@@ -43,7 +43,17 @@ public class ProductController {
 	@Autowired
 	private CategoryService categoryService;
 
-	
+	@PostMapping("fileDelete")
+	public ModelAndView fileDelete(ProductFileDTO productFileDTO)throws Exception{
+		//filenum 넘어옴 
+		ModelAndView mv= new ModelAndView();
+
+		int result = productService.fileDelete(productFileDTO);
+		
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result",result);
+		return mv;
+	}
 	@PostMapping("addCart")
 	public ModelAndView addCart(CartDTO cartDTO,HttpSession httpSession)throws Exception{
 		UsersDTO usersDTO=(UsersDTO) httpSession.getAttribute("auth");
@@ -99,9 +109,11 @@ public class ProductController {
 	@RequestMapping(value = "list", method=RequestMethod.GET)
 	public ModelAndView list(ModelAndView mv,Pager pager) throws Exception{
 		List<ProductDTO> ar=productService.list(pager);
+		List<CategoryDTO> ar1=categoryService.catelist();
 		List<CategoryDTO> ar2=categoryService.allList();
 		
 		mv.addObject("list",ar);
+		mv.addObject("cateList",ar1);
 		mv.addObject("allcatelist",ar2);
 		mv.setViewName("product/list");
 		return mv;
@@ -111,9 +123,11 @@ public class ProductController {
 	public ModelAndView subCateList(ModelAndView mv,Pager pager) throws Exception{
 		
 		List<ProductDTO> ar=productService.subCateList(pager);
+		List<CategoryDTO> ar1=categoryService.catelist();
 		List<CategoryDTO> ar2=categoryService.allList();
 		
 		mv.addObject("list",ar);
+		mv.addObject("cateList",ar1);
 		mv.addObject("allcatelist",ar2);
 		mv.setViewName("product/list");
 		return mv;
@@ -143,7 +157,7 @@ public class ProductController {
 		productService.optionAdd(options,productNum);
 		}
 
-		return "redirect:./list";
+		return "redirect:./list?categoryNum=0";
 	}
 
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
