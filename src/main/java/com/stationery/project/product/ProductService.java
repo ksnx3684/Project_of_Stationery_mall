@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.beust.jcommander.internal.Console;
 import com.stationery.project.cart.CartDTO;
 import com.stationery.project.util.Pager;
 import com.stationery.project.util.ProductFileManager;
@@ -21,6 +22,15 @@ public class ProductService {
 	private ProductDAO productDAO;
 	@Autowired
 	private ProductFileManager fileManager;
+	
+	public List<ProductDTO> subCateList(Pager pager) throws Exception {
+		pager.makeRow();
+		pager.setPerBlock(20);
+		pager.makeNum(productDAO.total(pager));
+
+		List<ProductDTO> ar = productDAO.subCateList(pager);
+		return ar;
+	}
 	
 	public OptionDTO optionCk(CartDTO cartDTO)throws Exception{
 		OptionDTO optionDTO= new OptionDTO();

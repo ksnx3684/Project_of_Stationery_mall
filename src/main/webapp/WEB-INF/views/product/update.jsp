@@ -115,7 +115,7 @@
 				<!-- 썸네일에 fileName을 넣어야되는데 fileManger를 거쳐야 얻을 수 있음 여러 파일중에서 썸네일을 어떻게 구분해서 prductcontroller까지 보내지  -->
 
 			</c:forEach>
-			<input type="hidden" name="check" id="tCheck">
+			<input type="hidden" name="check" id="tCheck" value="2">
 		</div>
 
 

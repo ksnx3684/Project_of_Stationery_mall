@@ -18,6 +18,10 @@ public class ProductDAO {
 	
 	private final String NAMESPACE="com.stationery.project.product.ProductDAO.";
 	
+	public List<ProductDTO> subCateList(Pager pager)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"subCateList",pager);
+	}
+	
 	public OptionDTO optionCk(OptionDTO optionDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"optionCk",optionDTO);
 	}

@@ -15,9 +15,9 @@
 		<textarea name="contents" rows="15" cols="40"></textarea>
 		가격<input type="text" name="price" placeholder="숫자만 입력"> 
 
-
+		<div id="stockFormArea">
 		재고<input type="text" name="stock" placeholder="숫자만 입력" id="stockForm" >
-
+		</div>	
 
 		<hr><!--------카테고리------------->
 		<div>

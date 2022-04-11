@@ -5,13 +5,11 @@ const optionDeleteBtn=document.getElementById("optionDeleteBtn")
 const options = document.getElementById("options")
 const getProductNum= document.getElementById("getProductNum")
 const stockForm = document.getElementById("stockForm")
+const stockFormArea= document.getElementById("stockFormArea")
 
 let count1 =0;
 let num1=0; 
 let productNum=getProductNum.value;
-
-console.log(getProductNum.value);
-
 
 
 options.addEventListener("click",function(event){
@@ -43,6 +41,7 @@ options.addEventListener("click",function(event){
     }
 
 })
+
 
 //옵션추가 버튼 클릭시 총재고 폼 삭제 
 optionAdd_btn.addEventListener("click",function(){
@@ -103,26 +102,6 @@ if(oriOption==null){
     num1++;
 })
 
-
-//옵션 재고 합 
-// if(stock!=null){
-// let sum=0;
-// alert(stock.value)
-// for(i=0;i<stock.length;i++){
-//     sum+=stock.value
-// }
-// }
-
-//옵션재고 합 보내는 form 
-// let totalStockForm=document.createElement('input')
-// totalStockForm.setAttribute("type","hidden") 
-// totalStockForm.setAttribute("name","optionSum") 
-// totalStockForm.setAttribute("value",sum);
-
-
-
-
-
 // 추가된 태그 삭제 
 optionResult.addEventListener("click",function(event){
     let cn=  event.target;
@@ -131,20 +110,19 @@ optionResult.addEventListener("click",function(event){
        let delNum = cn.getAttribute("data-num");
        document.getElementById(delNum).remove();
        count1--;
-    }
-  
+        if(optionResult.childNodes.length<1){ //옵션 추가하려다가 말았을 경우 다시 전체재고폼 생성
+            let stockFormAdd=document.createElement('input')
+            stockFormAdd.setAttribute("type","text")
+            stockFormAdd.setAttribute("name","stock")
+            stockFormAdd.setAttribute("placeholder","숫자만 입력")
+            stockFormAdd.setAttribute("id","stockForm")
 
+            stockFormArea.append(stockFormAdd)
+        }
+    }
+    
 })
 
 
-
-
-
-// optionResult.addEventListener("keyup",function(event){
-//     console.log("key up")
-
-//   let stocks= event.target.contains('stock1').value
-//    console.log(stocks)
-// })
 
 

@@ -23,7 +23,7 @@ submitBtn.addEventListener("click",function(event){
 
 
         //옵션 있는 상품 옵션선택안했을경우 
-        if(optionNum==0&&optionCk=="true"){
+        if(optionNum==0&&optionCk=="false"){
             alert("옵션을 선택해주세요")
             
         }else{

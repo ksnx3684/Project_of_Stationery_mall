@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%--  <c:import url="../template/header.jsp"></c:import> --%>
 <c:import url="../template/header_css.jsp"></c:import>
 <link rel="stylesheet" href="../resources/css/product/productList.css">
 <link
@@ -20,36 +21,31 @@
 <!--title -->
 <div id="titleArea">
 		<c:if test="${param.categoryNum eq 0}"> <h2>전체상품</h2></c:if>
-		<c:forEach items="${cateList}" var="list">
+		<c:forEach items="${allcatelist}" var="list">
 			<c:if test="${list.categoryNum eq param.categoryNum}"><h2>${list.categoryName}</h2></c:if>
 		</c:forEach>
     <span class="xans-element- xans-layout xans-layout-mobileaction "><a href="javascript:history.back();" ><img src="//img.echosting.cafe24.com/skin/mobile_ko_KR/layout/btn_back.gif" width="33" alt="뒤로가기"></a>
 </span>
 
 <!-- 세부카테고리 메뉴 -->
-	<!-- 파라미터값과 카테고리 번호가 같다면  -->
-	<!-- 카테고리번호가 부모번호에 해당하는 세부카테고리 출력  -->
 <div id="subCategoryMenu">
-<ul class="categoryUl">
-<c:forEach items="${allcatelist}" var="catelist">
-
-	<c:if test="${param.categoryNum eq catelist.categoryNum}">
-		<c:set var="parentId" value="${catelist.categoryNum}"></c:set>
+	<ul class="categoryUl">
 		<c:forEach items="${allcatelist}" var="catelist">
-			<c:if test="${parentId eq catelist.parentId}">
-				<li>
-					<a>${catelist.categoryName}</a>
-				</li>
+			<c:if test="${Math.round(param.categoryNum/10)*10 eq catelist.categoryNum}">
+				<c:set var="parentId" value="${catelist.categoryNum}"></c:set>
+				<c:forEach items="${allcatelist}" var="catelist">
+					<c:if test="${parentId eq catelist.parentId}">
+						<li><a href="/project/product/subCateList?categoryNum=${catelist.categoryNum}">${catelist.categoryName}</a></li>
+					</c:if>
+				</c:forEach>
 			</c:if>
 		</c:forEach>
-	</c:if>
-	
-</c:forEach>
-</ul>
-</div>
-</div>
-</div>
+	</ul>
+</div><!-- 세부카테고리메뉴 -->
+</div><!-- title area -->
+</div><!-- top -->
 		<!-- 검색창 -->
+		<div class="searchbar">
 		<div class="boxbox">
 			<form action="./list" method="get">
 				<select name="categoryNum">
@@ -64,6 +60,7 @@
 					<span class="material-icons-outlined">search</span>
 				</button>
 			</form>
+		</div>
 		</div>
 		
 		<!-- 상품추가 버튼 -->

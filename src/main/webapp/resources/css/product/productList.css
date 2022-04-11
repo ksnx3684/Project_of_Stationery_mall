@@ -5,7 +5,6 @@ ul{
     position: relative;
 }
 
-
 body{
     line-height: 25px;
     font: 15px 'Nanum Gothic','Roboto','Verdana','Open Sans','Dotum','AppleGothic','돋움','Dotum','Helvetica','sans-serif','xeicon' !important;
@@ -42,6 +41,10 @@ body{
   .card:last-child {
     margin: 0;
   }
+
+  .card > div{
+    text-align: center;
+  }
   
   .card > div> a >img {
     width: 250px;
@@ -60,30 +63,36 @@ body{
     transition: all .1s ease-out;
   }
   
-  
+  /* 검색창 */
 /* select box */
  form >select {
 border-width:0px;
 border-right-width:5px;
-border-color:#c9de73; 
+border-color:#CEE5D0; 
 padding: .8em .5em;
 font-family: inherit;
 border-radius: 0px;
 height:40.6px;
-
-
  }
 
+.searchbar{
+	width: 100%;
+  display: inline-grid;
+}
+
+
  .boxbox {
+  margin: 0 auto;
  display:flex;
-
-
-	width:400px;
+  width:400px;
   display:flex;
-  height:40px;
+  height:42px;
   border-style:solid; 
   border-width:6px;
-  border-color:#c9de73;
+  border-color:#CEE5D0;
+  border-radius: 10px;
+  padding-left: 20px;
+  border-radius: 20px;
 }
 
 form{
@@ -92,7 +101,7 @@ form{
 
 .submit {
   font-weight:600;
-  background:#c9de73;
+  background:#CEE5D0;
   color:#fff;
   height:100%;
   width:18%;
@@ -110,25 +119,14 @@ form{
   border:none;
 }
 
-.search {
-  highlight-color: #ff33cc;
- 
-}
-
 textarea, input {
    font-family:"open sans", sans-serif;  
 }
 
 textarea:focus, input:focus {
-   color:#afdd3f;
    outline:none;  
 }
 
-
-
-.submit:hover {
-  background: #32990a;
-}
 
 /* pager */
 .pager {
@@ -187,9 +185,21 @@ textarea:focus, input:focus {
 
 
 
+/* 세부카테고리 */
+
+/* @media (max-width: 575px)
+.categoryUl > li {
+    width: 31%;
+} */
+
 .categoryUl > li {
 	list-style-type: none;
 	float: left;
+	display: inline-block;
+	position: relative;
+    zoom: 1;
+    width: 19%;
+    margin: 0 1% 10px 0;
 }
 
 .categoryUl > li > a {
@@ -201,13 +211,15 @@ textarea:focus, input:focus {
     white-space: nowrap;
     text-indent: 10px;
     letter-spacing: 0;
+    color: #555;
+    font-size: 13px;
 }
 
 .categoryUl > li > a:hover{
 	font-weight: bold;
 }
 .categoryUl > li:hover > a{
-	border: 1px solid green;
+	border: 1px solid #CEE5D0;
 }
 
 ul {
@@ -219,8 +231,16 @@ ul {
     margin-inline-end: 0px;
     padding-inline-start: 40px;
 }
+/* 
+@media (max-width: 575px)
+.categoryUl {
+    margin: 0 0 0 2%;
+} */
+
+
 
 .categoryUl {
+	
     display: block;
     position: relative;
     z-index: 30;

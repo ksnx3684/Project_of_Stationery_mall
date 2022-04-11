@@ -10,7 +10,7 @@ let num=0;
 subCategory_btn.addEventListener("click",function(event){
     console.log("click")
 
-    if(count>8){
+    if(count>7){
         alert('하위 카테고리는 최대 9개 까지만 가능합니다. ')
         return;
     }
