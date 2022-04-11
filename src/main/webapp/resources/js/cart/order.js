@@ -21,6 +21,9 @@ window.onload = function(){
         totaling += total[i];
         // console.log(totaling);
     }
+    if(totaling < 30000){
+        totaling += 2500;
+    }
     const newText1 = document.createTextNode(totaling);
     const newText2 = document.createElement('input');
     newText2.setAttribute("type","hidden");

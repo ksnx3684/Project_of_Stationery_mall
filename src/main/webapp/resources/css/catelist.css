@@ -6,7 +6,7 @@
 #cate_nav{
     position: relative;
     bottom: 0;
-    height: 60px;
+    /* height: 60px; */
     line-height: 60px;
     width: 100%;
     border-top: 1px solid rgba(0,0,0,.08);

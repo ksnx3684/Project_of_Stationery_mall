@@ -80,15 +80,15 @@
             <br>
             <br>
             <li class="col1" style="display: none;"><a href="/project/product/list">전체상품보기</a></li><br>
-            <li class="col2" style="display: none;"><a href="#">팬시용품</a></li><br>
-            <li class="col3" style="display: none;"><a href="#">필기용품</a></li><br>
-            <li class="col4" style="display: none;"><a href="#">노트/수첩</a></li><br>
-            <li class="col5" style="display: none;"><a href="#">가방/지갑</a></li><br>
-            <li class="col6" style="display: none;"><a href="#">필통/파우치</a></li><br>
-            <li class="col7" style="display: none;"><a href="#">생활/계절용품</a></li><br>
-            <li class="col8" style="display: none;"><a href="#">악세사리</a></li><br>
-            <li class="col9" style="display: none;"><a href="#">완구</a></li><br>
-            <li class="col10" style="display: none;"><a href="#">애완용품</a></li>
+            <li class="col2" style="display: none;"><a href="/project/product/list?categoryNum=100">팬시용품</a></li><br>
+            <li class="col3" style="display: none;"><a href="/project/product/list?categoryNum=200">필기용품</a></li><br>
+            <li class="col4" style="display: none;"><a href="/project/product/list?categoryNum=300">노트/수첩</a></li><br>
+            <li class="col5" style="display: none;"><a href="/project/product/list?categoryNum=400">가방/지갑</a></li><br>
+            <li class="col6" style="display: none;"><a href="/project/product/list?categoryNum=500">필통/파우치</a></li><br>
+            <li class="col7" style="display: none;"><a href="/project/product/list?categoryNum=600">생활/계절용품</a></li><br>
+            <li class="col8" style="display: none;"><a href="/project/product/list?categoryNum=700">악세사리</a></li><br>
+            <li class="col9" style="display: none;"><a href="/project/product/list?categoryNum=800">완구</a></li><br>
+            <li class="col10" style="display: none;"><a href="/project/product/list?categoryNum=900">애완용품</a></li>
         </ul>
 </div>
 </aside>
