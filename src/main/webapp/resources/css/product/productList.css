@@ -8,8 +8,8 @@ ul{
 
 body{
     line-height: 25px;
-    font: 15px 'Nanum Gothic','Roboto','Verdana','Open Sans','Dotum','AppleGothic','돋움','Dotum','Helvetica','sans-serif','xeicon' !important;
-    font-family: Verdana,Dotum,AppleGothic,sans-serif;
+    /* font: 15px 'Nanum Gothic','Roboto','Verdana','Open Sans','Dotum','AppleGothic','돋움','Dotum','Helvetica','sans-serif','xeicon' !important;
+    font-family: Verdana,Dotum,AppleGothic,sans-serif; */
     color: #353535;
     background: #fff;
     -webkit-text-size-adjust: none;
@@ -74,7 +74,7 @@ height:40.6px;
 
  }
 
- .boxbox {
+ /* .boxbox {
  display:flex;
 
 
@@ -84,13 +84,13 @@ height:40.6px;
   border-style:solid; 
   border-width:6px;
   border-color:#c9de73;
-}
+} */
 
-form{
+/* form{
 	width:400px;
-}
+} */
 
-.submit {
+/* .submit {
   font-weight:600;
   background:#c9de73;
   color:#fff;
@@ -98,14 +98,19 @@ form{
   width:18%;
   float:right;
   transition: all 100ms ease-in-out;
+} */
+
+.searchbar{
+  margin: 0 auto;
+  width: 500px;
+  border: 5px solid #c9de73;
 }
 
 
-
-
 .search, .submit {
+  margin-top: 15px;
   font-size:18px;
-  padding:0 15px;
+  padding:0 25px;
   height: 100%; 
   border:none;
 }

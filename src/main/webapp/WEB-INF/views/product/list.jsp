@@ -9,10 +9,12 @@
 <title>Insert title here</title>
 <c:import url="../template/header_css.jsp"></c:import>
 <link rel="stylesheet" href="../resources/css/product/productList.css">
-<link
+<!-- <link
 	href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp"
-	rel="stylesheet">
-
+	rel="stylesheet"> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<c:import url="../template/header.jsp"></c:import>
+	<link rel="stylesheet" href="../resources/css/hamberger.css">
 </head>
 <body>
 
@@ -52,24 +54,27 @@
 		<!-- 검색창 -->
 		<div class="boxbox">
 			<form action="./list" method="get">
-				<select name="categoryNum">
-					<option value="0">전체</option>
-					<c:forEach items="${cateList}" var="list">
-						<option value="${list.categoryNum}">${list.categoryName}</option>
-					</c:forEach>
-				</select>
+				<!-- 상품추가 버튼 -->
+				<c:if test="${auth.userAccount eq 0}">
+					<button style="margin-left: 13%;"><a href="./add">상품 추가하기</a></button>
+				</c:if>
+				<div class="searchbar">
+					<select name="categoryNum" style="margin: 10px; margin-bottom : 20px; border: none">
+						<option value="0">전체</option>
+						<c:forEach items="${cateList}" var="list">
+							<option value="${list.categoryNum}">${list.categoryName}</option>
+						</c:forEach>
+					</select>
 
-				 <input type="text" name="search" class="search">
-				 <button type="submit" class="submit">
-					<span class="material-icons-outlined">search</span>
-				</button>
+					<input type="text" name="search" class="search">
+					<button type="submit" class="submit">
+						<span class="material-icons-outlined">search</span>
+					</button>
+				</div>
 			</form>
 		</div>
 		
-		<!-- 상품추가 버튼 -->
-		<c:if test="${auth.userAccount eq 0}">
-		<button><a href="./add">상품 추가하기</a></button>
-		</c:if>
+		
 		
 		<!-- id -->
 		<input type="hidden" id="id" value="${auth.id}"></input>
@@ -116,5 +121,6 @@
 
 	
 		<script src="../resources/js/product/wishlist.js"></script>
+		<script src="../resources/js/hamberger.js"></script>
 </body>
 </html>
