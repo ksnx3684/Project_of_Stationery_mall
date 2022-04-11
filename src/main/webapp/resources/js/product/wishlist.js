@@ -78,6 +78,7 @@ ultag.addEventListener("click",function(event){
                             console.log("wishlist 추가 ")
                         }else if(result=='2'){
                             alert('이미 위시리스트에 추가된 상품입니다.')
+                            event.target.innerHTML="favorite"
                         }else{
                             alert('wishlist 추가 실패')
                         }
