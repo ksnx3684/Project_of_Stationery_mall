@@ -44,7 +44,7 @@
             </ul>
         </li> -->
         <li><a href="/project/">HOME</a></li>
-        <li><a href="/project/faq/list">FAQ</a></li>
+        <li><a href="/project/faq/faqList">FAQ</a></li>
         <li><a href="/project/qnas/list">Q&A</a></li>
         <li><a href="/project/notices/list">Notices</a></li>
     </ul>

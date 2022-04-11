@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SQUARE SHOP</title>
 <c:import url="../template/header.jsp"></c:import>
 	
 	<link rel="stylesheet" href="../resources/css/hamberger.css">
@@ -59,15 +59,20 @@
 	<hr>
 	
 	
-	
-	<a href="./list">글 목록</a>
+	<c:choose>
+		<c:when test="${board eq 'faq'}">
+			<a href="./faqList">글 목록</a>
+		</c:when>
+		<c:otherwise>
+			<a href="./list">글 목록</a>
+		</c:otherwise>
+	</c:choose>
 	<!-- 작성자만 수정과 삭제가 가능하게끔  -->
 	<c:if test="${auth.id eq dto.id}">
 		<!-- <button type="button" onclick="button_del();">삭제하기</button> -->
 		<a href="./delete?num=${dto.num}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
 		<a href="./update?num=${dto.num}">수정</a>
 	</c:if>
-	
 </div>
 
 

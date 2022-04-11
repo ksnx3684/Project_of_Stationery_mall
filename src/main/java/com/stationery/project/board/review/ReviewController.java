@@ -31,7 +31,6 @@ public class ReviewController {
 		ModelAndView mv = new ModelAndView();
 		System.out.println(reviewFileDTO.getFileNum());
 		int result = reviewService.fileDelete(reviewFileDTO);
-		System.out.println(result);
 		mv.setViewName("common/ajaxResult");
 		mv.addObject("result",result);
 		return mv;
@@ -50,10 +49,6 @@ public class ReviewController {
 	public ModelAndView reviewDetailList(Pager pager, ReviewDTO reviewDTO, @RequestParam(value="productNum") Integer productNum) throws Exception {
 		/* review 파트 */
 		ModelAndView mv = new ModelAndView();
-		System.out.println("reviewDetailList Controller : "+productNum);
-
-		
-		
 	
 		List<BoardDTO> qnasDTOs = reviewService.list(pager, productNum);
 		
@@ -102,7 +97,6 @@ public class ReviewController {
 	@PostMapping("reviewUpdate")
 	public ModelAndView reviewUpdate(ReviewDTO reviewDTO, @RequestParam(value="productNum") Integer productNum, MultipartFile [] files) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(productNum);
 		int result = reviewService.reviewUpdate(reviewDTO, files);
 		mv.setViewName("redirect:../product/detail?productNum="+productNum);
 		

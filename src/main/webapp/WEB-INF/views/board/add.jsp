@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>글 작성 - SQUARE SHOP</title>
 <link href="../resources/css/boardForm.css" rel="styleSheet" />
 <!-- favicon.ico 404 (Not Found) -->
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">

@@ -35,12 +35,12 @@ public class FaqCheckInterceptor extends HandlerInterceptorAdapter {
 		FaqDTO faqDTO = (FaqDTO) map.get("dto");
 		
 		if(!usersDTO.getId().equals(faqDTO.getId())) {
-			//spring 문법
-			//1. foward
-			modelAndView.addObject("message", "수정 권한이 없습니다.");
-			modelAndView.addObject("path", "./list");
-			modelAndView.setViewName("common/result"); //덮어씌우기
-			//2. redirect
+			if(usersDTO.getUserAccount() != 0) {				
+				//1. foward
+				modelAndView.addObject("message", "수정 권한이 없습니다.");
+				modelAndView.addObject("path", "./faqList");
+				modelAndView.setViewName("common/result"); //덮어씌우기
+			}
 		}
 	}
 }

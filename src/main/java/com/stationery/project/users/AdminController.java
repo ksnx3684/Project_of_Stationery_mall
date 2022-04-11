@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.stationery.project.board.BoardDTO;
+import com.stationery.project.board.faq.FaqDAO;
+import com.stationery.project.board.faq.FaqService;
 import com.stationery.project.order.OrderDetailDTO;
 import com.stationery.project.order.UsersOrderDTO;
+import com.stationery.project.util.Pager;
 
 @Controller
 @RequestMapping("/admin/*")
@@ -18,7 +22,8 @@ public class AdminController {
 	
 	@Autowired
 	private UsersService usersService;
-	
+	@Autowired
+	private FaqService faqService;
 	
 	// manager form 이동
 	// 관리자 페이지 접근에 대한 보안 취약점
@@ -61,6 +66,12 @@ public class AdminController {
 	public void usersOrderProduct(Model model, OrderDetailDTO orderDetailDTO) throws Exception {
 		List<OrderDetailDTO> list = usersService.usersOrderProduct(orderDetailDTO);
 		model.addAttribute("usersOrderProduct", list);
+	}
+	
+	@GetMapping("faqManage")
+	public void faqManage(Model model, FaqDAO faqDAO, Pager pager) throws Exception {
+		List<BoardDTO> list = faqService.list(pager);
+		model.addAttribute("faqManage",list);
 	}
 
 }

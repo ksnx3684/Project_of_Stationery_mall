@@ -33,10 +33,8 @@ public class ReviewService{
 	
 	public List<BoardDTO> list(Pager pager, int productNum) throws Exception {
 		/* pager와 productNum 같이 넘겨주기 위해 hasgMap 생성 */
-		System.out.println("ReviewService : "+productNum);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		pager.makeRow();
-		System.out.println("total : "+reviewDAO.total(productNum));
 		pager.makeNum(reviewDAO.total(productNum));
 		map.put("pager", pager);
 		map.put("productNum", productNum);

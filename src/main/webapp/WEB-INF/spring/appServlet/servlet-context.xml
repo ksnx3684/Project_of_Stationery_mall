@@ -46,6 +46,7 @@
 	<beans:bean class="com.stationery.project.interceptor.QnaWriterInterceptor" id="QnaWriterInterceptor" />
 	<beans:bean class="com.stationery.project.interceptor.ReviewCheckInterceptor" id="ReviewCheckInterceptor" />
 	<beans:bean class="com.stationery.project.interceptor.ReviewDeleteCheckInterceptor" id="ReviewDeleteCheckInterceptor" />
+	<beans:bean class="com.stationery.project.interceptor.NoticesWriterInterceptor" id="NoticesWriterInterceptor" />
 	
 	<interceptors>
 		<interceptor>
@@ -100,6 +101,11 @@
 		<interceptor>
 			<mapping path="/notices/update"/>
 			<beans:ref bean="WriterCheckInterceptor" />
+		</interceptor>
+	
+		<interceptor>
+			<mapping path="/notices/add"/>
+			<beans:ref bean="NoticesWriterInterceptor" />
 		</interceptor>
 		
 		<interceptor>
