@@ -100,10 +100,10 @@ public class ReviewController {
 	}
 	
 	@PostMapping("reviewUpdate")
-	public ModelAndView reviewUpdate(ReviewDTO reviewDTO, @RequestParam(value="productNum") Integer productNum) throws Exception {
+	public ModelAndView reviewUpdate(ReviewDTO reviewDTO, @RequestParam(value="productNum") Integer productNum, MultipartFile [] files) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		System.out.println(productNum);
-		int result = reviewService.reviewUpdate(reviewDTO);
+		int result = reviewService.reviewUpdate(reviewDTO, files);
 		mv.setViewName("redirect:../product/detail?productNum="+productNum);
 		
 		return mv;

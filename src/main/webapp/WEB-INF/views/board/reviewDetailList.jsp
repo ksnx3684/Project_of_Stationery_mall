@@ -18,7 +18,7 @@ Material+Icons+Round|Material+Icons+sharp"
 <body>
 	<!--  review Detail Ajax 용 페이지입니다. -->
 	<div class="qna_board">
-		<h2 class="titleArea">Review</h2>
+		<h2 class="titleArea">REVIEW</h2>
 		<div id="qnaArea" class="qna-inside">
 
 			<div class="table-container">
@@ -70,29 +70,13 @@ Material+Icons+Round|Material+Icons+sharp"
 									
 										</div>
 
-							<%-- 		<div class="chooseBox">
-								 	 	<c:choose>
-											<c:when test="${auth.userAccount eq 0}"> 
-												<c:choose>
-													<c:when test="${dto.step eq 0}">
-														<a href="../qnas/qnaReply?num=${dto.num}"><br>답변달기</a>
-													</c:when>
-													<c:otherwise>
-														<a href="../qnas/qnaUpdate?num=${dto.num}&productNum=${dto.productNum}"><br>답변수정</a>
-														<a data-delNum="${dto.num}" href="../qnas/qnaDelete?num=${dto.num}&productNum=${dto.productNum}"
-															 onclick="return confirm('정말 삭제하시겠습니까?');"><br>답변삭제</a>												
-													</c:otherwise>
-												</c:choose>
-											</c:when>
-											<c:otherwise> 
-												<c:if test="${auth.id eq dto.id}">
-													<a data-delNum="${dto.num}" href="../qnas/qnaDelete?num=${dto.num}&productNum=${dto.productNum}"
-													onclick="return confirm('정말 삭제하시겠습니까?');"><br>질문삭제</a>
-													<a href="../qnas/qnaUpdate?num=${dto.num}&productNum=${dto.productNum}"><br>질문수정</a>
-												</c:if>
-											</c:otherwise>
-										</c:choose>  
-									</div> --%>
+							 		<div class="chooseBox">
+										<c:if test="${auth.id eq dto.id}">
+											<a data-delNum="${dto.num}" href="../review/reviewDelete?num=${dto.num}&productNum=${param.productNum}"
+											onclick="return confirm('정말 삭제하시겠습니까?');"><br>질문삭제</a>
+											<a href="../review/reviewUpdate?num=${dto.num}&productNum=${param.productNum}"><br>질문수정</a>
+										</c:if>
+									</div> 
 									</div></td>
 							</tr>
 						</c:forEach>
@@ -101,7 +85,7 @@ Material+Icons+Round|Material+Icons+sharp"
 
 				<div class="pager" id="pagerArea" data-num="${param.productNum}">
 					<c:if test="${pager.pre}">
-						<a class="pre" href=#>◀</a>
+						<a class="pre" href="#" data-pre="${pager.startNum-1}">◀</a>
 					</c:if>
 
 					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
@@ -109,7 +93,7 @@ Material+Icons+Round|Material+Icons+sharp"
 					</c:forEach>
 
 					<c:if test="${pager.next}">
-						<a class="next" href=#>▶</a>
+						<a class="next" href=# date-next="${pager.lastNum+1}">▶</a>
 					</c:if>
 
 				</div>

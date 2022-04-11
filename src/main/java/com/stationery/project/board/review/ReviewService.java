@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.stationery.project.board.BoardDTO;
+import com.stationery.project.board.qnas.QnasFileDTO;
 import com.stationery.project.util.FileManager;
 import com.stationery.project.util.Pager;
 
@@ -21,8 +22,9 @@ public class ReviewService{
 	private FileManager fileManager;
 	
 	public int fileDelete(ReviewFileDTO reviewFileDTO) throws Exception {
-		// HDD에 파일 삭제 코드 작성
-		return reviewDAO.fileDelete(reviewFileDTO);
+		reviewFileDTO = reviewDAO.detailFile(reviewFileDTO);
+		int result = reviewDAO.fileDelete(reviewFileDTO);
+		return result;
 	}
 	
 	public ReviewFileDTO detailFile(ReviewFileDTO reviewFileDTO) throws Exception {
@@ -34,7 +36,7 @@ public class ReviewService{
 		System.out.println("ReviewService : "+productNum);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		pager.makeRow();
-		System.out.println(reviewDAO.total(productNum));
+		System.out.println("total : "+reviewDAO.total(productNum));
 		pager.makeNum(reviewDAO.total(productNum));
 		map.put("pager", pager);
 		map.put("productNum", productNum);
@@ -79,8 +81,28 @@ public class ReviewService{
 		return result;
 	}
 
-	public int reviewUpdate(BoardDTO boardDTO) throws Exception {
-		return reviewDAO.reviewUpdate(boardDTO);
+	public int reviewUpdate(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
+		//수정내용 먼저 update
+		int result = reviewDAO.reviewUpdate(boardDTO);
+		
+		// file update
+		// 1. HDD에 저장
+		for (int i = 0; i < files.length; i++) {
+			if (files[i].isEmpty()) {
+			// files[i].getSize()==0
+			continue;
+		}
+		String fileName = fileManager.save(files[i], "resources/upload/review/");
+		System.out.println("file save");
+		// 2. DB에 저장
+		ReviewFileDTO reviewFileDTO = new ReviewFileDTO();
+		reviewFileDTO.setNum(boardDTO.getNum());
+		reviewFileDTO.setFileName(fileName);
+		reviewFileDTO.setOriName(files[i].getOriginalFilename());
+		result = reviewDAO.addFile(reviewFileDTO);
+		}
+		
+		return result;
 	}
 
 	public int reviewDelete(BoardDTO boardDTO) throws Exception {

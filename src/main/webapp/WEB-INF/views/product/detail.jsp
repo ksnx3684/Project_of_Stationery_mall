@@ -86,15 +86,24 @@
 </div><!-- main -->
 
 	<hr>
+
+	<!-- review Ajax로 가져오는 부분 -->
+	<div id="review-Result">
+		
+	
+	</div> 
+	<hr>
 	
 	<!-- qna Ajax로 가져오는 부분 -->
 	<div id="qna-Result">
 		<input type="hidden" name="productNum" value="${dto.productNum}" id="productNum">
-
+		
 	</div>
-
-
+	
+	
+	
 	<script src="../resources/js/product/cart.js"></script>
+	<script type="text/javascript" src="../resources/js/product/review.js"></script>
 	<script type="text/javascript" src="../resources/js/product/qnas.js"></script>
 
 

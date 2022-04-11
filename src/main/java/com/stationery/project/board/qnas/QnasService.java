@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.stationery.project.board.BoardDTO;
+import com.stationery.project.board.notices.NoticesFileDTO;
 import com.stationery.project.util.FileManager;
 import com.stationery.project.util.Pager;
 
@@ -20,8 +21,9 @@ public class QnasService {
 	private FileManager fileManager;
 
 	public int fileDelete(QnasFileDTO qnasFileDTO) throws Exception {
-		// HDD에 파일 삭제 코드 작성
-		return qnasDAO.fileDelete(qnasFileDTO);
+		qnasFileDTO = qnasDAO.detailFile(qnasFileDTO);
+		int result = qnasDAO.fileDelete(qnasFileDTO);
+		return result;
 	}
 
 	public QnasFileDTO detailFile(QnasFileDTO qnasFileDTO) throws Exception {
@@ -76,8 +78,26 @@ public class QnasService {
 		return result;
 	}
 
-	public int qnaUpdate(BoardDTO boardDTO) throws Exception {
-		int result = qnasDAO.qnaUpdate(boardDTO);			
+	public int qnaUpdate(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
+		// 수정 내용 먼저 update
+		int result = qnasDAO.qnaUpdate(boardDTO);		
+		
+		// file update
+		// 1. HDD에 저장
+		for (int i = 0; i < files.length; i++) {
+			if (files[i].isEmpty()) {
+			// files[i].getSize()==0
+			continue;
+		}
+		String fileName = fileManager.save(files[i], "resources/upload/qnas/");
+		System.out.println("file save");
+		// 2. DB에 저장
+		QnasFileDTO qnasFileDTO = new QnasFileDTO();
+		qnasFileDTO.setNum(boardDTO.getNum());
+		qnasFileDTO.setFileName(fileName);
+		qnasFileDTO.setOriName(files[i].getOriginalFilename());
+		result = qnasDAO.addFile(qnasFileDTO);
+				}
 		return result;
 	}
 

@@ -137,7 +137,7 @@
 		</collection>
 		</resultMap>
 	
- 	<select id="total" parameterType="Integer" resultMap="totalResult">
+ 	<select id="total" parameterType="Integer" resultType="Long">
 		SELECT COUNT(NUM) FROM 
 			(select * from
 			review R
@@ -145,25 +145,10 @@
 			order_detail OD
 			on R.detailNum = OD.detailNum)
 		WHERE
-		productNum=${productNum}
+		productNum=#{productNum}
 	</select> 
 	
-	<resultMap type="ReviewDTO" id="totalResult">
-		<id column="num" property="num"/>
- 		<result column="id" property="id"/>
- 		<result column="detailNum" property="detailNum"/>
- 		<result column="title" property="title"/>
- 		<result column="contents" property="contents"/>
- 		<collection property="orderDetailDTOs" ofType="OrderDetailDTO" javaType="List">
- 			<id column="detailNum" property="detailNum" />
-			<result column="orderNum" property="orderNum" />
-			<result column="productNum" property="productNum" />
-			<result column="count" property="count" />
-			<result column="price" property="price" />
-			<result column="optionContents" property="optionContents" />
-			<result column="name" property="name" />
- 		</collection>
-	</resultMap>
+
 	
 	<!-- allList용 pager -->
 	<select id="total2" resultType="Long" parameterType="Pager">

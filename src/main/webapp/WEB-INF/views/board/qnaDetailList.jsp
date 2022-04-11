@@ -148,7 +148,7 @@ div.panel {
 
 				<div class="pager" id="pagerArea" data-num="${param.productNum}">
 					<c:if test="${pager.pre}">
-						<a class="pre" href=#>◀</a>
+						<a class="pre" href="#" data-pre="${pager.startNum-1}">◀</a>
 					</c:if>
 
 					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
@@ -156,7 +156,7 @@ div.panel {
 					</c:forEach>
 
 					<c:if test="${pager.next}">
-						<a class="next" href=#>▶</a>
+						<a class="next" href="#" date-next="${pager.lastNum+1}">▶</a>
 					</c:if>
 
 				</div>

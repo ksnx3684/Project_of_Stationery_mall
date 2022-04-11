@@ -98,9 +98,9 @@ table-container a:hover {
 					<button type="submit" class="custom-btn btn-1">검색</button>
 				</fieldset>
 			</form>
-			<c:if test ="${not empty auth}">
+		<%-- 	<c:if test ="${not empty auth}">
 				<a href="./add" class="add-board">글작성</a>
-			</c:if>
+			</c:if> --%>
 		</div>
 
 
