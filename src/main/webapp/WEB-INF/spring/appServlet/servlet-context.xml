@@ -44,6 +44,8 @@
 	<beans:bean class="com.stationery.project.interceptor.QnaCheckInterceptor" id="QnaCheckInterceptor" />
 	<beans:bean class="com.stationery.project.interceptor.QnaDeleteCheckInterceptor" id="QnaDeleteCheckInterceptor" />
 	<beans:bean class="com.stationery.project.interceptor.QnaWriterInterceptor" id="QnaWriterInterceptor" />
+	<beans:bean class="com.stationery.project.interceptor.ReviewCheckInterceptor" id="ReviewCheckInterceptor" />
+	<beans:bean class="com.stationery.project.interceptor.ReviewDeleteCheckInterceptor" id="ReviewDeleteCheckInterceptor" />
 	
 	<interceptors>
 		<interceptor>
@@ -76,6 +78,9 @@
     		<mapping path="/qnas/qnaUpdate" />
     		<mapping path="/qnas/qnaDelete"/>
     		<mapping path="/qnas/qnaReply" />
+    		<mapping path="/review/reviewAdd" />
+    		<mapping path="/review/reviewUpdate" />
+    		<mapping path="/review/reviewDelete" />
 			<beans:ref bean="LoginInterceptor"/>
 		</interceptor>
 		<interceptor>
@@ -126,6 +131,16 @@
 		<interceptor>
 			<mapping path="/qnas/qnaReply"/>
 			<beans:ref bean="QnaWriterInterceptor" />
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/review/reviewUpdate"/>
+			<beans:ref bean="ReviewCheckInterceptor" />
+		</interceptor>
+		
+				<interceptor>
+			<mapping path="/review/reviewDelete"/>
+			<beans:ref bean="ReviewDeleteCheckInterceptor" />
 		</interceptor>
 		
 	</interceptors>

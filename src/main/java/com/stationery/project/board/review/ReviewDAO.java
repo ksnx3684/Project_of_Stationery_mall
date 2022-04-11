@@ -1,63 +1,74 @@
 package com.stationery.project.board.review;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.stationery.project.board.BoardDAO;
 import com.stationery.project.board.BoardDTO;
 import com.stationery.project.board.BoardFileDTO;
 import com.stationery.project.util.Pager;
 
 @Repository
-public class ReviewDAO implements BoardDAO {
+public class ReviewDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.stationery.project.board.review.ReviewDAO.";
 	
-	@Override
-	public int fileDelete(BoardFileDTO boardFileDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int fileDelete(ReviewFileDTO reviewFileDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"fileDelete", reviewFileDTO);
 	}
-	@Override
+	
+	public List<ReviewFileDTO> listFile(BoardDTO boardDTO)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"listFile", boardDTO);
+	}
+	
+	public ReviewFileDTO detailFile(ReviewFileDTO reviewFileDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"detailFile", reviewFileDTO);
+	}
+	
 	public int addFile(BoardFileDTO boardFileDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.insert(NAMESPACE+"addFile", boardFileDTO);
 	}
-	@Override
-	public List<BoardDTO> list(Pager pager) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+"list", pager);
+	
+	public List<BoardDTO> allList(Pager pager) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"allList", pager);
 	}
-	@Override
-	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
+	
+	public List<BoardDTO> list(HashMap<String, Object> map) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"list", map);
+	}
+
+	public ReviewDTO detail(BoardDTO boardDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"detail", boardDTO);
 	}
-	@Override
-	public int add(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public Long total(Pager pager) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NAMESPACE+"total", pager);
-	}
-	@Override
-	public int delete(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	@Override
-	public int update(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
+	public Long total(Integer productNum) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"total", productNum);
+	}
 	
+	public Long total2(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"total2", pager);
+	}
+	
+	public List<BoardDTO> detailList(BoardDTO boardDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"detailList", boardDTO);
+	}
+	
+	public int add(BoardDTO boardDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"add", boardDTO);
+	}
 
+	public int reviewUpdate(BoardDTO boardDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"reviewUpdate", boardDTO);
+	}
+
+	public int reviewDelete(BoardDTO boardDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"reviewDelete", boardDTO);
+	}
+	
+	public int orderProductNumDetail(BoardDTO boardDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"orderProductNumDetail", boardDTO);
+	}
 }

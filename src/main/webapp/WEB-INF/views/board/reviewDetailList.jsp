@@ -14,75 +14,28 @@ Material+Icons+Round|Material+Icons+sharp"
 <link href="../resources/css/list.css" rel="styleSheet" />
 <link href="../resources/css/notice.css" rel="styleSheet" /> -->
 <link rel="stylesheet" href="../resources/css/product/qnaDetail.css" />
-<!-- <style type="text/css">
-button.accordion {
-	background-color: #FFF;
-	cursor: pointer;
-	width: 100%;
-	border: none;
-	font-size: 16px;
-	transition: 0.5s;
-	text-align: left;
-	padding: 10px;
-}
-
-button.accordion>p {
-	float: left;
-	margin-left: 10px;
-	width: 76%;
-}
-
-button.accordion.active {
-	font-weight: bold;
-	color: #000;
-}
-
-div.panel {
-	padding: 0 18px;
-	background-color: #f7f7f7;
-	max-height: 0;
-	overflow: hidden;
-	transition: max-height 0.2s ease-out;
-	border-top: 1px solid #F0F0F0;
-	color: #666666;
-	font-size: 14px;
-	/* line-height: 1.5px; */
-}
-</style> -->
 </head>
 <body>
-	<!--  Qna Detail Ajax 용 페이지입니다. -->
+	<!--  review Detail Ajax 용 페이지입니다. -->
 	<div class="qna_board">
-		<h2 class="titleArea">Q&A</h2>
+		<h2 class="titleArea">REVIEW</h2>
 		<div id="qnaArea" class="qna-inside">
-			<p class="boardBtn">
-				<a href="../qnas/qnaAdd?productNum=${param.productNum}"
-					class="add-board">문의하기</a>
-			</p>
 
 			<div class="table-container">
 				<table class="table-basic" id="qnaTable">
 					<thead>
 						<tr>
 							<th>글번호</th>
-							<th>문의유형</th>
 							<th>글제목</th>
 							<th>작성자</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${requestScope.qnaDto}" var="dto">
+						<c:forEach items="${requestScope.reviewDto}" var="dto">
 							<tr>
 								<td>${dto.num}</td>
-								<td><c:choose>
-										<c:when test="${dto.type eq 1}">배송문의</c:when>
-										<c:otherwise>상품문의</c:otherwise>
-									</c:choose></td>
 								<td><button type="button" class="qna accordion"
 										data-num="${dto.num}">
-										<c:catch>
-											<c:forEach begin="1" end="${dto.depth}">↳&nbsp;</c:forEach>
-										</c:catch>
 										${dto.title}
 
 									</button></td>
@@ -102,7 +55,7 @@ div.panel {
 										<c:forEach items="${dto.fileDTOs}" var="f">
 					
 											<!-- 첫 번째 Modal을 여는 클래스 -->
-										    <div class="btn"><img src="../resources/upload/qnas/${f.fileName}"></div>
+										    <div class="btn"><img src="../resources/upload/review/${f.fileName}"></div>
 										 
 										    <!-- 첫 번째 Modal -->
 										    <div class="modal">
@@ -110,36 +63,20 @@ div.panel {
 										      <!-- 첫 번째 Modal의 내용 -->
 										      <div class="modal-content">
 										        <span class="close">&times;</span>                         
-												<img class="qnaImg" alt="" src="../resources/upload/qnas/${f.fileName}">
+												<img class="qnaImg" alt="" src="../resources/upload/review/${f.fileName}">
 										      </div>
 										    </div>
 										</c:forEach>
 									
 										</div>
 
-									<div class="chooseBox">
-								 	 	<c:choose>
-											<c:when test="${auth.userAccount eq 0}"> 
-												<c:choose>
-													<c:when test="${dto.step eq 0}">
-														<a href="../qnas/qnaReply?num=${dto.num}"><br>답변달기</a>
-													</c:when>
-													<c:otherwise>
-														<a href="../qnas/qnaUpdate?num=${dto.num}&productNum=${dto.productNum}"><br>답변수정</a>
-														<a data-delNum="${dto.num}" href="../qnas/qnaDelete?num=${dto.num}&productNum=${dto.productNum}"
-															 onclick="return confirm('정말 삭제하시겠습니까?');"><br>답변삭제</a>												
-													</c:otherwise>
-												</c:choose>
-											</c:when>
-											<c:otherwise> 
-												<c:if test="${auth.id eq dto.id}">
-													<a data-delNum="${dto.num}" href="../qnas/qnaDelete?num=${dto.num}&productNum=${dto.productNum}"
-													onclick="return confirm('정말 삭제하시겠습니까?');"><br>질문삭제</a>
-													<a href="../qnas/qnaUpdate?num=${dto.num}&productNum=${dto.productNum}"><br>질문수정</a>
-												</c:if>
-											</c:otherwise>
-										</c:choose>  
-									</div>
+							 		<div class="chooseBox">
+										<c:if test="${auth.id eq dto.id}">
+											<a data-delNum="${dto.num}" href="../review/reviewDelete?num=${dto.num}&productNum=${param.productNum}"
+											onclick="return confirm('정말 삭제하시겠습니까?');"><br>질문삭제</a>
+											<a href="../review/reviewUpdate?num=${dto.num}&productNum=${param.productNum}"><br>질문수정</a>
+										</c:if>
+									</div> 
 									</div></td>
 							</tr>
 						</c:forEach>
@@ -156,7 +93,7 @@ div.panel {
 					</c:forEach>
 
 					<c:if test="${pager.next}">
-						<a class="next" href="#" date-next="${pager.lastNum+1}">▶</a>
+						<a class="next" href=# date-next="${pager.lastNum+1}">▶</a>
 					</c:if>
 
 				</div>

@@ -30,11 +30,19 @@ table > thead {
     border: 0px;
 }
 
-.search-form > fieldset {
-    border: 1px solid rgb(160, 160, 160);
-}
-
 .pager {
     margin-top: 20px;
     text-align: center;
 }
+ 
+table-container a {
+    text-decoration: none;
+    color: black;
+}
+
+table-container a:hover { 
+    color:white; 
+    background-color: blue; 
+    text-decoration: none; 
+}
+
