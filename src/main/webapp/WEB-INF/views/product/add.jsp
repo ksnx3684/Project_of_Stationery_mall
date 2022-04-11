@@ -14,35 +14,64 @@
     <h2>상품 추가</h2>
     <span class="xans-element- xans-layout xans-layout-mobileaction "><a href="javascript:history.back();" ><img src="//img.echosting.cafe24.com/skin/mobile_ko_KR/layout/btn_back.gif" width="33" alt="뒤로가기"></a>
 </span>
-</div>
+</div><!--/title -->
+
 	<form action="./add" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="productNum" value="${dto.productNum}" id="getProductNum">
-		상품 이름<input type="text" name="name"> 설명
-		<textarea name="contents" rows="15" cols="40"></textarea>
-		가격<input type="text" name="price" placeholder="숫자만 입력"> 
-
-		<div id="stockFormArea">
-		재고<input type="text" name="stock" placeholder="숫자만 입력" id="stockForm" >
-		</div>	
-
-		<hr><!--------카테고리------------->
+		
 		<div>
-			category <select name="categoryNum">
-				<c:forEach items="${list}" var="list">
-					<c:choose>
-						<c:when test="${list.parentId eq null}">
-							<!--parentid가 null -> 최상위카테고리 -->
-							<optgroup label="${list.categoryName}">
-							</optgroup>
-						</c:when>
-						<c:otherwise>
-							<option value="${list.categoryNum}">
-								&nbsp;&nbsp;&nbsp;${list.categoryName}</option>
-						</c:otherwise>
-					</c:choose>
+			<label class="desc" id="title1" for="Field1">상품 이름</label>
+			<div>
+				<input type="text" name="name" id="Field1"> 
+			</div>
+		</div>
+		
+		<div>
+			<label class="desc" id="title2" for="Field2">상품 설명</label>
+			<div>
+				<textarea name="contents" rows="15" cols="40" id="Field2"></textarea>
+			</div>
+		</div>
+		
+		<div>
+			<label class="desc" id="title3" for="Field3">상품 가격</label>
+			<div>
+				<input type="text" name="price" placeholder="숫자만 입력" id="Field3">
+			</div>
+		</div>
+	
+		<div>
+			<label class="desc" id="title4" for="stockForm">재고</label>
+			<div id="stockFormArea">
+				<input type="text" name="stock" placeholder="숫자만 입력" id="stockForm" >
+			</div>
+		</div>
 
-				</c:forEach>
-			</select>
+	
+
+		<!-- category -->
+		<div>
+			<label id="title5" class="desc" for="title5">
+				상품 카테고리
+			</label>
+			<div>
+				<select name="categoryNum" id="title5">
+					<c:forEach items="${list}" var="list">
+						<c:choose>
+							<c:when test="${list.parentId eq null}">
+								<!--parentid가 null -> 최상위카테고리 -->
+								<optgroup label="${list.categoryName}">
+								</optgroup>
+							</c:when>
+							<c:otherwise>
+								<option value="${list.categoryNum}">
+									&nbsp;&nbsp;&nbsp;${list.categoryName}</option>
+							</c:otherwise>
+						</c:choose>
+	
+					</c:forEach>
+				</select>
+			</div>
 		</div>
 		<hr><!--------옵션------------->
 

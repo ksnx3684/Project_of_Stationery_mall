@@ -130,7 +130,7 @@ public class UsersController {
 		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
 		List<WishListDTO> list = usersService.wishlist(usersDTO);
 		model.addAttribute("wishlistDTO", list);
-		//System.out.println(list.get(0).getProductDTO().getThumbnail());
+		
 	}
 	
 	// mypage form 이동
@@ -280,8 +280,8 @@ public class UsersController {
 		int result=2;
 		WishListDTO ck=usersService.wishlistCk(wishListDTO);
 		if(ck==null) {
-		usersService.addWishList(wishListDTO);
-		result=1;
+			usersService.addWishList(wishListDTO);
+			result=1;
 		}
 		mv.setViewName("common/ajaxResult");
 		mv.addObject("result",result);

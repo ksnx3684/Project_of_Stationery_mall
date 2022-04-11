@@ -139,9 +139,9 @@ html {
 	background:#ddd;
 }
 .checkbox {
+    top: 35px;
+    left: 3px;
 	position:absolute;
-	right:10px;
-
 	width: 117px;
 	height: 2.2em;
 	-webkit-appearance: none;
@@ -160,8 +160,12 @@ html {
 	transition:.3s ease;
 	outline:0;
 }
+.checkbox:focus {
+	outline:#0f3939
+}
+
  .checkbox:checked + label{
-	border-color:#1a73f0;
+	border-color:#45d645;
 } 
 .checkbox:active + label {
 	background-color: #ddd;

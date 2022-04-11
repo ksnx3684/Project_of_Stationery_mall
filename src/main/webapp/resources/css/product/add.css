@@ -1,3 +1,4 @@
+
 /* title */
 #titleArea {
     display: block;
@@ -21,3 +22,29 @@
     height: 25px;
     margin-top: -12.5px;
 } 
+
+/* form */
+form{
+    padding: 20px 15%;
+}
+
+form > div {
+    clear: both;
+    overflow: hidden;
+    padding: 1px;
+    margin: 0 0 10px 0;
+}
+
+form > div > div, form > div > fieldset > div {
+    width: 100%;
+    float: none;
+}
+form > div > div {
+    max-width: 600px;
+    width: 75%;
+    float: right;
+}
+form > div > label{
+    width: 25%;
+}
+

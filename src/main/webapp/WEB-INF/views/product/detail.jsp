@@ -66,7 +66,9 @@
 			<c:forEach items="${option}" var="option">
 			<div class="formrow">
 				<input type="radio" class="checkbox" value="${option.optionNum}" name="optionNum">
+				
 				<label class="checklabel" for="${option.optionContents}">${option.optionContents}</label>
+				
 			</div>
 			</c:forEach>
 		</c:if>	

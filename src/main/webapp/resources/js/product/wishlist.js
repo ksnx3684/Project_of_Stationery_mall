@@ -5,7 +5,7 @@ const ultag = document.getElementById("ultag")
 
 
 
-let count=0;
+// let count=0;
 
 
 
@@ -56,14 +56,14 @@ ultag.addEventListener("click",function(event){
             }
             return;
         //로그인 했을 경우 
-        //#로그인 후 리스트페이지로 다시 돌아오는것도 추가해야됨
-        }else{
-             count++;
+        
+        }
+            //  count++;
 
             //위시리스트 추가 
-            if(count%2==1){ 
+            if(event.target.innerHTML=="favorite_border"){ 
 
-                event.target.innerHTML="favorite"
+            
 
                 let xhttp = new XMLHttpRequest();
                 xhttp.open("POST","../users/addWishList");
@@ -74,7 +74,8 @@ ultag.addEventListener("click",function(event){
                     if(this.readyState==4 && this.status==200){
                         let result = this.responseText.trim();
                         if(result=='1'){
-                        console.log("wishlist 추가 ")
+                            event.target.innerHTML="favorite"
+                            console.log("wishlist 추가 ")
                         }else if(result=='2'){
                             alert('이미 위시리스트에 추가된 상품입니다.')
                         }else{
@@ -111,7 +112,7 @@ ultag.addEventListener("click",function(event){
             }
 
             }
-        }
+        
 
 }) 
  
