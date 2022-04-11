@@ -8,13 +8,17 @@
 <link
 	href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp"
 	rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <c:import url="../template/header.jsp"></c:import>
+	<link rel="stylesheet" href="../resources/css/hamberger.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
 </head>
 
-<body>
 
+<body>
+<script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>
 <!--title -->
 	<div id="titleArea">
     <h2>상품상세 정보</h2>
@@ -23,12 +27,13 @@
 </div>
 
 <!-- 관리자 수정 -->
+<div class="adminBtn">
 			<c:if test="${auth.userAccount eq 0}">
 	<button><a href="./delete?productNum=${dto.productNum}">delete</a></button>
 	<button><a href="./update?productNum=${dto.productNum}">update</a></button>
 		</c:if>
 	<hr>
-
+</div>
 
 <div class="main">
 <div class="product">
@@ -96,7 +101,7 @@
 
 	<script src="../resources/js/product/cart.js"></script>
 	<script type="text/javascript" src="../resources/js/product/qnas.js"></script>
-
+ 	 <script src="../resources/js/hamberger.js"></script>
 
 </body>
 </html>

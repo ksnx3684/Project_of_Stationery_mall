@@ -80,8 +80,6 @@ public class ProductController {
 					result=productService.addCart(cartDTO);
 				}
 				
-				
-				
 			}else{ //옵션 없는경우 
 				cartDTO.setProductCount((long)1);
 				result=productService.addCart(cartDTO); //1-2.없다면 추가 1

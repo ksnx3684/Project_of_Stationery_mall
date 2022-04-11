@@ -4,14 +4,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="../resources/css/product/update.css">
 </head>
 <body>
+<!--title -->
+	<div id="titleArea">
+    <h2>상품 업데이트</h2>
+    <span class="xans-element- xans-layout xans-layout-mobileaction "><a href="javascript:history.back();" ><img src="//img.echosting.cafe24.com/skin/mobile_ko_KR/layout/btn_back.gif" width="33" alt="뒤로가기"></a>
+</span>
+</div>
 
 
-
-	<h1>update page</h1>
 	<form action="./update" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="productNum" value="${dto.productNum}" id="getProductNum">
 		상품 이름<input type="text" name="name" value="${dto.name}">
