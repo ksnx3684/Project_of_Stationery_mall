@@ -21,7 +21,7 @@
 <div id="top">
 <!--title -->
 <div id="titleArea">
-		<c:if test="${param.categoryNum eq 0}"> <h2>전체상품</h2></c:if>
+		<c:if test="${param.categoryNum eq 0 || param.categoryNum eq null}"> <h2>전체상품</h2></c:if>
 		<c:forEach items="${cateList}" var="list">
 			<c:if test="${list.categoryNum eq param.categoryNum}"><h2>${list.categoryName}</h2></c:if>
 		</c:forEach>
@@ -50,14 +50,10 @@
 </ul>
 </div>
 </div>
-</div>
+</div><br><br>
 		<!-- 검색창 -->
 		<div class="boxbox">
 			<form action="./list" method="get">
-				<!-- 상품추가 버튼 -->
-				<c:if test="${auth.userAccount eq 0}">
-					<button style="margin-left: 13%;"><a href="./add">상품 추가하기</a></button>
-				</c:if>
 				<div class="searchbar">
 					<select name="categoryNum" style="margin: 10px; margin-bottom : 20px; border: none">
 						<option value="0">전체</option>
@@ -74,14 +70,17 @@
 			</form>
 		</div>
 		
-		
+		<!-- 상품추가 버튼 -->
+		<c:if test="${auth.userAccount eq 0}">
+			<button style="margin-left: 13%;"><a href="./add">상품 추가하기</a></button>
+		</c:if>
 		
 		<!-- id -->
 		<input type="hidden" id="id" value="${auth.id}"></input>
 
 
 		<!-- list -->
-		<div class="container">
+		<div class="container" style="width: 1200px;">
 			<ul id="ultag">
 				<c:forEach items="${list}" var="list">
 					<li class="card">
