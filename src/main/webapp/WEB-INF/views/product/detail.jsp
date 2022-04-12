@@ -8,14 +8,14 @@
 <link
 	href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp"
 	rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <c:import url="../template/header.jsp"></c:import>
 	<link rel="stylesheet" href="../resources/css/hamberger.css">
+	
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
 </head>
-
 
 <body>
 <script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>
@@ -66,9 +66,7 @@
 			<c:forEach items="${option}" var="option">
 			<div class="formrow">
 				<input type="radio" class="checkbox" value="${option.optionNum}" name="optionNum">
-				
 				<label class="checklabel" for="${option.optionContents}">${option.optionContents}</label>
-				
 			</div>
 			</c:forEach>
 		</c:if>	
@@ -93,17 +91,25 @@
 </div><!-- main -->
 
 	<hr>
+
+	<!-- review Ajax로 가져오는 부분 -->
+	<div id="review-Result">
+		
+	
+	</div> 
+	<hr>
 	
 	<!-- qna Ajax로 가져오는 부분 -->
 	<div id="qna-Result">
 		<input type="hidden" name="productNum" value="${dto.productNum}" id="productNum">
-
+		
 	</div>
-
-
+	
+	
+	
 	<script src="../resources/js/product/cart.js"></script>
+	<script type="text/javascript" src="../resources/js/product/review.js"></script>
 	<script type="text/javascript" src="../resources/js/product/qnas.js"></script>
- 	 <script src="../resources/js/hamberger.js"></script>
-
+<script src="../resources/js/hamberger.js"></script>
 </body>
 </html>
