@@ -7,7 +7,6 @@ button.accordion {
 	border: none;
 	font-size: 16px;
 	transition: 0.5s;
-	text-align: left;
 	padding: 10px;
 }
 
@@ -86,19 +85,26 @@ div.panel {
 	width:50px;
 	height:50px;
 }
-/* 
-.imgBox {
-	display: float;
+
+.table-basic {
+	width: 100%;
+	border-collapse: collapse;
 }
 
-.imgBox img{
-	float: left;
+.table-basic td {
+	border-spacing: 0;
+	border-collapse: collapse;
+	text-align: center;
+	
 }
 
-.chooseBox {
-	margin-top : 70px;
-	display:block;	
+.table-basic th {
+	text-align: center;
+	border-bottom: 2px solid black;
 }
 
-
- */
+.table-basic thead {
+	height: 60px;
+	color: black;
+	background-color: white;
+}
