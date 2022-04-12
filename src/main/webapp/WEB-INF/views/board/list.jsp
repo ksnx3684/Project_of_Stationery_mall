@@ -98,9 +98,13 @@ table-container a:hover {
 					<button type="submit" class="custom-btn btn-1">검색</button>
 				</fieldset>
 			</form>
-		 	<c:if test ="${board eq 'notices'}">
-				<a href="./add" class="add-board">글작성</a>
-			</c:if> 
+			<c:choose>
+				<c:when test="${auth.userAccount eq 0}">
+					<c:if test ="${board eq 'notices'}">
+					   <a href="./add" class="add-board">글작성</a>
+				   </c:if> 
+				</c:when>
+			</c:choose>
 		</div>
 
 

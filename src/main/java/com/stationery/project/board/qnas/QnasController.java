@@ -120,11 +120,12 @@ public class QnasController {
 	}
 	
 	@PostMapping("qnaUpdate")
-	public ModelAndView qnaUpdate(QnasDTO qnasDTO, @RequestParam(value="productNum") Integer productNum, MultipartFile [] files) throws Exception {
+	public ModelAndView qnaUpdate(QnasDTO qnasDTO, MultipartFile [] files) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(productNum);
 		int result = qnasService.qnaUpdate(qnasDTO, files);
-		mv.setViewName("redirect:../product/detail?productNum="+productNum);
+		int productNum = qnasDTO.getProductNum();
+	
+			mv.setViewName("redirect:../product/detail?productNum="+productNum);			
 		
 		return mv;
 	}

@@ -23,8 +23,8 @@ reviewResult.addEventListener("click", function(event) {
     if(event.target.classList.contains("accordion")) {
         const acc = document.getElementsByClassName("accordion");
         const contents = document.getElementsByClassName("contents");
-        /* 	let panel = acc[0].parentNode.parentNode.nextSibling.nextSibling.children[0].children[0];
-        console.log(panel); */
+        /* 	let panels = acc[0].parentNode.parentNode.nextSibling.nextSibling.children[0].children[0];
+        console.log(panels); */
         
         
           for (let i = 0; i < acc.length; i++) {
@@ -45,12 +45,12 @@ reviewResult.addEventListener("click", function(event) {
                  this.classList.toggle("active");
                 // console.log(this.parentNode.parentNode.nextSibling.nextSibling.children[0].children[0]); //div 제대로 가르킴
                 
-                   let panel = this.parentNode.parentNode.nextSibling.nextSibling.children[0].children[0];
-                if (panel.style.maxHeight){
+                   let panels = this.parentNode.parentNode.nextSibling.nextSibling.children[0].children[0];
+                if (panels.style.maxHeight){
                     this.classList.remove("active");
-                    panel.style.maxHeight = null;
+                    panels.style.maxHeight = null;
                 } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
+                    panels.style.maxHeight = panels.scrollHeight + "px";
                 }  
          
               } 

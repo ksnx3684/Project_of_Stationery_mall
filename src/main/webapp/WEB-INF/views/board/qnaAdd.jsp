@@ -5,7 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>QnA 추가 - SQUARE SHOP</title>
+<c:import url="../template/header.jsp"></c:import>
+	
+	<link rel="stylesheet" href="../resources/css/hamberger.css">
+	<link rel="stylesheet" href="../resources/css/index.css">
 <link href="../resources/css/boardForm.css" rel="styleSheet" />
 <!-- favicon.ico 404 (Not Found) -->
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
@@ -102,6 +106,7 @@
 </script>
 
 
+<script type="text/javascript" src="../resources/js/updateFile.js"></script>
 	<script src="../resources/js/file.js"></script>
 </body>
 </html>

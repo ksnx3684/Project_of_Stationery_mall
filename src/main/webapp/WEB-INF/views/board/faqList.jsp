@@ -13,7 +13,7 @@ rel="stylesheet">
 <link href="../resources/css/list.css" rel="styleSheet" />
 <link href="../resources/css/notice.css" rel="styleSheet" /> -->
 <c:import url="../template/header.jsp"></c:import>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="../resources/css/hamberger.css">
 <link rel="stylesheet" href="../resources/css/index.css">
 <link href="../resources/css/reset.css" rel="styleSheet"/>
@@ -31,7 +31,8 @@ rel="stylesheet">
 			<h1>공지사항</h1>	
 		</c:when>
 		<c:when test="${board eq 'faq'}">
-			<h1>자주 묻는 질문</h1>
+			
+			<h1><i class="fa fa-question-circle"></i>&nbsp;자주 묻는 질문</h1>
 		</c:when>
 		<c:otherwise>			
 			<h1>${board} Detail Page</h1>
@@ -57,18 +58,18 @@ rel="stylesheet">
 		</div>
 
 
-		
+		<div class="contentsArea">
 
 		
 				<c:forEach items="${requestScope.list}" var="dto">
 					<!-- <a class="titleLink accordion" href="./detail?num=${dto.num}">${dto.title}</a> -->
-						<button class="titleLink accordion" type="button">${dto.title}</button>
+					<div class="qnaKind"><button class="titleLink accordion" type="button">${dto.title}</button></div>
 				
 				
-					<div class="panel">${dto.contents}</div>
+					<div class="panels">${dto.contents}</div>
 					
 				</c:forEach>
-		
+		</div>
 	
 
 		<div class="pager">
@@ -95,11 +96,11 @@ rel="stylesheet">
 		for (i = 0; i < acc.length; i++) {
 		  acc[i].addEventListener("click", function() {
 			this.classList.toggle("active");
-			var panel = this.nextElementSibling;
-			if (panel.style.maxHeight) {
-			  panel.style.maxHeight = null;
+			var panels = this.parentElement.nextElementSibling;
+			if (panels.style.maxHeight) {
+			  panels.style.maxHeight = null;
 			} else {
-			  panel.style.maxHeight = panel.scrollHeight + "px";
+			  panels.style.maxHeight = panels.scrollHeight + "px";
 			}
 		  });
 		}
