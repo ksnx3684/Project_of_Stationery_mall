@@ -23,6 +23,7 @@ button.accordion.active {
 
 div.panel {
 	padding: 0 18px;
+    margin-top: 0px;
 	background-color: #f7f7f7;
 	max-height: 0;
 	overflow: hidden;

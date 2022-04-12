@@ -198,7 +198,7 @@ button.accordion.active {
 }
 
 button.accordion:after { 
-  background-size:18px18px;
+  background-size:18px;
 	display: inline-block;
 	width: 18px;
 	height: 18px;
@@ -212,19 +212,6 @@ button.accordion.active:after {
    content:"";
 	
 }
-
-div.panel {
-	padding: 0 18px;
-	background-color: #f7f7f7;
-	max-height: 0;
-	overflow: hidden;
-	transition: max-height 0.2s ease-out;
-	border-top: 1px solid #F0F0F0;
-	color: #666666;
-	font-size: 14px;
-	/* line-height: 1.5px; */
-}
-
 
 
 #titleArea {
