@@ -131,7 +131,7 @@ public class UsersController {
 		UsersDTO usersDTO = (UsersDTO)httpSession.getAttribute("auth");
 		List<WishListDTO> list = usersService.wishlist(usersDTO);
 		model.addAttribute("wishlistDTO", list);
-		//System.out.println(list.get(0).getProductDTO().getThumbnail());
+		
 	}
 	
 	// wishlist 제거
@@ -148,6 +148,8 @@ public class UsersController {
 			int result = usersService.wishlistDelete(wiNum);
 		}
 	}
+	
+	
 	
 	// wishlist 추가 기능
 	@PostMapping("addWishList")
@@ -313,5 +315,6 @@ public class UsersController {
 		// System.out.println(usersOrderDTO.getOrderDetailDTOs().get(1).getProductDTOs().get(0).getThumbnail());
 		return "users/orderDetail";
 	}
+
 
 }

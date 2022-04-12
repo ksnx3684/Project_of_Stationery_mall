@@ -7,23 +7,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%--  <c:import url="../template/header.jsp"></c:import> --%>
 <c:import url="../template/header_css.jsp"></c:import>
 <link rel="stylesheet" href="../resources/css/product/productList.css">
-<!-- <link
+<link
 	href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp"
-	rel="stylesheet"> -->
+	rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<c:import url="../template/header.jsp"></c:import>
+    <c:import url="../template/header.jsp"></c:import>
 	<link rel="stylesheet" href="../resources/css/hamberger.css">
-</head>
 <body>
-
+<script type="text/javascript" src="../resources/js/jquery-3.6.0.min.js"></script>
 <div id="top">
 <!--title -->
 <div id="titleArea">
-		<c:if test="${param.categoryNum eq 0 || param.categoryNum eq null}"> <h2>전체상품</h2></c:if>
-		<c:forEach items="${allcateList}" var="list">
+		<c:if test="${param.categoryNum eq 0}"> <h2>전체상품</h2></c:if>
+		<c:forEach items="${allcatelist}" var="list">
 			<c:if test="${list.categoryNum eq param.categoryNum}"><h2>${list.categoryName}</h2></c:if>
 		</c:forEach>
     <span class="xans-element- xans-layout xans-layout-mobileaction "><a href="javascript:history.back();" ><img src="//img.echosting.cafe24.com/skin/mobile_ko_KR/layout/btn_back.gif" width="33" alt="뒤로가기"></a>
@@ -45,39 +43,37 @@
 	</ul>
 </div><!-- 세부카테고리메뉴 -->
 </div><!-- title area -->
-</div><br><br><!-- top -->
+</div><!-- top -->
 		<!-- 검색창 -->
 		<div class="searchbar">
 		<div class="boxbox">
 			<form action="./list" method="get">
-				<div class="searchbar" style="display: inline;">
-					<select name="categoryNum" style="margin: 10px; margin-bottom : 20px; border: none; width: 100px;">
-						<option value="0">전체</option>
-						<c:forEach items="${cateList}" var="list">
-							<option value="${list.categoryNum}">${list.categoryName}</option>
-						</c:forEach>
-					</select>
-					
-					<input type="text" name="search" class="search">
-					<button type="submit" class="submit">
-						<span class="material-icons-outlined">search</span>
-					</button>
-				</div>
+				<select name="categoryNum">
+					<option value="0">전체</option>
+					<c:forEach items="${cateList}" var="list">
+						<option value="${list.categoryNum}">${list.categoryName}</option>
+					</c:forEach>
+				</select>
+
+				 <input type="text" name="search" class="search">
+				 <button type="submit" class="submit">
+					<span class="material-icons-outlined">search</span>
+				</button>
 			</form>
 		</div>
 		</div>
-		
+<div class="adminBtn">		
 		<!-- 상품추가 버튼 -->
 		<c:if test="${auth.userAccount eq 0}">
-			<button style="margin-left: 13%;"><a href="./add">상품 추가하기</a></button>
+		<button><a href="./add">상품 추가하기</a></button>
 		</c:if>
-		
+</div>		
 		<!-- id -->
 		<input type="hidden" id="id" value="${auth.id}"></input>
 
 
 		<!-- list -->
-		<div class="container" style="width: 1200px;">
+		<div class="container">
 			<ul id="ultag">
 				<c:forEach items="${list}" var="list">
 					<li class="card">
@@ -115,8 +111,7 @@
 			</c:if>
 		</div>
 
-	
+	  <script src="../resources/js/hamberger.js"></script>
 		<script src="../resources/js/product/wishlist.js"></script>
-		<script src="../resources/js/hamberger.js"></script>
 </body>
 </html>

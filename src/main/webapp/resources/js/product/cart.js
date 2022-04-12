@@ -2,6 +2,7 @@ const submitBtn=document.getElementById("submitBtn")
 const checkbox=document.getElementsByClassName("checkbox")
 const proNum=document.getElementById("productNum")
 const piece=document.getElementById("piece")
+const auth=window.sessionStorage.getItem("auth")
 
 
 let productNum=proNum.value;
@@ -23,7 +24,7 @@ submitBtn.addEventListener("click",function(event){
 
 
         //옵션 있는 상품 옵션선택안했을경우 
-        if(optionNum==0&&optionCk=="false"){
+        if(optionNum==0&&optionCk=="false"&&auth){
             alert("옵션을 선택해주세요")
             
         }else{

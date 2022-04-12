@@ -1,6 +1,12 @@
 @charset "UTF-8";
 
 
+  
+  .adminBtn{
+      text-align: center;
+      padding-top: 10px;
+  }
+  
 
 
 #cate_nav{

@@ -11,7 +11,7 @@ let count1 =0;
 let num1=0; 
 let productNum=getProductNum.value;
 
-
+// file
 options.addEventListener("click",function(event){
     if(event.target.classList.contains("optionDeleteBtn")){
         let check = confirm("삭제시 복구 불가능함 삭제할겨? ")
@@ -43,29 +43,33 @@ options.addEventListener("click",function(event){
 })
 
 
-//옵션추가 버튼 클릭시 총재고 폼 삭제 
+//옵션추가버튼 클릭시
 optionAdd_btn.addEventListener("click",function(){
+
+
+    //총재고 폼 삭제 
     if(stockForm!=null){
-    stockForm.remove();
+        stockForm.remove();
     }
 
-//상품재고 폼 삭제 
-if(stockForm!=null){
-stockForm.setAttribute("readonly","true");
-}
+    //상품재고 폼 삭제 
+    // if(stockForm!=null){
+    //     stockForm.setAttribute("readonly","true");
+    // }
 
-//기존의 옵션이 없는 경우 
-if(oriOption==null){
-    if(count1>4){
-        alert('옵션은 최대 5개 까지만 가능합니다. ')
-        return;
-    }
- //기존 옵션이 있는 경우    
-}else {
-    if(count1+oriOption.getElementsByTagName('li').length>4){
-        alert('옵션은 최대 5개 까지만 가능합니다. ')
-        return;
-    }
+    //기존의 옵션이 없는 경우 
+    if(oriOption==null){
+        if(count1>4){
+            alert('옵션은 최대 5개 까지만 가능합니다. ')
+            return;
+        }
+
+        //기존 옵션이 있는 경우    
+        }else {
+            if(count1+oriOption.getElementsByTagName('li').length>4){
+                alert('옵션은 최대 5개 까지만 가능합니다. ')
+                return;
+            }
     
 }
     count1++;
