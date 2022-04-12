@@ -16,7 +16,7 @@
 </span>
 </div><!--/title -->
 
-	<form action="./add" method="post" enctype="multipart/form-data">
+	<form action="./add" method="post" enctype="multipart/form-data" id="frm">
 		<input type="hidden" name="productNum" value="${dto.productNum}" id="getProductNum">
 		
 		<div>
@@ -84,24 +84,24 @@
 		<hr><!--------파일------------->
 
 		<div>
-			대표이미지<input type="file" name="t_files">
+			대표이미지<input type="file" name="t_files" id="thumbnail">
 		</div>
 
-		<!--기본이미지 파일추가 생성되는 곳 -->
-
+		<!--기본이미지 파일추가 생성되는 곳 -->	
+		기본이미지
 		<div id="fileResult"></div>
 		<div>
 			<button type="button" id="fileAdd">FileAdd</button>
 		</div>
 
-		<button type="submit">ADD</button>
+		<button type="button" id="btn">ADD</button>
 
 	</form>
 
 
 
 
-
+	<script src="../resources/js/product/add.js"></script>
 	<script src="../resources/js/product/productOption.js"></script>
 	<script src="../resources/js/product/productFileUpdate.js"></script>
 </body>
