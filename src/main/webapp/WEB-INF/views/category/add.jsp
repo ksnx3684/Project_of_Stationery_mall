@@ -6,6 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../resources/css/categoryAdd.css">
+<link
+	href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp"
+	rel="stylesheet">
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <c:import url="../template/header.jsp"></c:import>
+	<link rel="stylesheet" href="../resources/css/hamberger.css">
+	
+	
 <title>Insert title here</title>
 </head>
 <body>
@@ -15,7 +23,7 @@
     <span class="xans-element- xans-layout xans-layout-mobileaction "><a href="javascript:history.back();" ><img src="//img.echosting.cafe24.com/skin/mobile_ko_KR/layout/btn_back.gif" width="33" alt="뒤로가기"></a>
 </span>
 </div>
-<hr> <!-- 현재 카테고리 목록  -->
+<div id="b">
 <h3>카테고리 목록</h3>
 <div id="box">
 <div id="categoryList">
@@ -56,9 +64,11 @@
 	</form>
 </div>
 </div>
+</div>
 <!-- 하위 카테고리 추가  -->
 <!-- 상위카테고리 +1씩 -->
 <!-- parentId = 최상위 카테고리  -->
+<script src="../resources/js/hamberger.js"></script>
 <script src="../resources/js/product/addCategory.js"></script>
 </body>
 </html>

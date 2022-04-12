@@ -21,6 +21,8 @@ margin-top: 10px;
 }
 
 /* product */
+
+
 ul{
     display: table-block;
     position: relative;
@@ -52,7 +54,7 @@ body{
   .card {
   	border:1px solid grey;
     float: left;
-    margin-right: 20px;
+    margin-right: 13px;
     margin-bottom: 20px;
     position: relative;
     cursor: pointer;

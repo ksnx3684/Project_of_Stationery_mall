@@ -23,6 +23,12 @@
     margin-top: -12.5px;
 } 
 
+#b{
+    padding-left: 50px;
+    padding-bottom: 50px;
+    height: 706px;
+}
+
 #box{
     width: 100%;
 }

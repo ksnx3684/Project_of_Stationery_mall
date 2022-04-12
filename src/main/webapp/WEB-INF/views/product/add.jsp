@@ -7,6 +7,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../resources/css/product/add.css">
+<link
+	href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp"
+	rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <c:import url="../template/header.jsp"></c:import>
+	<link rel="stylesheet" href="../resources/css/hamberger.css">
+	
 </head>
 <body>
 <!--title -->
@@ -100,7 +107,7 @@
 
 
 
-
+	<script src="../resources/js/hamberger.js"></script>
 	<script src="../resources/js/product/add.js"></script>
 	<script src="../resources/js/product/productOption.js"></script>
 	<script src="../resources/js/product/productFileUpdate.js"></script>

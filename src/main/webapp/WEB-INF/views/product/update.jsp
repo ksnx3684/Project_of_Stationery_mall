@@ -7,7 +7,15 @@
 
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="../resources/css/product/add.css">
 <link rel="stylesheet" href="../resources/css/product/update.css">
+<link
+	href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp"
+	rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <c:import url="../template/header.jsp"></c:import>
+	<link rel="stylesheet" href="../resources/css/hamberger.css">
+	
 </head>
 <body>
 <!--title -->
@@ -20,9 +28,29 @@
 
 	<form action="./update" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="productNum" value="${dto.productNum}" id="getProductNum">
-		상품 이름<input type="text" name="name" value="${dto.name}">
+		<div>
+			<label class="desc" id="title1" for="Field1" >상품 이름</label>
+			<div>
+				<input type="text" name="name" id="Field1" value="${dto.name}"> 
+			</div>
+		</div>
+		
+		<div>
+			<label class="desc" id="title2" for="Field2">상품 설명</label>
+			<div>
+				<textarea name="contents" rows="15" cols="40" id="Field2">${dto.contents}</textarea>
+			</div>
+		</div>
+		
+		<div>
+			<label class="desc" id="title3" for="Field3">상품 가격</label>
+			<div>
+				<input type="text" name="price" placeholder="숫자만 입력" id="Field3" value="${dto.price}">
+			</div>
+		</div>
+<%-- 		상품 이름<input type="text" name="name" value="${dto.name}">
 		설명<textarea name="contents" rows="10" cols="10">${dto.contents}</textarea>
-		가격<input type="text" name="price" value="${dto.price}">
+		가격<input type="text" name="price" value="${dto.price}"> --%>
 		
 		
 <!-- 재고 -->
@@ -132,7 +160,7 @@
 
 		<button type="submit">수정 확인</button>
 	</form>
-
+<script src="../resources/js/hamberger.js"></script>
 	<script type="text/javascript" src="../resources/js/product/productFileUpdate.js"></script>
 	<script type="text/javascript" src="../resources/js/product/productOption.js"></script>
 </body>
