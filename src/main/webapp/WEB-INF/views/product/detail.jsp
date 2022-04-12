@@ -8,6 +8,7 @@
 <link
 	href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp"
 	rel="stylesheet">
+	
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
@@ -96,7 +97,6 @@
 
 	<script src="../resources/js/product/cart.js"></script>
 	<script type="text/javascript" src="../resources/js/product/qnas.js"></script>
-
 
 </body>
 </html>

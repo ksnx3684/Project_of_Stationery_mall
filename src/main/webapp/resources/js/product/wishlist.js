@@ -102,7 +102,7 @@ ultag.addEventListener("click",function(event){
                         console.log("wishlist 삭제 ")
                         }
                         else{
-                            alert('wishlist 삭제 실패')
+                            console.log('wishlist 삭제 실패')
 
                         }
                     }

@@ -1,5 +1,6 @@
 package com.stationery.project.users;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -131,6 +132,46 @@ public class UsersController {
 		List<WishListDTO> list = usersService.wishlist(usersDTO);
 		model.addAttribute("wishlistDTO", list);
 		//System.out.println(list.get(0).getProductDTO().getThumbnail());
+	}
+	
+	// wishlist 제거
+	@PostMapping("wishlistDelete")
+	@ResponseBody
+	public void wishlistDelete(HttpServletRequest request) throws Exception {
+		String wishNum[] = request.getParameterValues("checkbox");
+		List<String> wish = Arrays.asList(wishNum);
+		int size = 1;
+		size = wish.size();
+		
+		for(int i = 0; i < size; i++) {
+			Long wiNum = Long.parseLong(wish.get(i));
+			int result = usersService.wishlistDelete(wiNum);
+		}
+	}
+	
+	// wishlist 추가 기능
+	@PostMapping("addWishList")
+	public ModelAndView addWishList(WishListDTO wishListDTO) throws Exception{
+		ModelAndView mv= new ModelAndView();
+		int result=2;
+		WishListDTO ck=usersService.wishlistCk(wishListDTO);
+		if(ck==null) {
+		usersService.addWishList(wishListDTO);
+		result=1;
+		}
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result",result);
+		return mv;
+	}
+	
+	// wishlist 삭제 기능
+	@PostMapping("deleteWishList")
+	public ModelAndView deleteWishList(WishListDTO wishListDTO) throws Exception{
+		ModelAndView mv= new ModelAndView();
+		int result=usersService.deleteWishList(wishListDTO);
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result",result);
+		return mv;
 	}
 	
 	// mypage form 이동
@@ -271,31 +312,6 @@ public class UsersController {
 		model.addAttribute("orderDetail", usersOrderDTO);
 		// System.out.println(usersOrderDTO.getOrderDetailDTOs().get(1).getProductDTOs().get(0).getThumbnail());
 		return "users/orderDetail";
-	}
-	
-	// wishlist 추가 기능
-	@PostMapping("addWishList")
-	public ModelAndView addWishList(WishListDTO wishListDTO) throws Exception{
-		ModelAndView mv= new ModelAndView();
-		int result=2;
-		WishListDTO ck=usersService.wishlistCk(wishListDTO);
-		if(ck==null) {
-		usersService.addWishList(wishListDTO);
-		result=1;
-		}
-		mv.setViewName("common/ajaxResult");
-		mv.addObject("result",result);
-		return mv;
-	}
-	
-	// wishlist 삭제 기능
-	@PostMapping("deleteWishList")
-	public ModelAndView deleteWishList(WishListDTO wishListDTO) throws Exception{
-		ModelAndView mv= new ModelAndView();
-		int result=usersService.deleteWishList(wishListDTO);
-		mv.setViewName("common/ajaxResult");
-		mv.addObject("result",result);
-		return mv;
 	}
 
 }
