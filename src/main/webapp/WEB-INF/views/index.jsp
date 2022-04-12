@@ -67,7 +67,7 @@
 				<ul>
 					<li class="each">
 						<div class="thumbnail">
-							<a href="">
+							<a href="./product/detail?productNum=101">
 								<img src="./resources/img/index/items/3M포스트잇_노트_654_1500원.jpg">
 								3M/포스트잇 노트 654<br>1500원
 							</a>
@@ -75,7 +75,7 @@
 					</li>
 					<li class="each">
 						<div class="thumbnail">
-							<a href="">
+							<a href="./product/detail?productNum=141">
 								<img src="./resources/img/index/items/모나미_유성_매직_5000원.jpg">
 								모나미 유성 매직<br>5000원
 							</a>
@@ -83,7 +83,7 @@
 					</li>
 					<li class="each">
 						<div class="thumbnail">
-							<a href="">
+							<a href="./product/detail?productNum=142">
 								<img src="./resources/img/index/items/스테들러_옐로우_지우개_연필_134HB_2B_12입_2000원.jpg">
 								스테들러 옐로우 지우개 연필 2B 12입<br>2000원
 							</a>
@@ -91,7 +91,7 @@
 					</li>
 					<li class="each">
 						<div class="thumbnail">
-							<a href="">
+							<a href="./product/detail?productNum=143">
 								<img src="./resources/img/index/items/아모스_만능_목공풀_36g_8000원.jpg">
 								아모스 만능 목공풀 36g<br>8000원
 							</a>
@@ -99,7 +99,7 @@
 					</li>
 					<li class="each">
 						<div class="thumbnail">
-							<a href="">
+							<a href="./product/detail?productNum=144">
 								<img src="./resources/img/index/items/아이콘스_카카오프렌즈_자동_연필깎이_15000원.jpg">
 								아이콘스 카카오프렌즈 자동 연필깎이<br>15000원
 							</a>
@@ -107,7 +107,7 @@
 					</li>
 					<li class="each">
 						<div class="thumbnail">
-							<a href="">
+							<a href="./product/detail?productNum=145">
 								<img src="./resources/img/index/items/제트스트림_유성볼펜_0.38mm_SXN-150-38.1500원.jpg">
 								제트스트림 유성볼펜 0.38mm<br>1500원
 							</a>
@@ -115,7 +115,7 @@
 					</li>
 					<li class="each">
 						<div class="thumbnail">
-							<a href="">
+							<a href="./product/detail?productNum=146">
 								<img src="./resources/img/index/items/타이머쌤_듀얼_스톱워치_10000원.jpg">
 								타이머쌤 듀얼 스톱워치<br>10000원
 							</a>
@@ -123,7 +123,7 @@
 					</li>
 					<li class="each">
 						<div class="thumbnail">
-							<a href="">
+							<a href="./product/detail?productNum=147">
 								<img src="./resources/img/index/items/티티_하이샤파_블랙_에디션_연필깎이_KI-200B_28000원.png">
 								티티 하이샤파 블랙 에디션 연필깎이<br>28000원
 							</a>
@@ -131,7 +131,7 @@
 					</li>
 					<li class="each">
 						<div class="thumbnail">
-							<a href="">
+							<a href="./product/detail?productNum=148">
 								<img src="./resources/img/index/items/종이나라_핑크퐁_케이스_양면색종이_100매입_10000원.png">
 								종이나라 양면색종이 100매입<br>10000원
 							</a>
@@ -139,7 +139,7 @@
 					</li>
 					<li class="each">
 						<div class="thumbnail">
-							<a href="">
+							<a href="./product/detail?productNum=149">
 								<img src="./resources/img/index/items/펜텔_아인슈타인샤프_0.5mm_P315.4000원.jpg">
 								펜텔 아인슈타인샤프 0.5mm P315<br>4000원
 							</a>
@@ -147,7 +147,7 @@
 					</li>
 					<li class="each">
 						<div class="thumbnail">
-							<a href="">
+							<a href="./product/detail?productNum=150">
 								<img src="./resources/img/index/items/펜텔_아인지우개_1000원.jpg">
 								펜텔 아인지우개<br>1000원
 							</a>
@@ -155,7 +155,7 @@
 					</li>
 					<li class="each">
 						<div class="thumbnail">
-							<a href="">
+							<a href="./product/detail?productNum=151">
 								<img src="./resources/img/index/items/포포팬시_룰루랄라_칸이_넓은_노트 10mm_8000원.jpg">
 								포포팬시 룰루랄라 칸이 넓은 노트 10mm<br>8000원
 							</a>

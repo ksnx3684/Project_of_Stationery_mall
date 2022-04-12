@@ -26,18 +26,6 @@ public class UsersService {
 	@Autowired
 	private ServletContext servletContext;
 	
-	public WishListDTO wishlistCk(WishListDTO wishListDTO)throws Exception{
-		return usersDAO.wishlistCk(wishListDTO);
-	}
-	
-	public int deleteWishList(WishListDTO wishListDTO)throws Exception{
-		return usersDAO.deleteWishList(wishListDTO);
-	}
-	
-	public int addWishList(WishListDTO wishListDTO)throws Exception{
-		return usersDAO.addWishList(wishListDTO);
-	}
-	
 	public int join(UsersDTO usersDTO, MultipartFile multipartFile) throws Exception {
 		int result = usersDAO.join(usersDTO);
 		
@@ -135,6 +123,22 @@ public class UsersService {
 
 	public List<WishListDTO> wishlist(UsersDTO usersDTO) throws Exception {
 		return usersDAO.wishlist(usersDTO);
+	}
+	
+	public int wishlistDelete(Long wishNum) throws Exception {
+		return usersDAO.wishlistDelete(wishNum);
+	}
+	
+	public WishListDTO wishlistCk(WishListDTO wishListDTO)throws Exception{
+		return usersDAO.wishlistCk(wishListDTO);
+	}
+	
+	public int deleteWishList(WishListDTO wishListDTO)throws Exception{
+		return usersDAO.deleteWishList(wishListDTO);
+	}
+	
+	public int addWishList(WishListDTO wishListDTO)throws Exception{
+		return usersDAO.addWishList(wishListDTO);
 	}
 	
 	public List<UsersOrderDTO> orderlist(UsersDTO usersDTO) throws Exception {

@@ -30,7 +30,11 @@
 										<img src="../resources/upload/product/${dt.thumbnail}">
 									</c:if>
 								</c:forEach>
-								${d.name} ( 옵션 : ${d.optionContents} )
+								${d.name}&nbsp;
+								<c:if test="${d.optionContents ne null && d.optionContents ne '0'}">
+									( 옵션 : ${d.optionContents} )
+								</c:if>
+								
 							</a>
 						<a href="../review/reviewAdd?productNum=${d.productNum}&detailNum=${d.detailNum}">리뷰작성</a>
 						</div>

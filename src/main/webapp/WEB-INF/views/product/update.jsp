@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<c:import url="../template/header.jsp"></c:import>
+	<link rel="stylesheet" href="../resources/css/hamberger.css">
 </head>
 <body>
 
@@ -14,9 +17,18 @@
 	<h1>update page</h1>
 	<form action="./update" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="productNum" value="${dto.productNum}" id="getProductNum">
-		상품 이름<input type="text" name="name" value="${dto.name}">
-		설명<textarea name="contents" rows="10" cols="10">${dto.contents}</textarea>
-		가격<input type="text" name="price" value="${dto.price}">
+		<div class="form-group">
+			<label>상품 이름</label>
+			<input type="text" name="name" value="${dto.name}"><br>
+		</div>
+		<div class="form-group">
+			<label>설명</label>
+			<textarea name="contents" rows="2" cols="30">${dto.contents}</textarea><br>
+		</div>
+		<div class="form-group">
+			<label>가격</label>
+			<input type="text" name="price" value="${dto.price}"><br>
+		</div>
 		
 		
 <!-- 재고 -->
@@ -129,5 +141,6 @@
 
 	<script type="text/javascript" src="../resources/js/product/productFileUpdate.js"></script>
 	<script type="text/javascript" src="../resources/js/product/productOption.js"></script>
+	<script src="../resources/js/hamberger.js"></script>
 </body>
 </html>

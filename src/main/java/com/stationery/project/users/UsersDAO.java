@@ -15,20 +15,7 @@ public class UsersDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE = "com.stationery.project.users.UsersDAO.";
-	
-	public WishListDTO wishlistCk(WishListDTO wishListDTO) throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"wishlistCk",wishListDTO);
-	}
-	
-	public int deleteWishList(WishListDTO wishListDTO) throws Exception{
-		return sqlSession.delete(NAMESPACE+"deleteWishList",wishListDTO);
-		
-	}
-	
-	public int addWishList(WishListDTO wishListDTO) throws Exception{
-		return sqlSession.insert(NAMESPACE+"addWishList", wishListDTO);
-	}
+	private final String NAMESPACE = "com.stationery.project.users.UsersDAO.";	
 	
 	public int join(UsersDTO usersDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"join", usersDTO);
@@ -76,6 +63,23 @@ public class UsersDAO {
 
 	public List<WishListDTO> wishlist(UsersDTO usersDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"wishlist", usersDTO);
+	}
+	
+	public int wishlistDelete(Long wishNum) throws Exception {
+		return sqlSession.delete(NAMESPACE+"wishlistDelete", wishNum);
+	}
+	
+	public WishListDTO wishlistCk(WishListDTO wishListDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"wishlistCk",wishListDTO);
+	}
+	
+	public int deleteWishList(WishListDTO wishListDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"deleteWishList",wishListDTO);
+		
+	}
+	
+	public int addWishList(WishListDTO wishListDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"addWishList", wishListDTO);
 	}
 	
 	public List<UsersOrderDTO> orderlist(UsersDTO usersDTO) throws Exception {

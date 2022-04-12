@@ -6,14 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<c:import url="../template/header.jsp"></c:import>
+	<link rel="stylesheet" href="../resources/css/hamberger.css">
 </head>
 <body>
 	<h1>Product Add page</h1>
 	<form action="./add" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="productNum" value="${dto.productNum}" id="getProductNum">
-		상품 이름<input type="text" name="name"> 설명
-		<textarea name="contents" rows="15" cols="40"></textarea>
-		가격<input type="text" name="price" placeholder="숫자만 입력"> 
+		상품 이름<input type="text" name="name"><br>
+		설명<textarea name="contents" rows="15" cols="40"></textarea><br>
+		가격<input type="text" name="price" placeholder="숫자만 입력"> <br>
 
 		<div id="stockFormArea">
 		재고<input type="text" name="stock" placeholder="숫자만 입력" id="stockForm" >
@@ -69,5 +72,6 @@
 
 	<script src="../resources/js/product/productOption.js"></script>
 	<script src="../resources/js/product/productFileUpdate.js"></script>
+	<script src="../resources/js/hamberger.js"></script>
 </body>
 </html>

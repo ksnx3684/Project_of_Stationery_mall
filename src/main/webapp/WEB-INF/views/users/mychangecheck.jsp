@@ -26,7 +26,7 @@
         </fieldset>
 	</form> -->
 
-    <div class="container" style="width:500px; margin-top: 200px;">
+    <div class="container" style="width:500px; margin-top: 100px;">
         <h4 style="text-align: center;">본인확인을 위하여 아이디와 비밀번호를 입력해 주십시오</h4>
         <form class="frm" action="./mychangecheck" method="post">
             <div class="form-group">

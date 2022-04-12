@@ -61,9 +61,9 @@
 
 .mainStreet{
     position: absolute;
-    top: 20%;
     left: 50%;
-    transform: translate(-50%, -20%);
+    transform: translate(-50%);
+    padding-bottom: 5%;
 }
 
 .cartbtn{
