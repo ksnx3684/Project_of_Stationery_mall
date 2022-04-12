@@ -141,23 +141,10 @@
  		</collection>
  	</resultMap>
 
-	<select id="total" resultType="Long" parameterType="hashmap">
+	<select id="total" resultType="Long" parameterType="Integer">
 		SELECT COUNT(NUM) FROM QNAS
 		WHERE
 		NUM>0
-		and
-		<choose>
-			<when test="kind=='col1'">
-				TITLE
-			</when>
-			<when test="kind =='col2'">
-				CONTENTS
-			</when>
-			<otherwise>
-				ID
-			</otherwise>
-		</choose>
-		LIKE '%'||#{search}||'%'
 		and
 		productNum=${productNum}
 	</select>

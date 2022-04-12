@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>글 목록 - SQUARE SHOP</title>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|
 Material+Icons+Round|Material+Icons+sharp"  
 rel="stylesheet">
@@ -98,9 +98,9 @@ table-container a:hover {
 					<button type="submit" class="custom-btn btn-1">검색</button>
 				</fieldset>
 			</form>
-		<%-- 	<c:if test ="${not empty auth}">
+		 	<c:if test ="${board eq 'notices'}">
 				<a href="./add" class="add-board">글작성</a>
-			</c:if> --%>
+			</c:if> 
 		</div>
 
 
@@ -121,7 +121,7 @@ table-container a:hover {
 							<td><a href="./qnaDetail?num=${dto.num}&productNum=${dto.productNum}">${dto.title}</a></td>
 						</c:when>
 						<c:when test="${board eq 'review'}">
-							<td><a href="./reviewDetail?num=${dto.num}">${dto.title}</a></td>
+							<td><a class="title" href="./reviewDetail?num=${dto.num}">${dto.title}</a></td>
 						</c:when>
 						<c:otherwise>
 							<td><a class="titleLink" href="./detail?num=${dto.num}">${dto.title}</a></td>

@@ -107,6 +107,7 @@ reviewResult.addEventListener("click",function(event) {
 //페이지번호 클릭시
 reviewResult.addEventListener("click", function(event) {
     if(event.target.classList.contains("pageNum")) {
+        let location= event.target.offsetTop;
         let pageNum = event.target.innerText;
         console.log("pageNum = "+pageNum)
         let productNum = inputProductNum.value;
@@ -121,6 +122,7 @@ reviewResult.addEventListener("click", function(event) {
            
             if(this.readyState == 4 && this.status == 200) {
                reviewResult.innerHTML = this.responseText.trim();
+               window.scrollTo({top:location, behavior:'auto'});
         }
     }
     }

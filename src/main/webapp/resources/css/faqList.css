@@ -1,0 +1,97 @@
+
+#searchField {
+    border: 0px;
+}
+
+.custom-btn {
+width: 80px;
+height: 30px;
+border: 2px solid rgb(177, 177, 177);
+font-family: 'Lato', sans-serif;
+font-weight: 500;
+background: transparent;
+cursor: pointer;
+transition: all 0.3s ease;
+position: relative;
+display: inline-block;
+
+}
+
+/* 1 */
+.btn-1 {
+transition: all 0.3s ease;
+}
+.btn-1:hover {
+box-shadow:
+-7px -7px 20px 0px #fff9,
+-4px -4px 5px 0px #fff9,
+7px 7px 20px 0px #0002,
+4px 4px 5px 0px #0001;
+color:black;
+}
+
+select {
+     padding:5px;
+	 width: 60px;
+     border:1px solid #999;
+     font-family:'Nanumgothic';
+     background:url(../resources/img/down.png)  95.5% right no-repeat;
+     border-radius:3px;
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     appearance : none;
+}
+
+.accordion {
+    background-color: #eee;
+    color: rgb(72, 72, 72);
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+  }
+  
+  /* hover, active 시 백그라운드 color 지정 */
+  .active, .accordion:hover {
+    background-color: #eaf9ec;
+  }
+  
+
+  .panel {
+    margin-top : 10px;
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    color : rgb(142, 142, 142);
+  }
+  
+  .accordion:after {
+    content: '\02795'; /*  "plus" sign (+) */
+    font-size: 13px;
+    color: rgb(199, 198, 198);
+    float: right;
+    margin-left: 5px;
+  }
+  
+  .active:after {
+    content: "\2796"; /*  "minus" sign (-) */
+  }
+
+  #faqArea {
+      margin: 0 auto;
+      width: 80%;
+  }
+
+  .search-container {
+      margin-bottom: 15px;
+      float : right;
+  }
+
+  .add-board {
+      float : left;
+  } 

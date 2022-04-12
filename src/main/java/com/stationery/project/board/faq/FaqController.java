@@ -27,13 +27,13 @@ public class FaqController {
 		return "faq";
 	}
 	
-	@RequestMapping(value="list", method = RequestMethod.GET)
+	@RequestMapping(value="faqList", method = RequestMethod.GET)
 	public ModelAndView list(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<BoardDTO> ar = faqService.list(pager);
 		
 		mv.addObject("list", ar);
-		mv.setViewName("board/list");
+		mv.setViewName("board/faqList");
 		
 		return mv;
 	}
@@ -54,7 +54,7 @@ public class FaqController {
 		ModelAndView mv = new ModelAndView();
 
 		int result = faqService.add(faqDTO);
-		mv.setViewName("redirect:./list");
+		mv.setViewName("redirect:./faqList");
 		return mv;
 	}
 	
@@ -71,7 +71,7 @@ public class FaqController {
 	public ModelAndView update(FaqDTO faqDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int result = faqService.update(faqDTO);
-		mv.setViewName("redirect:./list");
+		mv.setViewName("redirect:./detail?num="+faqDTO.getNum());
 		return mv;
 	}
 	
@@ -85,7 +85,7 @@ public class FaqController {
 	@RequestMapping(value = "delete", method=RequestMethod.GET)
 	public String delete(FaqDTO faqDTO)throws Exception{
 		int result = faqService.delete(faqDTO);
-		return "redirect:./list";
+		return "redirect:./faqList";
 	}
 	
 	

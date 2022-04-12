@@ -14,41 +14,7 @@ Material+Icons+Round|Material+Icons+sharp"
 <link href="../resources/css/list.css" rel="styleSheet" />
 <link href="../resources/css/notice.css" rel="styleSheet" /> -->
 <link rel="stylesheet" href="../resources/css/product/qnaDetail.css" />
-<!-- <style type="text/css">
-button.accordion {
-	background-color: #FFF;
-	cursor: pointer;
-	width: 100%;
-	border: none;
-	font-size: 16px;
-	transition: 0.5s;
-	text-align: left;
-	padding: 10px;
-}
 
-button.accordion>p {
-	float: left;
-	margin-left: 10px;
-	width: 76%;
-}
-
-button.accordion.active {
-	font-weight: bold;
-	color: #000;
-}
-
-div.panel {
-	padding: 0 18px;
-	background-color: #f7f7f7;
-	max-height: 0;
-	overflow: hidden;
-	transition: max-height 0.2s ease-out;
-	border-top: 1px solid #F0F0F0;
-	color: #666666;
-	font-size: 14px;
-	/* line-height: 1.5px; */
-}
-</style> -->
 </head>
 <body>
 	<!--  Qna Detail Ajax 용 페이지입니다. -->
