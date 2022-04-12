@@ -132,7 +132,7 @@
         <input type="hidden" name="payCheck" id="payCheck" value="0" readonly>
         
         <br>
-        <h2 class="totalPrice" style="display: inline;">최종 결제금액 : </h2><h2 style="display: inline;">원</h2>
+        <h2 class="totalPrice" style="display: inline;">최종 결제금액 : </h2><h2 class="deliver" style="display: inline;">원</h2>
         <br>
         <br>
         <h2>배송주소</h2>

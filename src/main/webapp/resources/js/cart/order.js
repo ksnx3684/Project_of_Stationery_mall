@@ -1,4 +1,5 @@
 const totalPrice = document.getElementsByClassName("totalPrice");
+const deliver = document.getElementsByClassName("deliver");
 const count = document.querySelectorAll(".count");
 const price = document.querySelectorAll(".price");
 const law = document.getElementById("law");
@@ -23,6 +24,8 @@ window.onload = function(){
     }
     if(totaling < 30000){
         totaling += 2500;
+        const fee = document.createTextNode(" (배송비 2500원)");
+        deliver[0].appendChild(fee);
     }
     const newText1 = document.createTextNode(totaling);
     const newText2 = document.createElement('input');
