@@ -23,7 +23,7 @@
 <!--title -->
 <div id="titleArea">
 		<c:if test="${param.categoryNum eq 0 || param.categoryNum eq null}"> <h2>전체상품</h2></c:if>
-		<c:forEach items="${cateList}" var="list">
+		<c:forEach items="${allcateList}" var="list">
 			<c:if test="${list.categoryNum eq param.categoryNum}"><h2>${list.categoryName}</h2></c:if>
 		</c:forEach>
     <span class="xans-element- xans-layout xans-layout-mobileaction "><a href="javascript:history.back();" ><img src="//img.echosting.cafe24.com/skin/mobile_ko_KR/layout/btn_back.gif" width="33" alt="뒤로가기"></a>
@@ -50,14 +50,14 @@
 		<div class="searchbar">
 		<div class="boxbox">
 			<form action="./list" method="get">
-				<div class="searchbar">
-					<select name="categoryNum" style="margin: 10px; margin-bottom : 20px; border: none">
+				<div class="searchbar" style="display: inline;">
+					<select name="categoryNum" style="margin: 10px; margin-bottom : 20px; border: none; width: 100px;">
 						<option value="0">전체</option>
 						<c:forEach items="${cateList}" var="list">
 							<option value="${list.categoryNum}">${list.categoryName}</option>
 						</c:forEach>
 					</select>
-
+					
 					<input type="text" name="search" class="search">
 					<button type="submit" class="submit">
 						<span class="material-icons-outlined">search</span>

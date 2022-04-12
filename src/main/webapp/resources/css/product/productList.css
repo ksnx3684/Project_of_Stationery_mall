@@ -77,26 +77,27 @@ height:40.6px;
 
 .searchbar{
 	width: 100%;
-  display: inline-grid;
+  /* display: inline-grid; */
 }
 
 
 
- /* .boxbox {
- display:flex;
-  width:400px;
-  display:flex;
+.boxbox {
+ /* display:flex; */
+  width:500px;
+  /* display:flex; */
   height:42px;
   border-style:solid; 
   border-width:6px;
   border-color:#c9de73;
-} */
+  margin: 0 auto;
+}
 
-/* form{
+ /* form{
 	width:400px;
 } */
 
-/* .submit {
+ .submit {
   font-weight:600;
   background:#CEE5D0;
   color:#fff;
@@ -104,17 +105,9 @@ height:40.6px;
   width:18%;
   float:right;
   transition: all 100ms ease-in-out;
-} */
-
-.searchbar{
-  margin: 0 auto;
-  width: 500px;
-  border: 5px solid #c9de73;
 }
 
-
 .search, .submit {
-  margin-top: 15px;
   font-size:18px;
   padding:0 25px;
   height: 100%; 
