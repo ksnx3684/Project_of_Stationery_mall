@@ -46,6 +46,7 @@
 		<div class="item">
 			<table class="table-basic">
 				<tbody>
+					
 					<tr>
 						<td>Writer <input type="text" name="id" value="${auth.id}"
 							readonly="readonly"></td>
@@ -112,5 +113,6 @@
 
     <script type="text/javascript" src="../resources/js/admin/usersOrderList.js"></script>
 	<script src="../resources/js/file.js"></script>
+	<script src="../resources/js/hamberger.js"></script>
 </body>
 </html>

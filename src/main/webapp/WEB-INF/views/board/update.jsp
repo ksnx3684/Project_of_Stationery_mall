@@ -7,6 +7,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="../resources/css/boardForm.css" rel="styleSheet" />
+<c:import url="../template/header.jsp"></c:import>
+
+<link rel="stylesheet" href="../resources/css/hamberger.css">
+<link rel="stylesheet" href="../resources/css/index.css">
  <!--  jQuery, bootstrap -->
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
@@ -15,23 +19,56 @@
     <!-- summernote css/js-->
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-
+<style>
+	#container {
+	margin: 0 auto;
+	text-align: center;
+}
+</style>
 </head>
 <body>
-	<h1>${board} Update Page</h1>
+	<h1>작성 글 수정</h1>
 
 	<form action="./update" method="POST" enctype="multipart/form-data" onsubmit="return updateSubmit();">
 	<!-- submit 버튼 누를 경우 updateSubmit 함수 호출 -->
-		<input type="hidden" name="num" value="${dto.num}">
-			 글 제목<input type="text" name="title" id="title" value="${dto.title}"> 
-			 작성자<input type="text" name="id" disabled="disabled" value="${dto.id}">
-			 글 내용<textarea name="contents" rows="" cols="" id="summernote">${dto.contents}</textarea>
-	
+	<div class="item">
+		<table class="table-basic">
+			<tbody>
+				<tr>
+					<td>
+						<input type="hidden" name="num" value="${dto.num}">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						작성자<input type="text" name="id" disabled="disabled" value="${dto.id}">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						글 제목 <input type="text" name="title" id="title" value="${dto.title}"> 
+					</td>
+				</tr>
+				<tr>
+					<td>
+						본문
+					</td>
+				</tr>
+				<tr>
+					<td><textarea name="contents" rows="" cols="" id="summernote">${dto.contents}</textarea></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
 		<c:if test="${board ne 'faq'}">
+			<div id="container">
 			<div id="files">
 				<c:forEach items="${dto.fileDTOs}" var="f">
 					<div>
 						${f.oriName} <button type="button" data-fileNum="${f.fileNum}" class="fileDeleteBtn">X</button>
+						<img class="qnaImg" alt=""
+						src="../resources/upload/notices/${f.fileName}">
 					</div>
 				</c:forEach>
 			</div>
@@ -46,6 +83,7 @@
 				<button type="button" id="fileAdd">FileAdd</button>
 			</div>
 		</div>
+	</div>
 		</c:if>
 		
 		<div id="btnList">
@@ -79,5 +117,6 @@
 	
 	
 		<script type="text/javascript" src="../resources/js/updateFile.js"></script>
+<script src="../resources/js/hamberger.js"></script>
 </body>
 </html>
