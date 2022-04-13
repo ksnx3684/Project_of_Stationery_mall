@@ -5,10 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>리뷰 작성 - SQUARE SHOP</title>
 <link href="../resources/css/boardForm.css" rel="styleSheet" />
 <!-- favicon.ico 404 (Not Found) -->
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+<c:import url="../template/header.jsp"></c:import>
+
+<link rel="stylesheet" href="../resources/css/hamberger.css">
+<link rel="stylesheet" href="../resources/css/index.css">
 <!-- summernote import -->
  <!--  jQuery, bootstrap -->
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
@@ -22,7 +26,6 @@
 
 </head>
 <body>
-	<h1>${board} Add Page</h1>
 	<!-- <div id="container"> -->
 	<form action="./reviewAdd" method="post" style="width: 100%" onsubmit="return addSubmit();" enctype="multipart/form-data">
 		<div class="item">
@@ -103,5 +106,6 @@
 
 
 	<script src="../resources/js/file.js"></script>
+	<script src="../resources/js/hamberger.js"></script>
 </body>
 </html>

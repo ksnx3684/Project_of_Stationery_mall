@@ -44,6 +44,11 @@ Material+Icons+Round|Material+Icons+sharp"
 							<tr>
 								<td colspan="5"><div class="panels contents"
 										id="contentsArea">
+							 		
+										주문 상품 : ${proDto.name}
+										<br>
+											
+									
 										${dto.contents}
 								<%-- 		<c:forEach items="${dto.fileDTOs}" var="f">
 											<div class="qnaImgArea">

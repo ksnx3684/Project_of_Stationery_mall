@@ -122,10 +122,16 @@ table-container a:hover {
 						<td>${dto.num}</td>
 						<c:choose>
 						<c:when test="${board eq 'qnas'}">
-							<td><a href="./qnaDetail?num=${dto.num}&productNum=${dto.productNum}">${dto.title}</a></td>
+							<td><a href="./qnaDetail?num=${dto.num}&productNum=${dto.productNum}">
+									<c:catch>
+											<c:forEach begin="1" end="${dto.depth}">↳&nbsp;</c:forEach>
+										</c:catch>
+										${dto.title}</a></td>
 						</c:when>
 						<c:when test="${board eq 'review'}">
-							<td><a class="title" href="./reviewDetail?num=${dto.num}">${dto.title}</a></td>
+							<td><a class="title" href="./reviewDetail?num=${dto.num}">
+								
+							${dto.title}</a></td>
 						</c:when>
 						<c:otherwise>
 							<td><a class="titleLink" href="./detail?num=${dto.num}">${dto.title}</a></td>

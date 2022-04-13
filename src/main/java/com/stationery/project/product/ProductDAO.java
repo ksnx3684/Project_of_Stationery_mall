@@ -92,4 +92,8 @@ public class ProductDAO {
 	public int update(ProductDTO productDTO) throws Exception{
 		return sqlSession.update(NAMESPACE+"update", productDTO);
 	}
+	
+	public ProductDTO detailProduct(ProductDTO productDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"detailProduct", productDTO);
+	}
 }

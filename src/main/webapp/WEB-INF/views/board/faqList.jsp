@@ -39,7 +39,7 @@ rel="stylesheet">
 		</c:otherwise>
 	</c:choose>
 
-		 	<c:if test ="${not empty auth}">
+		 	<c:if test ="${auth.userAccount eq 0}">
 				<a href="./add" class="add-board">글작성</a>
 			</c:if> 
 

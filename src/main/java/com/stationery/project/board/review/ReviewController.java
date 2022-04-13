@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import com.stationery.project.board.BoardDTO;
+import com.stationery.project.product.ProductDTO;
+import com.stationery.project.product.ProductService;
 import com.stationery.project.util.Pager;
 
 @Controller
@@ -20,6 +22,8 @@ import com.stationery.project.util.Pager;
 public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
+	@Autowired
+	private ProductService productService;
 	
 	@ModelAttribute("board")
 	public String board() {
@@ -49,12 +53,27 @@ public class ReviewController {
 	public ModelAndView reviewDetailList(Pager pager, ReviewDTO reviewDTO, @RequestParam(value="productNum") Integer productNum) throws Exception {
 		/* review 파트 */
 		ModelAndView mv = new ModelAndView();
-	
-		List<BoardDTO> qnasDTOs = reviewService.list(pager, productNum);
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setProductNum(productNum);
+		productDTO = productService.detailProduct(productDTO);
+		System.out.println("name = "+productDTO.getName());
+		List<BoardDTO> reviewDtos = reviewService.list(pager, productNum);
 		
-		mv.addObject("reviewDto", qnasDTOs);
-		//mv.addObject("dto", productDTO);
+		mv.addObject("reviewDto", reviewDtos);
+		mv.addObject("proDto", productDTO);
 		mv.setViewName("board/reviewDetailList");
+		
+		return mv;
+	}
+	
+	@GetMapping("myReviewList")
+	public ModelAndView myReviewList(Pager pager, @RequestParam(value="id") String id) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		System.out.println(id);
+		List<BoardDTO> revieDtos = reviewService.myReviewList(pager, id);
+		
+		mv.addObject("reviewDTO",revieDtos);
+		mv.setViewName("board/myReviewList");
 		
 		return mv;
 	}

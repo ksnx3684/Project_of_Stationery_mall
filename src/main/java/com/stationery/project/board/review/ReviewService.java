@@ -43,6 +43,20 @@ public class ReviewService{
 
 		return reviewDAO.list(map);
 	}
+	
+	public List<BoardDTO> myReviewList(Pager pager, String id) throws Exception {
+		HashMap<String , Object> map = new HashMap<String, Object>();
+		pager.makeRow();
+		pager.makeNum(reviewDAO.reviewTotal(id));
+		System.out.println("review Totla : " +reviewDAO.reviewTotal(id));
+		System.out.println("review Serview id : "+id);
+		map.put("pager", pager);
+		map.put("id", id);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("id", id);
+		
+		return reviewDAO.myReviewList(map);
+	}
 
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
 		return reviewDAO.detail(boardDTO);
