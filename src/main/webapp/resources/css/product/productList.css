@@ -57,7 +57,7 @@ body{
   	border:1px solid grey;
     float: left;
     margin-right: 13px;
-
+    margin-bottom: 10px;
     position: relative;
     cursor: pointer;
     transition: all .1s ease-out;
