@@ -26,7 +26,7 @@
 
 </head>
 <body>
-	<h1>${board} Add Page</h1>
+	<h1>QnA 작성</h1>
 	<!-- <div id="container"> -->
 	<form action="./qnaAdd" method="post" style="width: 100%" onsubmit="return addSubmit();" enctype="multipart/form-data">
 		<div class="item">

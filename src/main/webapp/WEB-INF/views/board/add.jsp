@@ -7,6 +7,10 @@
 <meta charset="UTF-8">
 <title>글 작성 - SQUARE SHOP</title>
 <link href="../resources/css/boardForm.css" rel="styleSheet" />
+<c:import url="../template/header.jsp"></c:import>
+
+<link rel="stylesheet" href="../resources/css/hamberger.css">
+<link rel="stylesheet" href="../resources/css/index.css">
 <!-- favicon.ico 404 (Not Found) -->
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 <!-- summernote import -->
@@ -22,7 +26,20 @@
 
 </head>
 <body>
-	<h1>${board} Add Page</h1>
+	<c:choose>
+		<c:when test="${board eq 'notices'}">
+			<h1>공지사항 추가</h1>
+		</c:when>
+		<c:when test="${board eq 'faq'}">
+			<h1>자주 묻는 질문 추가</h1>
+		</c:when>
+		<c:when test="${board eq 'qnas'}">
+			<h1>QnA 작성</h1>
+		</c:when>
+		<c:otherwise>
+			<h1>Review 작성</h1>
+		</c:otherwise>
+	</c:choose>
 	<!-- <div id="container"> -->
 	<form action="./add" method="post" enctype="multipart/form-data"
 		style="width: 100%" onsubmit="return addSubmit();">
@@ -93,7 +110,7 @@
     });
 </script>
 
-
+    <script type="text/javascript" src="../resources/js/admin/usersOrderList.js"></script>
 	<script src="../resources/js/file.js"></script>
 </body>
 </html>
