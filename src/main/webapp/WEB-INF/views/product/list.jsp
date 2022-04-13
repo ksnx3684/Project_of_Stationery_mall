@@ -45,7 +45,7 @@
 </div><!-- title area -->
 </div><!-- top -->
 		<!-- 검색창 -->
-		<div class="searchbar">
+		<div class="searchbar" style="margin-top: 40px;">
 		<div class="boxbox">
 			<form action="./list" method="get">
 				<select name="categoryNum">
@@ -73,7 +73,7 @@
 
 
 		<!-- list -->
-		<div class="container">
+		<div class="container" style="width: 1200px;">
 			<ul id="ultag">
 				<c:forEach items="${list}" var="list">
 					<li class="card">
