@@ -106,7 +106,6 @@
 </script>
 
 
-<script type="text/javascript" src="../resources/js/updateFile.js"></script>
 	<script src="../resources/js/file.js"></script>
 	<script src="../resources/js/hamberger.js"></script>
 </body>

@@ -64,7 +64,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td><textarea name="contents" rows="" cols="" id="summernote">${dto.contents}, ${dto.productNum}</textarea></td>
+						<td><textarea name="contents" rows="" cols="" id="summernote">${dto.contents}</textarea></td>
 					</tr>
 				</tbody>
 

@@ -117,6 +117,7 @@ public class ReviewController {
 	public ModelAndView reviewUpdate(ReviewDTO reviewDTO, @RequestParam(value="productNum") Integer productNum, MultipartFile [] files) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		int result = reviewService.reviewUpdate(reviewDTO, files);
+		System.out.println("productNum = "+productNum);
 		mv.setViewName("redirect:../product/detail?productNum="+productNum);
 		
 		return mv;
