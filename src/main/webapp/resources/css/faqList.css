@@ -60,7 +60,7 @@ select {
   }
   
 
-  .panel {
+  .panels {
     margin-top : 10px;
     padding: 0 18px;
     background-color: white;
@@ -95,3 +95,4 @@ select {
   .add-board {
       float : left;
   } 
+

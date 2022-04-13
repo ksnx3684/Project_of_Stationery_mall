@@ -52,6 +52,10 @@ public class ReviewDAO {
 		return sqlSession.selectOne(NAMESPACE+"total2", pager);
 	}
 	
+	public Long reviewTotal(String id) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"reviewTotal", id);
+	}
+	
 	public List<BoardDTO> detailList(BoardDTO boardDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"detailList", boardDTO);
 	}
@@ -70,5 +74,9 @@ public class ReviewDAO {
 	
 	public int orderProductNumDetail(BoardDTO boardDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"orderProductNumDetail", boardDTO);
+	}
+	
+	public List<BoardDTO> myReviewList(HashMap<String, Object> map) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"myReviewList", map);
 	}
 }

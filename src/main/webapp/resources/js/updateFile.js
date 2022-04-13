@@ -23,7 +23,7 @@ function updateSubmit() {
     
     //contents 값 가져와서 null 검사
     let contentValue = contents.value;
-    if(!contentValue) {
+    if(contentValue == '<p><br></p>') {
         alert("본문을 입력해주세요");
         contents.focus();
         return false;

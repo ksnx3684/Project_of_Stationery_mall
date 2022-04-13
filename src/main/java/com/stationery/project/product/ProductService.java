@@ -218,4 +218,8 @@ public class ProductService {
 
 		return result;
 	}
+	
+	public ProductDTO detailProduct(ProductDTO productDTO) throws Exception {
+		return productDAO.detailProduct(productDTO);
+	}
 }

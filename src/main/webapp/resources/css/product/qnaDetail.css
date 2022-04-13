@@ -8,6 +8,7 @@ button.accordion {
 	font-size: 16px;
 	transition: 0.5s;
 	padding: 10px;
+    text-align: center;
 }
 
 button.accordion>p {
@@ -21,8 +22,9 @@ button.accordion.active {
 	color: #000;
 }
 
-div.panel {
+div.panels {
 	padding: 0 18px;
+    margin-top: 0px;
 	background-color: #f7f7f7;
 	max-height: 0;
 	overflow: hidden;

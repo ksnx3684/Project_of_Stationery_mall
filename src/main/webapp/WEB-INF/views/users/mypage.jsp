@@ -32,7 +32,7 @@
 		<a href="./wishlist"><button id="wishlist" class="btn btn-primary">위시리스트</button></a>
 		<a href="./orderlist"><button id="orderlist" class="btn btn-primary">주문내역</button></a>
 		<a href="../cart/cartlist"><button id="cart" class="btn btn-primary">장바구니</button></a>
-		
+		<a href="../review/myReviewList?id=${usersDTO.id}"><button id="review" class="btn btn-primary">나의 리뷰 내역</button></a>
 		<a href="/project/users/logout"><button class="btn btn-danger">로그아웃</button></a>
 		<c:if test="${usersDTO.userAccount eq 0}">
 			<a href="./otp/first"><button id="manager" class="btn btn-warning">관리자페이지</button></a>

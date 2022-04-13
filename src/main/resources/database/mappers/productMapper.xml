@@ -163,6 +163,11 @@
 		where productnum=#{productNum}
 	</update>
 	
+	<select id="detailProduct" parameterType="ProductDTO" resultType="ProductDTO">
+		select * from product
+		where productNum=#{productNum}
+	</select>
+	
 	
 </mapper>
 
