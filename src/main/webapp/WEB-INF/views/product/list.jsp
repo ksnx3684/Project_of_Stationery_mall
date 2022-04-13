@@ -20,7 +20,7 @@
 <div id="top">
 <!--title -->
 <div id="titleArea">
-		<c:if test="${param.categoryNum eq 0}"> <h2>전체상품</h2></c:if>
+		<c:if test="${param.categoryNum eq 0 || param.categoryNum eq null}"> <h2>전체상품</h2></c:if>
 		<c:forEach items="${allcatelist}" var="list">
 			<c:if test="${list.categoryNum eq param.categoryNum}"><h2>${list.categoryName}</h2></c:if>
 		</c:forEach>

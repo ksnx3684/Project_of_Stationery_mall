@@ -26,7 +26,7 @@
                     <tr class="success">
                         <th style="text-align:center; background-color: #cee5d0;">글번호</th>
                         <th style="text-align:center; background-color: #cee5d0;">작성자</th>         
-                        <th style="text-align:center; background-color: #cee5d0;">주문상품</th>
+                        <th style="text-align:center; background-color: #cee5d0;">주문상품</th>
                         <th style="text-align:center; background-color: #cee5d0;">제목</th>
                     </tr>
                 </thead>

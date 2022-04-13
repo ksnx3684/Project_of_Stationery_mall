@@ -23,7 +23,7 @@
         IMP.request_pay({ // param
           pg: "kakaopay.TC0ONETIME",
           pay_method: "card",
-          merchant_uid: "ORD20180131-0000013", // !!!!! 테스트 결제 진행 완료 시 매번 숫자를 변경해줘야함 !!!!!
+          merchant_uid: "ORD20180131-0000014", // !!!!! 테스트 결제 진행 완료 시 매번 숫자를 변경해줘야함 !!!!!
           name: "TEST 상품",
           amount: 25000,
           buyer_email: "gildong@gmail.com",
