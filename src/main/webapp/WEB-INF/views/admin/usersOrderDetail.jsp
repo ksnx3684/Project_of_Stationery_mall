@@ -8,7 +8,7 @@
 <title>주문상세</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="../resources/css/orderDetail.css">
+<link rel="stylesheet" href="../resources/css/users/orderDetail.css">
 </head>
 <body>
 

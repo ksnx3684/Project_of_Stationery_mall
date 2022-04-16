@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>회원주문내역</title>
 </head>
-<link rel="stylesheet" href="../resources/css/usersOrderList.css">
+<link rel="stylesheet" href="../resources/css/admin/usersOrderList.css">
 <body>
     <div class="li_table">
         <ul>

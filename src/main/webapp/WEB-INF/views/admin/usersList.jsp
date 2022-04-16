@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>회원관리</title>
 </head>
-<link rel="stylesheet" href="../resources/css/usersList.css">
+<link rel="stylesheet" href="../resources/css/admin/usersList.css">
 <body>
 	<div class="li_table">
         <ul>

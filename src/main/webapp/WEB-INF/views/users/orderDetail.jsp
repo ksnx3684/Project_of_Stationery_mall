@@ -9,7 +9,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<c:import url="../template/header.jsp"></c:import>
 	<link rel="stylesheet" href="../resources/css/hamberger.css">
-	<link rel="stylesheet" href="../resources/css/orderDetail.css">
+	<link rel="stylesheet" href="../resources/css/users/orderDetail.css">
 </head>
 <body>
 		<h2>주문번호 : ${orderDetail.orderNum}</h2>

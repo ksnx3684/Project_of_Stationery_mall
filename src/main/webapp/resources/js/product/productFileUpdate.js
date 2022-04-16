@@ -108,7 +108,7 @@ files.addEventListener("click",function(event){
    
 
 	console.log('대표이미지 삭제 click')
-        let check = confirm("삭제시 복구 불가능함 삭제할겨? ")
+        let check = confirm("삭제 시 복구가 불가능합니다 삭제하시겠습니까?")
 
         if(!check){
             return;

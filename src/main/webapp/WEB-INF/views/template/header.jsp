@@ -12,15 +12,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <script> 
-        $(document).ready(function(){
-          $(".dropdown").click(function(){
-            $(".dropdown-menu").animate({
-              height: 'toggle'
-            });
-          });
-        });
-    </script> 
+
 <div id="header">
 <nav class="navbar navbar-default" style="background-color: #cee5d0;">
     <!-- <div class="container-fluid"> -->
@@ -33,16 +25,7 @@
         </div>
     <!-- </div> -->
     <ul class="nav navbar-nav">
-        <!-- <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">카테고리<span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="./product/list">전체상품보기</a></li>
-            </ul>
-        </li> -->
+        
         <li><a href="/project/">HOME</a></li>
         <li><a href="/project/faq/faqList">FAQ</a></li>
         <li><a href="/project/qnas/list">Q&A</a></li>
@@ -73,28 +56,6 @@
     </ul>
 </nav>
 
-
-
-<aside style="z-index: 3;">
-    <div class="sidebar_menu">
-        <ul class="menu_wrap" style="font-size:24px">
-            <br>
-            <br>
-            <li class="col1" style="display: none;"><a href="/project/product/list">전체상품보기</a></li><br>
-            <li class="col2" style="display: none;"><a href="/project/product/list?categoryNum=100">팬시용품</a></li><br>
-            <li class="col3" style="display: none;"><a href="/project/product/list?categoryNum=200">필기용품</a></li><br>
-            <li class="col4" style="display: none;"><a href="/project/product/list?categoryNum=300">노트/수첩</a></li><br>
-            <li class="col5" style="display: none;"><a href="/project/product/list?categoryNum=400">가방/지갑</a></li><br>
-            <li class="col6" style="display: none;"><a href="/project/product/list?categoryNum=500">필통/파우치</a></li><br>
-            <li class="col7" style="display: none;"><a href="/project/product/list?categoryNum=600">생활/계절용품</a></li><br>
-            <li class="col8" style="display: none;"><a href="/project/product/list?categoryNum=700">악세사리</a></li><br>
-            <li class="col9" style="display: none;"><a href="/project/product/list?categoryNum=800">완구</a></li><br>
-            <li class="col10" style="display: none;"><a href="/project/product/list?categoryNum=900">애완용품</a></li>
-        </ul>
-</div>
-</aside>
-
-<c:import url="/category/catelist"></c:import>
 </div>
 </body>
 </html>
