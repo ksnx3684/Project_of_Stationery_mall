@@ -4,30 +4,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>회원탈퇴</title>
+    <meta charset="UTF-8">
+	<meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	
+	<!-- Title  -->
+    <title>회원탈퇴</title>
+
+    <!-- Core Style CSS -->
+	<link rel="stylesheet" href="../resources/css/core-style.css">
+
 </head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <c:import url="../template/header.jsp"></c:import>
-	<link rel="stylesheet" href="../resources/css/hamberger.css">
 <body>
-    <div class="container" style="width:500px;">
-        <h2 style="text-align: center;">탈퇴를 진행하시겠습니까?</h2>
-        <h4 style="text-align: center;">본인확인을 위하여 아이디와 비밀번호를 입력해 주십시오</h4>
-        <form class="frm" action="./withdrawal" method="post">
-            <div class="form-group">
-                <label for="id">ID</label><br>
-                <input type="text" class="form-control" placeholder="ID" name="id">
-            </div>
-            <div class="form-group">
-                <label for="pwd">비밀번호</label><br>
-                <input type="password" class="form-control" placeholder="PW" name="pw">
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">로그인</button>
-            </div>
-        </form>
-    </div>
-    <script src="../resources/js/hamberger.js"></script>
+
+    <!-- ##### Search Content ##### -->
+	<c:import url="../template/new_search.jsp"></c:import>
+
+
+	<!-- ##### Main Content Wrapper Start ##### -->
+    <div class="main-content-wrapper d-flex clearfix">
+
+		<c:import url="../template/new_header.jsp"></c:import>
+
+			<!-- Product Catagories Area Start -->
+			<div class="products-catagories-area clearfix">
+				<div class="clearfix">
+
+                    <div class="container" style="width:500px; margin-top: 200px; margin-bottom: 200px;">
+                        <h2 style="text-align: center;">탈퇴를 진행하시겠습니까?</h2>
+                        <h4 style="text-align: center;">본인확인을 위하여 아이디와 비밀번호를 입력해 주십시오</h4>
+                        <form class="frm" action="./withdrawal" method="post">
+                            <div class="form-group">
+                                <label for="id">ID</label><br>
+                                <input type="text" class="form-control" placeholder="ID" name="id">
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">비밀번호</label><br>
+                                <input type="password" class="form-control" placeholder="PW" name="pw">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">로그인</button>
+                            </div>
+                        </form>
+                    </div>
+
+				</div>
+			</div>
+			<!-- Product Catagories Area End -->
+
+	</div>
+	<!-- ##### Main Content Wrapper End ##### -->
+
+
+	<!-- ##### Footer Content ##### -->
+	<c:import url="../template/new_footer.jsp"></c:import>
+
+
+	<!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
+    <script src="../resources/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="../resources/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="../resources/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="../resources/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="../resources/js/active.js"></script>
+
 </body>
 </html>

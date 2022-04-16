@@ -1,0 +1,10 @@
+.mainstreet{
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+.image{
+    margin-bottom: 60px;
+    max-width: 300px;
+    max-height: 300px;
+    border: 1px solid black;
+}

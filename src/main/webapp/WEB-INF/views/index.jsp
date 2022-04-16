@@ -13,16 +13,33 @@
 	<!-- Title  -->
 	<title>SQUARE SHOP</title>
 
-	<!-- Favicon  -->
-	<link rel="icon" href="img/core-img/favicon.ico">
-
 	<!-- Core Style CSS -->
 	<link rel="stylesheet" href="./resources/css/core-style.css">
 	
 </head>
 <body>
+	<!-- ##### Search Content ##### -->
+	<c:import url="./template/new_search.jsp"></c:import>
 
-	<c:import url="./template/new_header.jsp"></c:import>
+
+	<!-- ##### Main Content Wrapper Start ##### -->
+    <div class="main-content-wrapper d-flex clearfix">
+
+		<c:import url="./template/new_header.jsp"></c:import>
+
+			<!-- Product Catagories Area Start -->
+			<div class="products-catagories-area clearfix">
+				<div class="clearfix">
+
+				</div>
+			</div>
+			<!-- Product Catagories Area End -->
+
+	</div>
+	<!-- ##### Main Content Wrapper End ##### -->
+
+
+	<!-- ##### Footer Content ##### -->
 	<c:import url="./template/new_footer.jsp"></c:import>
 
 

@@ -1,4 +1,24 @@
-th, td{
+.success > th, .active > td{
     vertical-align:middle !important;
     height: 50px;
+    border-top: none !important;
+    border-bottom: none !important;
+}
+
+.success > th{
+    text-align:center;
+    background-color: #D8B384;
+    color: white;
+}
+
+.orderlist{
+    margin-top: 60px;
+    margin-bottom: 60px;
+    text-align:center;
+    width:800px
+}
+
+a {
+    color: #337ab7;
+    text-decoration: none;
 }

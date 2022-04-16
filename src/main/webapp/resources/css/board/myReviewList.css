@@ -11,13 +11,14 @@
     color: white;
 }
 
-.wishlist{
+.reviewlist{
     margin-top: 60px;
     margin-bottom: 60px;
     text-align:center;
     width:800px
 }
 
-#selectDelete_btn{
-    float: right;
+a {
+    color: #337ab7;
+    text-decoration: none;
 }
