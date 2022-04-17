@@ -11,7 +11,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	
 	<!-- Title  -->
-    <title>나의 리뷰 내역 - SQUARE SHOP</title>
+    <title>나의 리뷰 내역</title>
 
     <!-- Core Style CSS -->
 	<link rel="stylesheet" href="../resources/css/core-style.css">
