@@ -1,3 +1,7 @@
+.main{
+    margin-top: 60px;
+}
+
 .items{
     width: 100%;
     position: relative;
@@ -7,14 +11,18 @@
     float: left;
 }
 .thumbnail{
+    border: 1px solid gray;
     margin-right: 20px;
     margin-bottom: 60px;
 }
 .thumbnail > a{
     text-align: center;
     display: block;
+    color: #337ab7;
+    text-decoration: underline;
 }
 .thumbnail > a > img{
+    display: block;
     width: 250px;
     height: 250px;
 }

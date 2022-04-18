@@ -7,6 +7,7 @@ let finalPay = document.getElementById("finalPay");
 
 const total = new Array;
 let totaling = 0;
+const frm = document.getElementById("frm");
 
 window.onload = function(){
     for(let i = 0; i < count.length; i++){
@@ -24,9 +25,13 @@ window.onload = function(){
     }
     if(totaling < 30000){
         totaling += 2500;
-        const fee = document.createTextNode(" (배송비 2500원)");
+        const fee = document.createTextNode(" 2500 원");
+        deliver[0].appendChild(fee);
+    } else{
+        const fee = document.createTextNode("Free");
         deliver[0].appendChild(fee);
     }
+    
     const newText1 = document.createTextNode(totaling);
     const newText2 = document.createElement('input');
     newText2.setAttribute("type","hidden");
@@ -52,7 +57,7 @@ window.onload = function(){
 // });
 
 
-const btnCheck = document.querySelector(".mainStreet");
+const btnCheck = document.querySelector(".main-content-wrapper");
 btnCheck.addEventListener("mousemove", function(){
     
     let address = document.querySelector("#address").value;
@@ -62,9 +67,15 @@ btnCheck.addEventListener("mousemove", function(){
     document.querySelector("#addressDetail2").value = address + detailAddress + extraAddress;
 });
 
-// finalPay.addEventListener("click", function(){
-//     if(law.checked != true){
-//         alert("전자상거래법에 동의해주세요");
-//         return false;
-//     }
-// });
+const kakaoPay = document.getElementById("kakaoPay");
+const naverPay = document.getElementById("naverPay");
+const cashPay = document.getElementById("cashPay");
+kakaoPay.addEventListener("click", function(){
+    frm.submit();
+});
+naverPay.addEventListener("click", function(){
+    frm.submit();
+});
+cashPay.addEventListener("click", function(){
+    frm.submit();
+});
