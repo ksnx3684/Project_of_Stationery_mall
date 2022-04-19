@@ -4,19 +4,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>글 목록 - SQUARE SHOP</title>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|
-Material+Icons+Round|Material+Icons+sharp"  
-rel="stylesheet">
-<link href="../resources/css/table.css" rel="styleSheet" />
-<link href="../resources/css/list.css" rel="styleSheet" />
-<link href="../resources/css/notice.css" rel="styleSheet" />
-<c:import url="../template/header.jsp"></c:import>
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-<link rel="stylesheet" href="../resources/css/hamberger.css">
-<link rel="stylesheet" href="../resources/css/index.css">
-<link href="../resources/css/reset.css" rel="styleSheet"/>
+  	<!-- Title  -->
+	<title>List</title>
+
+	<!-- Core Style CSS -->
+	<link rel="stylesheet" href="../resources/css/core-style.css">
+	<link href="../resources/css/table.css" rel="styleSheet" />
+	<link href="../resources/css/list.css" rel="styleSheet" />
+	<link href="../resources/css/notice.css" rel="styleSheet" />
+	<!-- <link rel="stylesheet" href="../resources/css/index.css"> -->
+	<link href="../resources/css/reset.css" rel="styleSheet"/>
 <style>
 
 #searchField {
@@ -72,93 +75,127 @@ table-container a:hover {
 </style>
 </head>
 <body>
-	<div class="table-container">
-			<c:choose>
-		<c:when test="${board eq 'notices'}">
-			<h1>공지사항</h1>	
-		</c:when>
-		<c:when test="${board eq 'faq'}">
-			<h1>자주 묻는 질문</h1>
-		</c:when>
-		<c:otherwise>			
-			<h1>${board} Detail Page</h1>
-		</c:otherwise>
-	</c:choose>
+
+	<!-- ##### Search Content ##### -->
+	<c:import url="../template/new_search.jsp"></c:import>
 
 
-		<!-- 검색 창 -->
-		<div class="search-container">
-			<form action="./list" method="get" class="search-form">
-				<fieldset id="searchField">
-					<select name="kind">
-						<option value="col1">제목</option>
-						<option value="col2">본문</option>
-						<option value="col3">작성자</option>
-					</select> <input type="text" name="search" value="${pager.search }" placeholder="search">
-					<button type="submit" class="custom-btn btn-1">검색</button>
-				</fieldset>
-			</form>
-			<c:choose>
-				<c:when test="${auth.userAccount eq 0}">
-					<c:if test ="${board eq 'notices'}">
-					   <a href="./add" class="add-board">글작성</a>
-				   </c:if> 
-				</c:when>
-			</c:choose>
-		</div>
+	<!-- ##### Main Content Wrapper Start ##### -->
+    <div class="main-content-wrapper d-flex clearfix">
 
+		<c:import url="../template/new_header.jsp"></c:import>
 
-		<table class="table-basic">
-			<thead>
-				<tr>
-					<th>글번호</th>
-					<th>글제목</th>
-					<th>작성자</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${requestScope.list}" var="dto">
-					<tr>
-						<td>${dto.num}</td>
+			<!-- Product Catagories Area Start -->
+			<div class="products-catagories-area clearfix">
+				<div class="clearfix">
+					<div class="table-container" style="margin-top: 60px; margin-bottom: 60px;">
 						<c:choose>
-						<c:when test="${board eq 'qnas'}">
-							<td><a href="./qnaDetail?num=${dto.num}&productNum=${dto.productNum}">
-									<c:catch>
-											<c:forEach begin="1" end="${dto.depth}">↳&nbsp;</c:forEach>
-										</c:catch>
-										${dto.title}</a></td>
-						</c:when>
-						<c:when test="${board eq 'review'}">
-							<td><a class="title" href="./reviewDetail?num=${dto.num}">
-								
-							${dto.title}</a></td>
-						</c:when>
-						<c:otherwise>
-							<td><a class="titleLink" href="./detail?num=${dto.num}">${dto.title}</a></td>
-						</c:otherwise>
+							<c:when test="${board eq 'qnas'}">
+								<h1>Q&A</h1>	
+							</c:when>
+							<c:when test="${board eq 'review'}">
+								<h1>REVIEW</h1>
+							</c:when>
+							<c:otherwise>			
+								<h1>NOTICES</h1>
+							</c:otherwise>
 						</c:choose>
-						<td>${dto.id}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-
-		<div class="pager">
-			<c:if test="${pager.pre}">
-				<a href="./list?page=${pager.startNum-1}">◀</a>
-			</c:if>
-
-			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-				<a href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a>
-			</c:forEach>
-
-			<c:if test="${pager.next}">
-				<a href="./list?page=${pager.lastNum+1}">▶</a>
-			</c:if>
-
-		</div>
+						<!-- 검색 창 -->
+						<div class="search-container">
+							<form action="./list" method="get" class="search-form">
+								<fieldset id="searchField">
+									<select name="kind">
+										<option value="col1">제목</option>
+										<option value="col2">본문</option>
+										<option value="col3">작성자</option>
+									</select> <input type="text" name="search" value="${pager.search }" placeholder="search">
+									<button type="submit" class="custom-btn btn-1">검색</button>
+								</fieldset>
+							</form>
+							<c:choose>
+								<c:when test="${auth.userAccount eq 0}">
+									<c:if test ="${board eq 'notices'}">
+									<a href="./add" class="add-board">글작성</a>
+								</c:if> 
+								</c:when>
+							</c:choose>
+						</div>
+						<table class="table-basic">
+							<thead>
+								<tr>
+									<th>글번호</th>
+									<th>글제목</th>
+									<th>작성자</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${requestScope.list}" var="dto">
+									<tr>
+										<td>${dto.num}</td>
+										<c:choose>
+											<c:when test="${board eq 'qnas'}">
+												<td>
+													<a href="./qnaDetail?num=${dto.num}&productNum=${dto.productNum}">
+														<c:catch>
+															<c:forEach begin="1" end="${dto.depth}">↳&nbsp;</c:forEach>
+														</c:catch>
+														${dto.title}
+													</a>
+												</td>
+											</c:when>
+											<c:when test="${board eq 'review'}">
+												<td>
+													<a class="title" href="./reviewDetail?num=${dto.num}">
+														${dto.title}
+													</a>
+												</td>
+											</c:when>
+											<c:otherwise>
+												<td><a class="titleLink" href="./detail?num=${dto.num}">${dto.title}</a></td>
+											</c:otherwise>
+										</c:choose>
+										<td>${dto.id}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						<div class="pager">
+							<c:if test="${pager.pre}">
+								<a href="./list?page=${pager.startNum-1}">◀</a>
+							</c:if>
+							<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+								<a href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a>
+							</c:forEach>
+							<c:if test="${pager.next}">
+								<a href="./list?page=${pager.lastNum+1}">▶</a>
+							</c:if>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Product Catagories Area End -->
 
 	</div>
-	<script src="../resources/js/hamberger.js"></script>
+	<!-- ##### Main Content Wrapper End ##### -->
+
+
+	<!-- ##### Footer Content ##### -->
+	<c:import url="../template/new_footer.jsp"></c:import>
+
+
+	<!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
+    <script src="../resources/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="../resources/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="../resources/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="../resources/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="../resources/js/active.js"></script>
+
+
+
+	
 </body>
 </html>
