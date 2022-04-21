@@ -4,78 +4,120 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>SQUARE SHOP</title>
-<c:import url="../template/header.jsp"></c:import>
-	
-	<link rel="stylesheet" href="../resources/css/hamberger.css">
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title  -->
+	<title>상세보기</title>
+
+	<!-- Core Style CSS -->
+	<link rel="stylesheet" href="../resources/css/core-style.css">
 	<link rel="stylesheet" href="../resources/css/index.css">
-	<link rel="stylesheet" href="../resources/css/boardDetail.css">
+	<!-- <link rel="stylesheet" href="../resources/css/boardDetail.css"> -->
 
 </head>
 <body>
-<div id="detailArea">
-	<c:choose>
-		<c:when test="${board eq 'notices'}">
-			<h1>공지사항</h1>	
-		</c:when>
-		<c:when test="${board eq 'faq'}">
-			<h1>자주 묻는 질문</h1>
-		</c:when>
-		<c:otherwise>			
-			<h1>${board} Detail Page</h1>
-		</c:otherwise>
-	</c:choose>
-<header>
-        <h3 id="bo_v_title">
-            ${dto.title}       </h3>
-</header>
-<section id="bo_v_info">
-        작성자 <strong><span class="sv_member">${dto.id}</span></strong>
-        <c:if test="${board eq 'notices'}">
-        <span class="sound_only">작성일</span><strong>${dto.createdDate}</strong>
-        </c:if>
-    </section>
-    <hr>
-    <section id="bo_v_atc">
-        <!-- 본문 내용 시작 { -->
-        <div id="bo_v_con">
-        ${dto.contents}
-</div>
-                <!-- } 본문 내용 끝 -->
 
-    </section>
-    
-    
-
-	<c:if test="${board eq 'notices'}">
-		<br>
-		<c:forEach items="${dto.fileDTOs}" var="f"> <!-- 파일 다운로드 -->
-		<!-- 	<img alt="" src="../resources/upload/product/fileName(UUID)">  -->
-			<img alt="" src="../resources/upload/notices/${f.fileName}">
-		</c:forEach>
-	</c:if>
-	
-	<hr>
-	
-	
-	<c:choose>
-		<c:when test="${board eq 'faq'}">
-			<a href="./faqList">글 목록</a>
-		</c:when>
-		<c:otherwise>
-			<a href="./list">글 목록</a>
-		</c:otherwise>
-	</c:choose>
-	<!-- 작성자만 수정과 삭제가 가능하게끔  -->
-	<c:if test="${auth.id eq dto.id}">
-		<!-- <button type="button" onclick="button_del();">삭제하기</button> -->
-		<a href="./delete?num=${dto.num}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
-		<a href="./update?num=${dto.num}">수정</a>
-	</c:if>
-</div>
+	<!-- ##### Search Content ##### -->
+	<c:import url="../template/new_search.jsp"></c:import>
 
 
-	<script src="../resources/js/hamberger.js"></script>
+	<!-- ##### Main Content Wrapper Start ##### -->
+    <div class="main-content-wrapper d-flex clearfix">
+
+		<c:import url="../template/new_header.jsp"></c:import>
+
+			<!-- Product Catagories Area Start -->
+			<div class="products-catagories-area clearfix">
+				<div class="clearfix">
+
+				</div>
+			</div>
+			<!-- Product Catagories Area End -->
+
+	</div>
+	<!-- ##### Main Content Wrapper End ##### -->
+
+
+	<!-- ##### Footer Content ##### -->
+	<c:import url="../template/new_footer.jsp"></c:import>
+
+
+	<!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
+    <script src="../resources/js/jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="../resources/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="../resources/js/bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="../resources/js/plugins.js"></script>
+    <!-- Active js -->
+    <script src="../resources/js/active.js"></script>
+
+
+
+	<div id="detailArea">
+		<c:choose>
+			<c:when test="${board eq 'notices'}">
+				<h1>공지사항</h1>	
+			</c:when>
+			<c:when test="${board eq 'faq'}">
+				<h1>자주 묻는 질문</h1>
+			</c:when>
+			<c:otherwise>			
+				<h1>${board} Detail Page</h1>
+			</c:otherwise>
+		</c:choose>
+	<header>
+			<h3 id="bo_v_title">
+				${dto.title}       </h3>
+	</header>
+	<section id="bo_v_info">
+			작성자 <strong><span class="sv_member">${dto.id}</span></strong>
+			<c:if test="${board eq 'notices'}">
+			<span class="sound_only">작성일</span><strong>${dto.createdDate}</strong>
+			</c:if>
+		</section>
+		<hr>
+		<section id="bo_v_atc">
+			<!-- 본문 내용 시작 { -->
+			<div id="bo_v_con">
+			${dto.contents}
+	</div>
+					<!-- } 본문 내용 끝 -->
+
+		</section>
+		
+		
+
+		<c:if test="${board eq 'notices'}">
+			<br>
+			<c:forEach items="${dto.fileDTOs}" var="f"> <!-- 파일 다운로드 -->
+			<!-- 	<img alt="" src="../resources/upload/product/fileName(UUID)">  -->
+				<img alt="" src="../resources/upload/notices/${f.fileName}">
+			</c:forEach>
+		</c:if>
+		
+		<hr>
+		
+		
+		<c:choose>
+			<c:when test="${board eq 'faq'}">
+				<a href="./faqList">글 목록</a>
+			</c:when>
+			<c:otherwise>
+				<a href="./list">글 목록</a>
+			</c:otherwise>
+		</c:choose>
+		<!-- 작성자만 수정과 삭제가 가능하게끔  -->
+		<c:if test="${auth.id eq dto.id}">
+			<!-- <button type="button" onclick="button_del();">삭제하기</button> -->
+			<a href="./delete?num=${dto.num}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+			<a href="./update?num=${dto.num}">수정</a>
+		</c:if>
+	</div>
 </body>
 </html>

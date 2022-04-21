@@ -38,7 +38,6 @@ body{
 }
 
 .container {
-    width: 1200px;
     box-sizing: border-box;
     margin: 40px auto;
     padding: 20px;
@@ -244,7 +243,7 @@ textarea:focus, input:focus {
 	border: 1px solid #CEE5D0;
 }
 
-ul {
+#ultag{
     list-style-type: disc;
     margin-block-start: 1em;
     margin-block-end: 1em;

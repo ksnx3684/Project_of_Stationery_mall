@@ -33,7 +33,7 @@
         <nav class="amado-nav">
             <ul>
                 <li class="active"><a href="/project/">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
+                <li><a href="/project/product/list">Shop</a></li>
                 <li><a href="/project/faq/faqList">FAQ</a></li>
                 <li><a href="/project/qnas/list">Q&A</a></li>
                 <li><a href="/project/review/list">Review</a></li>
@@ -61,6 +61,5 @@
             <a href="#" class="search-nav"><img src="/project/resources/img/header-img/search.png" alt="">Search</a>
         </div>
     </header>
-    <!-- Header Area End -->        
 </body>
 </html>

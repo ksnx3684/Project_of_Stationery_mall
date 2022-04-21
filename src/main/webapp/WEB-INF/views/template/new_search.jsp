@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="search-content">
-                        <form action="#" method="get">
+                        <form action="product/list" method="get">
                             <input type="search" name="search" id="search" placeholder="검색할 상품을 입력하세요">
                             <button type="submit"><img src="/project/resources/img/header-img/search.png" alt=""></button>
                         </form>
