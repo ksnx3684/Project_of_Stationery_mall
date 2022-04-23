@@ -4,8 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	
+	<!-- Title  -->
+	<title>Product Detail</title>
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <c:import url="../template/header.jsp"></c:import>
 	<link rel="stylesheet" href="../resources/css/hamberger.css">
@@ -13,6 +20,9 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp" rel="stylesheet">
 </head>
 <body>
+
+
+
 	<!--title -->
 	<div id="titleArea">
     	<h2>상품상세 정보</h2>

@@ -15,6 +15,7 @@
 
 	<!-- Core Style CSS -->
 	<link rel="stylesheet" href="./resources/css/core-style.css">
+	<link rel="stylesheet" href="./resources/css/index.css">
 	
 </head>
 <body>
@@ -31,6 +32,34 @@
 			<div class="products-catagories-area clearfix">
 				<div class="clearfix">
 
+					  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel" data-interval="4000">
+						<div class="carousel-inner">
+						  <div class="carousel-item active">
+							<img src="./resources/img/index/clark-young-QdRnZlzYJPA-unsplash.jpg" class="d-block w-100">
+						  </div>
+						  <div class="carousel-item">
+							<img src="./resources/img/index/kelly-sikkema-JDPDMaINjko-unsplash.jpg" class="d-block w-100">
+						  </div>
+						  <div class="carousel-item">
+							<img src="./resources/img/index/eduardo-casajus-gorostiaga-aWUUEIJaSRw-unsplash.jpg" class="d-block w-100">
+						  </div>
+						  <div class="carousel-item">
+							<img src="./resources/img/index/artboard-studio-c-KRSHct7Ho-unsplash.jpg" class="d-block w-100">
+						  </div>
+						  <div class="carousel-item">
+							<img src="./resources/img/index/yellow-cactus-MTNN8IfrY6Y-unsplash.jpg" class="d-block w-100">
+						  </div>
+						</div>
+						<button class="carousel-control-prev" type="button" data-target="#carouselExampleFade" data-slide="prev">
+						  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						  <span class="sr-only">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-target="#carouselExampleFade" data-slide="next">
+						  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+						  <span class="sr-only">Next</span>
+						</button>
+					  </div>
+					
 				</div>
 			</div>
 			<!-- Product Catagories Area End -->

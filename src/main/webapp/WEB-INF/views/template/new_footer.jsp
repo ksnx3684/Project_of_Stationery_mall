@@ -16,7 +16,7 @@
                     <div class="single_widget_area">
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
-                            <a href="/project"><img src="/project/resources/img/header-img/title.png" alt=""></a>
+                            <a href="/project"><img src="/project/resources/img/header-img/title-cutout.png" alt=""></a>
                         </div>
                         <!-- Copywrite Text -->
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->

@@ -31,9 +31,96 @@
 
 		<c:import url="../template/new_header.jsp"></c:import>
 
-			<!-- Product Catagories Area Start -->
-			<div class="products-catagories-area clearfix">
-				<div class="clearfix">
+			<div class="shop_sidebar_area">
+				<!-- ##### Single Widget ##### -->
+				<div class="widget catagory mb-50">
+					<!-- Widget Title -->
+					<h6 class="widget-title mb-30">Catagories</h6>
+					<!--  Catagories  -->
+					<div class="catagories-menu">
+						<ul>
+							<li class="active"><a href="#">전체상품</a></li>
+							<li><a href="#">Beds</a></li>
+							<li><a href="#">Accesories</a></li>
+							<li><a href="#">Furniture</a></li>
+							<li><a href="#">Home Deco</a></li>
+							<li><a href="#">Dressings</a></li>
+							<li><a href="#">Tables</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="amado_product_area section-padding-100">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+							<div class="product-topbar d-xl-flex align-items-end justify-content-between">
+								<h1>Shop</h1>
+								<input type="hidden" id="id" value="${auth.id}"></input>
+							</div>
+						</div>
+					</div>
+					<div class="row" id="ultag">
+						<c:forEach items="${list}" var="list">
+							<!-- Single Product Area -->
+							<div class="col-12 col-sm-6 col-md-6 col-xl-4">
+								<div class="single-product-wrapper">
+									<!-- Product Image -->
+									<a href="./detail?productNum=${list.productNum}">
+										<div class="product-img">
+											<img src="../resources/upload/product/${list.thumbnail}" alt="">
+										</div>
+										<!-- Product Description -->
+										<div class="product-description d-flex align-items-center justify-content-between">
+											<!-- Product Meta Data -->
+											<div class="product-meta-data">
+												<div class="line"></div>
+												<p class="product-price">${list.price}원</p>
+												<h6>${list.name}</h6>
+											</div>
+									</a>
+										<!-- Ratings & Cart -->
+										<div class="ratings-cart text-right" style="cursor: pointer;">
+											<div class="cart">
+												
+												<span class="material-icons-outlined cart" data-num="${list.productNum}">
+													shopping_cart
+												</span>
+											
+											
+												<span class="material-icons-outlined wishlist" id="wishlist" class="wishlist" data-num="${list.productNum}">
+													favorite_border
+												</span>
+												
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+	
+					<div class="row">
+						<div class="col-12">
+							<!-- Pagination -->
+							<nav aria-label="navigation">
+								<ul class="pagination justify-content-end mt-50">
+									<li class="page-item active"><a class="page-link" href="#">01.</a></li>
+									<li class="page-item"><a class="page-link" href="#">02.</a></li>
+									<li class="page-item"><a class="page-link" href="#">03.</a></li>
+									<li class="page-item"><a class="page-link" href="#">04.</a></li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+	<!-- ##### Main Content Wrapper End ##### -->
+
+
+
+
 
 					<div id="top">
 						<!--title -->
@@ -76,39 +163,8 @@
 							<button><a href="./add">상품 추가하기</a></button>
 						</c:if>
 					</div>
-					<!-- id -->
-					<input type="hidden" id="id" value="${auth.id}"></input>
-				
-					<!-- list -->
-					<div class="container">
-						<ul id="ultag">
-							<c:forEach items="${list}" var="list">
-								<li class="card">
-									<div class="thumbnail">
-										<a href="./detail?productNum=${list.productNum}"> 
-											<img alt="" src="../resources/upload/product/${list.thumbnail}">
-										</a>
-									</div>	
-									<!-- </div class="figure"> -->
-									<div class="productName">
-										<a href="./detail?productNum=${list.productNum}">
-											${list.name}
-										</a>
-									</div>
-									<div class="price">
-										${list.price}원
-									</div> 
-									<span class="material-icons-outlined cart" data-num="${list.productNum}">
-										shopping_cart
-									</span>
-									<span class="material-icons-outlined wishlist" id="wishlist" class="wishlist" data-num="${list.productNum}">
-										favorite_border
-									</span>
-								</li>
-							</c:forEach>
-						</ul>
-					</div>
-				
+
+
 					<div class="pager">
 						<c:if test="${pager.pre}">
 							<a href="./list?page=${pager.startNum-1}">
@@ -128,10 +184,6 @@
 						</c:if>
 					</div>
 				
-					<script src="../resources/js/product/wishlist.js"></script>
-
-				</div>
-			</div>
 			<!-- Product Catagories Area End -->
 
 	</div>
@@ -154,7 +206,7 @@
     <script src="../resources/js/active.js"></script>
 
 
-
+	<script src="../resources/js/product/wishlist.js"></script>
 	
 </body>
 </html>

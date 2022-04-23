@@ -1,51 +1,5 @@
-.title > img{
-    display: block;
-    margin: 0 auto;
-}
-.container{
-    margin-top: 20px;
-    margin-bottom: 100px;
-    min-width: 1200px;
-    max-height: 100%;
-    z-index: 1;
-}
-#myCarousel{
-    min-width: 900px;
-    min-height: 450px;
-    width: 450px;
-    margin: 0 auto;
-}
-.main > .subtitle{
-    display: block;
-    
-}
-.main > h2{
-    position: relative;
-    left: 50%;
-    transform: translate(-50%, 0px);
-    border-bottom: 1px solid black;
-    display: inline-block;
-    padding : 15px 20px;
-    margin: 40px auto;
-}
-
-.items{
-    width: 100%;
-    position: relative;
-}
-.each{
-    list-style: none;
-    float: left;
-}
-.thumbnail{
-    margin-right: 20px;
-    margin-bottom: 60px;
-}
-.thumbnail > a{
-    text-align: center;
-    display: block;
-}
-.thumbnail > a > img{
-    width: 250px;
-    height: 250px;
+.carousel-control-prev, .carousel-control-next{
+    background: 0 0;
+    border: 0;
+    cursor: pointer;
 }
