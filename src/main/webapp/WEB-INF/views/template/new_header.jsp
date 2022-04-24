@@ -32,7 +32,7 @@
         <!-- Amado Nav -->
         <nav class="amado-nav">
             <ul>
-                <li class="active"><a href="/project/">Home</a></li>
+                <li><a href="/project/">Home</a></li>
                 <li><a href="/project/product/list">Shop</a></li>
                 <li><a href="/project/faq/faqList">FAQ</a></li>
                 <li><a href="/project/qnas/list">Q&A</a></li>

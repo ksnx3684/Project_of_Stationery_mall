@@ -37,7 +37,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                             <a class="nav-link" href="/project/">Home</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="shop.html">Shop</a>
+                                            <a class="nav-link" href="/project/product/list">Shop</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="/project/faq/faqList">FAQ</a>

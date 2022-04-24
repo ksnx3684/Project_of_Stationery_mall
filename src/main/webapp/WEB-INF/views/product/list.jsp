@@ -39,26 +39,64 @@
 					<!--  Catagories  -->
 					<div class="catagories-menu">
 						<ul>
-							<li class="active"><a href="#">전체상품</a></li>
-							<li><a href="#">Beds</a></li>
-							<li><a href="#">Accesories</a></li>
-							<li><a href="#">Furniture</a></li>
-							<li><a href="#">Home Deco</a></li>
-							<li><a href="#">Dressings</a></li>
-							<li><a href="#">Tables</a></li>
+							<li><a href="/project/product/list">전체상품</a></li>
+							<li><a href="/project/product/list?categoryNum=100">팬시용품</a></li>
+							<li><a href="/project/product/list?categoryNum=200">필기용품</a></li>
+							<li><a href="/project/product/list?categoryNum=300">노트/수첩</a></li>
+							<li><a href="/project/product/list?categoryNum=400">가방/지갑</a></li>
+							<li><a href="/project/product/list?categoryNum=500">필통/파우치</a></li>
+							<li><a href="/project/product/list?categoryNum=600">생활/계절용품</a></li>
+							<li><a href="/project/product/list?categoryNum=700">악세사리</a></li>
+							<li><a href="/project/product/list?categoryNum=800">완구</a></li>
+							<li><a href="/project/product/list?categoryNum=900">애완용품</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
-			<div class="amado_product_area section-padding-100">
+			<div class="amado_product_area section-padding-100" style="padding-top: 60px; padding-bottom: 60px;">
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-12">
 							<div class="product-topbar d-xl-flex align-items-end justify-content-between">
-								<h1>Shop</h1>
+								<h1>SHOP</h1>
 								<input type="hidden" id="id" value="${auth.id}"></input>
 							</div>
 						</div>
+						<div id="top">
+							<!--title -->
+							<div id="titleArea">
+								<c:if test="${param.categoryNum eq 0 || param.categoryNum eq null}">
+									<h3>전체상품</h3>
+								</c:if>
+								<c:forEach items="${allcatelist}" var="list">
+									<c:if test="${list.categoryNum eq param.categoryNum}">
+										<h2>${list.categoryName}</h2>
+									</c:if>
+								</c:forEach>
+								<!-- 세부카테고리 메뉴 -->
+								<div id="subCategoryMenu">
+									<ul class="categoryUl">
+										<c:forEach items="${allcatelist}" var="catelist">
+											<c:if test="${Math.round(param.categoryNum/10)*10 eq catelist.categoryNum}">
+												<c:set var="parentId" value="${catelist.categoryNum}"></c:set>
+												<c:forEach items="${allcatelist}" var="catelist">
+													<c:if test="${parentId eq catelist.parentId}">
+														<li>
+															<a href="/project/product/subCateList?categoryNum=${catelist.categoryNum}">
+																${catelist.categoryName}
+															</a>
+														</li>
+													</c:if>
+												</c:forEach>
+											</c:if>
+										</c:forEach>
+									</ul>
+								</div>
+								<!-- 세부카테고리메뉴 -->
+							</div>
+							<!-- title area -->
+						</div>
+						<!-- top -->
 					</div>
 					<div class="row" id="ultag">
 						<c:forEach items="${list}" var="list">
@@ -99,16 +137,28 @@
 							</div>
 						</c:forEach>
 					</div>
-	
 					<div class="row">
 						<div class="col-12">
 							<!-- Pagination -->
 							<nav aria-label="navigation">
 								<ul class="pagination justify-content-end mt-50">
-									<li class="page-item active"><a class="page-link" href="#">01.</a></li>
-									<li class="page-item"><a class="page-link" href="#">02.</a></li>
-									<li class="page-item"><a class="page-link" href="#">03.</a></li>
-									<li class="page-item"><a class="page-link" href="#">04.</a></li>
+									<c:if test="${pager.pre}">
+										<a href="./list?page=${pager.startNum-1}">
+											◁
+										</a>
+									</c:if>
+									<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+										<li class="page-item">
+											<a class="page-link" href="./list?page=${i}&categoryNum=${pager.categoryNum}&search=${pager.search}">
+												${i}
+											</a>
+										</li>
+									</c:forEach>
+									<c:if test="${pager.next}">
+										<a href="./list?page=${pager.lastNum+1}">
+											▷
+										</a>
+									</c:if>
 								</ul>
 							</nav>
 						</div>
@@ -122,41 +172,7 @@
 
 
 
-					<div id="top">
-						<!--title -->
-						<div id="titleArea">
-							<c:if test="${param.categoryNum eq 0 || param.categoryNum eq null}">
-								<h2>전체상품</h2>
-							</c:if>
-							<c:forEach items="${allcatelist}" var="list">
-								<c:if test="${list.categoryNum eq param.categoryNum}">
-									<h2>${list.categoryName}</h2>
-								</c:if>
-							</c:forEach>
-							<!-- 세부카테고리 메뉴 -->
-							<div id="subCategoryMenu">
-								<ul class="categoryUl">
-									<c:forEach items="${allcatelist}" var="catelist">
-										<c:if test="${Math.round(param.categoryNum/10)*10 eq catelist.categoryNum}">
-											<c:set var="parentId" value="${catelist.categoryNum}"></c:set>
-											<c:forEach items="${allcatelist}" var="catelist">
-												<c:if test="${parentId eq catelist.parentId}">
-													<li>
-														<a href="/project/product/subCateList?categoryNum=${catelist.categoryNum}">
-															${catelist.categoryName}
-														</a>
-													</li>
-												</c:if>
-											</c:forEach>
-										</c:if>
-									</c:forEach>
-								</ul>
-							</div>
-							<!-- 세부카테고리메뉴 -->
-						</div>
-						<!-- title area -->
-					</div>
-					<!-- top -->
+					
 					<div class="adminBtn">		
 						<!-- 상품추가 버튼 -->
 						<c:if test="${auth.userAccount eq 0}">
@@ -165,25 +181,6 @@
 					</div>
 
 
-					<div class="pager">
-						<c:if test="${pager.pre}">
-							<a href="./list?page=${pager.startNum-1}">
-								PREVIEW
-							</a>
-						</c:if>
-						<!-- controller mv 에 pager  -->
-						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-							<a href="./list?page=${i}&categoryNum=${pager.categoryNum}&search=${pager.search}">
-								${i}
-							</a>
-						</c:forEach>
-						<c:if test="${pager.next}">
-							<a href="./list?page=${pager.lastNum+1}">
-								NEXT
-							</a>
-						</c:if>
-					</div>
-				
 			<!-- Product Catagories Area End -->
 
 	</div>

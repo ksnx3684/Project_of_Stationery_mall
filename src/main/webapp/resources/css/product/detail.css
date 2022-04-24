@@ -1,7 +1,7 @@
 @charset "UTF-8";
 .adminBtn >button{
-	color: #0f3939;
-	background-color: #CEE5D0;
+	color: white;
+	background-color: #D8B384;
 	border: none;
 	padding: 10px 10px;
 	text-decoration: none;
@@ -51,9 +51,7 @@ hr {
 
 .addToCart {
   margin-top: 20px;
-  display: flex;
   flex-direction: row;
-  padding-left: 10px
 }
 
 .piece {
@@ -120,15 +118,15 @@ html {
 .formrow {
 	overflow:hidden;
 	position:relative;
-	max-width:150px;
+	max-width:200px;
 	padding: 10px;
 
 }
 .checklabel {
 	display:block;
 	width:100%;
-	border:2px solid #000;
-	background:#f2f2f2;
+	color: white;
+	background:#D8B384;
 	border-radius:2px;
 	text-align:center;
 	padding:5px;
@@ -136,7 +134,7 @@ html {
 	border-radius: 6px;
 }
 .checklabel:hover {
-	background:#ddd;
+	background:#5E454B;
 }
 .checkbox {
     top: 35px;
