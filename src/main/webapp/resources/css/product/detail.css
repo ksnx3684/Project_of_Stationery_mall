@@ -133,15 +133,16 @@ html {
 	font-size:17px;
 	border-radius: 6px;
 }
+
 .checklabel:hover {
 	background:#5E454B;
 }
 .checkbox {
-    top: 35px;
-    left: 3px;
+    top: 10px;
+    left: 10px;
 	position:absolute;
-	width: 117px;
-	height: 2.2em;
+	width: 180px;
+	height: 55px;
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	-ms-appearance: none;
@@ -158,9 +159,6 @@ html {
 	transition:.3s ease;
 	outline:0;
 }
-.checkbox:focus {
-	outline:#0f3939
-}
 
  .checkbox:checked + label{
 	border-color:#45d645;
@@ -170,6 +168,12 @@ html {
 }
 .checkbox:checked {
 	background-position: 0 0;
+}
+.checklabel:visited{
+	background: #000;
+}
+.checkbox:visited{
+	background: #000;
 }
 
 /* qna Css */

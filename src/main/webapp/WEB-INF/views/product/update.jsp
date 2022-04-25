@@ -6,25 +6,20 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 수정</title>
 <link rel="stylesheet" href="../resources/css/product/add.css">
 <link rel="stylesheet" href="../resources/css/product/update.css">
-<link
-	href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp"
-	rel="stylesheet">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <c:import url="../template/header.jsp"></c:import>
-	<link rel="stylesheet" href="../resources/css/hamberger.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
 </head>
 <body>
 <!--title -->
 	<div id="titleArea">
-    <h2>상품 업데이트</h2>
+    <h2>상품 수정</h2>
     <span class="xans-element- xans-layout xans-layout-mobileaction "><a href="javascript:history.back();" ><img src="//img.echosting.cafe24.com/skin/mobile_ko_KR/layout/btn_back.gif" width="33" alt="뒤로가기"></a>
 </span>
 </div>
-
 
 	<form action="./update" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="productNum" value="${dto.productNum}" id="getProductNum">
@@ -48,30 +43,26 @@
 				<input type="text" name="price" placeholder="숫자만 입력" id="Field3" value="${dto.price}">
 			</div>
 		</div>
-<%-- 		상품 이름<input type="text" name="name" value="${dto.name}">
-		설명<textarea name="contents" rows="10" cols="10">${dto.contents}</textarea>
-		가격<input type="text" name="price" value="${dto.price}"> --%>
-		
 		
 <!-- 재고 -->
 		<c:choose>
 			<c:when test="${empty options}">
-				재고<input type="text" value="${dto.stock}" id="stockForm" readonly>
+				재고 <input type="text" value="${dto.stock}" id="stockForm" readonly>
 				재고 추가 <input type="text" name="stock" value="0"> 
 			</c:when>
 			<c:otherwise>
-				재고<input type="hidden" value="${dto.stock}" id="stockForm">
-				재고 추가 <input type="hidden" name="stock" value="0"> 
+				<input type="hidden" value="${dto.stock}" id="stockForm">
+				<input type="hidden" name="stock" value="0"> 
 			</c:otherwise>
 		</c:choose>
-		<%-- <c:if test="${empty options}"> 
-			재고<input type="text" name="stock" value="${dto.stock}" id="stockForm">
-			재고 추가 <input type="text" name="stock" value="0"> 
+		<c:if test="${empty options}"> 
+			<input type="hidden" name="stock" value="${dto.stock}" id="stockForm">
+			<input type="hidden" name="stock" value="0"> 
 		</c:if>
-		 --%>
+
 <hr><!--------카테고리------------->		
 		<div>
-			category <select name="categoryNum">
+			상품 카테고리<select name="categoryNum">
 				<c:forEach items="${list}" var="list">
 					<c:choose>
 						<c:when test="${list.parentId eq null}">
@@ -94,7 +85,7 @@
 		<div id="oriOption">
 			<c:forEach items="${options}" var="options" varStatus="state">
 	
-				<li>
+				<li style="list-style: none;">
 				<button type="button">${options.optionContents}</button>	
 				재고: ${options.optionStock}
 		
@@ -127,8 +118,8 @@
 							<%-- 대표사진<input type="file" name="files" value="${f.fileName}"> --%>
 							<!-- 		나중에 썸네일 수정하기
 						
-						파일선택버튼을 눌렀으면 히든 보내줌 아니면 지워 
-						수정안하는 경우에는 히든 보내지마   -->
+						파일선택버튼을 눌렀으면 히든을 보내줌 아니면 지우기
+						수정안하는 경우에는 히든을 보내지 않음   -->
 							<%-- 	<input type="hidden" name="fileNum" value="${f.fileNum}" id="hiddenfileNum">  --%>
 
 						</c:when>
@@ -146,7 +137,6 @@
 				
 			
 				<div id="fileResult_t"></div>
-				<!-- 썸네일에 fileName을 넣어야되는데 fileManger를 거쳐야 얻을 수 있음 여러 파일중에서 썸네일을 어떻게 구분해서 prductcontroller까지 보내지  -->
 
 			</c:forEach>
 			<input type="hidden" name="check" id="tCheck" value="2">
@@ -160,8 +150,9 @@
 
 		<button type="submit">수정 확인</button>
 	</form>
-<script src="../resources/js/hamberger.js"></script>
+
 	<script type="text/javascript" src="../resources/js/product/productFileUpdate.js"></script>
 	<script type="text/javascript" src="../resources/js/product/productOption.js"></script>
+
 </body>
 </html>

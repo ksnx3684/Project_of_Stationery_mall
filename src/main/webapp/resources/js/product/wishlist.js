@@ -1,120 +1,111 @@
-// listpage 위시리스트 + 장바구니
 
-const id= document.getElementById("id")
-const ultag = document.getElementById("ultag")
+$(".wishlist").click(function(){
+    let productNum = $(this).attr("data-num");
+    let id = $("#id").val();
+    console.log(productNum);
+    console.log(id);
 
-
-
-// let count=0;
-
-
-
-ultag.addEventListener("click",function(event){
-    //cart
-    if(event.target.classList.contains("cart")){
-        productNum=event.target.getAttribute("data-num")
-
-   
-            let xhttp = new XMLHttpRequest();
-            xhttp.open("POST","./addCart");
-            xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded")
-            xhttp.send("productNum="+productNum+"&productCount=1&optionNum=0");
-
-            xhttp.onreadystatechange = function(){
-                if(this.readyState==4 && this.status==200){
-                    let result = this.responseText.trim();
-                    console.log(result)
-                    if(result=='1'){
-                        alert("장바구니에 추가되었습니다.")
-                        console.log("장바구니 추가 ")
-                    }else if(result=='2'){
-                        alert("이미 장바구니에 추가된 상품입니다.")
-                    }else if(result=='3'){ 
-                        let check = confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")
-                            if(check){
-                                location.replace("../users/login")
-                            }
-                            return;
-                    }else if(result=='4'){
-                        alert("옵션을 선택해주세요. 상세페이지로 이동합니다")
-                        location.replace("./detail?productNum="+productNum)
-                    }
-                }
-            }
+    if($("#id").val()==""){
+        let check = confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")
+        if(check){
+            location.replace("../users/login");
+        }
+        return;
     }
 
-    //wishlist
-    if(event.target.classList.contains("wishlist")){
-    productNum=event.target.getAttribute("data-num")
+    $.ajax({
+        type : "post",
+        url : "../users/addWishList",
+        data : {
+            id : id,
+            productNum : productNum
+        },
 
-
-        //로그인 안했을 경우
-        if(id.value==""){
-            let check = confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")
-            if(check){
-                location.replace("../users/login")
-            }
-            return;
-        //로그인 했을 경우 
-        
+        success : function(add){
+            alert("위시리스트에 추가 되었습니다");
+        },
+        error : function(){
+            alert("에러가 발생했습니다")
         }
-            //  count++;
+    })
 
-            //위시리스트 추가 
-            if(event.target.innerHTML=="favorite_border"){ 
-
-            
-
-                let xhttp = new XMLHttpRequest();
-                xhttp.open("POST","../users/addWishList");
-                xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded")
-                xhttp.send("id="+id.value+"&productNum="+productNum);
-
-                xhttp.onreadystatechange = function(){
-                    if(this.readyState==4 && this.status==200){
-                        let result = this.responseText.trim();
-                        if(result=='1'){
-                            event.target.innerHTML="favorite"
-                            console.log("wishlist 추가 ")
-                        }else if(result=='2'){
-                            alert('이미 위시리스트에 추가된 상품입니다.')
-                            event.target.innerHTML="favorite"
-                        }else{
-                            alert('wishlist 추가 실패')
-                        }
-                    }
-                }
+});
 
 
-            //위시리스트 삭제
-            }else{
-                event.target.innerHTML="favorite_border"
 
-                let xhttp = new XMLHttpRequest();
-                xhttp.open("POST","../users/deleteWishList");
-                xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded")
-                xhttp.send("id="+id.value+"&productNum="+productNum);
 
-                xhttp.onreadystatechange = function(){
-                    if(this.readyState==4 && this.status==200){
-                    
-                        console.log(this.responseText)
-                        let result = this.responseText.trim();
-                        if(result=='1'){
-                        console.log("wishlist 삭제 ")
-                        }
-                        else{
-                            console.log('wishlist 삭제 실패')
+// // listpage 위시리스트
+// const wishlist = document.getElementsByClassName("wishlist");
 
-                        }
-                    }
-                }
+//     wishlist[0].addEventListener("click",function(event){
 
-            }
+//     //wishlist
+//     if(event.target.classList.contains("wishlist")){
+//     productNum=event.target.getAttribute("data-num")
+//     console.log(productNum);
 
-            }
+
+//         //로그인 안했을 경우
+//         if(id.value==""){
+//             let check = confirm("로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")
+//             if(check){
+//                 location.replace("../users/login")
+//             }
+//             return;
+//         //로그인 했을 경우 
         
+//         }
+//             //  count++;
 
-}) 
- 
+//             //위시리스트 추가 
+//             if(event.target.innerHTML=="favorite_border"){ 
 
+//                 let xhttp = new XMLHttpRequest();
+//                 xhttp.open("POST","../users/addWishList");
+//                 xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+//                 xhttp.send("id="+id.value+"&productNum="+productNum);
+
+//                 xhttp.onreadystatechange = function(){
+//                     if(this.readyState==4 && this.status==200){
+//                         let result = this.responseText.trim();
+//                         if(result=='1'){
+//                             event.target.innerHTML="favorite"
+//                             console.log("wishlist 추가 ")
+//                         }else if(result=='2'){
+//                             alert('이미 위시리스트에 추가된 상품입니다.')
+//                             event.target.innerHTML="favorite"
+//                         }else{
+//                             alert('wishlist 추가 실패')
+//                         }
+//                     }
+//                 }
+
+//             }
+//             위시리스트 삭제
+//             else{
+//                 event.target.innerHTML="favorite_border"
+
+//                 let xhttp = new XMLHttpRequest();
+//                 xhttp.open("POST","../users/deleteWishList");
+//                 xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+//                 xhttp.send("id="+id.value+"&productNum="+productNum);
+
+//                 xhttp.onreadystatechange = function(){
+//                     if(this.readyState==4 && this.status==200){
+                    
+//                         console.log(this.responseText)
+//                         let result = this.responseText.trim();
+//                         if(result=='1'){
+//                         console.log("wishlist 삭제 ")
+//                         }
+//                         else{
+//                             console.log('wishlist 삭제 실패')
+//                         }
+//                     }
+//                 }
+
+//             }
+
+//             }
+        
+//     });

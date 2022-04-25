@@ -5,23 +5,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 추가</title>
 <link rel="stylesheet" href="../resources/css/product/add.css">
-<link
-	href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp"
-	rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <c:import url="../template/header.jsp"></c:import>
-	<link rel="stylesheet" href="../resources/css/hamberger.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+sharp" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
 </head>
 <body>
-<!--title -->
+
 	<div id="titleArea">
-    <h2>상품 추가</h2>
-    <span class="xans-element- xans-layout xans-layout-mobileaction "><a href="javascript:history.back();" ><img src="//img.echosting.cafe24.com/skin/mobile_ko_KR/layout/btn_back.gif" width="33" alt="뒤로가기"></a>
-</span>
-</div><!--/title -->
+		<h2>상품 추가</h2>
+		<span class="xans-element- xans-layout xans-layout-mobileaction ">
+			<a href="javascript:history.back();" >
+				<img src="//img.echosting.cafe24.com/skin/mobile_ko_KR/layout/btn_back.gif" width="33" alt="뒤로가기">
+			</a>
+		</span>
+	</div>
 
 	<form action="./add" method="post" enctype="multipart/form-data" id="frm">
 		<input type="hidden" name="productNum" value="${dto.productNum}" id="getProductNum">
@@ -105,9 +104,6 @@
 
 	</form>
 
-
-
-	<script src="../resources/js/hamberger.js"></script>
 	<script src="../resources/js/product/add.js"></script>
 	<script src="../resources/js/product/productOption.js"></script>
 	<script src="../resources/js/product/productFileUpdate.js"></script>

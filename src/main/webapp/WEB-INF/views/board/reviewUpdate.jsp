@@ -5,12 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>REVIEW 수정</title>
 <link href="../resources/css/boardForm.css" rel="styleSheet" />
-<c:import url="../template/header.jsp"></c:import>
-	
-	<link rel="stylesheet" href="../resources/css/hamberger.css">
-	<link rel="stylesheet" href="../resources/css/index.css">
+<link rel="stylesheet" href="../resources/css/index.css">
 <!--  jQuery, bootstrap -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
 	rel="stylesheet">
@@ -123,8 +120,7 @@
         });
       });
 	</script>
-
-<script src="../resources/js/hamberger.js"></script>
 	<script type="text/javascript" src="../resources/js/reviewUpdateFile.js"></script>
+	
 </body>
 </html>

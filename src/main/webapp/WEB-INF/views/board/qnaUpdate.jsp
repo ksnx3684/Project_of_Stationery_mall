@@ -5,11 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>QnA 수정 - SQUARE SHOP</title>
-<c:import url="../template/header.jsp"></c:import>
+<title>Q&A 수정</title>
 	
-	<link rel="stylesheet" href="../resources/css/hamberger.css">
-	<link rel="stylesheet" href="../resources/css/index.css">
+<link rel="stylesheet" href="../resources/css/index.css">
 <link href="../resources/css/boardForm.css" rel="styleSheet" />
 <!--  jQuery, bootstrap -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
@@ -113,7 +111,6 @@
 			<button type="button" id="addCancel">취소</button>
 		</div>
 	</form>
-	<script src="../resources/js/hamberger.js"></script>
 	<script>
     $(document).ready(function() {
         $('#summernote').summernote({
@@ -136,8 +133,7 @@
         });
       });
 	</script>
-
-
 	<script type="text/javascript" src="../resources/js/updateFile.js"></script>
+	
 </body>
 </html>

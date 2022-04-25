@@ -5,13 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰 작성 - SQUARE SHOP</title>
+<title>REVIEW 작성</title>
 <link href="../resources/css/boardForm.css" rel="styleSheet" />
-<!-- favicon.ico 404 (Not Found) -->
-<link rel="icon" href="data:;base64,iVBORw0KGgo=">
-<c:import url="../template/header.jsp"></c:import>
 
-<link rel="stylesheet" href="../resources/css/hamberger.css">
 <link rel="stylesheet" href="../resources/css/index.css">
 <!-- summernote import -->
  <!--  jQuery, bootstrap -->
@@ -81,31 +77,29 @@
 		</div>
 	</form>
 	
-<script>
-    $(document).ready(function() {
-      $('#summernote').summernote({
-        placeholder: '본문을 입력하세요.',
-        height: 500,
-        lang: 'ko-KR',
-        toolbar: [
-                    // [groupName, [list of button]]
-                    ['Font Style', ['fontname']],
-                    ['style', ['bold', 'italic', 'underline']],
-                    ['font', ['strikethrough']],
-                    ['fontsize', ['fontsize']],
-                    ['para', ['paragraph']],
-                    ['color', ['color']],
-                    ['table', ['table']],
-                    ['height', ['height']],
-                    ['highlight', ['highlight']],
-                    ['Insert', ['link']],
-                 ]
-      });
-    });
-</script>
-
-
+	<script>
+		$(document).ready(function() {
+			$('#summernote').summernote({
+				placeholder: '본문을 입력하세요.',
+				height: 500,
+				lang: 'ko-KR',
+				toolbar: [
+							// [groupName, [list of button]]
+							['Font Style', ['fontname']],
+							['style', ['bold', 'italic', 'underline']],
+							['font', ['strikethrough']],
+							['fontsize', ['fontsize']],
+							['para', ['paragraph']],
+							['color', ['color']],
+							['table', ['table']],
+							['height', ['height']],
+							['highlight', ['highlight']],
+							['Insert', ['link']],
+						]
+			});
+		});
+	</script>
 	<script src="../resources/js/file.js"></script>
-	<script src="../resources/js/hamberger.js"></script>
+	
 </body>
 </html>

@@ -60,6 +60,12 @@
 							<div class="product-topbar d-xl-flex align-items-end justify-content-between">
 								<h1>SHOP</h1>
 								<input type="hidden" id="id" value="${auth.id}"></input>
+								<div class="adminBtn">		
+									<!-- 상품추가 버튼 -->
+									<c:if test="${auth.userAccount eq 0}">
+										<a href="./add" class="btn amado-btn mb-15">상품 추가하기</a>
+									</c:if>
+								</div>
 							</div>
 						</div>
 						<div id="top">
@@ -120,16 +126,12 @@
 										<!-- Ratings & Cart -->
 										<div class="ratings-cart text-right" style="cursor: pointer;">
 											<div class="cart">
-												
 												<span class="material-icons-outlined cart" data-num="${list.productNum}">
 													shopping_cart
 												</span>
-											
-											
-												<span class="material-icons-outlined wishlist" id="wishlist" class="wishlist" data-num="${list.productNum}">
+												<!-- <span class="material-icons-outlined wishlist" id="wishlist" class="wishlist" data-num="${list.productNum}">
 													favorite_border
-												</span>
-												
+												</span> -->
 											</div>
 										</div>
 									</div>
@@ -168,25 +170,6 @@
 	</div>
 	<!-- ##### Main Content Wrapper End ##### -->
 
-
-
-
-
-					
-					<div class="adminBtn">		
-						<!-- 상품추가 버튼 -->
-						<c:if test="${auth.userAccount eq 0}">
-							<button><a href="./add">상품 추가하기</a></button>
-						</c:if>
-					</div>
-
-
-			<!-- Product Catagories Area End -->
-
-	</div>
-	<!-- ##### Main Content Wrapper End ##### -->
-
-
 	<!-- ##### Footer Content ##### -->
 	<c:import url="../template/new_footer.jsp"></c:import>
 
@@ -203,7 +186,7 @@
     <script src="../resources/js/active.js"></script>
 
 
-	<script src="../resources/js/product/wishlist.js"></script>
+	<script src="../resources/js/product/cartlist.js"></script>
 	
 </body>
 </html>

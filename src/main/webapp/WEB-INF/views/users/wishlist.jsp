@@ -17,6 +17,8 @@
 	<link rel="stylesheet" href="../resources/css/core-style.css">
 	<link rel="stylesheet" href="../resources/css/users/wishlist.css">
 
+	<script src="../resources/js/jquery/jquery-2.2.4.min.js"></script>
+
 </head>
 <body>
 	<!-- ##### Search Content ##### -->

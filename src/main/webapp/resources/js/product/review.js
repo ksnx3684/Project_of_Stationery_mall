@@ -11,7 +11,7 @@ function getList() {
 
     xhttp.onreadystatechange = function () {
         if(this.readyState == 4 && this.status == 200){ 
-            console.log(this.responseText.trim())
+            // console.log(this.responseText.trim())
             reviewResult.innerHTML = this.responseText.trim();
         }
     }

@@ -3,16 +3,13 @@ a {
   color: black;
 }
 .adminBtn >button{
-  color: #0f3939;
-  background-color: #CEE5D0;
+  background-color: #D8B384;
   border: none;
-  padding: 10px 10px;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-border-radius: 4px;
-margin-top: 10px;
-
+  border-radius: 4px;
+  margin-top: 10px;
 }
 
 .adminBtn{

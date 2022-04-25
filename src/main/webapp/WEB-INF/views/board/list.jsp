@@ -24,14 +24,20 @@
 
 #searchField {
     border: 0px;
+	display: flex;
+    align-items: center;
 }
 button {
 margin: 10px;
 outline: none;
 }
+input {
+	margin-left: 10px;
+    height: 40px;
+}
 .custom-btn {
 width: 80px;
-height: 30px;
+height: 40px;
 border: 2px solid rgb(177, 177, 177);
 font-family: 'Lato', sans-serif;
 font-weight: 500;

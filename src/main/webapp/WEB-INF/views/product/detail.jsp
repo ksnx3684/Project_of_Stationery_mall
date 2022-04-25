@@ -86,13 +86,19 @@
 											<c:if test="${not empty option}">
 												<c:forEach items="${option}" var="option">
 													<div class="formrow">
-														<input type="radio" class="checkbox" value="${option.optionNum}" name="optionNum">
-														<label class="checklabel btn amado-btn" for="${option.optionContents}">${option.optionContents}</label>
+														
+														<label class="checklabel btn amado-btn" for="${option.optionContents}">${option.optionContents}
+															<input type="radio" class="checkbox" value="${option.optionNum}" name="optionNum">
+														</label>
 													</div>
 												</c:forEach>
 											</c:if>	
 											<div class="addToCart cart clearfix">
 												<input type="number" name="productCount" class="piece" value="1" id="piece" min="1" max="100"/>
+												<input type="hidden" id="id" value="${auth.id}">
+												<span class="material-icons-outlined wishlist" id="wishlist" class="wishlist" data-num="${dto.productNum}" style="cursor: pointer;">
+													favorite_border
+												</span>
 												<div style="margin-top: 50px;">
 													<button type="button" id="submitBtn" name="addtocart" value="5" class="btn amado-btn">Add to cart</button>
 												</div>
@@ -152,6 +158,7 @@
 	<script src="../resources/js/product/cart.js"></script>
 	<script type="text/javascript" src="../resources/js/product/review.js"></script>
 	<script type="text/javascript" src="../resources/js/product/qnas.js"></script>
+	<script type="text/javascript" src="../resources/js/product/wishlist.js"></script>
 
 
 </body>

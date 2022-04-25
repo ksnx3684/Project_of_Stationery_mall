@@ -18,7 +18,7 @@ public class CategoryService {
 	public int addTopCategory(String categoryName)throws Exception{
 		CategoryDTO	categoryDTO= new CategoryDTO();
 		categoryDTO.setCategoryName(categoryName);
-		System.out.println("service:"+categoryDTO.getCategoryName());
+//		System.out.println("service:"+categoryDTO.getCategoryName());
 		return categoryDAO.addTopCategory(categoryDTO);
 	}
 	

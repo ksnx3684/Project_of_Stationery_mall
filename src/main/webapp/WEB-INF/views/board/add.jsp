@@ -4,12 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>글 작성 - SQUARE SHOP</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	
+	<!-- Title  -->
+	<title>Product List</title>
+	
 <link href="../resources/css/boardForm.css" rel="styleSheet" />
-<c:import url="../template/header.jsp"></c:import>
 
-<link rel="stylesheet" href="../resources/css/hamberger.css">
 <link rel="stylesheet" href="../resources/css/index.css">
 <!-- favicon.ico 404 (Not Found) -->
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
@@ -113,6 +118,5 @@
 
     <script type="text/javascript" src="../resources/js/admin/usersOrderList.js"></script>
 	<script src="../resources/js/file.js"></script>
-	<script src="../resources/js/hamberger.js"></script>
 </body>
 </html>

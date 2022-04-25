@@ -5,14 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>QnA 추가 - SQUARE SHOP</title>
-<c:import url="../template/header.jsp"></c:import>
+<title>QnA 추가</title>
 	
-	<link rel="stylesheet" href="../resources/css/hamberger.css">
 	<link rel="stylesheet" href="../resources/css/index.css">
 <link href="../resources/css/boardForm.css" rel="styleSheet" />
-<!-- favicon.ico 404 (Not Found) -->
-<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
 <!-- summernote import -->
  <!--  jQuery, bootstrap -->
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">

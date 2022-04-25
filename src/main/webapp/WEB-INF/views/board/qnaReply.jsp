@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Q&A 답변</title>
 <link href="../resources/css/boardForm.css" rel="styleSheet" />
 <!-- favicon.ico 404 (Not Found) -->
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
@@ -62,7 +62,7 @@
 					</tr>
 					<tr>
 						<td>
-							Title <input type="text" name="title" id="title" value="${dto.id}님, 질문 답변입니다❤" readonly="readonly">
+							Title <input type="text" name="title" id="title" value="${dto.id}님, 질문 답변입니다" readonly="readonly">
 						</td>
 					</tr>
 					<tr>

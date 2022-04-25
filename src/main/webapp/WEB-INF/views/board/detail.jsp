@@ -16,7 +16,16 @@
 	<!-- Core Style CSS -->
 	<link rel="stylesheet" href="../resources/css/core-style.css">
 	<link rel="stylesheet" href="../resources/css/index.css">
-	<!-- <link rel="stylesheet" href="../resources/css/boardDetail.css"> -->
+
+	<style type="text/css">
+		#detailArea {
+			width: 70%;
+			margin: 0 auto;
+			text-align: center;
+			padding-top: 60px;
+			padding-bottom: 60px;
+		} 
+	</style>
 
 </head>
 <body>
@@ -33,6 +42,57 @@
 			<!-- Product Catagories Area Start -->
 			<div class="products-catagories-area clearfix">
 				<div class="clearfix">
+
+					<div id="detailArea">
+						<c:choose>
+							<c:when test="${board eq 'notices'}">
+								<h1>공지사항</h1>	
+							</c:when>
+							<c:when test="${board eq 'faq'}">
+								<h1>자주 묻는 질문</h1>
+							</c:when>
+							<c:otherwise>			
+								<h1>${board} Detail Page</h1>
+							</c:otherwise>
+						</c:choose>
+						<header>
+								<h3 id="bo_v_title">
+									${dto.title}
+								</h3>
+						</header>
+						<section id="bo_v_info">
+							작성자 <strong><span class="sv_member">${dto.id}</span></strong>
+							<c:if test="${board eq 'notices'}">
+							<span class="sound_only">작성일</span><strong>${dto.createdDate}</strong>
+							</c:if>
+						</section>
+						<hr>
+						<section id="bo_v_atc">
+							<div id="bo_v_con">
+								${dto.contents}
+							</div>
+						</section>
+						<c:if test="${board eq 'notices'}">
+							<br>
+							<c:forEach items="${dto.fileDTOs}" var="f">
+								<img alt="" src="../resources/upload/notices/${f.fileName}">
+							</c:forEach>
+						</c:if>
+						<hr>
+						<c:choose>
+							<c:when test="${board eq 'faq'}">
+								<a href="./faqList">글 목록</a>
+							</c:when>
+							<c:otherwise>
+								<a href="./list">글 목록</a>
+							</c:otherwise>
+						</c:choose>
+						<!-- 작성자만 수정과 삭제가 가능하게끔  -->
+						<c:if test="${auth.id eq dto.id}">
+							<a href="./delete?num=${dto.num}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+							<a href="./update?num=${dto.num}">수정</a>
+						</c:if>
+					</div>
 
 				</div>
 			</div>
@@ -56,68 +116,6 @@
     <script src="../resources/js/plugins.js"></script>
     <!-- Active js -->
     <script src="../resources/js/active.js"></script>
-
-
-
-	<div id="detailArea">
-		<c:choose>
-			<c:when test="${board eq 'notices'}">
-				<h1>공지사항</h1>	
-			</c:when>
-			<c:when test="${board eq 'faq'}">
-				<h1>자주 묻는 질문</h1>
-			</c:when>
-			<c:otherwise>			
-				<h1>${board} Detail Page</h1>
-			</c:otherwise>
-		</c:choose>
-	<header>
-			<h3 id="bo_v_title">
-				${dto.title}       </h3>
-	</header>
-	<section id="bo_v_info">
-			작성자 <strong><span class="sv_member">${dto.id}</span></strong>
-			<c:if test="${board eq 'notices'}">
-			<span class="sound_only">작성일</span><strong>${dto.createdDate}</strong>
-			</c:if>
-		</section>
-		<hr>
-		<section id="bo_v_atc">
-			<!-- 본문 내용 시작 { -->
-			<div id="bo_v_con">
-			${dto.contents}
-	</div>
-					<!-- } 본문 내용 끝 -->
-
-		</section>
-		
-		
-
-		<c:if test="${board eq 'notices'}">
-			<br>
-			<c:forEach items="${dto.fileDTOs}" var="f"> <!-- 파일 다운로드 -->
-			<!-- 	<img alt="" src="../resources/upload/product/fileName(UUID)">  -->
-				<img alt="" src="../resources/upload/notices/${f.fileName}">
-			</c:forEach>
-		</c:if>
-		
-		<hr>
-		
-		
-		<c:choose>
-			<c:when test="${board eq 'faq'}">
-				<a href="./faqList">글 목록</a>
-			</c:when>
-			<c:otherwise>
-				<a href="./list">글 목록</a>
-			</c:otherwise>
-		</c:choose>
-		<!-- 작성자만 수정과 삭제가 가능하게끔  -->
-		<c:if test="${auth.id eq dto.id}">
-			<!-- <button type="button" onclick="button_del();">삭제하기</button> -->
-			<a href="./delete?num=${dto.num}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
-			<a href="./update?num=${dto.num}">수정</a>
-		</c:if>
-	</div>
+	
 </body>
 </html>

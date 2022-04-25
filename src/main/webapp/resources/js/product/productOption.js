@@ -14,7 +14,7 @@ let productNum=getProductNum.value;
 // file
 options.addEventListener("click",function(event){
     if(event.target.classList.contains("optionDeleteBtn")){
-        let check = confirm("삭제시 복구 불가능함 삭제할겨? ")
+        let check = confirm("삭제시 복구 불가능합니다 삭제하시겠습니까?")
         if(!check){
             return;
         }

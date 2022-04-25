@@ -61,7 +61,7 @@ public class ProductService {
 			result=productDAO.stockUpdate(optionDTO);
 			sum+=Integer.parseInt(optionStock[i]);
 		}
-		//총재고에 추가 
+		// 총 재고에 추가 
 		ProductDTO productDTO = new ProductDTO();
 		productDTO.setStock(sum);
 		productDTO.setProductNum(productNum);
@@ -115,15 +115,15 @@ public class ProductService {
 //		productDTO.setThumbnail(files[0].getOriginalFilename());
 //		System.out.println(files[0].getOriginalFilename());
 
-		int result = productDAO.add(productDTO); // productDTO에 시퀀스 들어가있
+		int result = productDAO.add(productDTO); // productDTO에 시퀀스
 
 		for (int i = 0; i < files.length; i++) {
-			if (files[i].isEmpty()) { // file이 비어있으면 다시 위로 올라가서 다음꺼 실행
-				// files[i].getSize()==0 //file 비어져있으면 저장 안되도록 하기 위함
+			if (files[i].isEmpty()) { // file이 비어있으면 다시 위로 올라가서 다음 파일 실행
+				// files[i].getSize()==0 // file 비어져있으면 저장 안되도록 하기 위함
 				continue;
 			}
 
-			// 파일 반복문 돌려서 파일매니저save 메서드로 filename얻어
+			// 파일 반복문 돌려서 파일매니저save 메서드로 filename
 			String fileName = fileManager.save(files[i], "resources/upload/product/");
 
 			// 파일 DTO 생성
@@ -149,7 +149,7 @@ public class ProductService {
 
 		productDAO.addFile(productFileDTO);
 		productDTO.setThumbnail(thumbnail);
-		// update?update query문에 썸네일 추가하면 update.jsp에서 file 추가안했을때 files null나와서 에러뜸
+		// update query문에 썸네일 추가하면 update.jsp에서 file 추가안했을때 files null나와서 에러뜸
 		int result2 = productDAO.updateThumbnail(productDTO);
 
 		return result;
@@ -182,11 +182,11 @@ public class ProductService {
 
 	public int update(ProductDTO productDTO, MultipartFile[] files, MultipartFile t_files) throws Exception {
 
-		int result = productDAO.update(productDTO); // productDTO에 시퀀스 들어가있
+		int result = productDAO.update(productDTO); // productDTO에 시퀀스
 
 		for (int i = 0; i < files.length; i++) {
-			if (files[i].isEmpty()) { // file이 비어있으면 다시 위로 올라가서 다음꺼 실행
-				// files[i].getSize()==0 //file 비어져있으면 저장 안되도록 하기 위함
+			if (files[i].isEmpty()) { // file이 비어있으면 다시 위로 올라가서 다음 파일 실행
+				// files[i].getSize()==0 // file 비어져있으면 저장 안되도록 하기 위함
 				continue;
 			}
 
@@ -201,7 +201,7 @@ public class ProductService {
 			productDAO.addFile(productFileDTO);
 		}
 
-		if (productDTO.getCheck() == 1) {// 썸네일 수정했다면
+		if (productDTO.getCheck() == 1) { // 썸네일 수정했다면
 			String thumbnail = fileManager.save(t_files, "resources/upload/product/");
 			ProductFileDTO productFileDTO = new ProductFileDTO();
 			// productNum은 add 실행 후 생성됨

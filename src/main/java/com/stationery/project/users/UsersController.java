@@ -153,28 +153,26 @@ public class UsersController {
 	
 	// wishlist 추가 기능
 	@PostMapping("addWishList")
-	public ModelAndView addWishList(WishListDTO wishListDTO) throws Exception{
-		ModelAndView mv= new ModelAndView();
-		int result=2;
-		WishListDTO ck=usersService.wishlistCk(wishListDTO);
-		if(ck==null) {
-		usersService.addWishList(wishListDTO);
-		result=1;
-		}
+	@ResponseBody
+	public ModelAndView addWishList(WishListDTO wishListDTO, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		String id = request.getParameter("id");
+		int wish = Integer.parseInt(request.getParameter("productNum"));
+		System.out.println(id);
+		System.out.println(wish);
+		
+		wishListDTO.setId(id);
+		wishListDTO.setWishNum(wish);
+		
+		int result = usersService.addWishList(wishListDTO);
+		
 		mv.setViewName("common/ajaxResult");
 		mv.addObject("result",result);
+		
 		return mv;
 	}
 	
-	// wishlist 삭제 기능
-	@PostMapping("deleteWishList")
-	public ModelAndView deleteWishList(WishListDTO wishListDTO) throws Exception{
-		ModelAndView mv= new ModelAndView();
-		int result=usersService.deleteWishList(wishListDTO);
-		mv.setViewName("common/ajaxResult");
-		mv.addObject("result",result);
-		return mv;
-	}
 	
 	// mypage form 이동
 	@GetMapping("mypage")
