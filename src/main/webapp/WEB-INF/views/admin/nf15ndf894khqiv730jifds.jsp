@@ -13,7 +13,7 @@
 </head>
 <body style="background-image: url('../resources/img/joanna-kosinska-RE-8WswW95o-unsplash.jpg')">
     <div class="total">
-        <div class="container" style="width:400px; margin-top: 80px;">
+        <div class="container" style="width:400px; margin-top: 70px;">
             <h2 style="text-align: center;">관리자 페이지</h2>
             <div class="row" style="margin-top: 20px;">
                 <a href="./usersList"><button class="btn btn-info col-sm-6">회원관리</button></a>
@@ -23,7 +23,11 @@
             <div class="row">
                 <a href="../category/add"><button class="btn btn-info col-sm-6">카테고리 추가 및 삭제</button></a>
                 <a href="./faqManage"><button class="btn btn-info col-sm-6">자주 묻는 질문 추가 및 삭제</button></a>
-            
+            </div>
+            <br>
+            <div class="row">
+                <a href="../"><button class="btn btn-success col-sm-12">메인으로 가기</button></a>
+            </div>
         </div>
     </div>
 </body>

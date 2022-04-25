@@ -156,17 +156,17 @@ public class UsersController {
 	@ResponseBody
 	public ModelAndView addWishList(WishListDTO wishListDTO, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		
 		String id = request.getParameter("id");
 		int wish = Integer.parseInt(request.getParameter("productNum"));
-		System.out.println(id);
-		System.out.println(wish);
-		
 		wishListDTO.setId(id);
 		wishListDTO.setWishNum(wish);
 		
-		int result = usersService.addWishList(wishListDTO);
-		
+		int result = 2;
+		WishListDTO ch = usersService.wishlistCk(wishListDTO);
+		if(ch == null) {
+			result = usersService.addWishList(wishListDTO);
+		}
+
 		mv.setViewName("common/ajaxResult");
 		mv.addObject("result",result);
 		

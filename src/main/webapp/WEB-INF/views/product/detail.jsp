@@ -86,7 +86,6 @@
 											<c:if test="${not empty option}">
 												<c:forEach items="${option}" var="option">
 													<div class="formrow">
-														
 														<label class="checklabel btn amado-btn" for="${option.optionContents}">${option.optionContents}
 															<input type="radio" class="checkbox" value="${option.optionNum}" name="optionNum">
 														</label>

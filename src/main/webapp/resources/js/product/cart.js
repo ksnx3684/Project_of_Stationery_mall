@@ -63,3 +63,8 @@ submitBtn.addEventListener("click",function(event){
             }
         }
 })
+
+$(".checklabel").click(function(){
+    $(".checklabel").css({background : "#D8B384"});
+    $(this).css({background : "#5E454B"}); 
+})

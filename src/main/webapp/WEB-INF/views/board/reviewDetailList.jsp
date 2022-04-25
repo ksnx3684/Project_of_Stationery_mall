@@ -78,8 +78,8 @@ Material+Icons+Round|Material+Icons+sharp"
 							 		<div class="chooseBox">
 										<c:if test="${auth.id eq dto.id}">
 											<a data-delNum="${dto.num}" href="../review/reviewDelete?num=${dto.num}&productNum=${param.productNum}"
-											onclick="return confirm('정말 삭제하시겠습니까?');"><br>질문삭제</a>
-											<a href="../review/reviewUpdate?num=${dto.num}&productNum=${param.productNum}"><br>질문수정</a>
+											onclick="return confirm('정말 삭제하시겠습니까?');"><br>삭제</a>
+											<a href="../review/reviewUpdate?num=${dto.num}&productNum=${param.productNum}"><br>수정</a>
 										</c:if>
 									</div> 
 									</div></td>

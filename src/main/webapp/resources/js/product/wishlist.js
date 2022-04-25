@@ -21,8 +21,12 @@ $(".wishlist").click(function(){
             productNum : productNum
         },
 
-        success : function(add){
-            alert("위시리스트에 추가 되었습니다");
+        success : function(result){
+            if(result.trim() == 2){
+                alert("이미 위시리스트에 있습니다")
+            } else{
+                alert("위시리스트에 추가 되었습니다");
+            }
         },
         error : function(){
             alert("에러가 발생했습니다")

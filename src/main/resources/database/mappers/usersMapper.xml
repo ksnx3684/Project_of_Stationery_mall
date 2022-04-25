@@ -103,8 +103,8 @@
 	</select>
 
 	<insert id="addWishList" parameterType="WishListDTO">
-	    insert into wishlist
-	    values(wishlist_seq.nextval,#{id},#{productNum})
+	    INSERT INTO WISHLIST
+	    VALUES (WISHLIST_SEQ.NEXTVAL, #{id}, #{productNum})
 	</insert>
 	
 	<resultMap type="UsersOrderDTO" id="UsersOrderDTO">

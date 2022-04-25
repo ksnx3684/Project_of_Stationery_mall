@@ -27,11 +27,11 @@
 	display: flex;
     align-items: center;
 }
-button {
+#searchbtn {
 margin: 10px;
 outline: none;
 }
-input {
+#searchbar {
 	margin-left: 10px;
     height: 40px;
 }
@@ -114,8 +114,8 @@ table-container a:hover {
 										<option value="col1">제목</option>
 										<option value="col2">본문</option>
 										<option value="col3">작성자</option>
-									</select> <input type="text" name="search" value="${pager.search }" placeholder="search">
-									<button type="submit" class="custom-btn btn-1">검색</button>
+									</select> <input type="text" id="searchbar" name="search" value="${pager.search }" placeholder="search">
+									<button type="submit" class="custom-btn btn-1" id="searchbtn">검색</button>
 								</fieldset>
 							</form>
 							<c:choose>

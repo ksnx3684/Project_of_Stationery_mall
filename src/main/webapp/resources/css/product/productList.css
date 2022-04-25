@@ -34,11 +34,11 @@ body{
     -webkit-text-size-adjust: none;
 }
 
-.container {
+/* .container {
     box-sizing: border-box;
     margin: 40px auto;
     padding: 20px;
-  }
+  } */
 
   
   .container:after {
@@ -113,9 +113,9 @@ height:40.6px;
   border-radius: 20px;
 }
 
-form{
+/* form{
 	width:500px;
-}
+} */
 
 .submit {
   font-weight:600;
