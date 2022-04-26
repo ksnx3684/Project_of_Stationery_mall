@@ -58,15 +58,6 @@ const fileResult_t = document.getElementById("fileResult_t")
 const tCheck=document.getElementById("tCheck")
 tCheck.setAttribute("value","2")
 
-// x클릭하면 그 파일의 파일num 넘어가고 파일 삭제됨 
-//근데 썸네일삭제하면 썸네일 다시넣어줘야되는데 
-//사진 추가시에 product table에 thumbnail에 Filename넣어줘야됨 
-// 근데 썸네일 조건이 <c:when test="${state.first}">이걸로 해놔서
-//썸네일 삭제하면 그 다음사진이 썸네일이 됨 
-//=> filenum을 기억해서 다시 넣어줘야할듯 
-
-
-
 
 
 files.addEventListener("click",function(event){
