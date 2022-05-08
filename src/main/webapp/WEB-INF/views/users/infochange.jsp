@@ -175,7 +175,7 @@
     <!-- Plugins js -->
     <script src="../resources/js/plugins.js"></script>
     <!-- Active js -->
-    <script src="../resources/js/active.js"></script>
+    <script src="../resources/js/active2.js"></script>
    
     <script type="text/javascript" src="../resources/js/users/infochange.js"></script>
 
